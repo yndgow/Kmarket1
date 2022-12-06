@@ -3,35 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <title>KMarket::index</title>
-    <script
-      src="https://kit.fontawesome.com/e8f010a863.js"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://code.jquery.com/jquery-3.6.1.js"
-      integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/e8f010a863.js" crossorigin="anonymous" ></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css" />
     <script src="./js/script.js"></script>
-    <script>
-      $(() => {
-        for (let i = 2; i <= 5; i++) {
-          $(".category > li:nth-child(" + i + ")").on("mouseover", () => {
-            $(".category li:nth-child(" + i + ") > ol:nth-of-type(1)").css(
-              "visibility",
-              "visible"
-            );
-          });
-        }
-        $("#menu > li").on("mouseout", () => {
-          $(".category li > ol").css("visibility", "hidden");
-        });
-        $(".sub_categori").on("mouseover", () => {
-          $(this).css("visibility", "visible");
-        });
-      });
-    </script>
   </head>
   <body>
     <div class="wrapper">

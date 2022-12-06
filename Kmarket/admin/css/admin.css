@@ -419,3 +419,10 @@ button[type=submit] {
     color: rgb(254, 67, 76);
     font-weight: bold;
 }
+
+ /* admin-product-register */
+ #admin-product-register {}
+ #admin-product-register input[type=submit] {
+    float: right;
+    width: 100px;
+}

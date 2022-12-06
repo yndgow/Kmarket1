@@ -64,8 +64,9 @@
     width: 400px;
     height: 35px;
     border: 1px solid #e9e9e9;
-    box-sizing: border-box;
     border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
   }
   .logo .search > button#search {
     position: absolute;

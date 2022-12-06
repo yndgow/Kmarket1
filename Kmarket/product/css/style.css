@@ -3,6 +3,9 @@
     padding: 0px;
     font: 12px 고딕;
   }
+  #wrapper{
+    width: 100%;
+  }
   header {
     width: 100%;
     height: 197px;
@@ -55,10 +58,10 @@
     top: 30px;
   }
   .logo form.search {
-    position: relative;
+    position: absolute;
     top: 40px;
     left: 430px;
-    width: 100%;
+    width: auto;
   }
   .logo .search > input {
     width: 400px;
@@ -227,6 +230,8 @@
     float: right;
     margin-top: 10px;
   }
+
+  /* 분류 */
   ul.sort{
     border-top: 2px solid #000;
     margin-top: 15px;
@@ -241,8 +246,12 @@
   }
   ul.sort > li > a{
     padding: 0 10px;
+    line-height: 30px;
     border-right: 1px solid #e9e9e9;
     box-sizing: border-box;
+  }
+  ul.sort > li > a.on{
+    font-weight: bold;
   }
   /* table 시작*/
   table{
@@ -250,13 +259,100 @@
     border-top: 1px solid #e9e9e9;
     height: auto;
   }
-  table tr{}
-  table tr > td {}
-  table tr > td > img{
+  table tr{
+    
+  }
+  table tr > td {
+    border-bottom: 1px solid #ececec;
+    box-sizing: border-box;
+  }
+  table tr > td:nth-child(1) {width: 20%;}
+  table tr > td:nth-child(2) {width: 40%;}
+  table tr > td:nth-child(3) {width: 20%;}
+  table tr > td:nth-child(4) {width: 20%;}
+  table td > h1{
+    font-size: 16px;
+    font-weight: bold;
+  }
+  /* 상품 이미지 */
+  table tr > td  img{
     width: 120px;
     height: 120px;
     object-fit: cover;
   }
+  /* 현재가격 */
+  table tr .cur_price{
+    text-decoration: none;
+    font-size: 16px;
+  }
+  /* 원래가격 */
+  table tr .ori_price{
+    color: rgb(170, 170, 170);
+  }
+  /* 할인율 */
+  table tr .discount{
+    margin-left: 8px;
+    font-size: 10px;
+    color: red;
+  }
+  /* 무료배송 */
+  table tr .freede{
+    width: 55px;
+    height: 13px;
+    object-fit: cover;
+  }
+  /* 판매자등급 */
+  table tr .sellerTd .dealer{
+    width: 54px;
+    height: 13px;
+    object-fit: cover;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+  /* 별점 */
+  table tr .sellerTd .rating{
+    font-size: 11px;
+    background-image: url(../img/rating_star.png);
+    background-repeat: no-repeat;
+    background-position: 36px 0px;
+    background-size: auto 100%;
+  }
+  .star1{
+    width: 55px;
+  }
+  .star2{
+    width: 70px;
+  }
+  .star3{
+    width: 85px;
+  }
+  .star4{
+    width: 100px;
+  }
+  
+  /* 페이징 paging */
+.paging{
+  width: 100%;
+  height: auto;
+  text-align: center;
+  padding: 30px 0;
+}
+.paging > .prev{}
+.paging > .prev > a{}
+.paging > .num{}
+.paging > .num > a{
+  display: inline-block;
+  width: 14px;
+  padding: 8px 9px;
+  border: 1px solid rgb(196,196,196);
+}
+.paging > .num > a.on{
+  color: red;
+}
+
+.paging > .next > a{}
+
+
   /* table 끝 */
 
   /* 상품 list main 끝 */

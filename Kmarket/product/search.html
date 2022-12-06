@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <title>KMarket::search</title>
     <script src="https://kit.fontawesome.com/e8f010a863.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css" />
+    <script src="./js/script.js"></script>
   </head>
   <body>
     <div class="wrapper">
@@ -58,45 +60,60 @@
 
       <main id="product">
         <aside>
-          <ul class="category">
-            <li><i class="fa-solid fa-bars"></i>카테고리</li>
+          <ul class="category" id="menu">
+            <li class="ui-state-disabled">
+              <i class="fa-solid fa-bars"></i>카테고리
+            </li>
             <li>
-              <a href="">
+              <a href="#">
                 <i class="fa-sharp fa-solid fa-shirt"></i>
                 패션·의류·뷰티
+                <i class="fa-solid fa-chevron-right"></i>
               </a>
-              <ol>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+              <ol class="sub_category">
+                <li><a href="#">남성의류</a></li>
+                <li><a href="#">여성의류</a></li>
+                <li><a href="#">잡화</a></li>
+                <li><a href="#">뷰티</a></li>
               </ol>
             </li>
             <li>
-              <a href=""><i class="fa-solid fa-laptop"></i>가전·디지털</a>
-              <ol>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+              <a href="#">
+                <i class="fa-solid fa-laptop"></i>
+                가전·디지털
+                <i class="fa-solid fa-chevron-right"></i
+              ></a>
+              <ol class="sub_category">
+                <li><a href="#">노트북/PC</a></li>
+                <li><a href="#">가전</a></li>
+                <li><a href="#">휴대폰</a></li>
+                <li><a href="#">기타</a></li>
               </ol>
             </li>
             <li>
-              <a href=""><i class="fa-solid fa-utensils"></i>식품·생필품</a>
-              <ol>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+              <a href="#"
+                ><i class="fa-solid fa-utensils"></i>식품·생필품<i
+                  class="fa-solid fa-chevron-right"
+                ></i
+              ></a>
+              <ol class="sub_category">
+                <li><a href="#">신선식품</a></li>
+                <li><a href="#">가공식품</a></li>
+                <li><a href="#">건강식품</a></li>
+                <li><a href="#">생필품</a></li>
               </ol>
             </li>
             <li>
-              <a href=""><i class="fa-solid fa-house"></i>홈·문구·취미</a>
-              <ol>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+              <a href="#"
+                ><i class="fa-solid fa-house"></i>홈·문구·취미<i
+                  class="fa-solid fa-chevron-right"
+                ></i
+              ></a>
+              <ol class="sub_category">
+                <li><a href="#">가구/DIY</a></li>
+                <li><a href="#">침구·커튼</a></li>
+                <li><a href="#">생활용품</a></li>
+                <li><a href="#">사무용품</a></li>
               </ol>
             </li>
           </ul>

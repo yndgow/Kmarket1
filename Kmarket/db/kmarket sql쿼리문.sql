@@ -1,4 +1,3 @@
-
 /* kmarket 데이터베이스/테이블 생성*/
 
 
@@ -350,3 +349,25 @@ INSERT INTO `km_product_cate2` (`cate1`, `cate2`, `c2Name`) VALUES (15, 19, '생
 INSERT INTO `km_product_cate2` (`cate1`, `cate2`, `c2Name`) VALUES (15, 20, '음향가전');
 INSERT INTO `km_product_cate2` (`cate1`, `cate2`, `c2Name`) VALUES (15, 21, '건강가전');
 
+INSERT INTO `km_product_cate2` (`cate1`, `cate2`, `c2Name`) VALUES (16, 10, '스포츠의류/운동화');
+INSERT INTO `km_product_cate2` (`cate1`, `cate2`, `c2Name`) VALUES (16, 11, '휘트니스/수영');
+INSERT INTO `km_product_cate2` (`cate1`, `cate2`, `c2Name`) VALUES (16, 12, '구기/라켓');
+INSERT INTO `km_product_cate2` (`cate1`, `cate2`, `c2Name`) VALUES (16, 13, '골프');
+INSERT INTO `km_product_cate2` (`cate1`, `cate2`, `c2Name`) VALUES (16, 14, '자전거/보드/기타레저');
+INSERT INTO `km_product_cate2` (`cate1`, `cate2`, `c2Name`) VALUES (16, 15, '캠핑/낚시');
+INSERT INTO `km_product_cate2` (`cate1`, `cate2`, `c2Name`) VALUES (16, 16, '등산/아웃도어');
+INSERT INTO `km_product_cate2` (`cate1`, `cate2`, `c2Name`) VALUES (16, 17, '건강/의료용품');
+INSERT INTO `km_product_cate2` (`cate1`, `cate2`, `c2Name`) VALUES (16, 18, '건강식품');
+INSERT INTO `km_product_cate2` (`cate1`, `cate2`, `c2Name`) VALUES (16, 19, '렌탈서비스');
+
+INSERT INTO `km_product_cate2` (`cate1`, `cate2`, `c2Name`) VALUES (17, 10, '자동차용품');
+INSERT INTO `km_product_cate2` (`cate1`, `cate2`, `c2Name`) VALUES (17, 11, '공구/안전/산업용품');
+
+INSERT INTO `km_product_cate2` (`cate1`, `cate2`, `c2Name`) VALUES (18, 10, '여행/항공권');
+INSERT INTO `km_product_cate2` (`cate1`, `cate2`, `c2Name`) VALUES (18, 11, '도서/음반/e교육');
+INSERT INTO `km_product_cate2` (`cate1`, `cate2`, `c2Name`) VALUES (18, 12, '공연티켓');
+INSERT INTO `km_product_cate2` (`cate1`, `cate2`, `c2Name`) VALUES (18, 13, 'e쿠폰');
+INSERT INTO `km_product_cate2` (`cate1`, `cate2`, `c2Name`) VALUES (18, 14, '상품권');
+
+/* prodNo 컬럼 1,000,000부터 번호 부여*/
+alter table `km_product` auto_increment = 1000000;

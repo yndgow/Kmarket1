@@ -10,17 +10,4 @@ $(() => {
   $('.sub_categori').on('mouseover', () => {
     $(this).css('visibility', 'visible');
   });
-  // 수량증감 버튼
-  $('.descBtn').click(()=>{
-    let num = $('input[name=num]').val();
-    num = Number(num);
-    if(num > 1) num -= 1;
-    $('input[name=num]').val(num);
-  });
-  $('.incrBtn').click(()=>{
-    let num = $('input[name=num]').val();
-    num = Number(num);
-    if(num < 100) num += 1;
-    $('input[name=num]').val(num);
-  });
 });

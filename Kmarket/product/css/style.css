@@ -267,16 +267,16 @@ ul.sort > li > a.on {
   border-bottom: 1px solid #ececec;
   box-sizing: border-box;
 }
-table tr > td:nth-child(1) {
+.list > table tr > td:nth-child(1) {
   width: 20%;
 }
-table tr > td:nth-child(2) {
+.list > table tr > td:nth-child(2) {
   width: 40%;
 }
-table tr > td:nth-child(3) {
+.list > table tr > td:nth-child(3) {
   width: 20%;
 }
-table tr > td:nth-child(4) {
+.list > table tr > td:nth-child(4) {
   width: 20%;
 }
 table td > h1 {

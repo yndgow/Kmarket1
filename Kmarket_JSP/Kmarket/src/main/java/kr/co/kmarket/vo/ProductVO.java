@@ -97,17 +97,26 @@ public class ProductVO {
 	public void setDiscount(int discount) {
 		this.discount = discount;
 	}
+	public void setDiscount(String discount) {
+		this.discount = Integer.parseInt(discount);
+	}
 	public int getPoint() {
 		return point;
 	}
 	public void setPoint(int point) {
 		this.point = point;
 	}
+	public void setPoint(String point) {
+		this.point = Integer.parseInt(point);
+	}
 	public int getStock() {
 		return stock;
 	}
 	public void setStock(int stock) {
 		this.stock = stock;
+	}
+	public void setStock(String stock) {
+		this.stock = Integer.parseInt(stock);
 	}
 	public int getSold() {
 		return sold;
@@ -120,6 +129,9 @@ public class ProductVO {
 	}
 	public void setDelivery(int delivery) {
 		this.delivery = delivery;
+	}
+	public void setDelivery(String delivery) {
+		this.delivery = Integer.parseInt(delivery);
 	}
 	public int getHit() {
 		return hit;

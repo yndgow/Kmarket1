@@ -1,5 +1,8 @@
 package kr.co.kmarket.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +22,7 @@ public class AdminDAO extends DBHelper {
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	
-	
+	// 상품 등록	
 	public int insertProductByAdmin(ProductVO vo) {
 		logger.info("insertProductByAdmin...");
 		int result = 0;
@@ -32,8 +35,12 @@ public class AdminDAO extends DBHelper {
 			psmt.setString(3, vo.getProdName());
 			psmt.setString(4, vo.getDescript());
 			psmt.setString(5, vo.getCompany());
-			//psmt.setString(6, vo.getSeller());
 			psmt.setInt(6, vo.getPrice());
+			psmt.setString(7, vo.getThumb1());
+			psmt.setString(8, vo.getThumb2());
+			psmt.setString(9, vo.getThumb3());
+			psmt.setString(10, vo.getDetail());
+			psmt.setString(11, vo.getIp());
 			result = psmt.executeUpdate();
 			close();
 		} catch(Exception e) {
@@ -41,6 +48,54 @@ public class AdminDAO extends DBHelper {
 		}
 		logger.debug("result :" + result);
 		return result;
+	}
+	
+	// 등록한 상품 리스트
+	public List<ProductVO> selectProductByAdmin(String uid) {
+		logger.info("selectProductByAdmin...");
+		List<ProductVO> products = new ArrayList<>();
+		
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(Sql.SELECT_PRODUCT_BY_ADMIN);
+			while(rs.next()) {
+				ProductVO vo = new ProductVO();
+				vo.setPrdoNo(rs.getInt(1));
+				vo.setProdCate1(rs.getInt(2));
+				vo.setProdCate2(rs.getInt(3));
+				vo.setProdName(rs.getString(4));
+				vo.setDescript(rs.getString(5));
+				vo.setCompany(rs.getString(6));
+				vo.setSeller(rs.getString(7));
+				vo.setPrice(rs.getInt(8));
+				vo.setDiscount(rs.getInt(9));
+				vo.setPoint(rs.getInt(10));
+				vo.setStock(rs.getInt(11));
+				vo.setSold(rs.getInt(12));
+				vo.setDelivery(rs.getInt(13));
+				vo.setHit(rs.getInt(14));
+				vo.setScore(rs.getInt(15));
+				vo.setReview(rs.getInt(16));
+				vo.setThumb1(rs.getString(17));
+				vo.setThumb2(rs.getString(18));
+				vo.setThumb3(rs.getString(19));
+				vo.setDetail(rs.getString(20));
+				vo.setStatus(rs.getString(21));
+				vo.setDuty(rs.getString(22));
+				vo.setReceipt(rs.getString(23));
+				vo.setBizType(rs.getString(24));
+				vo.setOrigin(rs.getString(25));
+				vo.setIp(rs.getString(26));
+				vo.setRdate(rs.getString(27));
+				products.add(vo);
+			}
+			close();
+		} catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result :" + products);
+		return products;
 	}
 	
 	

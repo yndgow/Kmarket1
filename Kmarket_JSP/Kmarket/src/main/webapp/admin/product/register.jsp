@@ -12,12 +12,6 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="../css/admin.css">
-    <script>
-	let success = ${success};
-	if(success == "100"){
-		alert('등록성공.');
-	}
-</script>
 </head>
 <body>
     <div id="admin-wrapper">
@@ -98,7 +92,7 @@
                 </nav>
 
                 <article>
-                    <form action="/Kmarket/admin/product/register.do" method="post">
+                    <form action="/Kmarket/admin/product/register.do" method="post" enctype="multipart/form-data">
                         <section>
                             <h4>상품분류</h4>
                             <p>
@@ -216,71 +210,71 @@
                             <table>
                                 <tr>
                                     <td>상품번호</td>
-                                    <td><input type="text" name=""/></td>
+                                    <td><input type="text" name="prodCode"/></td>
                                 </tr>
                                 <tr>
                                     <td>상품상태</td>
-                                    <td><input type="text" name=""/></td>
-                                </tr>
-                                <tr>
-                                    <td>부가세 면세여부</td>
-                                    <td><input type="text" name=""/></td>
-                                </tr>
-                                <tr>
-                                    <td>영수증발행</td>
-                                    <td><input type="text" name="duty"/></td>
-                                </tr>
-                                <tr>
-                                    <td>사업자구분</td>
                                     <td><input type="text" name="status"/></td>
                                 </tr>
                                 <tr>
+                                    <td>부가세 면세여부</td>
+                                    <td><input type="text" name="duty"/></td>
+                                </tr>
+                                <tr>
+                                    <td>영수증발행</td>
+                                    <td><input type="text" name="receipt"/></td>
+                                </tr>
+                                <tr>
+                                    <td>사업자구분</td>
+                                    <td><input type="text" name="bizType"/></td>
+                                </tr>
+                                <tr>
                                     <td>브랜드</td>
-                                    <td><input type="text" name=""/></td>
+                                    <td><input type="text" name="brand"/></td>
                                 </tr>
                                 <tr>
                                     <td>원산지</td>
-                                    <td><input type="text" name=""/></td>
+                                    <td><input type="text" name="origin"/></td>
                                 </tr>
                                 <tr>
                                     <td>제품소재</td>
-                                    <td><input type="text" name=""/></td>
+                                    <td><input type="text" name="material"/></td>
                                 </tr>
                                 <tr>
                                     <td>색상</td>
-                                    <td><input type="text" name=""/></td>
+                                    <td><input type="text" name="color"/></td>
                                 </tr>
                                 <tr>
                                     <td>치수</td>
-                                    <td><input type="text" name=""/></td>
+                                    <td><input type="text" name="size"/></td>
                                 </tr>
                                 <tr>
                                     <td>제조자/수입국</td>
-                                    <td><input type="text" name=""/></td>
+                                    <td><input type="text" name="manuCompany"/></td>
                                 </tr>
                                 <tr>
                                     <td>제조국</td>
-                                    <td><input type="text" name=""/></td>
+                                    <td><input type="text" name="manuCountry"/></td>
                                 </tr>
                                 <tr>
                                     <td>취급시 주의사항</td>
-                                    <td><input type="text" name=""/></td>
+                                    <td><input type="text" name="warning"/></td>
                                 </tr>
                                 <tr>
                                     <td>제조연월</td>
-                                    <td><input type="text" name=""/></td>
+                                    <td><input type="text" name="manuDate"/></td>
                                 </tr>
                                 <tr>
                                     <td>품질보증기준</td>
-                                    <td><input type="text" name=""/></td>
+                                    <td><input type="text" name="qa"/></td>
                                 </tr>
                                 <tr>
                                     <td>A/S 책임자와 전화번호</td>
-                                    <td><input type="text" name=""/></td>
+                                    <td><input type="text" name="as"/></td>
                                 </tr>
                                 <tr>
                                     <td>주문후 예상 배송기간</td>
-                                    <td><input type="text" name=""/></td>
+                                    <td><input type="text" name="deliveryTime"/></td>
                                 </tr>
                             </table>       
                         </section>

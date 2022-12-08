@@ -2,7 +2,7 @@
 <!DOCTYPE configuration>
 
 <configuration>
-	<property name="NAME" value="Jboard2"/>
+	<property name="NAME" value="Kmarket"/>
 	<import class="ch.qos.logback.classic.encoder.PatternLayoutEncoder"/>
 	<import class="ch.qos.logback.core.ConsoleAppender"/>
 

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,12 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="../css/admin.css">
+    <script>
+	let success = ${success};
+	if(success == "100"){
+		alert('등록성공.');
+	}
+</script>
 </head>
 <body>
     <div id="admin-wrapper">
@@ -91,7 +98,7 @@
                 </nav>
 
                 <article>
-                    <form action="/Kmarket/admin/register.do" method="post">
+                    <form action="/Kmarket/admin/product/register.do" method="post">
                         <section>
                             <h4>상품분류</h4>
                             <p>
@@ -102,11 +109,12 @@
                                     <td>1차 분류</td>
                                     <td>
                                         <select name="category1">
-                                            <option value="cate0">1차 분류 선택</option>
-                                            <option value="cate11">패션·의류·뷰티</option>
-                                            <option value="cate12">가전·디지털</option>
-                                            <option value="cate13">식품·생필품</option>
-                                            <option value="cate14">홈·문구·취미</option>
+                                            <option value="0">1차 분류 선택</option>
+                                            <option value="10">브랜드패션</option>
+                                            <option value="11">패션·의류·뷰티</option>
+                                            <option value="12">가전·디지털</option>
+                                            <option value="13">식품·생필품</option>
+                                            <option value="14">홈·문구·취미</option>
                                         </select>
                                     </td>
                                 </tr>
@@ -114,11 +122,15 @@
                                     <td>2차 분류</td>
                                     <td>
                                         <select name="category2">
-                                            <option value="cate0">2차 분류 선택</option>
-                                            <option value="cate11">남성의류</option>
-                                            <option value="cate12">여성의류</option>
-                                            <option value="cate13">잡화</option>
-                                            <option value="cate14">뷰티</option>
+                                            <option value="0">2차 분류 선택</option>
+                                            <option value="10">여성의류</option>
+                                            <option value="11">남성의류</option>
+                                            <option value="12">언더웨어</option>
+                                            <option value="13">신발</option>
+                                            <option value="14">가방/잡화</option>
+                                            <option value="15">쥬얼리/시계</option>
+                                            <option value="16">화장품/향수</option>
+                                            <option value="17">바디/헤어</option>
                                         </select>
                                     </td>
                                 </tr>

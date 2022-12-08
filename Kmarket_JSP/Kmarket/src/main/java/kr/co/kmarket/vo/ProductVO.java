@@ -46,11 +46,17 @@ public class ProductVO {
 	public void setProdCate1(int prodCate1) {
 		this.prodCate1 = prodCate1;
 	}
+	public void setProdCate1(String prodCate1) {
+		this.prodCate1 = Integer.parseInt(prodCate1);
+	}
 	public int getProdCate2() {
 		return prodCate2;
 	}
 	public void setProdCate2(int prodCate2) {
 		this.prodCate2 = prodCate2;
+	}
+	public void setProdCate2(String prodCate2) {
+		this.prodCate2 = Integer.parseInt(prodCate2);
 	}
 	public String getProdName() {
 		return prodName;
@@ -81,6 +87,9 @@ public class ProductVO {
 	}
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	public void setPrice(String price) {
+		this.price = Integer.parseInt(price);
 	}
 	public int getDiscount() {
 		return discount;

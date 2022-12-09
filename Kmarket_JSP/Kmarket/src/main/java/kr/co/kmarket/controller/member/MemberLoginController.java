@@ -58,7 +58,7 @@ public class MemberLoginController extends HttpServlet {
 						resp.addCookie(cookie);
 						
 						// 세션정보 데이터베이스 저장
-						service.updateUserForSession(uid, sessId);
+						//service.updateUserForSession(uid, sessId);
 					}
 					
 					resp.sendRedirect("/Karket/index.do");

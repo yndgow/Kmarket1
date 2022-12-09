@@ -3,7 +3,7 @@ package kr.co.kmarket.dao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import kr.co.kmarket.db.Sql;
+import kr.co.kmarket.db.Sql_kkj;
 import kr.co.kmarket.db.DBHelper;
 import kr.co.kmarket.vo.MemberTermsVO;
 
@@ -27,7 +27,7 @@ public class MemberDAO extends DBHelper {
 				
 				conn = getConnection();
 				stmt = conn.createStatement();
-				rs = stmt.executeQuery(Sql.SELECT_TERMS);
+				rs = stmt.executeQuery(Sql_kkj.SELECT_TERMS);
 				
 				if(rs.next()) {
 					vo = new MemberTermsVO();

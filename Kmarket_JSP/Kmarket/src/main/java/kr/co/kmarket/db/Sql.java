@@ -16,6 +16,7 @@ public class Sql {
 			+ "`detail` = ?, "
 			+ "`ip` = ?, "
 			+ "`rdate` = NOW()";
+<<<<<<< HEAD
 	
 <<<<<<< HEAD
 	public static final String SELECT_PRODUCT_BY_ADMIN = "SELECT * FROM `km_product`"; 
@@ -25,6 +26,9 @@ public class Sql {
 
 
 =======
+=======
+
+>>>>>>> d07404414b20956322791a512b76ba554e91918c
 	// admin 상품출력 김지홍
 	public static final String SELECT_PRODUCT_BY_ADMIN = "SELECT * FROM `km_product`";
 	
@@ -33,7 +37,14 @@ public class Sql {
 	
 	// admin category2 출력 김지홍
 	public static final String SELECT_CATEGORY2_BY_ADMIN = "SELECT * FROM `km_product_cate2`";
+<<<<<<< HEAD
 >>>>>>> 5ed0afeb5d3409c45a755a0f4af38fe55ad85b63
+=======
+
+  // member 약관
+	public static final String SELECT_TERMS = "select * from `km_member_terms`";
+
+>>>>>>> d07404414b20956322791a512b76ba554e91918c
 }
 
 

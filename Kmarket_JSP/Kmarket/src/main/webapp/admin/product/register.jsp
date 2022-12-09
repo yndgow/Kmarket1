@@ -59,8 +59,8 @@
                     <li>
                         <a href="#"><i class="fas fa-box-open" aria-hidden="true"></i>상품관리</a>
                         <ol>
-                            <li><a href="#">상품현황</a></li>
-                            <li><a href="#">상품등록</a></li>
+                            <li><a href="/Kmarket/admin/product/list.do">상품현황</a></li>
+                            <li><a href="/Kmarket/admin/product/register.do">상품등록</a></li>
                             <li><a href="#">재고관리</a></li>
                         </ol>
                     </li>
@@ -104,11 +104,7 @@
                                     <td>
                                         <select name="category1">
                                             <option value="0">1차 분류 선택</option>
-                                            <option value="10">브랜드패션</option>
-                                            <option value="11">패션·의류·뷰티</option>
-                                            <option value="12">가전·디지털</option>
-                                            <option value="13">식품·생필품</option>
-                                            <option value="14">홈·문구·취미</option>
+                                            
                                         </select>
                                     </td>
                                 </tr>

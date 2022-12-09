@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 
 import kr.co.kmarket.dao.AdminDAO;
 import kr.co.kmarket.vo.ProductCate1VO;
+import kr.co.kmarket.vo.ProductOrderVO;
 import kr.co.kmarket.vo.ProductVO;
 
 public enum AdminService {
@@ -34,7 +35,10 @@ public enum AdminService {
 		return dao.selectCategoryByAdmin();
 	}
 	
-	
+	// admin 주문건수 출력 김보성
+	public ProductOrderVO selectOrderByAdmin(String ordNo) {
+		return dao.selectOrderByAdmin(ordNo);
+	}
 	
 	
 	

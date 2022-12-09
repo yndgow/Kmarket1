@@ -9,10 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.kmarket.service.AdminService;
+import kr.co.kmarket.vo.ProductOrderVO;
+
 @WebServlet("/admin/index.do")
 public class AdminIndexController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	AdminService service = AdminService.INSTANCE;
 	
 	@Override
 	public void init() throws ServletException {
@@ -21,6 +25,9 @@ public class AdminIndexController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		ProductOrderVO vo = service.selectOrderByAdmin("ordNo");
+		req.setAttribute("vo", vo);
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/index.jsp");
 		dispatcher.forward(req, resp);
 	}

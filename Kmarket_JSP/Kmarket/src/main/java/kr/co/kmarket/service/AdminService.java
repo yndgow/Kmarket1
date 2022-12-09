@@ -1,27 +1,75 @@
 package kr.co.kmarket.service;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+
 import kr.co.kmarket.dao.AdminDAO;
+import kr.co.kmarket.vo.ProductCate1VO;
 import kr.co.kmarket.vo.ProductVO;
 
 public enum AdminService {
 	INSTANCE;
 	AdminDAO dao = AdminDAO.getInstance();
 	
+	// admin 상품 등록 김지홍
 	public int insertProductByAdmin(ProductVO vo) {
 		return dao.insertProductByAdmin(vo);
-		
 	}
 	
+	// admin list 출력 김지홍
 	public List<ProductVO> selectProductByAdmin(String uid){
 		return dao.selectProductByAdmin(uid);
 	}
+
+	// admin cate 출력 김지홍
+	public List<ProductCate1VO> selectCategoryByAdmin(){
+		return dao.selectCategoryByAdmin();
+	}
 	
-	// 파일 이름 변경
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 파일 이름 변경 김지홍
 	public String reNameFile(String fName, String uid, String savePath) {
 		int idx = fName.lastIndexOf("."); // 확장자 인덱스
 		String ext = fName.substring(idx); // 확장자 구분
@@ -34,5 +82,14 @@ public enum AdminService {
 		return newName;
 	}
 	
+	// list json 변환 메서드 김지홍
+	public void gsonTojson(Object obj, HttpServletResponse resp) throws IOException {
+		resp.setContentType("application/x-json; charset=UTF-8");
+		Gson gson = new Gson();
+		String jsonData = gson.toJson(obj);
+		PrintWriter writer = resp.getWriter();
+		writer.print(jsonData);
+	}
 	
+
 }

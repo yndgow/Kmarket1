@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import kr.co.kmarket.db.DBHelper;
 import kr.co.kmarket.db.Sql;
+import kr.co.kmarket.vo.ProductCate1VO;
 import kr.co.kmarket.vo.ProductVO;
 
 public class AdminDAO extends DBHelper {
@@ -22,7 +23,7 @@ public class AdminDAO extends DBHelper {
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	
-	// 상품 등록	
+	// admin 상품 등록	
 	public int insertProductByAdmin(ProductVO vo) {
 		logger.info("insertProductByAdmin...");
 		int result = 0;
@@ -50,7 +51,7 @@ public class AdminDAO extends DBHelper {
 		return result;
 	}
 	
-	// 등록한 상품 리스트
+	// admin 등록한 상품 리스트 김지홍
 	public List<ProductVO> selectProductByAdmin(String uid) {
 		logger.info("selectProductByAdmin...");
 		List<ProductVO> products = new ArrayList<>();
@@ -98,7 +99,29 @@ public class AdminDAO extends DBHelper {
 		return products;
 	}
 	
-	
+	// admin 카테고리 리스트 출력 	
+		public List<ProductCate1VO> selectCategoryByAdmin() {
+			logger.info("insertProductByAdmin...");
+			List<ProductCate1VO> cates = new ArrayList<>();
+			
+			try {
+				conn = getConnection();
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(Sql.SELECT_CATEGORY1_BY_ADMIN);
+				while(rs.next()) {
+					ProductCate1VO vo = new ProductCate1VO();
+					vo.setCate1(rs.getInt(1));
+					vo.setC1Name(rs.getString(2));
+					cates.add(vo);
+				}
+				
+				close();
+			} catch(Exception e) {
+				logger.error(e.getMessage());
+			}
+			logger.debug("cates :" + cates);
+			return cates;
+		}
 	
 	
 	

@@ -365,7 +365,7 @@ button[type=submit] {
 #admin-product-list > section > table {
     border-top: 2px solid rgb(135, 152, 163);
 }
-#admin-product-list > section > table img.thumb {width: 60px;}
+#admin-product-list > section > table img.thumb {width: 60px; height: 60px; object-fit:cover;}
 #admin-product-list > section > table tr > th {
     padding: 10px 0px;
     background: rgb(246, 246, 246);

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("")
+@WebServlet("/cs/write")
 public class WriteController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
@@ -21,7 +21,7 @@ public class WriteController extends HttpServlet{
 
 		
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/cs/write");
 		dispatcher.forward(req, resp);
 		
 	}

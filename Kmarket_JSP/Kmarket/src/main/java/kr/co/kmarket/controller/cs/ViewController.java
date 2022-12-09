@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("")
+@WebServlet("/cs/view")
 public class ViewController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
@@ -21,7 +21,7 @@ public class ViewController extends HttpServlet{
 
 		
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/cs/view");
 		dispatcher.forward(req, resp);
 		
 	}

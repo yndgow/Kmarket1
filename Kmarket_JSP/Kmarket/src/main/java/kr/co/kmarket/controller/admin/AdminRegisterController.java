@@ -34,7 +34,7 @@ public class AdminRegisterController extends HttpServlet{
 		String savePath = req.getServletContext().getRealPath("/file");
 		File mdfile = new File(savePath);
 		if(!mdfile.exists()) mdfile.mkdirs();
-				int maxSize = 1024 * 1024 * 1;
+				int maxSize = 1024 * 1024 * 5;
 		MultipartRequest mr = new MultipartRequest(req, savePath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 		
 		String prodCate1 = mr.getParameter("category1");
@@ -67,20 +67,20 @@ public class AdminRegisterController extends HttpServlet{
 		String newThumb3 = null;
 		String newDetail = null;
 		try {
-			newThumb1 = service.reNameFile(thumb1, "uid", savePath);
+			newThumb1 = service.reNameFile(thumb1, "uid190", savePath);
 			TimeUnit.SECONDS.sleep(1);
-			newThumb2 = service.reNameFile(thumb2, "uid", savePath);
+			newThumb2 = service.reNameFile(thumb2, "uid230", savePath);
 			TimeUnit.SECONDS.sleep(1);
-			newThumb3 = service.reNameFile(thumb3, "uid", savePath);
+			newThumb3 = service.reNameFile(thumb3, "uid456", savePath);
 			TimeUnit.SECONDS.sleep(1);
-			newDetail = service.reNameFile(detail, "uid", savePath);
+			newDetail = service.reNameFile(detail, "uid940", savePath);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		
 		ProductVO vo = new ProductVO();
 		vo.setProdCate1(prodCate1);
-		vo.setProdCate1(prodCate2);
+		vo.setProdCate2(prodCate2);
 		vo.setProdName(prodName);
 		vo.setDescript(descript);
 		vo.setCompany(company);

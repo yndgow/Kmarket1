@@ -32,10 +32,11 @@ public class MemberSignupController extends HttpServlet {
 		req.setAttribute("vo", vo);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/member/signup.jsp");
-		dispatcher.forward(req, resp);	
+		dispatcher.forward(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	
 	}
 }

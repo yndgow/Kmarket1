@@ -92,7 +92,7 @@
                         <tr>
                             <td>
                                 <strong>주문건수(건)</strong>
-                                <span>131</span>
+                                <span>${vo.}</span>
                             </td>
                             <td>
                                 <strong>주문금액(원)</strong>

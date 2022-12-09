@@ -13,16 +13,16 @@
         <header>
             <div class="top">
               <div>
-                <a href="#">로그인</a>
-                <a href="./signup.html">회원가입</a>
+                <a href="/Kmarket/member/login.do">로그인</a>
+                <a href="/Kmarket/member/signup.do">회원가입</a>
                 <a href="#">마이페이지</a>
                 <a href=""><i class="fa-solid fa-cart-shopping"></i>&nbsp;장바구니</a>
               </div>
             </div>
             <div class="logo">
               <div>
-                <a href="#">
-                  <img src="./img/header_logo.png" alt="케이마켓">
+                <a href="/Kmarket/index.do">
+                  <img src="/Kmarket/img/header_logo.png" alt="케이마켓">
                 </a>
               
               </div>
@@ -51,14 +51,14 @@
                     <input type="submit" value="로그인">
                     <span>
                         <label><input type="checkbox" name="auto">자동 로그인</label>
-                        <a href="./findId.html">아이디찾기</a>
+                        <a href="/Kmarket/member/findId.do">아이디찾기</a>
                         <a href="#">비밀번호찾기</a>
-                        <a href="./signup.html">회원가입</a>
+                        <a href="/Kmarket/member/signup.do">회원가입</a>
                     </span>
 
-                    <a href="#" class="banner"><img src="./img/member_login_banner.jpg" alt="1만원 할인쿠폰"></a>
+                    <a href="#" class="banner"><img src="/Kmarket/member/img/member_login_banner.jpg" alt="1만원 할인쿠폰"></a>
                 </form>
-                <img src="./img/member_certifi_logo.gif" alt="banner">
+                <img src="/Kmarket/member/img/member_certifi_logo.gif" alt="banner">
             </div>
         </main>
         <footer>
@@ -69,7 +69,7 @@
               <li><a href="#">전자금융거래약관</a></li>
           </ul>
           <div>
-              <p><img src="./img/footer_logo.png" alt="로고"></p>
+              <p><img src="/Kmarket/img/footer_logo.png" alt="로고"></p>
               <p>
                 <strong>(주)KMARKET</strong><br />
                 부산시 강남구 테헤란로 152 (역삼동 강남파이낸스센터)<br />
@@ -87,7 +87,7 @@
           </div>              
       </footer>
           <div class="topBtn" onclick="window.scrollTo(0,0);">
-            <img src="./img/top.png" alt="탑으로" />
+            <img src="/Kmarket/img/top.png" alt="탑으로" />
         </div>
     </div>
 </body>

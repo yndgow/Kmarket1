@@ -10,19 +10,19 @@
 </head>
 <body>
     <div id="wrapper">
-        <header>
+         <header>
             <div class="top">
               <div>
-                <a href="./login.html">로그인</a>
-                <a href="#">회원가입</a>
+                <a href="/Kmarket/member/login.do">로그인</a>
+                <a href="/Kmarket/member/signup.do">회원가입</a>
                 <a href="#">마이페이지</a>
                 <a href=""><i class="fa-solid fa-cart-shopping"></i>&nbsp;장바구니</a>
               </div>
             </div>
             <div class="logo">
               <div>
-                <a href="#">
-                  <img src="./img/header_logo.png" alt="">
+                <a href="/Kmarket/index.do">
+                  <img src="/Kmarket/img/header_logo.png" alt="케이마켓">
                 </a>
               
               </div>
@@ -35,25 +35,25 @@
                 </nav>
                 <section>
                     <h3><span class="essential">(필수)</span>케이마켓 이용약관</h3>
-                    <textarea class="terms" readonly></textarea>
+                    <textarea class="terms" readonly>${vo.terms }</textarea>
                     <label><input type="checkbox" name="agree1">동의합니다.</label>
 
                     <h3><span class="essential">(필수)</span>전자금융거래 이용약관</h3>
-                    <textarea class="financial" readonly></textarea>
+                    <textarea class="financial" readonly>${vo.finance }</textarea>
                     <label><input type="checkbox" name="agree2">동의합니다.</label>
 
                     <h3><span class="essential">(필수)</span>개인정보 수집동의</h3>
-                    <textarea class="privacy" readonly></textarea>
+                    <textarea class="privacy" readonly>${vo.privacy }</textarea>
                     <label><input type="checkbox" name="agree3">동의합니다.</label>
                 </section>
 
                 <section>
                     <h3><span class="optional">(선택)</span>위치정보 이용약관</h3>
-                    <textarea class="location" readonly></textarea>
+                    <textarea class="location" readonly>${vo.location }</textarea>
                     <label><input type="checkbox" name="agree4">동의합니다.</label>
                 </section>
 
-                <div><input type="button" class="agree" value="동의하기"></div>
+                <div><a href="/Kmarket/member/register.do"><input type="button" class="agree" value="동의하기"></a></div>
             </div>
         </main>
         <footer>

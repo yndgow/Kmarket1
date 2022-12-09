@@ -18,7 +18,23 @@ public class Sql {
 			+ "`rdate` = NOW()";
 	
 	public static final String SELECT_PRODUCT_BY_ADMIN = "SELECT * FROM `km_product`"; 
+
+	// member 약관
+		public static final String SELECT_TERMS = "select * from `km_member_terms`";
+
+
 }
+
+
+
+
+
+
+
+
+
+	
+	
 
 
 

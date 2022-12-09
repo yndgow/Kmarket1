@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/cs/list")
-public class ListController extends HttpServlet{
+@WebServlet("/cs/index.do")
+public class IndexController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	@Override
@@ -21,7 +21,7 @@ public class ListController extends HttpServlet{
 
 		
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/cs/list");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/cs/index.jsp");
 		dispatcher.forward(req, resp);
 		
 	}

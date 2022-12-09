@@ -14,7 +14,7 @@
             <div class="top">
               <div>
                 <a href="/Kmarket/member/login.do">로그인</a>
-                <a href="/Kmarket/member/signup.do">회원가입</a>
+                <a href="/Kmarket/member/join.do">회원가입</a>
                 <a href="#">마이페이지</a>
                 <a href=""><i class="fa-solid fa-cart-shopping"></i>&nbsp;장바구니</a>
               </div>
@@ -43,7 +43,7 @@
                         <img src="/Kmarket/member/img/member_join_tit_seller.gif" alt="판매회원 가입">
                         <div class="txt">
                             <img src="/Kmarket/member/img/member_join_txt_seller.gif" alt="개인 구매회원">
-                            <a href="#"><img src="/Kmarket/member/img/member_join_btn2.gif" alt="회원가입"></a>
+                            <a href="/Kmarket/member/signup.do?type=seller"><img src="/Kmarket/member/img/member_join_btn2.gif" alt="회원가입"></a>
                         </div>
                     </div>
                 </div>

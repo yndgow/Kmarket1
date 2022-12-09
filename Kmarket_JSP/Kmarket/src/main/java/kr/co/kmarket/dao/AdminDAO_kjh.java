@@ -12,13 +12,13 @@ import kr.co.kmarket.vo.ProductCate1VO;
 import kr.co.kmarket.vo.ProductCate2VO;
 import kr.co.kmarket.vo.ProductVO;
 
-public class AdminDAO extends DBHelper {
+public class AdminDAO_kjh extends DBHelper {
 
-	private static AdminDAO instance = new AdminDAO();
-	public static AdminDAO getInstance() {
+	private static AdminDAO_kjh instance = new AdminDAO_kjh();
+	public static AdminDAO_kjh getInstance() {
 		return instance;
 	}
-	private AdminDAO() {}
+	private AdminDAO_kjh() {}
 	
 	// 로거 생성
 	Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -100,55 +100,56 @@ public class AdminDAO extends DBHelper {
 		return products;
 	}
 	
-	// admin 카테고리 리스트 출력 	
-	public List<ProductCate1VO> selectCategory1ByAdmin() {
-		logger.info("insertProductByAdmin...");
-		List<ProductCate1VO> cates = new ArrayList<>();
-		
-		try {
-			conn = getConnection();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(Sql.SELECT_CATEGORY1_BY_ADMIN);
-			while(rs.next()) {
-				ProductCate1VO vo = new ProductCate1VO();
-				vo.setCate1(rs.getInt(1));
-				vo.setC1Name(rs.getString(2));
-				cates.add(vo);
-			}
+	// admin 카테고리1 리스트 출력 	
+		public List<ProductCate1VO> selectCategory1ByAdmin() {
+			logger.info("insertProductByAdmin...");
+			List<ProductCate1VO> cates = new ArrayList<>();
 			
-			close();
-		} catch(Exception e) {
-			logger.error(e.getMessage());
-		}
-		logger.debug("cates :" + cates);
-		return cates;
-	}
-
-	// admin 카테고리2 리스트 출력 	
-	public List<ProductCate2VO> selectCategory2ByAdmin(String cate2) {
-		logger.info("insertProductByAdmin2...");
-		List<ProductCate2VO> cates = new ArrayList<>();
-		
-		try {
-			conn = getConnection();
-			psmt = conn.prepareStatement(Sql.SELECT_CATEGORY2_BY_ADMIN);
-			psmt.setString(1, cate2);
-			rs = psmt.executeQuery();
-			while(rs.next()) {
-				ProductCate2VO vo = new ProductCate2VO();
-				vo.setCate1(rs.getInt(1));
-				vo.setCate2(rs.getInt(2));
-				vo.setC2Name(rs.getString(3));
-				cates.add(vo);
+			try {
+				conn = getConnection();
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(Sql.SELECT_CATEGORY1_BY_ADMIN);
+				while(rs.next()) {
+					ProductCate1VO vo = new ProductCate1VO();
+					vo.setCate1(rs.getInt(1));
+					vo.setC1Name(rs.getString(2));
+					cates.add(vo);
+				}
+				
+				close();
+			} catch(Exception e) {
+				logger.error(e.getMessage());
 			}
-			
-			close();
-		} catch(Exception e) {
-			logger.error(e.getMessage());
+			logger.debug("cates :" + cates);
+			return cates;
 		}
-		logger.debug("cates :" + cates);
-		return cates;
-	}
+		
+		// admin 카테고리2 리스트 출력 	
+		public List<ProductCate2VO> selectCategory2ByAdmin() {
+			logger.info("insertProductByAdmin2...");
+			List<ProductCate2VO> cates = new ArrayList<>();
+			
+			try {
+				conn = getConnection();
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(Sql.SELECT_CATEGORY2_BY_ADMIN);
+				while(rs.next()) {
+					ProductCate2VO vo = new ProductCate2VO();
+					vo.setCate1(rs.getInt(1));
+					vo.setCate2(rs.getInt(2));
+					vo.setC2Name(rs.getString(3));
+					cates.add(vo);
+				}
+				
+				close();
+			} catch(Exception e) {
+				logger.error(e.getMessage());
+			}
+			logger.debug("cates :" + cates);
+			return cates;
+		}
+	
+	
 	
 	
 	

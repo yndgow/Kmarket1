@@ -37,7 +37,7 @@
                     </p>
                 </nav>
 
-                <form action="#">
+                <form action="/Kmarket/member/login.do" method="post">
                     <table border="0">
                         <tr>
                             <td>아이디</td>

@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 
 import kr.co.kmarket.dao.AdminDAO;
 import kr.co.kmarket.vo.ProductCate1VO;
+import kr.co.kmarket.vo.ProductCate2VO;
 import kr.co.kmarket.vo.ProductVO;
 
 public enum AdminService {
@@ -30,8 +31,13 @@ public enum AdminService {
 	}
 
 	// admin cate 출력 김지홍
-	public List<ProductCate1VO> selectCategoryByAdmin(){
-		return dao.selectCategoryByAdmin();
+	public List<ProductCate1VO> selectCategory1ByAdmin(){
+		return dao.selectCategory1ByAdmin();
+	}
+	
+	// admin cate 출력 김지홍
+	public List<ProductCate2VO> selectCategory2ByAdmin(String cate2){
+		return dao.selectCategory2ByAdmin(cate2);
 	}
 	
 	

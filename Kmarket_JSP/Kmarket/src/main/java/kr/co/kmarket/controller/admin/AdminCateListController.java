@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.kmarket.service.AdminService;
 import kr.co.kmarket.vo.ProductCate1VO;
+import kr.co.kmarket.vo.ProductCate2VO;
 
 @WebServlet("/admin/product/cate.do")
 public class AdminCateListController extends HttpServlet{
@@ -20,14 +21,16 @@ public class AdminCateListController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String cate = req.getParameter("cate");
+		String cate1 = req.getParameter("cate1");
+		String cate2 = req.getParameter("cate2");
 		
-		if(cate.equals("1")) {
-			List<ProductCate1VO> cates1 = service.selectCategoryByAdmin();
+		if(cate1.equals("1")) {
+			List<ProductCate1VO> cates1 = service.selectCategory1ByAdmin();
 			service.gsonTojson(cates1, resp);
 		}
 		else {
-			
+			List<ProductCate2VO> cates2 = service.selectCategory2ByAdmin(cate2);
+			service.gsonTojson(cates2, resp);
 		}
 		
 	}

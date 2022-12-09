@@ -113,14 +113,7 @@
                                     <td>
                                         <select name="category2">
                                             <option value="0">2차 분류 선택</option>
-                                            <option value="10">여성의류</option>
-                                            <option value="11">남성의류</option>
-                                            <option value="12">언더웨어</option>
-                                            <option value="13">신발</option>
-                                            <option value="14">가방/잡화</option>
-                                            <option value="15">쥬얼리/시계</option>
-                                            <option value="16">화장품/향수</option>
-                                            <option value="17">바디/헤어</option>
+
                                         </select>
                                     </td>
                                 </tr>

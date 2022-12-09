@@ -10,11 +10,11 @@
 </head>
 <body>
     <div id="wrapper">
-         <header>
+          <header>
             <div class="top">
               <div>
                 <a href="/Kmarket/member/login.do">로그인</a>
-                <a href="/Kmarket/member/signup.do">회원가입</a>
+                <a href="/Kmarket/member/join.do">회원가입</a>
                 <a href="#">마이페이지</a>
                 <a href=""><i class="fa-solid fa-cart-shopping"></i>&nbsp;장바구니</a>
               </div>

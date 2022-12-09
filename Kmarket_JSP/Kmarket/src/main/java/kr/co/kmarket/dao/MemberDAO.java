@@ -3,9 +3,10 @@ package kr.co.kmarket.dao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import kr.co.kmarket.db.Sql;
+import kr.co.kmarket.db.Sql_kkj;
 import kr.co.kmarket.db.DBHelper;
 import kr.co.kmarket.vo.MemberTermsVO;
+import kr.co.kmarket.vo.MemberVO;
 
 public class MemberDAO extends DBHelper {
 
@@ -27,7 +28,7 @@ public class MemberDAO extends DBHelper {
 				
 				conn = getConnection();
 				stmt = conn.createStatement();
-				rs = stmt.executeQuery(Sql.SELECT_TERMS);
+				rs = stmt.executeQuery(Sql_kkj.SELECT_TERMS);
 				
 				if(rs.next()) {
 					vo = new MemberTermsVO();
@@ -47,7 +48,89 @@ public class MemberDAO extends DBHelper {
 			
 			logger.debug("vo : " + vo);
 			return vo;
-		} 
+		}
+	
+	public MemberVO selectMember(String uid, String pass) {
+		
+		MemberVO vo = null;
+		
+		try {
+			logger.info("selectUser...");
+			
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kkj.SELECT_MEMBER);
+			psmt.setString(1, uid);
+			psmt.setString(2, pass);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				vo = new MemberVO();
+				vo.setUid(rs.getString(1));
+				vo.setPass(rs.getString(2));
+				vo.setName(rs.getString(3));
+				vo.setGender(rs.getInt(4));
+				vo.setHp(rs.getString(5));
+				vo.setEmail(rs.getString(6));
+				vo.setType(rs.getInt(7));
+				vo.setPoint(rs.getInt(8));
+				vo.setLevel(rs.getInt(9));
+				vo.setZip(rs.getString(10));
+				vo.setAddr1(rs.getString(11));
+				vo.setAddr2(rs.getString(12));
+				vo.setCompany(rs.getString(13));
+				vo.setCeo(rs.getString(14));
+				vo.setBizRegNum(rs.getString(15));
+				vo.setComRegNum(rs.getString(16));
+				vo.setTel(rs.getString(17));
+				vo.setManager(rs.getString(18));
+				vo.setManagerHp(rs.getString(19));
+				vo.setFax(rs.getString(20));
+				vo.setRegip(rs.getString(21));
+				vo.setWdate(rs.getString(22));
+				vo.setRdate(rs.getString(23));
+				vo.setEtc1(rs.getInt(24));
+				vo.setEtc2(rs.getInt(25));
+				vo.setEtc3(rs.getString(26));
+				vo.setEtc4(rs.getString(27));
+				vo.setEtc5(rs.getString(28));
+			}
+			close();
+			
+			
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("vo : " + vo);
+		return vo;
+	}
+	
+	
+	public void updateUserForSession(String uid, String sessId) {
+		try {
+			logger.info("updateUserForSession...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kkj.UPDATE_USER_FOR_SESSION);
+			psmt.setString(1, sessId);
+			psmt.setString(2, uid);
+			psmt.executeUpdate();
+			close();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+	}
+	
+	public void updateUserForSessionOut(String uid){
+		try {
+			logger.info("updateUserForSessionOut...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kkj.UPDATE_USER_FOR_SESSION_OUT);
+			psmt.setString(1, uid);
+			psmt.executeUpdate();
+			close();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+	}
 	
 	
 	

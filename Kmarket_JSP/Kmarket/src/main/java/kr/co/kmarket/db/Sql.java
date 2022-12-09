@@ -15,6 +15,10 @@ public class Sql {
 			+ "`thumb3` = ?, "
 			+ "`detail` = ?, "
 			+ "`ip` = ?, "
+			+ "`point` = ?, "
+			+ "`stock` = ?, "
+			+ "`delivery` = ?, "
+			+ "`discount` = ?, "
 			+ "`rdate` = NOW()";
 
 	// admin 상품출력 김지홍

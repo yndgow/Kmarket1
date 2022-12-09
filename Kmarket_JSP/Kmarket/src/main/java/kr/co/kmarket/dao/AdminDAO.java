@@ -43,6 +43,11 @@ public class AdminDAO extends DBHelper {
 			psmt.setString(9, vo.getThumb3());
 			psmt.setString(10, vo.getDetail());
 			psmt.setString(11, vo.getIp());
+			psmt.setInt(12, vo.getPoint());
+			psmt.setInt(13, vo.getStock());
+			psmt.setInt(14, vo.getDelivery());
+			psmt.setInt(15, vo.getDiscount());
+			
 			result = psmt.executeUpdate();
 			close();
 		} catch(Exception e) {

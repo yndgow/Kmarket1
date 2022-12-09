@@ -10,19 +10,19 @@
 </head>
 <body>
     <div id="wrapper">
-        <header>
+         <header>
             <div class="top">
               <div>
-                <a href="./login.html">로그인</a>
-                <a href="./signup.html">회원가입</a>
+                <a href="/Kmarket/member/login.do">로그인</a>
+                <a href="/Kmarket/member/signup.do">회원가입</a>
                 <a href="#">마이페이지</a>
                 <a href=""><i class="fa-solid fa-cart-shopping"></i>&nbsp;장바구니</a>
               </div>
             </div>
             <div class="logo">
               <div>
-                <a href="#">
-                  <img src="./img/header_logo.png" alt="">
+                <a href="/Kmarket/index.do">
+                  <img src="/Kmarket/img/header_logo.png" alt="케이마켓">
                 </a>
               
               </div>

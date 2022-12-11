@@ -29,6 +29,7 @@ public class Sql_kjh {
 	// member 약관
 	public static final String SELECT_TERMS = "select * from `km_member_terms`";
 	
+	public static final String SELECT_IMG_FILENAME = "SELECT `thumb1`, `thumb2`, `thumb3`, `detail` FROM `km_product` WHERE `prodNo` = ?";
 }
 
 

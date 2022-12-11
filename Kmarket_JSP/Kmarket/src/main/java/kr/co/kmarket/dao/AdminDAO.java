@@ -27,7 +27,6 @@ public class AdminDAO extends DBHelper {
 	// 로거 생성
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	
 	// admin 상품 등록	
 	public int insertProductByAdmin(ProductVO vo) {
 		logger.info("insertProductByAdmin...");
@@ -72,7 +71,7 @@ public class AdminDAO extends DBHelper {
 			rs = stmt.executeQuery(Sql.SELECT_PRODUCT_BY_ADMIN);
 			while(rs.next()) {
 				ProductVO vo = new ProductVO();
-				vo.setPrdoNo(rs.getInt(1));
+				vo.setProdNo(rs.getInt(1));
 				vo.setProdCate1(rs.getInt(2));
 				vo.setProdCate2(rs.getInt(3));
 				vo.setProdName(rs.getString(4));

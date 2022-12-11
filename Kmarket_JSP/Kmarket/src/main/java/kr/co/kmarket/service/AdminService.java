@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import kr.co.kmarket.dao.AdminDAO;
+import kr.co.kmarket.dao.AdminDAO_kjh;
 import kr.co.kmarket.vo.ProductCate1VO;
 
 import kr.co.kmarket.vo.ProductOrderVO;
@@ -22,6 +23,7 @@ import kr.co.kmarket.vo.ProductVO;
 public enum AdminService {
 	INSTANCE;
 	AdminDAO dao = AdminDAO.getInstance();
+	AdminDAO_kjh dao_kjh = AdminDAO_kjh.getInstance(); 
 	
 	// admin 상품 등록 김지홍
 	public int insertProductByAdmin(ProductVO vo) {
@@ -48,6 +50,9 @@ public enum AdminService {
 		return dao.selectOrderByAdmin(ordNo);
 	}
 	
+	public ProductVO selectImg(String prodNo) {
+		return dao_kjh.selectImg(prodNo);
+	}
 	
 	
 	
@@ -89,7 +94,8 @@ public enum AdminService {
 		String now = sdf.format(new Date()); // 오늘 날짜 포맷 적용
 		String newName = now + uid + ext; // 새로운 파일 이름
 		File oriFile = new File(savePath + "/" + fName); // 실제 저장된 파일 객체
-		File newFIle = new File(savePath + "/" + newName); // 변경할 파일 객체
+		String newPath = "/var/webapps/upload/"; // 외부폴더설정
+		File newFIle = new File(newPath + "/" + newName); // 변경할 파일 객체
 		oriFile.renameTo(newFIle);
 		return newName;
 	}

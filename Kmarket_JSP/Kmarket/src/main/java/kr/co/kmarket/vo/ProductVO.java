@@ -1,7 +1,7 @@
 package kr.co.kmarket.vo;
 
 public class ProductVO {
-	private int prdoNo;
+	private int prodNo;
 	private int prodCate1;
 	private int prodCate2;
 	private String prodName;
@@ -33,12 +33,12 @@ public class ProductVO {
 	private String etc3;
 	private String etc4;
 	private String etc5;
-	
-	public int getPrdoNo() {
-		return prdoNo;
+
+	public int getProdNo() {
+		return prodNo;
 	}
-	public void setPrdoNo(int prdoNo) {
-		this.prdoNo = prdoNo;
+	public void setProdNo(int prodNo) {
+		this.prodNo = prodNo;
 	}
 	public int getProdCate1() {
 		return prodCate1;

@@ -66,8 +66,8 @@
                     <li>
                         <a href="#"><i class="fas fa-box-open" aria-hidden="true"></i>상품관리</a>
                         <ol>
-                            <li><a href="#">상품현황</a></li>
-                            <li><a href="#">상품등록</a></li>
+                            <li><a href="/Kmarket/admin/product/list.do">상품현황</a></li>
+                            <li><a href="/Kmarket/admin/product/register.do">상품등록</a></li>
                             <li><a href="#">재고관리</a></li>
                         </ol>
                     </li>
@@ -108,7 +108,7 @@
                         </select>
                         <input type="text" name="search" class="searchbtn">
                     </div>
-
+					<input type="hidden" id="prodNo">
                     <table>
                         <tr>
                             <th><input type="checkbox" name="all"></th>
@@ -126,7 +126,7 @@
                         <c:forEach items="${products}" var="vo">
                         <tr>
                             <td><input type="checkbox" name="상품코드"></td>
-                            <td><img src="/Kmarket/file/${vo.thumb1}" class="thumb"></td>
+                            <td><img src="http://13.125.215.198:8080/file/${vo.thumb1}" class="thumb"></td>
                             <td>201603292</td>
                             <td>${vo.prodName}</td>
                             <td>${vo.price}</td>
@@ -137,12 +137,13 @@
                             <td>${vo.hit}</td>
                             <td>
                                 <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
+                                <a href="#" class="modifyProdBtn" data-no= "${vo.prodNo}">[수정]</a>
                             </td>
                         </tr>
 						</c:forEach>
+						
                     </table>
-
+					
                     <input type="button" value="선택삭제">
 
                     <div class="paging">

@@ -28,6 +28,11 @@ public class MemberLoginController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
+		// 100 회원아님 or 로그인 실패 201 로그아웃
+		String success = req.getParameter("success");
+		if(success == null) success = "201";
+		req.setAttribute("success", success);
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/member/login.jsp");
 		dispatcher.forward(req, resp);	
 	}
@@ -41,7 +46,7 @@ public class MemberLoginController extends HttpServlet {
 		
 		MemberVO vo = service.selectMember(uid, pass);
 		
-		// 로그인 처리
+				// 로그인 처리
 				if(vo != null) {
 					// 회원 맞음
 					HttpSession session = req.getSession(); // 현재 클라이언트 세션 구함
@@ -58,7 +63,7 @@ public class MemberLoginController extends HttpServlet {
 						resp.addCookie(cookie);
 						
 						// 세션정보 데이터베이스 저장
-						//service.updateUserForSession(uid, sessId);
+						service.updateMemberForSession(uid, sessId);
 					}
 					
 					resp.sendRedirect("/Karket/index.do");

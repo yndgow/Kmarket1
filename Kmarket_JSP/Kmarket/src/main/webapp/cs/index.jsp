@@ -21,7 +21,7 @@
             </div>
             <div class="logo">
                 <div>
-                    <a href="#">
+                    <a href="/cs/index.jsp">
                         <img src="./images/logo.png" alt="로고">
                         고객센터
                     </a>
@@ -32,7 +32,7 @@
             <div class="main">
                 <h1 class="title"><strong>케이마켓</strong>이 도와드릴게요!</h1>
                 <section class="notice">
-                    <h1>공지사항<a href="./notice/list.html">전체보기</a></h1>
+                    <h1>공지사항<a href="./notice/list.jsp">전체보기</a></h1>
                     <ul>
                         <li>
                             <a href="#" class="title">[안내] 해외결제 사칭 문자 주의</a>
@@ -57,7 +57,7 @@
                     </ul>
                 </section>
                 <section class="faq">
-                    <h1>자주 묻는 질문<a href="#">전체보기</a></h1>
+                    <h1>자주 묻는 질문<a href="./faq/list.jsp">전체보기</a></h1>
                     <ol>
                         <li>
                             <a href="#"><span>회원</span></a>
@@ -83,7 +83,7 @@
                     </ol>
                 </section>
                 <section class="qna">
-                    <h1>문의하기<a href="#">전체보기</a></h1>
+                    <h1>문의하기<a href="./qna/list.jsp">전체보기</a></h1>
                     <ul>
                         <li>
                             <a href="#" class="title">[회원] 개인회원과 법인회원에 차이가 있나요?</a>
@@ -121,7 +121,7 @@
                             </p>
                         </li>
                     </ul>
-                    <a href="#" class="ask">문의글 작성 ></a>
+                    <a href="./qna/write.jsp" class="ask">문의글 작성 ></a>
                 </section>
                 <section class="tel">
                     <h1>1:1 상담이 필요하신가요?</h1>

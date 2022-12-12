@@ -4,13 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>케이마켓::대한민국 1등 온라인 쇼핑몰</title>    
-    <link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico" />
+     <link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico" />
     <script src="https://kit.fontawesome.com/e8f010a863.js" crossorigin="anonymous"></script>
+    <script src="http://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/Kmarket/member/css/style.css"/>
+    <script src="/Kmarket/member/js/validation.js"></script>
+    <script src="/Kmarket/member/js/postcode.js"></script>
 </head>
 <body>
     <div id="wrapper">
@@ -113,6 +116,7 @@
 									<div>
 										<input type="text" name="kms_zip" id="zip"
 											placeholder="우편번호 입력 클릭" readonly />
+										<button type="button" onclick="postcode()"><img src="/Kmarket/member/img/chk_post.gif" alt="우편번호 찾기"/></button>
 									</div>
 									<div>
 										<input type="text" name="kms_addr1" id="addr1" size="50"

@@ -269,6 +269,7 @@ ul.sort > li > a.on {
 
 /* 상품 list main 끝 */
 .list > table tr > td {
+  height: 100px;  
   border-bottom: 1px solid #ececec;
   box-sizing: border-box;
 }

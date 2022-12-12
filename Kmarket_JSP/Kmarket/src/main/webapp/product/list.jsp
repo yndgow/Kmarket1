@@ -148,7 +148,7 @@
                 <td>
                   <c:choose>
                   <c:when test="${vo.discount ne 0}">
-                  	<ins class="cur_price">${vo.price * vo.discount}</ins><br />
+                  	<ins class="cur_price"><fmt:formatNumber value="${vo.price * (100-vo.discount)/100}" pattern="#,###"/></ins><br />
                   </c:when>
                   <c:otherwise>
                   	<ins class="cur_price">
@@ -157,7 +157,7 @@
                   </c:otherwise>
                   </c:choose>
                   <c:if test="${vo.discount ne 0}">
-                  	<del class="ori_price">${vo.price}</del><span class="discount">10%↓</span><br />
+                  	<del class="ori_price"><fmt:formatNumber value="${vo.price}" pattern="#,###"/> </del><span class="discount">10%↓</span><br />
                   </c:if>
                   <c:choose>
                   	<c:when test="${vo.delivery eq 0}">
@@ -183,7 +183,14 @@
                   		<img src="./img/ico_great_seller.gif" alt="딜러" class="dealer2" /><br />
                   	</c:otherwise>
                   </c:choose>
-                  <h6 class="rating star${vo.score}">상품평</h6>
+                  <c:choose>
+                  	<c:when test="${vo.score eq 0}">
+                  		<h6>등록된 상품평이 없습니다.</h6>
+                  	</c:when>
+                  	<c:otherwise>
+                  		<h6 class="rating star${vo.score}">상품평</h6>
+                  	</c:otherwise>
+                  </c:choose>
                 </td>
               </tr>
 

@@ -35,9 +35,9 @@ public class MemberRegisterController extends HttpServlet {
 		
 		//데이터 수신
 		String uid = req.getParameter("uid");
-		String pass1 = req.getParameter("pass1");
 		String pass2 = req.getParameter("pass2");
 		String name = req.getParameter("name");
+		String gender = req.getParameter("gender");
 		String email = req.getParameter("email");
 		String hp = req.getParameter("hp");
 		String zip = req.getParameter("zip");
@@ -48,8 +48,9 @@ public class MemberRegisterController extends HttpServlet {
 		//VO 데이터생성
 		MemberVO vo = new MemberVO();
 		vo.setUid(uid);
-		vo.setPass(pass1);
+		vo.setPass(pass2);
 		vo.setName(name);
+		vo.setGender(gender);
 		vo.setEmail(email);
 		vo.setHp(hp);
 		vo.setZip(zip);

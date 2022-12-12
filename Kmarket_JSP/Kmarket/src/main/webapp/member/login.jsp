@@ -55,7 +55,7 @@
                         </tr>
                         <tr>
                             <td>비밀번호</td>
-                            <td><input type="text" name="pass" placeholder="비밀번호 입력"></td>
+                            <td><input type="password" name="pass" placeholder="비밀번호 입력"></td>
                         </tr>
                     </table>
                     <input type="submit" value="로그인">

@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,6 +10,11 @@
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css" />
     <script src="./js/script.js"></script>
+    <script>
+	    $(()=>{
+	    	
+	    });
+    </script>
   </head>
   <body>
     <div class="wrapper">
@@ -70,7 +77,7 @@
                 <i class="fa-solid fa-chevron-right"></i>
               </a>
               <ol class="sub_category">
-                <li><a href="#">남성의류</a></li>
+                <li><a href="/Kmarket/product/list.do?cate1=11&cate2=11">남성의류</a></li>
                 <li><a href="#">여성의류</a></li>
                 <li><a href="#">잡화</a></li>
                 <li><a href="#">뷰티</a></li>
@@ -125,127 +132,63 @@
           </ul>
           <table>
             <tbody>
+            
+            <c:forEach var="vo" items="${products}">
+            
               <tr>
                 <td>
-                  <a href="#">
-                    <img src="./img/apple.jpg" alt="" />
+                  <a href="/Kmarket/product/view.do?prodNo=${vo.prodNo}">
+                    <img src="http://13.125.215.198:8080/file/${vo.thumb1}" alt="상품이미지" />
                   </a>
                 </td>
                 <td>
-                  <h1 class="name">상품명</h1>
-                  <a href="#"><p class="desc">상품설명</p></a>
+                  <h1 class="name">${vo.prodName}</h1>
+                  <a href="/Kmarket/product/view.do?prodNo=${vo.prodNo}"><p class="desc">${vo.descript}</p></a>
                 </td>
                 <td>
-                  <ins class="cur_price">27,000원</ins><br />
-                  <del class="ori_price">30,000원</del><span class="discount">10%↓</span><br />
-                  <img src="./img/ico_free_delivery.gif" alt="무료배송" class="freede" />
+                  <c:choose>
+                  <c:when test="${vo.discount ne 0}">
+                  	<ins class="cur_price">${vo.price * vo.discount}</ins><br />
+                  </c:when>
+                  <c:otherwise>
+                  	<ins class="cur_price">
+                  		<fmt:formatNumber value="${vo.price}"  pattern="#,###"/>
+                  	</ins><br />
+                  </c:otherwise>
+                  </c:choose>
+                  <c:if test="${vo.discount ne 0}">
+                  	<del class="ori_price">${vo.price}</del><span class="discount">10%↓</span><br />
+                  </c:if>
+                  <c:choose>
+                  	<c:when test="${vo.delivery eq 0}">
+                  		<img src="./img/ico_free_delivery.gif" alt="무료배송" class="freede" />
+                 	</c:when>
+                 	<c:otherwise>
+                 		<p>배송비: ${vo.delivery}</p>
+                 	</c:otherwise>
+                 	
+                  </c:choose>
                 </td>
                 <td class="sellerTd">
                   <a href="#">
                     <i class="fa-solid fa-house-chimney"></i>
-                    판매자 </a
-                  ><br />
-                  <img src="./img/ico_power_dealer.gif" alt="딜러" class="dealer" /><br />
-                  <h6 class="rating star1">상품평</h6>
+                    ${vo.seller}
+                  </a><br />
+                  <c:choose>
+                  	<c:when test="${vo.score lt 3}">
+                  		<img src="./img/ico_power_dealer.gif" alt="딜러" class="dealer" /><br />
+                  	</c:when>
+                  	<c:otherwise>
+                  		
+                  		<img src="./img/ico_great_seller.gif" alt="딜러" class="dealer2" /><br />
+                  	</c:otherwise>
+                  </c:choose>
+                  <h6 class="rating star${vo.score}">상품평</h6>
                 </td>
               </tr>
-              <tr>
-                <td>
-                  <a href="#">
-                    <img src="./img/apple.jpg" alt="" />
-                  </a>
-                </td>
-                <td>
-                  <h1 class="name">상품명</h1>
-                  <a href="#"><p class="desc">상품설명</p></a>
-                </td>
-                <td>
-                  <ins class="cur_price">27,000원</ins><br />
-                  <del class="ori_price">30,000원</del><span class="discount">10%↓</span><br />
-                  <img src="./img/ico_free_delivery.gif" alt="무료배송" class="freede" />
-                </td>
-                <td class="sellerTd">
-                  <a href="#">
-                    <i class="fa-solid fa-house-chimney"></i>
-                    판매자 </a
-                  ><br />
-                  <img src="./img/ico_power_dealer.gif" alt="딜러" class="dealer" /><br />
-                  <h6 class="rating star2">상품평</h6>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a href="#">
-                    <img src="./img/apple.jpg" alt="" />
-                  </a>
-                </td>
-                <td>
-                  <h1 class="name">상품명</h1>
-                  <a href="#"><p class="desc">상품설명</p></a>
-                </td>
-                <td>
-                  <ins class="cur_price">27,000원</ins><br />
-                  <del class="ori_price">30,000원</del><span class="discount">10%↓</span><br />
-                  <img src="./img/ico_free_delivery.gif" alt="무료배송" class="freede" />
-                </td>
-                <td class="sellerTd">
-                  <a href="#">
-                    <i class="fa-solid fa-house-chimney"></i>
-                    판매자 </a
-                  ><br />
-                  <img src="./img/ico_power_dealer.gif" alt="딜러" class="dealer" /><br />
-                  <h6 class="rating star3">상품평</h6>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a href="#">
-                    <img src="./img/apple.jpg" alt="" />
-                  </a>
-                </td>
-                <td>
-                  <h1 class="name">상품명</h1>
-                  <a href="#"><p class="desc">상품설명</p></a>
-                </td>
-                <td>
-                  <ins class="cur_price">27,000원</ins><br />
-                  <del class="ori_price">30,000원</del><span class="discount">10%↓</span><br />
-                  <img src="./img/ico_free_delivery.gif" alt="무료배송" class="freede" />
-                </td>
-                <td class="sellerTd">
-                  <a href="#">
-                    <i class="fa-solid fa-house-chimney"></i>
-                    판매자 </a
-                  ><br />
-                  <img src="./img/ico_power_dealer.gif" alt="딜러" class="dealer" /><br />
-                  <h6 class="rating star4">상품평</h6>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a href="#">
-                    <img src="./img/apple.jpg" alt="" />
-                  </a>
-                </td>
-                <td>
-                  <h1 class="name">상품명</h1>
-                  <a href="#"><p class="desc">상품설명</p></a>
-                </td>
-                <td>
-                  <ins class="cur_price">27,000원</ins><br />
-                  <del class="ori_price">30,000원</del>
-                  <span class="discount">10%↓</span><br />
-                  <span>배송비 2500</span>
-                </td>
-                <td class="sellerTd">
-                  <a href="#">
-                    <i class="fa-solid fa-house-chimney"></i>
-                    판매자 </a
-                  ><br />
-                  <img src="./img/ico_power_dealer.gif" alt="딜러" class="dealer" /><br />
-                  <h6 class="rating star5">상품평</h6>
-                </td>
-              </tr>
+
+			</c:forEach>
+
             </tbody>
           </table>
           <div class="paging">

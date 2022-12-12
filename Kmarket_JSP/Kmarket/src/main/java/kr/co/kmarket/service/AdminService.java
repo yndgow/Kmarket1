@@ -86,7 +86,7 @@ public enum AdminService {
 	
 	
 	
-	// 파일 이름 변경 김지홍
+	// 파일 이름 변경 김지홍 UUID
 	public String reNameFile(String fName, String uid, String savePath) {
 		int idx = fName.lastIndexOf("."); // 확장자 인덱스
 		String ext = fName.substring(idx); // 확장자 구분

@@ -21,9 +21,8 @@
             </div>
             <div class="logo">
                 <div>
-                    <a href="../index.html">
+                    <a href="../index.jsp">
                         <img src="../images/logo.png" alt="로고">
-                        고객센터
                     </a>
                 </div>
             </div>
@@ -49,12 +48,12 @@
                         </ul>
                     </aside>
                     <article>
-                        <form action="#">
+                        <form action="/cs/write.do">
                             <table>
                                 <tr>
                                     <td>문의유형</td>
                                     <td>
-                                        <select name="type">
+                                        <select name="qnaCate1">
                                             <option value="0">선택</option>
                                             <option>가입</option>
                                             <option>탈퇴</option>
@@ -75,8 +74,8 @@
                                 </tr>
                             </table>
                             <div>
-                                <a href="./list.html" class="btnList">취소하기</a>
-                                <input type="text" class="btnSubmit" value="등록하기">
+                                <a href="./list.jsp" class="btnList">취소하기</a>
+                                <input type="submit" class="btnSubmit" value="등록하기">
                             </div>
                         </form>
                     </article>

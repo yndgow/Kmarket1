@@ -26,9 +26,17 @@ public class Sql_hong {
 	// admin category2 출력 김지홍
 	public static final String SELECT_CATEGORY2_BY_ADMIN = "SELECT * FROM `km_product_cate2`";
 
-  // member 약관
+	// member 약관
 	public static final String SELECT_TERMS = "select * from `km_member_terms`";
+	
+	public static final String SELECT_IMG_FILENAME = "SELECT `thumb1`, `thumb2`, `thumb3`, `detail` FROM `km_product` WHERE `prodNo` = ?";
 
+	//cs qna 문의하기 등록
+	public static final String INSERT_ARTICLE_QNA_OF_CS = "INSERT INTO `km_cs_qna` values(?,?,?,?,now())";
+	
+	// cs qna cate 출력
+	public static final String SELECT_CATEGORY1_BY_CS = "SELECT * FROM `km_cs_cate1`";	
+	public static final String SELECT_CATEGORY2_BY_CS = "SELECT * FROM `km_cs_cate2`";	
 }
 
 

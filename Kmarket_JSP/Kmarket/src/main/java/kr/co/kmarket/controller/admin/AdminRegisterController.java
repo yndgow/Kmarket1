@@ -62,6 +62,7 @@ public class AdminRegisterController extends HttpServlet{
 		//String stock = mr.getParameter("stock");
 		
 		
+		
 		String newThumb1 = null;
 		String newThumb2 = null;
 		String newThumb3 = null;

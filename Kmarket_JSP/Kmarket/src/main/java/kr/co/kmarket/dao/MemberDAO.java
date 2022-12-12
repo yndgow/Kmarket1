@@ -168,8 +168,8 @@ public class MemberDAO extends DBHelper {
 			psmt.setString(2, vo.getPass());
 			psmt.setString(3, vo.getName());
 			psmt.setInt(4, vo.getGender());
-			psmt.setString(5, vo.getEmail());
-			psmt.setString(6, vo.getHp());
+			psmt.setString(5, vo.getHp());
+			psmt.setString(6, vo.getEmail());
 			psmt.setString(7, vo.getZip());
 			psmt.setString(8, vo.getAddr1());
 			psmt.setString(9, vo.getAddr2());

@@ -35,7 +35,7 @@ $(function(){
 		
 		if(!uid.match(regUid)){
 			isUidOk = false;
-			alert('아이디가 유효하지 않습니다.');
+			alert('영문, 숫자로 4~12자까지 설정해 주세요.');
 			return;
 		}
 		
@@ -56,7 +56,7 @@ $(function(){
 						$('.resultUid').css('color', 'green').text('사용 가능한 아이디 입니다.');
 					}else{
 						isUidOk = false;
-						$('.resultUid').css('color', 'red').text('영문, 숫자로 4~12자까지 설정해 주세요.');
+						$('.resultUid').css('color', 'red').text('이미 사용중인 아이디 입니다.');
 					}
 				}
 			});
@@ -223,21 +223,13 @@ $(function(){
 			alert('이름을 확인 하십시요.');
 			return false;
 		}
-		// 별명 검증
-		if(!isNickOk){
-			alert('별명을 확인 하십시요.');
-			return false;
-		}
+		
 		// 이메일 검증
 		if(!isEmailOk){
 			alert('이메일을 확인 하십시요.');
 			return false;
 		}
-		// 이메일 인증코드 검증
-		if(!isEmailAuthCodeOk){
-			alert('이메일을 인증을 수행 하십시요.');
-			return false;
-		}
+		
 		// 휴대폰 검증
 		if(!isHpOk){
 			alert('휴대폰을 확인 하십시요.');

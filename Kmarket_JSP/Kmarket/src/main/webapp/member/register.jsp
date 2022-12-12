@@ -6,12 +6,14 @@
     <title>케이마켓::대한민국 1등 온라인 쇼핑몰</title>    
     <link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico" />
     <script src="https://kit.fontawesome.com/e8f010a863.js" crossorigin="anonymous"></script>
+    <script src="http://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/Kmarket/member/css/style.css"/>
     <script src="/Kmarket/member/js/validation.js"></script>
+    <script src="/Kmarket/member/js/postcode.js"></script>
 </head>
 <body>
     <div id="wrapper">
@@ -38,7 +40,7 @@
                 <nav>
                     <h1>일반 회원가입</h1>
                 </nav>
-                <form action="/Kmarket/member/register.do">
+                <form action="/Kmarket/member/register.do" method="post">
                     <section>
                         <table>
                             <caption>필수 정보입력</caption>
@@ -53,11 +55,11 @@
                             </tr>
                             <tr>
                                 <th><span class="essential">*</span>비밀번호</th>
-                                <td><input type="text" name="pass1" placeholder="비밀번호를 입력"><span class="resultPass"></span></td>
+                                <td><input type="password" name="pass1" placeholder="비밀번호를 입력"><span class="resultPass"></span></td>
                             </tr>
                             <tr>
                                 <th><span class="essential">*</span>비밀번호확인</th>
-                                <td><input type="text" name="pass2" placeholder="비밀번호를 확인"><span>비밀번호 재입력</span></td>
+                                <td><input type="password" name="pass2" placeholder="비밀번호를 확인"><span></span></td>
                             </tr>
                         </table>
                         <table>
@@ -88,13 +90,14 @@
                                 <th>주소</th>
                                 <td>
                                     <div>
-                                        <input type="text" name="zip" placeholder="우편번호 입력 클릭" readonly>
+                                        <input type="text" name="zip" id="zip" placeholder="우편번호 입력 클릭" readonly>
+                                          <button type="button" onclick="postcode()"><img src="/Kmarket/member/img/chk_post.gif" alt="우편번호 찾기"/></button>
                                     </div>    
                                     <div>
-                                        <input type="text" name="addr1" placeholder="주소를 검색하세요." readonly>
+                                        <input type="text" name="addr1" id="addr1" placeholder="주소를 검색하세요." readonly>
                                     </div>
                                     <div>    
-                                        <input type="text" name="addr2" placeholder="상세주소를 입력하세요.">
+                                        <input type="text" name="addr2" id="addr2"placeholder="상세주소를 입력하세요.">
                                     </div>
                                 </td>
                             </tr>

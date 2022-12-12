@@ -22,6 +22,9 @@ public class MemberRegisterSellerController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
+		String seller = req.getParameter("seller");
+		req.setAttribute("seller", seller);
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/member/registerSeller.jsp");
 		dispatcher.forward(req, resp);	
 	}

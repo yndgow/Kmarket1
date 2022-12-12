@@ -6,7 +6,11 @@
     <title>케이마켓::대한민국 1등 온라인 쇼핑몰</title>    
     <link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico" />
     <script src="https://kit.fontawesome.com/e8f010a863.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/Kmarket/member/css/style.css"/>
 </head>
 <body>
     <div id="wrapper">
@@ -28,6 +32,12 @@
               </div>
             </div>
           </header>
+<script>
+	let success = ${success};
+		if(success == "100"){
+			alert('회원정보가 일치하지 않거나 가입하지 않은 회원입니다.');
+		}
+</script>
         <main id="member">
             <div class="login">
                 <nav>
@@ -53,7 +63,7 @@
                         <label><input type="checkbox" name="auto">자동 로그인</label>
                         <a href="/Kmarket/member/findId.do">아이디찾기</a>
                         <a href="#">비밀번호찾기</a>
-                        <a href="/Kmarket/member/signup.do">회원가입</a>
+                        <a href="/Kmarket/member/join.do">회원가입</a>
                     </span>
 
                     <a href="#" class="banner"><img src="/Kmarket/member/img/member_login_banner.jpg" alt="1만원 할인쿠폰"></a>

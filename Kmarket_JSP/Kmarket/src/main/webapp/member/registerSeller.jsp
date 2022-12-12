@@ -6,7 +6,11 @@
     <title>케이마켓::대한민국 1등 온라인 쇼핑몰</title>    
     <link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico" />
     <script src="https://kit.fontawesome.com/e8f010a863.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/Kmarket/member/css/style.css"/>
 </head>
 <body>
     <div id="wrapper">
@@ -41,21 +45,22 @@
                             <tr>
                                 <th><span class="essential">*</span>아이디</th>
                                 <td>
-                                    <input type="text" name="regId" placeholder="아이디를 입력">
+                                    <input type="text" name="uid" placeholder="아이디를 입력">
+                                    <button type="button" id="btnUidCheck"><img src="/Kmarket/member/img/chk_id.gif" alt="중복확인"/></button>
                                     <span class="msgSId">&nbsp;영문, 숫자로 4~12자까지 설정해 주세요.</span>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span class="essential">*</span>비밀번호</th>
                                 <td>
-                                    <input type="password" name="regPass1" placeholder="비밀번호를 입력">
+                                    <input type="password" name="pass1" placeholder="비밀번호를 입력">
                                     <span class="msgPass">&nbsp;영문, 숫자, 특수문자를 조합하여 8~12자까지 설정해 주세요.</span>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span class="essential">*</span>비밀번호확인</th>
                                 <td>
-                                    <input type="password" name="regPass2" placeholder="비밀번호를 확인">
+                                    <input type="password" name="pass2" placeholder="비밀번호를 확인">
                                     <span class="msgPass">&nbsp;비밀번호 재입력</span>
                                 </td>
                             </tr>

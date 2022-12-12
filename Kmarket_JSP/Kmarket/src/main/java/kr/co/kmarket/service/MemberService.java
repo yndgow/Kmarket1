@@ -18,4 +18,23 @@ public enum MemberService {
 	public MemberVO selectMember(String uid, String pass) {
 		return dao.selectMember(uid, pass);
 	}
+	
+	public void updateMemberForSession(String uid, String sessId) {
+		dao.updateMemberForSession(uid, sessId);
+	}
+	
+	public void updateMemberForSessionOut(String uid){
+		dao.updateMemberForSessionOut(uid);
+	}
+	
+	// 회원가입
+	public void insertUser(MemberVO vo) {
+		dao.insertUser(vo);
+	}
+	
+	
+	public int selectCountUid(String uid) {
+		return dao.selectCountUid(uid);
+	}
+	
 }

@@ -1,20 +1,21 @@
 package kr.co.kmarket.controller.member;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.kmarket.dao.MemberDAO;
-import kr.co.kmarket.service.MemberService;
-import kr.co.kmarket.vo.MemberTermsVO;
+import com.google.gson.JsonObject;
 
-@WebServlet("/member/signup.do")
-public class MemberSignupController extends HttpServlet {
+import kr.co.kmarket.service.MemberService;
+
+
+@WebServlet("/member/checkUid.do")
+public class CheckUidController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	MemberService service = MemberService.INSTANCE;
@@ -26,19 +27,20 @@ public class MemberSignupController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-		String type = req.getParameter("type");
-		req.setAttribute("type", type);
+		String uid = req.getParameter("uid");
 		
-		MemberTermsVO vo = service.selectTerms();
+		int result = service.selectCountUid(uid);
 		
-		req.setAttribute("vo", vo);
+		JsonObject json = new JsonObject();
+		json.addProperty("result", result);
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/member/signup.jsp");
-		dispatcher.forward(req, resp);
+		PrintWriter writer = resp.getWriter();
+		writer.print(json.toString());
+		
+		
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
 	}
 }

@@ -33,9 +33,9 @@ public class MemberDAO extends DBHelper {
 				if(rs.next()) {
 					vo = new MemberTermsVO();
 					vo.setTerms(rs.getString(1));
-					vo.setFinance(rs.getString(2));
-					vo.setPrivacy(rs.getString(3));
-					vo.setLocation(rs.getString(4));
+					vo.setPrivacy(rs.getString(2));
+					vo.setLocation(rs.getString(3));
+					vo.setFinance(rs.getString(4));
 					vo.setTax(rs.getString(5));
 					
 				}
@@ -105,7 +105,7 @@ public class MemberDAO extends DBHelper {
 	}
 	
 	
-	public void updateUserForSession(String uid, String sessId) {
+	public void updateMemberForSession(String uid, String sessId) {
 		try {
 			logger.info("updateUserForSession...");
 			conn = getConnection();
@@ -119,7 +119,7 @@ public class MemberDAO extends DBHelper {
 		}
 	}
 	
-	public void updateUserForSessionOut(String uid){
+	public void updateMemberForSessionOut(String uid){
 		try {
 			logger.info("updateUserForSessionOut...");
 			conn = getConnection();
@@ -132,6 +132,55 @@ public class MemberDAO extends DBHelper {
 		}
 	}
 	
+	public int selectCountUid(String uid) {
+		
+		int result = 0;
+		
+		try {
+			logger.info("selectCheckUid");
+			
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kkj.SELECT_COUNT_UID);
+			psmt.setString(1, uid);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+			close();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		
+		logger.debug("result : " + result);
+		
+		return result;
+	}
+	
+	public void insertUser(MemberVO vo) {
+		try {
+			logger.info("insertUser...");
+			
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kkj.INSERT_USER);
+			psmt.setString(1, vo.getUid());
+			psmt.setString(2, vo.getPass());
+			psmt.setString(3, vo.getName());
+			psmt.setInt(4, vo.getGender());
+			psmt.setString(5, vo.getEmail());
+			psmt.setString(6, vo.getHp());
+			psmt.setString(7, vo.getZip());
+			psmt.setString(8, vo.getAddr1());
+			psmt.setString(9, vo.getAddr2());
+			psmt.setString(10, vo.getRegip());
+			psmt.executeUpdate();
+			close();
+			
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+	}
 	
 	
 	

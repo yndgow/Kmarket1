@@ -6,7 +6,12 @@
     <title>케이마켓::대한민국 1등 온라인 쇼핑몰</title>    
     <link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico" />
     <script src="https://kit.fontawesome.com/e8f010a863.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/Kmarket/member/css/style.css"/>
+    <script src="/Kmarket/member/js/validation.js"></script>
 </head>
 <body>
     <div id="wrapper">
@@ -33,58 +38,63 @@
                 <nav>
                     <h1>일반 회원가입</h1>
                 </nav>
-                <form action="#">
+                <form action="/Kmarket/member/register.do">
                     <section>
                         <table>
-                            <caption>필수 정입력</caption>
+                            <caption>필수 정보입력</caption>
                             <tr>
                                 <th><span class="essential">*</span>아이디</th>
-                                <td><input type="text" name="regId" placeholder="아이디를 입력"><span>영문, 숫자로 4~12자까지 설정해 주세요.</span></td>
+                                <td>
+	                                <input type="text" name="uid" placeholder="아이디를 입력">
+	                                <button type="button" id="btnUidCheck"><img src="/Kmarket/member/img/chk_id.gif" alt="중복확인"/></button>
+	                                <span class="resultUid"></span>
+	                                
+                                </td>
                             </tr>
                             <tr>
                                 <th><span class="essential">*</span>비밀번호</th>
-                                <td><input type="text" name="regPass1" placeholder="비밀번호를 입력"><span>영문, 숫자, 특수문자를 조합하여 8~12자까지 설정해 주세요.</span></td>
+                                <td><input type="text" name="pass1" placeholder="비밀번호를 입력"><span class="resultPass"></span></td>
                             </tr>
                             <tr>
                                 <th><span class="essential">*</span>비밀번호확인</th>
-                                <td><input type="text" name="regPass2" placeholder="비밀번호를 확인"><span>비밀번호 재입력</span></td>
+                                <td><input type="text" name="pass2" placeholder="비밀번호를 확인"><span>비밀번호 재입력</span></td>
                             </tr>
                         </table>
                         <table>
                             <caption>기본 정보입력</caption>
                             <tr>
                                 <th><span class="essential">*</span>이름</th>
-                                <td><input type="text" name="regName" placeholder="이름을 입력"></td>
+                                <td><input type="text" name="name" placeholder="이름을 입력"><span class="resultName"></span></td>
                             </tr>
                             <tr>
                                 <th><span class="essential">*</span>성별</th>
                                 <td>
-                                    <label><input type="radio" name="regGender" value="1" checked>&nbsp;남</label>
+                                    <label><input type="radio" name="gender" value="1" checked>&nbsp;남</label>
                                     <label><input type="radio" name="gender" value="2">&nbsp;여</label>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span class="essential">*</span>EMAIL</th>
-                                <td><input type="email" name="regEmail" placeholder="이메일 입력"></td>
+                                <td><input type="email" name="email" placeholder="이메일 입력"><span class="resultEmail"></span></td>
                             </tr>
                             <tr>
                                 <th><span class="essential">*</span>휴대폰</th>
                                 <td>
-                                    <input type="text" name="regHp" maxlength="13" placeholder="휴대폰번호 입력">
-                                    <span>- 포함 13자리를 입력하세요.</span>
+                                    <input type="text" name="hp" maxlength="13" placeholder="휴대폰번호 입력">
+                                    <span class="resultHp">
                                 </td>
                             </tr>
                             <tr class="addr">
                                 <th>주소</th>
                                 <td>
                                     <div>
-                                        <input type="text" name="regZip" placeholder="우편번호 입력 클릭" readonly>
+                                        <input type="text" name="zip" placeholder="우편번호 입력 클릭" readonly>
                                     </div>    
                                     <div>
-                                        <input type="text" name="regAddr1" placeholder="주소를 검색하세요." readonly>
+                                        <input type="text" name="addr1" placeholder="주소를 검색하세요." readonly>
                                     </div>
                                     <div>    
-                                        <input type="text" name="regAddr2" placeholder="상세주소를 입력하세요.">
+                                        <input type="text" name="addr2" placeholder="상세주소를 입력하세요.">
                                     </div>
                                 </td>
                             </tr>

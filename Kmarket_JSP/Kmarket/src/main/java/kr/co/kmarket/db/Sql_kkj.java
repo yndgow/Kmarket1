@@ -15,12 +15,13 @@ public class Sql_kkj {
 	
 	
 	// member 회원가입
-	public static final String INSERT_USER      = "insert into `km_member` set "
+	public static final String INSERT_MEMBER      = "insert into `km_member` set "
 			+ "`uid`=?, "
 			+ "`pass`=SHA2(?, 256), "
 			+ "`name`=?, "
 			+ "`gender`=?, "
 			+ "`email`=?, "
+			+ "`type`=1, "
 			+ "`hp`=?, "
 			+ "`zip`=?, "
 			+ "`addr1`=?, "

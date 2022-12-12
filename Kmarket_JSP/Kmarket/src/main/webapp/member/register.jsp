@@ -47,19 +47,23 @@
                             <tr>
                                 <th><span class="essential">*</span>아이디</th>
                                 <td>
-	                                <input type="text" name="uid" placeholder="아이디를 입력">
-	                                <button type="button" id="btnUidCheck"><img src="/Kmarket/member/img/chk_id.gif" alt="중복확인"/></button>
-	                                <span class="resultUid"></span>
-	                                
+	                                <input type="text" name="uid" id="uid" placeholder="아이디를 입력">
+	                                <span class="resultUid">&nbsp;영문, 숫자로 4~12자까지 설정해 주세요.</span>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span class="essential">*</span>비밀번호</th>
-                                <td><input type="password" name="pass1" placeholder="비밀번호를 입력"><span class="resultPass"></span></td>
+                                <td>
+                                <input type="password" name="pass1" placeholder="비밀번호를 입력">
+                                <span class="resultPass">&nbsp;영문, 숫자, 특수문자를 조합하여 8~12자까지 설정해 주세요.</span>
+                                </td>
                             </tr>
                             <tr>
                                 <th><span class="essential">*</span>비밀번호확인</th>
-                                <td><input type="password" name="pass2" placeholder="비밀번호를 확인"><span></span></td>
+                                <td>
+                                <input type="password" name="pass2" placeholder="비밀번호를 확인">
+                                <span>&nbsp;비밀번호 재입력</span>
+                                </td>
                             </tr>
                         </table>
                         <table>
@@ -83,7 +87,7 @@
                                 <th><span class="essential">*</span>휴대폰</th>
                                 <td>
                                     <input type="text" name="hp" maxlength="13" placeholder="휴대폰번호 입력">
-                                    <span class="resultHp">
+                                    <span class="resultHp">&nbsp;- 포함 13자리를 입력하세요.</span>
                                 </td>
                             </tr>
                             <tr class="addr">

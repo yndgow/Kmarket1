@@ -158,18 +158,18 @@ public class MemberDAO extends DBHelper {
 		return result;
 	}
 	
-	public void insertUser(MemberVO vo) {
+	public void insertMember(MemberVO vo) {
 		try {
 			logger.info("insertUser...");
 			
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kkj.INSERT_USER);
+			psmt = conn.prepareStatement(Sql_kkj.INSERT_MEMBER);
 			psmt.setString(1, vo.getUid());
 			psmt.setString(2, vo.getPass());
 			psmt.setString(3, vo.getName());
 			psmt.setInt(4, vo.getGender());
-			psmt.setString(5, vo.getHp());
-			psmt.setString(6, vo.getEmail());
+			psmt.setString(5, vo.getEmail());
+			psmt.setString(6, vo.getHp());
 			psmt.setString(7, vo.getZip());
 			psmt.setString(8, vo.getAddr1());
 			psmt.setString(9, vo.getAddr2());

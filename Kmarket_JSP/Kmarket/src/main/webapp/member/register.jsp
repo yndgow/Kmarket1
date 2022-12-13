@@ -62,7 +62,7 @@
                                 <th><span class="essential">*</span>비밀번호확인</th>
                                 <td>
                                 <input type="password" name="pass2" placeholder="비밀번호를 확인">
-                                <span>&nbsp;비밀번호 재입력</span>
+                                <span></span>
                                 </td>
                             </tr>
                         </table>
@@ -94,8 +94,7 @@
                                 <th>주소</th>
                                 <td>
                                     <div>
-                                        <input type="text" name="zip" id="zip" placeholder="우편번호 입력 클릭" readonly>
-                                          <button type="button" onclick="postcode()"><img src="/Kmarket/member/img/chk_post.gif" alt="우편번호 찾기"/></button>
+                                        <input type="text" name="zip" id="zip" placeholder="우편번호 입력 클릭" onclick="postcode()" readonly>
                                     </div>    
                                     <div>
                                         <input type="text" name="addr1" id="addr1" placeholder="주소를 검색하세요." readonly>

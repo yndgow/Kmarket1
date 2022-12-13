@@ -32,6 +32,9 @@ public enum MemberService {
 		dao.insertMember(vo);
 	}
 	
+	public void insertSeller(MemberVO vo) {
+		dao.insertSeller(vo);
+	}
 	
 	public int selectCountUid(String uid) {
 		return dao.selectCountUid(uid);

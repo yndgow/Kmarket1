@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/Kmarket/member/css/style.css"/>
-    <script src="/Kmarket/member/js/validation.js"></script>
+    <script src="/Kmarket/member/js/validation2.js"></script>
     <script src="/Kmarket/member/js/postcode.js"></script>
 </head>
 <body>
@@ -41,29 +41,29 @@
                     <h1>판매자 회원가입</h1>
                 </nav>
 
-                <form action="#">
+                <form action="/Kmarket/member/registerSeller.do" method="post">
                     <section>
                         <table>
-                            <caption>필수 정보입력</caption>
+                            <caption>회원가입</caption>
                             <tr>
                                 <th><span class="essential">*</span>아이디</th>
                                 <td>
                                     <input type="text" name="uid" id="uid" placeholder="아이디를 입력">
-                                    <span class="msgSId">&nbsp;영문, 숫자로 4~12자까지 설정해 주세요.</span>
+                                    <span class="resultUid">&nbsp;영문, 숫자로 4~12자까지 설정해 주세요.</span>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span class="essential">*</span>비밀번호</th>
                                 <td>
                                     <input type="password" name="pass1" placeholder="비밀번호를 입력">
-                                    <span class="msgPass">&nbsp;영문, 숫자, 특수문자를 조합하여 8~12자까지 설정해 주세요.</span>
+                                    <span class="resultPass">&nbsp;영문, 숫자, 특수문자를 조합하여 8~12자까지 설정해 주세요.</span>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span class="essential">*</span>비밀번호확인</th>
                                 <td>
                                     <input type="password" name="pass2" placeholder="비밀번호를 확인">
-                                    <span class="msgPass">&nbsp;비밀번호 재입력</span>
+                                    <span></span>
                                 </td>
                             </tr>
                         </table>
@@ -74,79 +74,67 @@
                             <tr>
                                 <th><span class="essential">*</span>회사명</th>
                                 <td>
-                                    <input type="text" name="kms_company" placeholder="회사명 입력">
-                                    <span class="msgCompany">&nbsp;(주)포함 입력, 예) 케이마켓</span>
+                                    <input type="text" name="company" placeholder="회사명 입력">
+                                    <span class="resultCompany">&nbsp;(주)포함 입력, 예) 케이마켓</span>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span class="essential">*</span>대표자</th>
                                 <td>
-                                    <input type="text" name="kms_ceo" placeholder="대표자 입력">
+                                    <input type="text" name="ceo" placeholder="대표자 입력">
+                                    <span class="resultCeo"></span>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span class="essential">*</span>사업자등록번호</th>
                                 <td>
-                                    <input type="text" name="kms_corp_reg" placeholder="사업자등록번호 입력">
-                                    <span class="msgCorp">&nbsp;-표시 포함 12자리 입력, 예) 123-45-67890</span>
+                                    <input type="text" name="bizRegNum" placeholder="사업자등록번호 입력">
+                                    <span class="resultBiz">&nbsp;-표시 포함 12자리 입력</span>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span class="essential">*</span>통신판매업신고 번호</th>
                                 <td>
-                                    <input type="text" name="kms_online_reg" placeholder="통신판매업신고 입력">
-                                    <span class="msgOnline">&nbsp;-표시 포함, 예) 강남-12345, 제 1-01-23-4567호, 2017-경기성남-0011</span>
+                                    <input type="text" name="comRegNum" placeholder="통신판매업신고 입력">
+                                    <span class="resultCom">&nbsp;-표시 포함, 예) 강남-12345, 제 1-01-23-4567호, 2017-경기성남-0011</span>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span class="essential">*</span>전화번호</th>
                                 <td>
-                                    <input type="text" name="kms_tel" placeholder="전화번호 입력">
-                                    <span class="msgTel">&nbsp;-표시 포함, 지역번호 포함, 예) 02-234-1234</span>
+                                    <input type="text" name="tel" placeholder="전화번호 입력">
+                                    <span class="resultTel">&nbsp;-표시 포함, 지역번호 포함</span>
                                 </td>
                             </tr>
                             <tr>
-                                <th><span class="essential">*</span>EMAIL</th>
-                                <td><input type="email" name="kms_email" placeholder="이메일 입력"></td>
+                                <th><span class="essential"></span>팩스</th>
+                                <td>
+                                <input type="text" name="fax" placeholder="팩스번호 입력">
+                                <span class="resultFax">-표시포함</span>
+                                </td>
                             </tr>
                             <tr class="addr">
-								<th>회사주소</th>
+								<th><span class="essential">*</span>회사주소</th>
 								<td>
 									<div>
-										<input type="text" name="kms_zip" id="zip"
-											placeholder="우편번호 입력 클릭" readonly />
-										<button type="button" onclick="postcode()"><img src="/Kmarket/member/img/chk_post.gif" alt="우편번호 찾기"/></button>
+										<input type="text" name="zip" id="zip"
+											placeholder="우편번호 입력 클릭" onclick="postcode()" readonly />
+											<span class="resultZip"></span>
 									</div>
 									<div>
-										<input type="text" name="kms_addr1" id="addr1" size="50"
+										<input type="text" name="addr1" id="addr1" size="50"
 											placeholder="주소를 검색하세요." readonly />
 									</div>
 									<div>
-										<input type="text" name="kms_addr2" id="addr2" size="50"
+										<input type="text" name="addr2" id="addr2" size="50"
 											placeholder="상세주소를 입력하세요." />
+											<span class="resultAddr"></span>
 									</div>
 								</td>
 							</tr>
                         </table>
                     </section>
-                    <section>
-                        <table>
-                            <caption>담당자 정보입력</caption>
-                            <tr>
-                                <th><span class="essential">*</span>이름</th>
-                                <td>
-                                    <input type="text" name="m_name" placeholder="이름을 입력">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th><span class="essential">*</span>휴대폰</th>
-                                <td>
-                                    <input type="text" name="m_hp" maxlength="13" placeholder="휴대폰번호 입력">
-                                    <span class="msgHp">&nbsp;-포함 13자리를 입력하세요.</span>
-                                </td>
-                            </tr>
-                        </table>
-                    </section>
+                    
                     <div>
                         <input type="submit" class="join" value="회원가입">
                     </div>

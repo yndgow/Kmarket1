@@ -6,7 +6,19 @@
         <section class="list">
           <nav>
             <h1>상품목록</h1>
-            <p>HOME > 패션·의류·뷰티 > 남성의류</p>
+            
+            <c:forEach var="cates1" items="${categories1}">
+            	<c:if test="${cate1 eq cates1.cate1}">
+            		<c:set value="${cates1.c1Name}" var="c1"/>
+            		<c:forEach var="cates2" items="${categories2}">
+            			<c:if test="${cates1.cate1 eq cates2.cate1 && cate2 eq cates2.cate2}">
+            				<c:set value="${cates2.c2Name}" var="c2"/>
+            			</c:if>
+            		</c:forEach>
+            	</c:if>	
+            </c:forEach>
+            
+            <p>HOME > ${c1} > ${c2} </p>
           </nav>
           <ul class="sort">
             <li><a href="/Kmarket/product/list.do?cate1=${cate1}&cate2=${cate2}&listSort=soldDesc">판매많은순</a></li>
@@ -47,7 +59,7 @@
                   </c:if>
                   <c:choose>
                   	<c:when test="${vo.delivery eq 0}">
-                  		<img src="./img/ico_free_delivery.gif" alt="무료배송" class="freede" />
+                  		<img src="/Kmarket/img/product/ico_free_delivery.gif" alt="무료배송" class="freede" />
                  	</c:when>
                  	<c:otherwise>
                  		<p>배송비: ${vo.delivery}</p>
@@ -62,11 +74,11 @@
                   </a><br />
                   <c:choose>
                   	<c:when test="${vo.score lt 3}">
-                  		<img src="./img/ico_power_dealer.gif" alt="딜러" class="dealer" /><br />
+                  		<img src="/Kmarket/img/product/ico_power_dealer.gif" alt="딜러" class="dealer" /><br />
                   	</c:when>
                   	<c:otherwise>
                   		
-                  		<img src="./img/ico_great_seller.gif" alt="딜러" class="dealer2" /><br />
+                  		<img src="/Kmarket/img/product/ico_great_seller.gif" alt="딜러" class="dealer2" /><br />
                   	</c:otherwise>
                   </c:choose>
                   <c:choose>
@@ -85,22 +97,38 @@
             </tbody>
           </table>
           <div class="paging">
+           <c:if test="${pageGroupStart > 1}">
             <span class="prev">
-              <a href="#"><i class="fa-light fa-less-than"></i>이전</a>
+              <a href="/Kmarket/product/list.do?cate1=${cate1}&cate2=${cate2}&listSort=${listSort}&pg=${pageGroupStart-1}&search=${search}"><i class="fa-light fa-less-than"></i>이전</a>
             </span>
+             </c:if>
+           
             <span class="num">
-              <a href="#" class="on">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <a href="#">4</a>
-              <a href="#">5</a>
-              <a href="#">6</a>
-              <a href="#">7</a>
+             <c:forEach var="num" begin="${pageGroupStart}" end="${pageGroupEnd}">
+               <a href="/Kmarket/product/list.do?cate1=${cate1}&cate2=${cate2}&listSort=${listSort}&pg=${num}&search=${search}" class="num ${num == currentPage ? 'on' : 'off'}">${num}</a>
+             </c:forEach>
             </span>
+           <c:if test="${pageGroupEnd < lastPageNum}">
             <span class="next">
-              <a href="#">다음<i class="fa-light fa-greater-than"></i></a>
+              <a href="/Kmarket/product/list.do?cate1=${cate1}&cate2=${cate2}&listSort=${listSort}&pg=${pageGroupEnd+1}&search=${search}">다음<i class="fa-light fa-greater-than"></i></a>
             </span>
+            </c:if>
           </div>
+          
+          
+        <%-- <div class="page">
+        	<c:if test="${pageGroupStart > 1}">
+            <a href="/JBoard2/list.do?pg=${pageGroupStart-1}&search=${search}" class="prev">이전</a>
+            </c:if>
+            <c:forEach var="num" begin="${pageGroupStart}" end="${pageGroupEnd}">
+            <a href="/JBoard2/list.do?pg=${num}&search=${search}" class="num ${num == currentPage ? 'current' : 'off'}">${num}</a>
+            </c:forEach>
+            <c:if test="${pageGroupEnd < lastPageNum}">
+            <a href="/JBoard2/list.do?pg=${pageGroupEnd+1}&search=${search}" class="next">다음</a>
+            </c:if>
+        </div> --%>
+          
+          
         </section>
         <!-- section list 끝 -->
       </main>

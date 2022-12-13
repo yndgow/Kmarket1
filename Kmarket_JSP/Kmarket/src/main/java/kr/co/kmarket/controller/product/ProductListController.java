@@ -37,7 +37,7 @@ public class ProductListController extends HttpServlet{
 		
 		int currentPage = service.getCurrentPage(pg);// 현재 페이지 번호
 		int total = 0; // 전체 게시물 갯수
-		if(search == null) {
+		if(search == null || search.equals("")){
 			total = service.selectCountTotal(cate1, cate2);
 		}else {
 			//total = service.selectCountTotal(cate1, cate2, search);
@@ -67,7 +67,8 @@ public class ProductListController extends HttpServlet{
 		List<ProductVO> products = service.selectProductList(cate1, cate2, listSort, start);
 		req.setAttribute("products", products);
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/product/list.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/product/list.jsp");
+		
 		dispatcher.forward(req, resp);
 	}
 }

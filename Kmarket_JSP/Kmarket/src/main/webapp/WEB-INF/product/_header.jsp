@@ -7,8 +7,8 @@
     <title>KMarket::list</title>
     <script src="https://kit.fontawesome.com/e8f010a863.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/style.css" />
-    <script src="./js/script.js"></script>
+    <link rel="stylesheet" href="/Kmarket/css/product/style.css" />
+    <script src="/Kmarket/js/product/script.js"></script>
   </head>
   <body>
     <div class="wrapper">
@@ -65,9 +65,9 @@
           <ul class="category" id="menu">
             <li><i class="fa-solid fa-bars"></i>카테고리</li>
             
-            <c:forEach var="cate1" items="${categories1}" varStatus="status">
+            <c:forEach var="cates1" items="${categories1}" varStatus="status">
             <li>
-              <a href="#">
+              <a href="./list.do?cate1=${cates1.cate1}">
               	<c:choose>
               		<c:when test="${status.index eq 0}">
               			<i class="fa-sharp fa-solid fa-shirt"></i>
@@ -97,13 +97,13 @@
               			<i class="fa-solid fa-book"></i>
               		</c:when> 
                 </c:choose>
-                ${cate1.c1Name}
+                ${cates1.c1Name}
                 <i class="fa-solid fa-chevron-right"></i>
               </a>
               <ol class="sub_category">
-              	<c:forEach var="cate2" items="${categories2}">
-              	<c:if test="${cate1.cate1 eq cate2.cate1}">
-                <li><a href="/Kmarket/product/list.do?cate1=${cate1.cate1}&cate2=${cate2.cate2}&listSort=${listSort}">${cate2.c2Name}</a></li>
+              	<c:forEach var="cates2" items="${categories2}">
+              	<c:if test="${cates1.cate1 eq cates2.cate1}">
+                <li><a href="/Kmarket/product/list.do?cate1=${cates1.cate1}&cate2=${cates2.cate2}&listSort=${listSort}">${cates2.c2Name}</a></li>
                 </c:if>
                 
                 </c:forEach>

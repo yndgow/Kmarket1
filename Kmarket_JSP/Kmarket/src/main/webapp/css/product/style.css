@@ -388,7 +388,8 @@ del {
   border: 1px solid rgb(196, 196, 196);
 }
 .paging > .num > a.on {
-  color: red;
+  font-weight: bold;
+  
 }
 .paging > .next > a {
 }

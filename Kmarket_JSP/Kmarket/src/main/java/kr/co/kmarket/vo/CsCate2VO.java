@@ -3,7 +3,7 @@ package kr.co.kmarket.vo;
 public class CsCate2VO {
 	private int qnaCate1;
 	private int qnaCate2;
-	private int qc2Name;
+	private String qc2Name;
 	
 	public int getQnaCate1() {
 		return qnaCate1;
@@ -17,10 +17,10 @@ public class CsCate2VO {
 	public void setQnaCate2(int qnaCate2) {
 		this.qnaCate2 = qnaCate2;
 	}
-	public int getQc2Name() {
+	public String getQc2Name() {
 		return qc2Name;
 	}
-	public void setQc2Name(int qc2Name) {
+	public void setQc2Name(String qc2Name) {
 		this.qc2Name = qc2Name;
 	}
 	

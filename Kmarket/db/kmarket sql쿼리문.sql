@@ -375,15 +375,15 @@ alter table `km_product` auto_increment = 1000000;
 /* cs 문의하기 테이블 */
 CREATE TABLE IF NOT EXISTS `Kmarket`.`km_cs_qna`(
 	`uid` VARCHAR(20) NOT NULL,
-	`qnaCate1` TINYINT(2) NOT NULL,
-	`qnaCate2` INT(2) NOT NULL,
+	`qc1Name` VARCHAR(20) NOT NULL,
+	`qc2Name` VARCHAR(20) NOT NULL,
 	`qnaTitle` VARCHAR(50) NOT NULL,
 	`qnaContent` VARCHAR(255) NOT NULL,
 	`regip` VARCHAR(100) NOT NULL,
-	`wdate` DATETIME NOT NULL,
-	  PRIMARY KEY (`uid`))
+	`wdate` DATETIME NOT NULL
+	  )
 ENGINE = INNODB;
-
+ALTER TABLE km_cs_qna ADD qnaCond VARCHAR(10) DEFAULT '검토 중';
 -- -----------------------------------------------------
 -- Table `Kmarket`.`km_cs_cate1`
 -- -----------------------------------------------------
@@ -420,5 +420,25 @@ INSERT INTO `km_cs_cate2` VALUES (1, 3, '회원정보');
 INSERT INTO `km_cs_cate2` VALUES (1, 4, '로그인');
 INSERT INTO `km_cs_cate2` VALUES (1, 5, '아이디/비밀번호 찾기');
 
+/* cs_qna insert */
+INSERT INTO `km_cs_qna` (`uid`, `qc1Name`, `qc2Name`, `qnaTitle`, `qnaContent`, `regip`, `wdate`, `qnaCond`) VALUES ('test', '1', '가입', 'test', 'test', '0:0:0:0:0:0:0:1', '2022-12-13 13:27:47', '검토 중');
+INSERT INTO `km_cs_qna` (`uid`, `qc1Name`, `qc2Name`, `qnaTitle`, `qnaContent`, `regip`, `wdate`, `qnaCond`) VALUES ('test', '1', '가입', 'test', 'test', '0:0:0:0:0:0:0:1', '2022-12-13 13:28:42', '검토 중');
+INSERT INTO `km_cs_qna` (`uid`, `qc1Name`, `qc2Name`, `qnaTitle`, `qnaContent`, `regip`, `wdate`, `qnaCond`) VALUES ('test', '1', '가입', 'test', 'test', '0:0:0:0:0:0:0:1', '2022-12-13 13:28:46', '검토 중');
+INSERT INTO `km_cs_qna` (`uid`, `qc1Name`, `qc2Name`, `qnaTitle`, `qnaContent`, `regip`, `wdate`, `qnaCond`) VALUES ('test', '1', '로그인', 'test', 'test', '0:0:0:0:0:0:0:1', '2022-12-13 13:29:37', '검토 중');
+INSERT INTO `km_cs_qna` (`uid`, `qc1Name`, `qc2Name`, `qnaTitle`, `qnaContent`, `regip`, `wdate`, `qnaCond`) VALUES ('test', '1', '로그인', 'test', 'test', '0:0:0:0:0:0:0:1', '2022-12-13 13:29:42', '검토 중');
+INSERT INTO `km_cs_qna` (`uid`, `qc1Name`, `qc2Name`, `qnaTitle`, `qnaContent`, `regip`, `wdate`, `qnaCond`) VALUES ('test', '1', '로그인', 'test', 'test', '0:0:0:0:0:0:0:1', '2022-12-13 13:29:46', '검토 중');
+INSERT INTO `km_cs_qna` (`uid`, `qc1Name`, `qc2Name`, `qnaTitle`, `qnaContent`, `regip`, `wdate`, `qnaCond`) VALUES ('test', '1', '아이디/비밀번호 찾기', 'test', 'test', '0:0:0:0:0:0:0:1', '2022-12-13 13:29:53', '검토 중');
+INSERT INTO `km_cs_qna` (`uid`, `qc1Name`, `qc2Name`, `qnaTitle`, `qnaContent`, `regip`, `wdate`, `qnaCond`) VALUES ('test', '1', '아이디/비밀번호 찾기', 'test', 'test', '0:0:0:0:0:0:0:1', '2022-12-13 13:29:57', '검토 중');
+INSERT INTO `km_cs_qna` (`uid`, `qc1Name`, `qc2Name`, `qnaTitle`, `qnaContent`, `regip`, `wdate`, `qnaCond`) VALUES ('test', '1', '아이디/비밀번호 찾기', 'test', 'test', '0:0:0:0:0:0:0:1', '2022-12-13 13:30:02', '검토 중');
+INSERT INTO `km_cs_qna` (`uid`, `qc1Name`, `qc2Name`, `qnaTitle`, `qnaContent`, `regip`, `wdate`, `qnaCond`) VALUES ('test', '1', '아이디/비밀번호 찾기', 'test', 'test', '0:0:0:0:0:0:0:1', '2022-12-13 13:30:08', '검토 중');
+INSERT INTO `km_cs_qna` (`uid`, `qc1Name`, `qc2Name`, `qnaTitle`, `qnaContent`, `regip`, `wdate`, `qnaCond`) VALUES ('test', '1', '탈퇴', 'test', 'test', '0:0:0:0:0:0:0:1', '2022-12-13 13:28:51', '검토 중');
+INSERT INTO `km_cs_qna` (`uid`, `qc1Name`, `qc2Name`, `qnaTitle`, `qnaContent`, `regip`, `wdate`, `qnaCond`) VALUES ('test', '1', '탈퇴', 'test', 'test', '0:0:0:0:0:0:0:1', '2022-12-13 13:28:56', '검토 중');
+INSERT INTO `km_cs_qna` (`uid`, `qc1Name`, `qc2Name`, `qnaTitle`, `qnaContent`, `regip`, `wdate`, `qnaCond`) VALUES ('test', '1', '탈퇴', 'test', 'test', '0:0:0:0:0:0:0:1', '2022-12-13 13:29:03', '검토 중');
+INSERT INTO `km_cs_qna` (`uid`, `qc1Name`, `qc2Name`, `qnaTitle`, `qnaContent`, `regip`, `wdate`, `qnaCond`) VALUES ('test', '1', '탈퇴', 'test', 'test', '0:0:0:0:0:0:0:1', '2022-12-13 13:29:13', '검토 중');
+INSERT INTO `km_cs_qna` (`uid`, `qc1Name`, `qc2Name`, `qnaTitle`, `qnaContent`, `regip`, `wdate`, `qnaCond`) VALUES ('test', '1', '탈퇴', 'test', 'test', '0:0:0:0:0:0:0:1', '2022-12-13 13:29:16', '검토 중');
+INSERT INTO `km_cs_qna` (`uid`, `qc1Name`, `qc2Name`, `qnaTitle`, `qnaContent`, `regip`, `wdate`, `qnaCond`) VALUES ('test', '1', '회원정보', 'test', 'test', '0:0:0:0:0:0:0:1', '2022-12-13 13:29:08', '검토 중');
+INSERT INTO `km_cs_qna` (`uid`, `qc1Name`, `qc2Name`, `qnaTitle`, `qnaContent`, `regip`, `wdate`, `qnaCond`) VALUES ('test', '1', '회원정보', 'test', 'test', '0:0:0:0:0:0:0:1', '2022-12-13 13:29:21', '검토 중');
+INSERT INTO `km_cs_qna` (`uid`, `qc1Name`, `qc2Name`, `qnaTitle`, `qnaContent`, `regip`, `wdate`, `qnaCond`) VALUES ('test', '1', '회원정보', 'test', 'test', '0:0:0:0:0:0:0:1', '2022-12-13 13:29:25', '검토 중');
+INSERT INTO `km_cs_qna` (`uid`, `qc1Name`, `qc2Name`, `qnaTitle`, `qnaContent`, `regip`, `wdate`, `qnaCond`) VALUES ('test', '1', '회원정보', 'test', 'test', '0:0:0:0:0:0:0:1', '2022-12-13 13:29:30', '검토 중');
 
 

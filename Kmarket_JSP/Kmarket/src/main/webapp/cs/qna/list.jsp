@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +22,7 @@
             </div>
             <div class="logo">
                 <div>
-                    <a href="../index.html">
+                    <a href="../index.jsp">
                         <img src="../images/logo.png" alt="로고">
                         고객센터
                     </a>
@@ -54,56 +55,13 @@
                             <h2>회원관련 문의 내용입니다.</h2>
                         </nav>
                         <table>
+                        <c:forEach var="article" items="${articles}">
                             <tr>
-                                <td><a href="./view.html">[안내] 해외결제 사칭 문자 주의</a></td>
-                                <td>alswns***</td>
-                                <td>2022.12.05</td>
+                                <td><a href="./view.jsp">[${aritcle.qc2Name}] ${article.qnaTitle}</a></td>
+                                <td>${article.uid}</td>
+                                <td>${article.wdate.substring(2, 10)}</td>
                             </tr>
-                            <tr>
-                                <td><a href="./view.html">[안내] 해외결제 사칭 문자 주의</a></td>
-                                <td>alswns***</td>
-                                <td>2022.12.05</td>
-                            </tr>
-                            <tr>
-                                <td><a href="./view.html">[안내] 해외결제 사칭 문자 주의</a></td>
-                                <td>alswns***</td>
-                                <td>2022.12.05</td>
-                            </tr>
-                            <tr>
-                                <td><a href="./view.html">[안내] 해외결제 사칭 문자 주의</a></td>
-                                <td>alswns***</td>
-                                <td>2022.12.05</td>
-                            </tr>
-                            <tr>
-                                <td><a href="./view.html">[안내] 해외결제 사칭 문자 주의</a></td>
-                                <td>alswns***</td>
-                                <td>2022.12.05</td>
-                            </tr>
-                            <tr>
-                                <td><a href="./view.html">[안내] 해외결제 사칭 문자 주의</a></td>
-                                <td>alswns***</td>
-                                <td>2022.12.05</td>
-                            </tr>
-                            <tr>
-                                <td><a href="./view.html">[안내] 해외결제 사칭 문자 주의</a></td>
-                                <td>alswns***</td>
-                                <td>2022.12.05</td>
-                            </tr>
-                            <tr>
-                                <td><a href="./view.html">[안내] 해외결제 사칭 문자 주의</a></td>
-                                <td>alswns***</td>
-                                <td>2022.12.05</td>
-                            </tr>
-                            <tr>
-                                <td><a href="./view.html">[안내] 해외결제 사칭 문자 주의</a></td>
-                                <td>alswns***</td>
-                                <td>2022.12.05</td>
-                            </tr>
-                            <tr>
-                                <td><a href="./view.html">[안내] 해외결제 사칭 문자 주의</a></td>
-                                <td>alswns***</td>
-                                <td>2022.12.05</td>
-                            </tr>
+                        </c:forEach>
                         </table>
                         <div class="page">
                             <a href="#" class="prev">이전</a>
@@ -112,7 +70,7 @@
                             <a href="#" class="num">3</a>
                             <a href="#" class="next">다음</a>
                         </div>
-                        <a href="./write.html" class="btnWrite">문의하기</a>
+                        <a href="./write.jsp" class="btnWrite">문의하기</a>
                     </article>
                 </section>
             </div>

@@ -1,6 +1,7 @@
 package kr.co.kmarket.controller.cs;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,10 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import kr.co.kmarket.service.CsService;
 import kr.co.kmarket.vo.CsQnaVO;
 
-@WebServlet("/cs/qna/write.do")
-public class WriteController extends HttpServlet{
+@WebServlet("/cs/qna/list.do")
+public class QnaListController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-	CsService service = CsService.INSTANCE;
+	private CsService service = CsService.INSTANCE;
 	
 	@Override
 	public void init() throws ServletException {
@@ -23,39 +24,16 @@ public class WriteController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		List<CsQnaVO> articles = service.selectQnaArticles();
 		
+		req.setAttribute("articles", articles);
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/cs/qna/write.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/cs/qna/list.jsp");
 		dispatcher.forward(req, resp);
 		
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
-		String uid = "test";
-//		String uid = req.getParameter("uid");
-		String qc1Name = req.getParameter("qc1Name");
-		String qc2Name = req.getParameter("qc2Name");
-		String qnaTitle = req.getParameter("title");
-		String qnaContent = req.getParameter("content");
-		String regip = req.getRemoteAddr();
-		
-		
-		CsQnaVO vo = new CsQnaVO();
-		vo.setUid(uid);
-		vo.setQc1Name(qc1Name);
-		vo.setQc2Name(qc2Name);
-		vo.setQnaTitle(qnaTitle);
-		vo.setQnaContent(qnaContent);
-		vo.setRegip(regip);
-		
-		service.InsertArticleQnaOfCs(vo);
-		
-		resp.sendRedirect("/Kmarket/cs/qna/list.jsp");
-			
-			
-		
-	
 	}
 	
 

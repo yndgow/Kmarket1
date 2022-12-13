@@ -132,47 +132,6 @@ public class AdminDAO extends DBHelper {
 		logger.debug("cates :" + cates);
 		return cates;
 	}
-		
-	// admin 주문건수	
-	public ProductOrderVO selectOrderByAdmin(String ordNo) {
-		logger.info("selectOrderByAdmin...");
-		ProductOrderVO vo = null;
-		try {
-			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_Kbs.SELECT_COUNT_ORDER);
-			psmt.setString(1, ordNo);
-			rs = psmt.executeQuery();
-			
-			if(rs.next()) {
-				vo = new ProductOrderVO();
-				vo.setOrdNo(rs.getInt(1));
-				vo.setOrdUid(rs.getString(2));
-				vo.setOrdCount(rs.getInt(3));
-				vo.setOrdPrice(rs.getInt(4));
-				vo.setOrdDiscount(rs.getInt(5));
-				vo.setOrdDelivery(rs.getInt(6));
-				vo.setSavePoint(rs.getInt(7));
-				vo.setUsedPoint(rs.getInt(8));
-				vo.setOrdTotPrice(rs.getInt(9));
-				vo.setRecipName(rs.getString(01));
-				vo.setRecipHp(rs.getString(11));
-				vo.setRecipZip(rs.getString(12));
-				vo.setRecipAddr1(rs.getString(13));
-				vo.setRecipAddr2(rs.getString(14));
-				vo.setOrdPayment(rs.getInt(15));
-				vo.setOrdComplete(rs.getInt(16));
-				vo.setOrdDate(rs.getString(17));
-			}
-			close();
-			
-		}catch(Exception e) {
-			logger.error(e.getMessage());
-		}
-		logger.debug("vo :" + vo);
-		return vo;
-	}
-
-
 
 	// admin 카테고리2 리스트 출력 	
 	public List<ProductCate2VO> selectCategory2ByAdmin(String cate2) {
@@ -199,6 +158,23 @@ public class AdminDAO extends DBHelper {
 		logger.debug("cates :" + cates);
 		return cates;
 	}
+	
+	// admin 리스트 페이지
+	public int selectCountTotal() {
+		int result = 0;
+		try {
+			logger.info("selectCountTotal...");
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(Sql_Kbs.SELECT_COUNT_TOTAL);
+			if(rs.next()) result = rs.getInt(1);
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	} 
 
 	
 	

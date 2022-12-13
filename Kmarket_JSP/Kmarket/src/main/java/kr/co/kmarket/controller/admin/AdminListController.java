@@ -20,6 +20,35 @@ public class AdminListController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String pg = req.getParameter("pg");
+		int currentPage = service.getCurrentPage(pg);// 현재 페이지 번호
+		
+		//페이지 번호
+		int total = 0; // 전체 게시물 갯수 
+		total = service.selectCountTotal();
+		
+		int lastPageNum = service.getLastPageNum(total);// 마지막 페이지 번호
+		int[] result = service.getPageGroupNum(currentPage, lastPageNum);// 페이지 그룹 start, end 번호
+		int pageStartNum = service.getPageStartNum(total, currentPage);// 페이지 시작번호
+		int start = service.getStartNum(currentPage);// 시작 인덱스
+		
+		 // 글 가져오기
+		//List<ArticleVO> articles = null;
+		//if(search == null) {
+		//	articles = service.selectArticles(start);
+		//}else {
+		//	articles = service.selectArticleByKeyword(search, start);
+		//}
+		
+		//req.setAttribute("articles", articles);
+		req.setAttribute("lastPageNum", lastPageNum);		
+		req.setAttribute("currentPage", currentPage);		
+		req.setAttribute("pageGroupStart", result[0]);
+		req.setAttribute("pageGroupEnd", result[1]);
+		req.setAttribute("pageStartNum", pageStartNum+1);
+		//req.setAttribute("search", search);
+		
 		List<ProductVO> products = service.selectProductByAdmin("uid");
 		req.setAttribute("products", products);
 		

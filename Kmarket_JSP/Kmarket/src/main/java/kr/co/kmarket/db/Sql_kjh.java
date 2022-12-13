@@ -33,7 +33,21 @@ public class Sql_kjh {
 	public static final String SELECT_IMG_FILENAME = "SELECT `thumb1`, `thumb2`, `thumb3`, `detail` FROM `km_product` WHERE `prodNo` = ?";
 	
 	// prodct_list 
-	public static final String SELECT_PRODUCT_LIST = "SELECT * FROM `km_product`";
+	public static final String SELECT_PRODUCT_LIST = "SELECT * FROM `km_product` "
+														+ "WHERE `prodCate1` = ? AND `prodCate2` = ? "
+														+ "ORDER BY ? "
+														+ "LIMIT ?, 10;";
+	
+	// 1차 카테고리 
+	public static final String SELECT_CATEGORY_1 = "SELECT * FROM `km_product_cate1`";
+	// 2차 카테고리
+	public static final String SELECT_CATEGORY_2 = "SELECT * FROM `km_product_cate2`";
+	// 상품 전체갯수 출력
+	public static final String SELECT_PRODUCT_COUNT_PRODNO = "SELECT COUNT(`prodNo`) FROM `km_product` WHERE `prodCate1` = ? AND `prodCate2` = ?";
+
+	
+	
+	
 	// 판매 많은순
 	public static final String SELECT_PRODUCT_LIST_SOLD_DESC = "SELECT * FROM `km_product` ORDER BY `sold` DESC";
 	// 높은가격순

@@ -28,8 +28,8 @@ public enum MemberService {
 	}
 	
 	// 회원가입
-	public void insertUser(MemberVO vo) {
-		dao.insertUser(vo);
+	public void insertMember(MemberVO vo) {
+		dao.insertMember(vo);
 	}
 	
 	

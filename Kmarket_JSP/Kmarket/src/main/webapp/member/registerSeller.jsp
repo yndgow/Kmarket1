@@ -48,8 +48,7 @@
                             <tr>
                                 <th><span class="essential">*</span>아이디</th>
                                 <td>
-                                    <input type="text" name="uid" placeholder="아이디를 입력">
-                                    <button type="button" id="btnUidCheck"><img src="/Kmarket/member/img/chk_id.gif" alt="중복확인"/></button>
+                                    <input type="text" name="uid" id="uid" placeholder="아이디를 입력">
                                     <span class="msgSId">&nbsp;영문, 숫자로 4~12자까지 설정해 주세요.</span>
                                 </td>
                             </tr>
@@ -76,7 +75,7 @@
                                 <th><span class="essential">*</span>회사명</th>
                                 <td>
                                     <input type="text" name="kms_company" placeholder="회사명 입력">
-                                    <span class="msgCompany">(주)포함 입력, 예) 케이마켓</span>
+                                    <span class="msgCompany">&nbsp;(주)포함 입력, 예) 케이마켓</span>
                                 </td>
                             </tr>
                             <tr>

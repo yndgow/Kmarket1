@@ -1,5 +1,5 @@
 // 데이터 검증에 사용할 정규표현식
-let regUid   = /^[a-z]+[a-z0-9]{4,19}$/g;
+let regUid   = /^[a-z]+[a-z0-9]{3,11}$/g;
 let regName  = /^[가-힣]{2,4}$/;
 let regNick  = /^[가-힣a-zA-Z0-9]+$/;
 let regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -25,7 +25,7 @@ $(function(){
 		isUidOk = false;
 	});
 	
-	$('#btnUidCheck').click(function(){
+	$('#uid').focusout(function(){
 		
 		let uid = $('input[name=uid]').val();
 		
@@ -35,7 +35,7 @@ $(function(){
 		
 		if(!uid.match(regUid)){
 			isUidOk = false;
-			alert('영문, 숫자로 4~12자까지 설정해 주세요.');
+			$('.resultUid').css('color', 'red').text('영문, 숫자로 4~12자까지 설정해 주세요.');
 			return;
 		}
 		

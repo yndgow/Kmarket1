@@ -56,7 +56,7 @@
                 <nav>
                     <h1>약관동의</h1>
                 </nav>
-                 <c:if test="${'normal' eq type}">
+                 <c:if test="${1 eq type}">
                 <section>
                     <h3><span class="essential">(필수)</span>이용약관</h3>
                     <textarea name="terms" readonly>${vo.terms }</textarea>
@@ -78,7 +78,7 @@
                 <div><a href="/Kmarket/member/register.do"><input type="button" class="agree" value="동의하기"></a></div>
                  </c:if>
                  
-                  <c:if test="${'seller' eq type}">
+                  <c:if test="${2 eq type}">
                 <section>
                     <h3><span class="essential">(필수)</span>판매자 이용약관</h3>
                     <textarea name="tax" readonly>${vo.tax }</textarea>

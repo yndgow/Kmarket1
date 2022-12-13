@@ -57,11 +57,11 @@ ENGINE = InnoDB;
 -- Table `Kmarket`.`km_member_terms`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Kmarket`.`km_member_terms` (
-  `terms` TEXT NOT NULL,
-  `privacy` TEXT NOT NULL,
-  `location` TEXT NOT NULL,
-  `finance` TEXT NOT NULL,
-  `tax` TEXT NOT NULL)
+  `terms` LONGTEXT NOT NULL,
+  `privacy` LONGTEXT NOT NULL,
+  `location` LONGTEXT NOT NULL,
+  `finance` LONGTEXT NOT NULL,
+  `tax` LONGTEXT NOT NULL)
 ENGINE = InnoDB;
 
 

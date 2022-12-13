@@ -45,13 +45,58 @@ public enum AdminService {
 		return dao.selectCategory2ByAdmin(cate2);
 	}
 	
-	// admin 주문건수 출력 김보성
-	public ProductOrderVO selectOrderByAdmin(String ordNo) {
-		return dao.selectOrderByAdmin(ordNo);
-	}
-	
 	public ProductVO selectImg(String prodNo) {
 		return dao_kjh.selectImg(prodNo);
+	}
+	
+	// admin list 페이지 번호
+	public int selectCountTotal() {
+		return dao.selectCountTotal();
+	}
+	
+	public int getLastPageNum(int total) {
+		
+		int lastPageNum = 0;
+		
+		if(total % 10 == 0){
+			lastPageNum = total / 10;
+		}else{
+			lastPageNum = total / 10 + 1;
+		}
+		
+		return lastPageNum;
+	}
+	
+	public int[] getPageGroupNum(int currentPage, int lastPageNum) {
+		int currentPageGroup = (int)Math.ceil(currentPage / 10.0);
+		int pageGroupStart = (currentPageGroup - 1) * 10 + 1;
+		int pageGroupEnd = currentPageGroup * 10;
+		
+		if(pageGroupEnd > lastPageNum){
+			pageGroupEnd = lastPageNum;
+		}
+		
+		int[] result = {pageGroupStart, pageGroupEnd};
+		
+		return result;
+	}
+	
+	public int getPageStartNum(int total, int currentPage) {
+		int start = (currentPage - 1) * 10;
+		return total - start;
+	}
+	
+	public int getCurrentPage(String pg) {
+		int currentPage = 1;
+		
+		if(pg != null){
+			currentPage = Integer.parseInt(pg);	
+		}
+		return currentPage;
+	}
+	
+	public int getStartNum(int currentPage) {
+		return (currentPage - 1) * 10;
 	}
 	
 	

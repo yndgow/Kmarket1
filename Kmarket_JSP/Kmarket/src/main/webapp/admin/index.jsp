@@ -16,10 +16,10 @@
     <div id="admin-wrapper">
         <header>
             <div>
-                <a href="./index.html" class="logo"><img src="./img/admin_logo.png" alt="admin_logo"/></a>
+                <a href="./index.do" class="logo"><img src="./img/admin_logo.png" alt="admin_logo"/></a>
                 <p>
                     <span>홍길동님 반갑습니다.</span>
-                    <a href="#">HOME |</a>
+                    <a href="/Kmarket/">HOME |</a>
                     <a href="#">로그아웃 |</a>
                     <a href="#">고객센터</a>
                 </p>
@@ -55,8 +55,8 @@
                     <li>
                         <a href="#"><i class="fas fa-box-open" aria-hidden="true"></i>상품관리</a>
                         <ol>
-                            <li><a href="#">상품현황</a></li>
-                            <li><a href="#">상품등록</a></li>
+                            <li><a href="./product/list.do">상품목록</a></li>
+                            <li><a href="./product/register.do">상품등록</a></li>
                             <li><a href="#">재고관리</a></li>
                         </ol>
                     </li>
@@ -92,7 +92,7 @@
                         <tr>
                             <td>
                                 <strong>주문건수(건)</strong>
-                                <span></span>
+                                <span>120</span>
                             </td>
                             <td>
                                 <strong>주문금액(원)</strong>

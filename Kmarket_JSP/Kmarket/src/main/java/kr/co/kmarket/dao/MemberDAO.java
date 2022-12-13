@@ -182,6 +182,34 @@ public class MemberDAO extends DBHelper {
 		}
 	}
 	
+	public void insertSeller(MemberVO vo) {
+		
+		try {
+			logger.info("insertSeller...");
+			
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kkj.INSERT_SELLER);
+			psmt.setString(1, vo.getUid());
+			psmt.setString(2, vo.getPass());
+			psmt.setString(3, vo.getCompany());
+			psmt.setString(4, vo.getCeo());
+			psmt.setString(5, vo.getBizRegNum());
+			psmt.setString(6, vo.getComRegNum());
+			psmt.setString(7, vo.getTel());
+			psmt.setString(8, vo.getFax());
+			psmt.setString(9, vo.getZip());
+			psmt.setString(10, vo.getAddr1());
+			psmt.setString(11, vo.getAddr2());
+			psmt.setString(12, vo.getRegip());
+			psmt.executeUpdate();
+			close();
+			
+			
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+	}
+	
 	
 	
 	

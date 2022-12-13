@@ -29,6 +29,22 @@ public class Sql_kkj {
 			+ "`regip`=?, "
 			+ "`rdate`=NOW()";
 	
+	public static final String INSERT_SELLER      = "insert into `km_member` set "
+			+ "`uid`=?, "
+			+ "`pass`=SHA2(?, 256), "
+			+ "`company`=?, "
+			+ "`ceo`=?, "
+			+ "`bizRegNum`=?, "
+			+ "`comRegNum`=?, "
+			+ "`tel`=?, "
+			+ "`fax`=?, "
+			+ "`zip`=?, "
+			+ "`addr1`=?, "
+			+ "`addr2`=?, "
+			+ "`regip`=?, "
+			+ "`type`=2, "
+			+ "`rdate`=NOW()"; 
+	
 	public static final String SELECT_COUNT_UID  = "select count(`uid`) from `km_member` where `uid`=?";
 	
 	

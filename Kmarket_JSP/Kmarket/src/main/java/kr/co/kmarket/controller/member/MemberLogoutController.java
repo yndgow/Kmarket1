@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.co.kmarket.service.MemberService;
 
-@WebServlet("/user/logout.do")
+@WebServlet("/member/logout.do")
 public class MemberLogoutController extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
@@ -32,16 +32,12 @@ public class MemberLogoutController extends HttpServlet{
 				session.removeAttribute("sessUser");
 				session.invalidate();
 				
-				// 쿠키 제거 
-				Cookie cookie = new Cookie("SESSID", null);
-				cookie.setPath("/");
-				cookie.setMaxAge(0);
-				resp.addCookie(cookie);
+				
 				
 				// 데이터베이스 세션 로그아웃
 				service.updateMemberForSessionOut(uid);
 				
-				resp.sendRedirect("/Kmarket/user/login.do?success=201");
+				resp.sendRedirect("/Kmarket/member/login.do?success=201");
 			
 	}
 	

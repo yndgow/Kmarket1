@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,10 +12,21 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/Kmarket/member/css/style.css"/>
+    
+   <script>
+   $(function(){
+       
+       
+       
+       $('.loginNick').css('color','blue');
+   });
+	
+   </script>
 </head>
 <body>
     <div id="wrapper">
          <header>
+         <c:if test="${null eq sessUser }">
             <div class="top">
               <div>
                 <a href="/Kmarket/member/login.do">로그인</a>
@@ -23,6 +35,19 @@
                 <a href=""><i class="fa-solid fa-cart-shopping"></i>&nbsp;장바구니</a>
               </div>
             </div>
+            </c:if>
+            <c:if test="${null ne sessUser }">
+            <div class="top">
+              <div>
+              	<span class ="loginNick">${sessUser.uid }</span>님
+                <a href="/Kmarket/member/logout.do">로그아웃</a>
+                <a href="#">마이페이지</a>
+                <a href=""><i class="fa-solid fa-cart-shopping"></i>&nbsp;장바구니</a>
+              </div>
+            </div>
+            
+            </c:if>
+            
             <div class="logo">
               <div>
                 <a href="/Kmarket/index.do">

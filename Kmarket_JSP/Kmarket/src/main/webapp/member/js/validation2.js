@@ -4,7 +4,7 @@ let regPass  = /^.*(?=^.{7,12}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 let regCompany = /^[가-힣0-9a-z]{1,20}/;
 let regCeo  = /^[가-힣]{2,4}$/; //대표자명
 let regBiz	 = /^\d{3}-\d{2}-\d{5}$/; //사업자 등록번호
-let regCom = /^\[가-힣0-9]{0,4}-\[가-힣0-9]{1,5}$/; //통신판매업신고번호
+let regCom = /^[가-힣0-9-]{7,100}$/; //통신판매업신고번호
 let regTel = /^(070|02|031|032|033|041|042|043|051|052|053|054|055|061|062|063|064)-\d{3,4}-\d{4}$/u; //집전화
 let regFax = /^\d{3,4}-\d{3}-\d{4}$/;
 
@@ -18,7 +18,8 @@ let isBizOk = false;
 let isComOk = false;
 let isTelOk    = false;
 let isFaxOk  = false;
-let isAddrOk = false;
+let isZipOk = false;
+let isAddr2Ok = false;
 let receivedCode = 0;
 
 
@@ -180,24 +181,33 @@ $(function(){
 	});
 	
 	//주소 유효성 검사
-	$('input[name=addr2]').focus(function(){
-		let zip = $('input[name=zip]').val();
+	$('input[name=zip]').focusout(function(){
+		let zip = $(this).val();
+		
+		if(zip == ''){
+			isZipOk = false;
+			$('.resultZip').css('color', 'red').text('우편번호를 입력해 주세요.');
+		}else{
+			isZipOk = true;
+			$('.resultZip').css('color', 'green').text('확인되었습니다.');
+		}
+		});
+		
+	//상세주소 유효성 검사
+	$('input[name=addr2]').focusout(function(){
 		let addr2 = $(this).val();
 		
-		if(zip === null){
-			isAddrOk = false;
-			$('.resultZip').css('color', 'red').text('우편번호를 입력해 주세요.');
-		}else if(addr2 === null){
-			isAddrOk = false;
-			$('.resultAddr').css('color', 'red').text('상세주소를 입력해 주세요.');
+		if(addr2 == ''){
+			isAddr2Ok = false;
+			$('.resultAddr').css('color', 'red').text('우편상세번호를 입력해 주세요.');
 		}else{
-			isAddrOk = true;
+			isAddr2Ok = true;
 			$('.resultAddr').css('color', 'green').text('확인되었습니다.');
 		}
-	});
+		});
 	
 	// 폼 전송이 시작될 때 실행되는 폼 이벤트(폼 전송 버튼을 클릭했을 때) 
-	$('.register > form').submit(function(){
+	$('.registerSeller > form').submit(function(){
 					
 		////////////////////////////////////
 		// 폼 데이터 유효성 검증(Validation)
@@ -240,8 +250,14 @@ $(function(){
 		}
 		
 		//주소 검증
-		if(!isAddrOk){
-			alert('주소를 입력 하십시오.');
+		if(!isZipOk){
+			alert('주소를 확인 하십시요.');
+			return false;
+		}
+		
+		//상세주소 검증
+		if(!isAddr2Ok){
+			alert('상세주소를 확인 하십시요.');
 			return false;
 		}
 		

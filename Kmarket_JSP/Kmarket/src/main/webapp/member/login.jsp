@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,12 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/Kmarket/member/css/style.css"/>
+    <script>
+	let success = ${success};
+		if(success == 100){
+			alert('회원정보가 일치하지 않거나 가입하지 않은 회원입니다.');
+		}
+</script>
 </head>
 <body>
     <div id="wrapper">
@@ -32,12 +39,7 @@
               </div>
             </div>
           </header>
-<script>
-	let success = ${success};
-		if(success == "100"){
-			alert('회원정보가 일치하지 않거나 가입하지 않은 회원입니다.');
-		}
-</script>
+
         <main id="member">
             <div class="login">
                 <nav>

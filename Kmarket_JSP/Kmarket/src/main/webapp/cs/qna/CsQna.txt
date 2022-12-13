@@ -1,0 +1,9 @@
+2022-12-12
+qna write 
+쿼리문 수정
+이하 모든 로직 재수정
+
+2022/12/13
+write detail 제외 완료
+list 로직 구현 중 (controller)
+-service 실행 안됨

@@ -4,6 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>케이마켓 고객센터</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>    
+    <script src="../js/cateJs.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -48,17 +54,20 @@
                         </ul>
                     </aside>
                     <article>
-                        <form action="/cs/write.do">
+                        <form action="/Kmarket/cs/qna/write.do" method="post">
                             <table>
                                 <tr>
                                     <td>문의유형</td>
                                     <td>
-                                        <select name="qnaCate1">
-                                            <option value="0">선택</option>
-                                            <option>가입</option>
-                                            <option>탈퇴</option>
-                                            <option>회원정보</option>
-                                            <option>로그인</option>
+                                        <select name="qc1Name">
+                                            <option value="0">문의유형</option>
+                                         
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select name="qc2Name">
+                                            <option value="0">상세유형</option>
+                                         
                                         </select>
                                     </td>
                                 </tr>

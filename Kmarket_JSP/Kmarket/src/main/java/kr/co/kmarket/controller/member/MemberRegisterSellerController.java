@@ -26,7 +26,7 @@ public class MemberRegisterSellerController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/member/registerSeller.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/member/registerSeller.jsp");
 		dispatcher.forward(req, resp);	
 	}
 	

@@ -22,7 +22,7 @@ public class MemberFindIdController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/member/findId.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/member/findId.jsp");
 		dispatcher.forward(req, resp);	
 	}
 	

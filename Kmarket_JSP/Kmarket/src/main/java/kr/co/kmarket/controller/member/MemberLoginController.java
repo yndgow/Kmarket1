@@ -35,7 +35,7 @@ public class MemberLoginController extends HttpServlet {
 		}
 		req.setAttribute("success", success);
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/member/login.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/member/login.jsp");
 		dispatcher.forward(req, resp);	
 	}
 	

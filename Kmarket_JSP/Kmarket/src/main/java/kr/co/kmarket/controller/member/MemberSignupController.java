@@ -33,7 +33,7 @@ public class MemberSignupController extends HttpServlet {
 		
 		req.setAttribute("vo", vo);
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/member/signup.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/member/signup.jsp");
 		dispatcher.forward(req, resp);
 	}
 	

@@ -384,6 +384,7 @@ CREATE TABLE IF NOT EXISTS `Kmarket`.`km_cs_qna`(
 	  )
 ENGINE = INNODB;
 ALTER TABLE km_cs_qna ADD qnaCond VARCHAR(10) DEFAULT '검토 중';
+ALTER TABLE km_cs_qna ADD qnaNo int AUTO_INCREMENT NOT NULL PRIMARY KEY;
 -- -----------------------------------------------------
 -- Table `Kmarket`.`km_cs_cate1`
 -- -----------------------------------------------------

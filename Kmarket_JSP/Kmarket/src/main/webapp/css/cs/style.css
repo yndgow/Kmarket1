@@ -160,7 +160,7 @@ header > .logo a{
     width: 18px;
     height: 18px;
     content: "";
-    background: url("images/cs_sprites.png") no-repeat;
+    background: url("/Kmarket/img/cs/cs_sprites.png") no-repeat;
     background-position: -230px -276px;
     background-size: 750px auto;
     vertical-align: top;
@@ -202,7 +202,7 @@ header > .logo a{
     height: 90px;
     box-sizing: border-box;
     text-align: center;
-    background-image: url("../images/cs_sprites.png");
+    background-image: url("/Kmarket/img/cs/cs_sprites.png");
     background-repeat: no-repeat;
     background-size: 750px auto;
 }
@@ -402,12 +402,12 @@ header > .logo a{
 }
 #cs > .notice > .list > article > .page > .prev{
     font-size: 0;
-    background-image: url("../images/cs_sprites.png");
+    background-image: url("/Kmarket/img/cs/cs_sprites.png");
     background-position: -706px -652px;
 }
 #cs > .notice > .list > article > .page > .next{
     font-size: 0;
-    background-image: url("../images/cs_sprites.png");
+    background-image: url("/Kmarket/img/cs/cs_sprites.png");
     background-position: -628px -652px;
 }
 #cs > .notice > .list > article > .page > .num{}
@@ -720,12 +720,12 @@ header > .logo a{
 }
 #cs > .qna > .list > article > .page > .prev{
     font-size: 0;
-    background-image: url("../images/cs_sprites.png");
+    background-image: url("/Kmarket/img/cs/cs_sprites.png");
     background-position: -706px -652px;
 }
 #cs > .qna > .list > article > .page > .next{
     font-size: 0;
-    background-image: url("../images/cs_sprites.png");
+    background-image: url("/Kmarket/img/cs/cs_sprites.png");
     background-position: -628px -652px;
 }
 #cs > .qna > .list > article > .page > .num{}

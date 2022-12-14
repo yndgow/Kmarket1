@@ -89,7 +89,7 @@
                                 <th><span class="essential">*</span>사업자등록번호</th>
                                 <td>
                                     <input type="text" name="bizRegNum" placeholder="사업자등록번호 입력">
-                                    <span class="resultBiz">&nbsp;-표시 포함 12자리 입력</span>
+                                    <span class="resultBiz">&nbsp;-표시 포함 12자리 입력 예) 123-12-12345</span>
                                 </td>
                             </tr>
                             <tr>
@@ -110,7 +110,7 @@
                                 <th><span class="essential"></span>팩스</th>
                                 <td>
                                 <input type="text" name="fax" placeholder="팩스번호 입력">
-                                <span class="resultFax">-표시포함</span>
+                                <span class="resultFax">&nbsp;-표시포함 예) 1234-123-1234</span>
                                 </td>
                             </tr>
                             <tr class="addr">

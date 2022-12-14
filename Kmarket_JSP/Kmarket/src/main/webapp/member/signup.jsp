@@ -40,9 +40,8 @@
 			let isCheck1 = $('input[class=agree1]').is(':checked');
 			let isCheck2 = $('input[class=agree2]').is(':checked');
 			let isCheck3 = $('input[class=agree3]').is(':checked');
-			let isCheck4 = $('input[class=agree4]').is(':checked');
 			
-			if(isCheck1 && isCheck2 && isCheck3 && isCheck4){
+			if(isCheck1 && isCheck2 && isCheck3){
 				return true;
 			}else{
 				alert('동의 체크를 하셔야 합니다.');
@@ -92,11 +91,7 @@
                     <textarea name="privacy" readonly>${vo.privacy }</textarea>
                     <label><input type="checkbox" class="agree3">동의합니다.</label>
                 </section>
-                <section>
-                    <h3><span class="optional">(선택)</span>위치정보 이용약관</h3>
-                    <textarea name="location" readonly>${vo.location }</textarea>
-                    <label><input type="checkbox" class="agree4">동의합니다.</label>
-                </section>
+               
                 <div><a href="/Kmarket/member/registerSeller.do"><input type="button" class="agree" value="동의하기"></a></div>
                  </c:if>
             </div>

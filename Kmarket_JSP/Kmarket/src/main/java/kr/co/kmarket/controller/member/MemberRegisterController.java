@@ -60,7 +60,7 @@ public class MemberRegisterController extends HttpServlet {
 		
 		
 		//데이터베이스 처리
-		service.insertSeller(vo);
+		service.insertMember(vo);
 		
 		
 		//리다이렉트

@@ -24,9 +24,10 @@
 				<c:otherwise>
 					<a href="" class="sessUser_uid">${sessUser.uid}</a>
 					<a href="/Kmarket/member/logout.do">로그아웃</a>
+					<a href="">마이페이지</a>
 				</c:otherwise>
             </c:choose>
-            <a href="">마이페이지</a>
+            
             <a href=""><i class="fa-solid fa-cart-shopping"></i>&nbsp;장바구니</a>
           </div>
         </div>
@@ -53,13 +54,13 @@
               <li><a href="">인기상품</a></li>
               <li><a href="">할인상품</a></li>
             </ul>
-            <ul>
-              <li><a href="">쿠폰존</a></li>
-              <li><a href="">사용후기</a></li>
-              <li><a href="">개인결제</a></li>
-              <li><a href="">고객센터</a></li>
-              <li><a href="">FAQ</a></li>
-            </ul>
+			<ul>
+             <li><a href="">쿠폰존</a></li>
+             <li><a href="">사용후기</a></li>
+             <li><a href="">개인결제</a></li>
+             <li><a href="">고객센터</a></li>
+             <li><a href="">FAQ</a></li>
+           	</ul>
           </div>
         </div>
         <!-- member, cs 는 필요 없는 부분 끝 -->
@@ -75,7 +76,7 @@
             
             <c:forEach var="cates1" items="${categories1}" varStatus="status">
             <li>
-              <a href="./list.do?cate1=${cates1.cate1}">
+              <a href="/Kmarket/product/list.do?cate1=${cates1.cate1}">
               	<c:choose>
               		<c:when test="${status.index eq 0}">
               			<i class="fa-sharp fa-solid fa-shirt"></i>

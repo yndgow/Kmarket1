@@ -10,6 +10,7 @@ import kr.co.kmarket.db.DBHelper;
 import kr.co.kmarket.db.Sql_kjh;
 import kr.co.kmarket.vo.ProductCate1VO;
 import kr.co.kmarket.vo.ProductCate2VO;
+import kr.co.kmarket.vo.ProductReviewVO;
 import kr.co.kmarket.vo.ProductVO;
 
 public class ProductDAO extends DBHelper {
@@ -196,6 +197,65 @@ public class ProductDAO extends DBHelper {
 		logger.debug("vo : " + vo);
 		return vo;
 	}
+	
+	// 상품 리뷰 출력
+	public List<ProductReviewVO> selectReviews(String prodNo, int start){
+		logger.info("selectReviews");
+		List<ProductReviewVO> reviews = new ArrayList<>();
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.SELECT_REVIEWS);
+			psmt.setString(1, prodNo);
+			psmt.setInt(2, start);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				ProductReviewVO vo = new ProductReviewVO();
+				vo.setRevNo(rs.getInt(1));
+				vo.setProdNo(rs.getInt(2));
+				vo.setContent(rs.getString(3));
+				vo.setUid(rs.getString(4).replaceAll("(?<=.{3}).", "*"));
+				vo.setRating(rs.getInt(5));
+				vo.setRegip(rs.getString(6));
+				reviews.add(vo);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("reviews : " + reviews);
+		return reviews;
+	}
+	
+	// 상품 리뷰 갯수 출력
+	public int selectCountTotalReview(String prodNo) {
+		logger.info("selectCountTotalReview");
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.SELECT_REVIEW_COUNT_PRODNO);
+			psmt.setString(1, prodNo);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) result = rs.getInt(1);
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result :" + result);
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

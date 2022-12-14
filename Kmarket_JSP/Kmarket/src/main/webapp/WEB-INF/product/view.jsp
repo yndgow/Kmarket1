@@ -4,10 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="./_header.jsp"/>
         <!-- section view 시작 -->
-        
-
           <section class="view">
-       
           <!-- 개별 파트 시작 -->
           <article class="info">
             <div class="image">
@@ -56,7 +53,7 @@
 						<p>
 							<span class="free">무료배송</span>
 							
-					모레<fmt:formatDate value="${daythree}" type="DATE" pattern="(E) MM-dd"/>&nbsp;도착예정
+					모레<fmt:formatDate value="${daythree}" type="DATE" pattern="(E) MM/dd"/>&nbsp;도착예정
 	          			</p>
                  	</c:when>
                  	<c:otherwise>
@@ -111,23 +108,23 @@
             <table>
               <tr>
                 <td>상품번호</td>
-                <td>10110125435</td>
+                <td>${product.prodNo}</td>
               </tr>
               <tr>
                 <td>상품상태</td>
-                <td>새상품</td>
+                <td>${product.status}</td>
               </tr>
               <tr>
                 <td>부가세 면세여부</td>
-                <td>과세상품</td>
+                <td>${product.duty}</td>
               </tr>
               <tr>
                 <td>영수증발행</td>
-                <td>발행가능 - 신용카드 전표, 온라인 현금영수증</td>
+                <td>${product.receipt}</td>
               </tr>
               <tr>
                 <td>사업자구분</td>
-                <td>사업자 판매자</td>
+                <td>${product.bizType}</td>
               </tr>
               <tr>
                 <td>브랜드</td>
@@ -135,7 +132,7 @@
               </tr>
               <tr class="tr_line">
                 <td>원산지</td>
-                <td>국내생산</td>
+                <td>${product.origin}</td>
               </tr>
               <tr>
                 <td>제품소재</td>
@@ -192,71 +189,22 @@
             <nav>
               <h1>상품리뷰</h1>
             </nav>
+            <c:forEach var="review" items="${reviews}">
             <ul>
               <li>
                 <div>
-                  <h5 class="star2-4"></h5>
-                  <p class="ordUid">seo******<span class="ordDate">2018-07-10</span></p>
+                  <h5 class="star2-${review.rating}"></h5>
+                  <p class="ordUid">${review.uid}<span class="ordDate">${review.rdate}</span></p>
                 </div>
               </li>
+              <!-- ORDER -->
               <li><h3>상품명1/BLUE/L</h3></li>
               <li>
-                가격대비 정말 괜찮은 옷이라 생각되네요 핏은 음...제가 입기엔 어깨선이 맞고 루즈핏이라 하기도 좀 힘드네요. 아주 약간 루즈한정도...?그래도 이만한
-                옷은 없다고 봅니다 깨끗하고 포장도 괜찮고 다음에도 여기서 판매하는 제품들을 구매하고 싶네요 정말 만족하고 후기 남깁니다 많이 파시길 바래요 ~ ~ ~
+              ${review.content}
               </li>
             </ul>
-            <ul>
-              <li>
-                <div>
-                  <h5 class="star2-4"></h5>
-                  <p class="ordUid">seo******<span class="ordDate">2018-07-10</span></p>
-                </div>
-              </li>
-              <li><h3>상품명1/BLUE/L</h3></li>
-              <li>
-                가격대비 정말 괜찮은 옷이라 생각되네요 핏은 음...제가 입기엔 어깨선이 맞고 루즈핏이라 하기도 좀 힘드네요. 아주 약간 루즈한정도...?그래도 이만한
-                옷은 없다고 봅니다 깨끗하고 포장도 괜찮고 다음에도 여기서 판매하는 제품들을 구매하고 싶네요 정말 만족하고 후기 남깁니다 많이 파시길 바래요 ~ ~ ~
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <div>
-                  <h5 class="star2-4"></h5>
-                  <p class="ordUid">seo******<span class="ordDate">2018-07-10</span></p>
-                </div>
-              </li>
-              <li><h3>상품명1/BLUE/L</h3></li>
-              <li>
-                가격대비 정말 괜찮은 옷이라 생각되네요 핏은 음...제가 입기엔 어깨선이 맞고 루즈핏이라 하기도 좀 힘드네요. 아주 약간 루즈한정도...?그래도 이만한
-                옷은 없다고 봅니다 깨끗하고 포장도 괜찮고 다음에도 여기서 판매하는 제품들을 구매하고 싶네요 정말 만족하고 후기 남깁니다 많이 파시길 바래요 ~ ~ ~
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <div>
-                  <h5 class="star2-4"></h5>
-                  <p class="ordUid">seo******<span class="ordDate">2018-07-10</span></p>
-                </div>
-              </li>
-              <li><h3>상품명1/BLUE/L</h3></li>
-              <li>
-                가격대비 정말 괜찮은 옷이라 생각되네요 핏은 음...제가 입기엔 어깨선이 맞고 루즈핏이라 하기도 좀 힘드네요. 아주 약간 루즈한정도...?그래도 이만한
-                옷은 없다고 봅니다 깨끗하고 포장도 괜찮고 다음에도 여기서 판매하는 제품들을 구매하고 싶네요 정말 만족하고 후기 남깁니다 많이 파시길 바래요 ~ ~ ~
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <div>
-                  <h5 class="star2-4"></h5>
-                  <p class="ordUid">seo******<span class="ordDate">2018-07-10</span></p>
-                </div>
-              </li>
-              <li><h3>상품명1/BLUE/L</h3></li>
-              <li>
-                가격대비 정말 괜찮은 옷이라 생각되네요 핏은 음...제가 입기엔 어깨선이 맞고 루즈핏이라 하기도 좀 힘드네요. 아주 약간 루즈한정도...?그래도 이만한
-                옷은 없다고 봅니다 깨끗하고 포장도 괜찮고 다음에도 여기서 판매하는 제품들을 구매하고 싶네요 정말 만족하고 후기 남깁니다 많이 파시길 바래요 ~ ~ ~
-              </li>
-            </ul>
+            </c:forEach>
+           
           </article>
 
           <div class="paging">

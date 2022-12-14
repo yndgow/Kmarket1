@@ -5,6 +5,7 @@ import java.util.List;
 import kr.co.kmarket.dao.ProductDAO;
 import kr.co.kmarket.vo.ProductCate1VO;
 import kr.co.kmarket.vo.ProductCate2VO;
+import kr.co.kmarket.vo.ProductReviewVO;
 import kr.co.kmarket.vo.ProductVO;
 
 public enum ProductService {
@@ -37,7 +38,15 @@ public enum ProductService {
 		return dao.selectProduct(prodNo);
 	}
 	
+	// 리뷰 출력
+	public List<ProductReviewVO> selectReviews(String prodNo, int start){
+		return dao.selectReviews(prodNo, start);
+	}
 	
+	// 리뷰 해당상품 전체갯수 출력
+	public int selectCountTotalReview(String prodNo) {
+		return dao.selectCountTotalReview(prodNo);
+	}
 	
 	
 	
@@ -80,7 +89,7 @@ public int getLastPageNum(int total) {
 	
 	public int getCurrentPage(String pg) {
 		int currentPage = 1;
-		if(pg != null){
+		if(pg != null && !pg.equals("")){
 			currentPage = Integer.parseInt(pg);	
 		}
 		return currentPage;
@@ -88,5 +97,11 @@ public int getLastPageNum(int total) {
 	
 	public int getStartNum(int currentPage) {
 		return (currentPage - 1) * 10;
+	}
+	
+	public String idMasking(String uid) {
+		// 정규식이용 숫자 범위 뒤로 마스킹 처리
+		String maskingId = uid.replaceAll("(?<=.{3}.", "*");
+		return maskingId;
 	}
 }

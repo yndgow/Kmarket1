@@ -177,12 +177,12 @@
     font-size: 16px;
     margin-right: 12px;
   }
-
-  main > aside > .category > li i.fa-angle-right{
+  main > aside > .category > li i.fa-chevron-right{
     float: right;
     width: auto;
-    margin-top: 10px;
-    margin-right: 0;
+    margin-top: 14px;
+    margin-right: -7px;
+    font-size: 12px;
   }
   main > aside > .category ol{
     position: absolute;
@@ -206,6 +206,11 @@
     color: #41ab47;
     text-decoration: underline;
   }
+  /* 서브카테고리 글자색 변경 김지홍*/
+  .category .sub_category > li > a{
+  	color: #000;
+  }
+  
   /* List main aside main */
   main > aside > .best{
     width: 215px;

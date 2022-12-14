@@ -46,9 +46,10 @@ public class Sql_kjh {
 	public static final String SELECT_PRODUCT_COUNT_PRODNO = "SELECT COUNT(`prodNo`) FROM `km_product` WHERE `prodCate1` = ? AND `prodCate2` = ?";
 	// 상품 한개 출력
 	public static final String SELECT_PRODUCT = "SELECT * FROM `km_product` WHERE `prodNo` = ?";
-	
-	
-	
+	// 리뷰 출력
+	public static final String SELECT_REVIEWS = "SELECT * FROM `km_product_review` WHERE `prodNo` = ? LIMIT ?, 5";
+	// 리뷰 전체갯수 출력
+	public static final String SELECT_REVIEW_COUNT_PRODNO ="SELECT COUNT(`revNo`) FROM `km_product_review` WHERE `prodNo` = ?";
 	
 	
 	

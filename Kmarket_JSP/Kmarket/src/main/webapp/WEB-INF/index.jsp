@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -44,9 +45,18 @@
       <header>
         <div class="top">
           <div>
-            <a href="/Kmarket/member/login.do">로그인</a>
-            <a href="/Kmarket/member/join.do">회원가입</a>
-            <a href="">마이페이지</a>
+          	<c:choose>
+				<c:when test="${empty sessUser}">
+					<a href="/Kmarket/member/login.do">로그인</a>
+					<a href="/Kmarket/member/join.do">회원가입</a>
+				</c:when>
+				<c:otherwise>
+					<a href="" class="sessUser_uid">${sessUser.uid}</a>
+					<a href="/Kmarket/member/logout.do">로그아웃</a>
+					<a href="">마이페이지</a>
+				</c:otherwise>
+            </c:choose>
+           
             <a href=""><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>&nbsp;장바구니</a>
           </div>
         </div>
@@ -73,12 +83,12 @@
               <li><a href="">인기상품</a></li>
               <li><a href="">할인상품</a></li>
             </ul>
-            <ul>
-              <li><a href="">공지사항</a></li>
-              <li><a href="">자주묻는질문</a></li>
-              <li><a href="">문의하기</a></li>
-              <li><a href="">고객센터</a></li>
-            </ul>
+		 	<ul>
+	          <li><a href="">공지사항</a></li>
+	          <li><a href="">자주묻는질문</a></li>
+	          <li><a href="">문의하기</a></li>
+	          <li><a href="">고객센터</a></li>
+           	</ul>
           </div>
         </div>
         <!-- member, cs 는 필요 없는 부분 끝 -->
@@ -89,61 +99,57 @@
 
       <main>
         <!-- 카테고리/베스트 상품 영역 -->
-        <aside>
-          <ul class="category">
-            <li><i class="fa fa-bars" aria-hidden="true"></i>카테고리</li>
+         <aside>
+          <ul class="category" id="menu">
+            <li><i class="fa-solid fa-bars"></i>카테고리</li>
+            
+            <c:forEach var="cates1" items="${categories1}" varStatus="status">
             <li>
-              <a href="#">
-                <i class="fas fa-tshirt"></i>
-                패션·의류·뷰티
-                <i class="fas fa-angle-right"></i>
-              </a>
-              <ol>
-                <li><a href="#">남성의류</a></li>
-                <li><a href="#">여성의류</a></li>
-                <li><a href="#">잡화</a></li>
-                <li><a href="#">뷰티</a></li>
-              </ol>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fas fa-laptop"></i>
-                가전·디지털
-                <i class="fas fa-angle-right"></i
-              ></a>
-              <ol>
-                <li><a href="#">노트북/PC</a></li>
-                <li><a href="#">가전</a></li>
-                <li><a href="#">휴대폰</a></li>
-                <li><a href="#">기타</a></li>
-              </ol>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fas fa-utensils"></i>
-                식품·생필품
-                <i class="fas fa-angle-right"></i>
-              </a>
-              <ol>
-                <li><a href="#">신선식품</a></li>
-                <li><a href="#">가공식품</a></li>
-                <li><a href="#">건강식품</a></li>
-                <li><a href="#">생필품</a></li>
-              </ol>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fas fa-home"></i>
-                홈·문구·취미
-                <i class="fas fa-angle-right"></i>
+              <a href="/Kmarket/product/list.do?cate1=${cates1.cate1}">
+              	<c:choose>
+              		<c:when test="${status.index eq 0}">
+              			<i class="fa-sharp fa-solid fa-shirt"></i>
+              		</c:when> 
+              		<c:when test="${status.index eq 1}">
+              			<i class="fa-solid fa-bag-shopping"></i>
+              		</c:when> 
+              		<c:when test="${status.index eq 2}">
+              			<i class="fa-solid fa-baby-carriage"></i>
+              		</c:when> 
+              		<c:when test="${status.index eq 3}">
+              			<i class="fa-solid fa-utensils"></i>
+              		</c:when> 
+              		<c:when test="${status.index eq 4}">
+              		 	<i class="fa-solid fa-house"></i>
+              		</c:when> 
+              		<c:when test="${status.index eq 5}">
+              		 	<i class="fa-solid fa-laptop"></i>
+              		</c:when> 
+              		<c:when test="${status.index eq 6}">
+              			<i class="fa-solid fa-futbol"></i>
+              		</c:when> 
+              		<c:when test="${status.index eq 7}">
+              			<i class="fa-solid fa-wrench"></i>
+              		</c:when>
+              		<c:when test="${status.index eq 8}">
+              			<i class="fa-solid fa-book"></i>
+              		</c:when> 
+                </c:choose>
+                ${cates1.c1Name}
+                <!-- <i class="fas fa-angle-right"></i> -->
+                <i class="fa-solid fa-chevron-right"></i>
               </a>
               <ol class="sub_category">
-                <li><a href="#">가구/DIY</a></li>
-                <li><a href="#">침구·커튼</a></li>
-                <li><a href="#">생활용품</a></li>
-                <li><a href="#">사무용품</a></li>
+              	<c:forEach var="cates2" items="${categories2}">
+              	<c:if test="${cates1.cate1 eq cates2.cate1}">
+                <li><a href="/Kmarket/product/list.do?cate1=${cates1.cate1}&cate2=${cates2.cate2}&listSort=${listSort}">${cates2.c2Name}</a></li>
+                </c:if>
+                
+                </c:forEach>
               </ol>
             </li>
+            </c:forEach>
+            
           </ul>
 
           <!-- 베스트상품 배너 -->
@@ -246,29 +252,19 @@
           <section class="slider">
             <ul>
               <li>
-                <a href="#"
-                  ><img src="https://via.placeholder.com/985x447" alt="item1"
-                /></a>
+                <a href="#"><img src="/Kmarket/img/20221212085632719334_0_0.jpg" alt="item1"/></a>
               </li>
               <li>
-                <a href="#"
-                  ><img src="https://via.placeholder.com/985x447" alt="item2"
-                /></a>
+                <a href="#"><img src="/Kmarket/img/5400946.jpg" alt="item2"/></a>
               </li>
               <li>
-                <a href="#"
-                  ><img src="https://via.placeholder.com/985x447" alt="item3"
-                /></a>
+                <a href="#"><img src="/Kmarket/img/bd86a861d99c401a.jfif" alt="item3"/></a>
               </li>
               <li>
-                <a href="#"
-                  ><img src="https://via.placeholder.com/985x447" alt="item4"
-                /></a>
+                <a href="#"><img src="/Kmarket/img/0c75c78218964250.jfif" alt="item4"/></a>
               </li>
               <li>
-                <a href="#"
-                  ><img src="https://via.placeholder.com/985x447" alt="item5"
-                /></a>
+                <a href="#"><img src="https://via.placeholder.com/985x447" alt="item5"/></a>
               </li>
             </ul>
           </section>

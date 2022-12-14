@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.kmarket.service.ProductService;
-import kr.co.kmarket.vo.ProductCate1VO;
-import kr.co.kmarket.vo.ProductCate2VO;
 import kr.co.kmarket.vo.ProductVO;
 
 @WebServlet("/product/list.do")
@@ -23,18 +21,21 @@ public class ProductListController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// aside 공통 
-		List<ProductCate1VO> categories1 = service.selectCategory1();
-		List<ProductCate2VO> categories2 = service.selectCategory2();
-		req.setAttribute("categories1", categories1);
-		req.setAttribute("categories2", categories2);
+		req.setAttribute("categories1", service.selectCategory1());
+		req.setAttribute("categories2", service.selectCategory2());
 		
 		String cate1 =req.getParameter("cate1");
 		String cate2 = req.getParameter("cate2");
 		String listSort = req.getParameter("listSort");
+		
+		// 쿼리 없이 접근시 초기화
 		if(listSort == null) listSort = "soldDesc";
+		if(cate1 == null) cate1 = "10";
+		if(cate2 == null) cate2 = "10";
+		
 		String pg = req.getParameter("pg");
 		String search = req.getParameter("search");
-		
+		// 페이징 
 		int currentPage = service.getCurrentPage(pg);// 현재 페이지 번호
 		int total = 0; // 전체 게시물 갯수
 		if(search == null || search.equals("")){
@@ -47,7 +48,7 @@ public class ProductListController extends HttpServlet{
 		int pageStartNum = service.getPageStartNum(total, currentPage);// 페이지 시작번호
 		int start = service.getStartNum(currentPage);// 시작 인덱스
 		
-		// 페이징 
+		
 		req.setAttribute("lastPageNum", lastPageNum);		
 		req.setAttribute("currentPage", currentPage);		
 		req.setAttribute("pageGroupStart", result[0]);

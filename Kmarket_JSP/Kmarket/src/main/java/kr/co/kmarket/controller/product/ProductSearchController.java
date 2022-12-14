@@ -15,7 +15,7 @@ public class ProductSearchController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/product/search.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/product/search.jsp");
 		dispatcher.forward(req, resp);
 	}
 	

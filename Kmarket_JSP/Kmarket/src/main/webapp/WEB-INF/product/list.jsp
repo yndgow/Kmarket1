@@ -32,7 +32,6 @@
             <tbody>
             
             <c:forEach var="vo" items="${products}">
-            
               <tr>
                 <td>
                   <a href="/Kmarket/product/view.do?prodNo=${vo.prodNo}">
@@ -91,11 +90,11 @@
                   </c:choose>
                 </td>
               </tr>
-
 			</c:forEach>
 
             </tbody>
           </table>
+          
           <div class="paging">
            <c:if test="${pageGroupStart > 1}">
             <span class="prev">
@@ -114,21 +113,6 @@
             </span>
             </c:if>
           </div>
-          
-          
-        <%-- <div class="page">
-        	<c:if test="${pageGroupStart > 1}">
-            <a href="/JBoard2/list.do?pg=${pageGroupStart-1}&search=${search}" class="prev">이전</a>
-            </c:if>
-            <c:forEach var="num" begin="${pageGroupStart}" end="${pageGroupEnd}">
-            <a href="/JBoard2/list.do?pg=${num}&search=${search}" class="num ${num == currentPage ? 'current' : 'off'}">${num}</a>
-            </c:forEach>
-            <c:if test="${pageGroupEnd < lastPageNum}">
-            <a href="/JBoard2/list.do?pg=${pageGroupEnd+1}&search=${search}" class="next">다음</a>
-            </c:if>
-        </div> --%>
-          
-          
         </section>
         <!-- section list 끝 -->
       </main>

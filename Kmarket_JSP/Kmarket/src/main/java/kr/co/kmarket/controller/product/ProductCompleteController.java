@@ -15,7 +15,7 @@ public class ProductCompleteController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/product/complete.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/product/complete.jsp");
 		dispatcher.forward(req, resp);
 	}
 	

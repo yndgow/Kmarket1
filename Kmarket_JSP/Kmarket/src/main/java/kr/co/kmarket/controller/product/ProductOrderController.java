@@ -15,7 +15,7 @@ public class ProductOrderController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/product/order.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/product/order.jsp");
 		dispatcher.forward(req, resp);
 	}
 	

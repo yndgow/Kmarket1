@@ -27,7 +27,7 @@
   </filter-mapping>
   
   <!-- jsp 접근 금지 -->
- <security-constraint>
+ <!-- <security-constraint>
 	<display-name>JSP Protection</display-name>
 	<web-resource-collection>
 		<web-resource-name>SecureJSPPages</web-resource-name>
@@ -43,7 +43,7 @@
 		Nobody should be in this role so JSP files are protected from direct access.
 	</description>
   	<role-name>nobody</role-name>
-  </security-role>
+  </security-role> -->
 
 
 <!-- 접근 권한없음 : UNAUTHORIZED-->

@@ -27,9 +27,9 @@
             <a href="">
               <img src="../img/header_logo.png" alt="헤더로고" />
             </a>
-            <form action="" class="search">
+            <form action="/Kmarket/product/list.do" class="search">
               <input type="text" name="search" />
-              <button id="search">
+              <button type="submit" id="search">
                 <i class="fa-solid fa-magnifying-glass"></i>
               </button>
             </form>

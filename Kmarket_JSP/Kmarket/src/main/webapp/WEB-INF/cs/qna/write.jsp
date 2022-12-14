@@ -10,7 +10,7 @@
     <script src="../js/cateJs.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/Kmarket/css/cs/style.css">
 </head>
 <body>
     <div id="wrapper">
@@ -28,7 +28,7 @@
             <div class="logo">
                 <div>
                     <a href="../index.jsp">
-                        <img src="../images/logo.png" alt="로고">
+                        <img src="/Kmarket/img/cs/logo.png" alt="로고">
                     </a>
                 </div>
             </div>
@@ -99,7 +99,7 @@
             <li><a href="#">전자금융거래약관</a></li>
           </ul>
           <div>
-            <p><img src="../images/footer_logo.png" alt="로고" /></p>
+            <p><img src="/Kmarket/img/cs/footer_logo.png" alt="로고" /></p>
             <p>
               <strong>(주)KMARKET</strong><br />
               부산시 강남구 테헤란로 152 (역삼동 강남파이낸스센터)<br />

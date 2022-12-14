@@ -25,7 +25,7 @@ public class WriteController extends HttpServlet{
 
 		
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/cs/qna/write.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/cs/qna/write.jsp");
 		dispatcher.forward(req, resp);
 		
 	}
@@ -51,7 +51,7 @@ public class WriteController extends HttpServlet{
 		
 		service.InsertArticleQnaOfCs(vo);
 		
-		resp.sendRedirect("/Kmarket/cs/qna/list.jsp");
+		resp.sendRedirect("/Kmarket/WEB-INF/cs/qna/list.jsp");
 			
 			
 		

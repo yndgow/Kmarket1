@@ -7,3 +7,8 @@ qna write
 write detail 제외 완료
 list 로직 구현 중 (controller)
 -service 실행 안됨
+
+2022/12/14
+view vo null 뜸
+controller 실행 안됨
+write, list 큰 틀 구성 완료

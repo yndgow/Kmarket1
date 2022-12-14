@@ -41,6 +41,8 @@ public class Sql_hong {
 	// cs qna list 출력
 	public static final String SELECT_QNA_ARTICLES = "SELECT * FROM `km_cs_qna`";
 	
+	// cs qna view 출력
+	public static final String SELECT_QNA_ARTICLE = "SELECT * FROM `km_cs_qna` where `qnaNo`=?";
 	
 	
 	

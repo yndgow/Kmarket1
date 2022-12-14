@@ -21,7 +21,7 @@ public class IndexController extends HttpServlet{
 
 		
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/cs/index.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/cs/index.jsp");
 		dispatcher.forward(req, resp);
 		
 	}

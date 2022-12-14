@@ -1,7 +1,6 @@
 package kr.co.kmarket.controller.cs;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,10 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import kr.co.kmarket.service.CsService;
 import kr.co.kmarket.vo.CsQnaVO;
 
-@WebServlet("/cs/qna/list.do")
-public class QnaListController extends HttpServlet{
+@WebServlet("/cs/qna/view.do")
+public class QnaViewController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-	private CsService service = CsService.INSTANCE;
+	CsService service = CsService.INSTANCE;
 	
 	@Override
 	public void init() throws ServletException {
@@ -24,11 +23,13 @@ public class QnaListController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		List<CsQnaVO> articles = service.selectQnaArticles();
+		String qnaNo = req.getParameter("qnaNo");
 		
-		req.setAttribute("articles", articles);
+		CsQnaVO article = service.selectQnaArticle(qnaNo);
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/cs/qna/list.jsp");
+		req.setAttribute("article", article);
+		
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/cs/qna/view.jsp");
 		dispatcher.forward(req, resp);
 		
 	}

@@ -9,6 +9,7 @@ public class CsQnaVO {
 	private String regip;
 	private String wdate;
 	private String qnaCond;
+	private int qnaNo;
 	
 	public String getUid() {
 		return uid;
@@ -57,6 +58,12 @@ public class CsQnaVO {
 	}
 	public void setQnaCond(String qnaCond) {
 		this.qnaCond = qnaCond;
+	}
+	public int getQnaNo() {
+		return qnaNo;
+	}
+	public void setQnaNo(int qnaNo) {
+		this.qnaNo = qnaNo;
 	}
 	
 }

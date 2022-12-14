@@ -121,6 +121,7 @@ public class CsDAO extends DBHelper {
 				vo.setRegip(rs.getString(6));
 				vo.setWdate(rs.getString(7));
 				vo.setQnaCond(rs.getString(8));
+				vo.setQnaNo(rs.getInt(9));
 				articles.add(vo);
 			}
 			
@@ -128,6 +129,37 @@ public class CsDAO extends DBHelper {
 			logger.error(e.getMessage());
 		}
 		return articles;
+	}
+	
+	//cs view 출력
+	public CsQnaVO selectQnaArticle(String qnaNo) {
+		logger.info("selectQnaArticle start...");
+		CsQnaVO vo = null;
+		
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_hong.SELECT_QNA_ARTICLE);
+			psmt.setString(1, qnaNo);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				vo = new CsQnaVO();
+				vo.setUid(rs.getString(1));
+				vo.setQc1Name(rs.getString(2));
+				vo.setQc2Name(rs.getString(3));
+				vo.setQnaTitle(rs.getString(4));
+				vo.setQnaContent(rs.getString(5));
+				vo.setRegip(rs.getString(6));
+				vo.setWdate(rs.getString(7));
+				vo.setQnaCond(rs.getString(8));
+				vo.setQnaNo(rs.getInt(9));
+			}
+			close();
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("vo : "+vo);
+		return vo;
 	}
 	
 	

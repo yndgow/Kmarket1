@@ -35,6 +35,10 @@ public enum CsService {
 		return dao.selectQnaArticles();
 		
 	}
+	//cs view 출력
+	public CsQnaVO selectQnaArticle(String qnaNo) {
+		return dao.selectQnaArticle(qnaNo);
+	}
 	
 	
 	

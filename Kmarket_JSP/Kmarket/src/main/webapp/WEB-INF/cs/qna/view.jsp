@@ -1,11 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>케이마켓 고객센터</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/Kmarket/css/cs/style.css">
+    <style>
+       
+
+    </style>
 </head>
 <body>
     <div id="wrapper">
@@ -22,8 +25,8 @@
             </div>
             <div class="logo">
                 <div>
-                    <a href="../index.jsp">
-                        <img src="../images/logo.png" alt="로고">
+                    <a href="../index.do">
+                        <img src="/Kmarket/img/cs/logo.png" alt="로고">
                         고객센터
                     </a>
                 </div>
@@ -36,7 +39,7 @@
                         <p>홈<span>></span>문의하기</p>
                     </div>
                 </nav>
-                <section class="list">
+                <section class="view">
                     <aside>
                         <h2>문의하기</h2>
                         <ul>
@@ -51,26 +54,26 @@
                     </aside>
                     <article>
                         <nav>
-                            <h1>회원</h1>
-                            <h2>회원관련 문의 내용입니다.</h2>
+                            <h2 class="title">[${articles.qc2Name}] ${articles.qnaTitle}</h2>
+                            <p>
+                                <span>${articles.uid}</span>
+                                <span>${articles.wdate.substring(2, 10)}</span>
+                            </p>
                         </nav>
-                        <table>
-                        <c:forEach var="article" items="${articles}">
-                            <tr>
-                                <td><a href="./view.jsp">[${aritcle.qc2Name}] ${article.qnaTitle}</a></td>
-                                <td>${article.uid}</td>
-                                <td>${article.wdate.substring(2, 10)}</td>
-                            </tr>
-                        </c:forEach>
-                        </table>
-                        <div class="page">
-                            <a href="#" class="prev">이전</a>
-                            <a href="#" class="num on">1</a>
-                            <a href="#" class="num">2</a>
-                            <a href="#" class="num">3</a>
-                            <a href="#" class="next">다음</a>
+                        <div class="content">
+                            <p>${articles.content}</p>
+                            <p>
+                                ※ 피싱 관련 피해신고
+                                <br>
+                                <br>
+                                ▶ 경찰청 사이버수사국 (국번없이)182 : https://cyberbureau.police.go.kr
+                                <br>
+                                ▶ KISA 인터넷침해대응센터 (국번없이)118 : http://www.krcert.or.kr
+                                <br>
+                                감사합니다.
+                            </p>
                         </div>
-                        <a href="./write.jsp" class="btnWrite">문의하기</a>
+                        <a href="./list.do" class="btnList">목록보기</a>
                     </article>
                 </section>
             </div>

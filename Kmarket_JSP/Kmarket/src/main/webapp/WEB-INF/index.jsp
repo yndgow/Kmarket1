@@ -4,15 +4,8 @@
   <head>
     <meta charset="UTF-8" />
     <title>KMarket::index</title>
-    <script
-      src="https://kit.fontawesome.com/e8f010a863.js"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://code.jquery.com/jquery-3.6.1.js"
-      integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/e8f010a863.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -52,14 +45,14 @@
         <div class="top">
           <div>
             <a href="/Kmarket/member/login.do">로그인</a>
-            <a href="/Kmarket/member/register.do">회원가입</a>
+            <a href="/Kmarket/member/join.do">회원가입</a>
             <a href="">마이페이지</a>
             <a href=""><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>&nbsp;장바구니</a>
           </div>
         </div>
         <div class="logo">
           <div>
-            <a href="">
+            <a href="/Kmarket/">
               <img src="./img/header_logo.png" alt="헤더로고" />
             </a>
             <form action="" class="search">

@@ -31,8 +31,11 @@ public enum ProductService {
 	public int selectCountTotal(String cate1, String cate2) {
 		return dao.selectCountTotal(cate1, cate2);
 	}
-	
-	
+
+	// 상품 한개 출력
+	public ProductVO selectProduct(String prodNo) {
+		return dao.selectProduct(prodNo);
+	}
 	
 	
 	

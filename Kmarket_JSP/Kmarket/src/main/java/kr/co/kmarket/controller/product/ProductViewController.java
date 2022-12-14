@@ -9,12 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.kmarket.service.ProductService;
+import kr.co.kmarket.vo.ProductVO;
+
 @WebServlet("/product/view.do")
 public class ProductViewController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
+	ProductService service = ProductService.INSTANCE;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		ProductVO vo = service.selectProduct(req.getParameter("prodNo"));
+		req.setAttribute("product", vo);
+		
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/product/view.jsp");
 		dispatcher.forward(req, resp);
 	}

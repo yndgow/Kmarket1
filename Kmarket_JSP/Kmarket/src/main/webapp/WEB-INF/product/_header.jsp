@@ -16,15 +16,23 @@
       <header>
         <div class="top">
           <div>
-            <a href="">로그인</a>
-            <a href="">회원가입</a>
+			<c:choose>
+				<c:when test="${empty sessUser}">
+					<a href="/Kmarket/member/login.do">로그인</a>
+					<a href="/Kmarket/member/join.do">회원가입</a>
+				</c:when>
+				<c:otherwise>
+					<a href="" class="sessUser_uid">${sessUser.uid}</a>
+					<a href="/Kmarket/member/logout.do">로그아웃</a>
+				</c:otherwise>
+            </c:choose>
             <a href="">마이페이지</a>
             <a href=""><i class="fa-solid fa-cart-shopping"></i>&nbsp;장바구니</a>
           </div>
         </div>
         <div class="logo">
           <div>
-            <a href="">
+            <a href="/Kmarket/">
               <img src="../img/header_logo.png" alt="헤더로고" />
             </a>
             <form action="/Kmarket/product/list.do" class="search">
@@ -113,3 +121,38 @@
             
           </ul>
         </aside>
+<!-- 공통 nav 시작-->
+        <section>
+        	<nav>
+          		<h1>상품목록</h1>
+		          <c:forEach var="cates1" items="${categories1}">
+		          	<c:if test="${cate1 eq cates1.cate1}">
+		          		<c:set value="${cates1.c1Name}" var="c1"/>
+		          		<c:forEach var="cates2" items="${categories2}">
+		          			<c:if test="${cates1.cate1 eq cates2.cate1 && cate2 eq cates2.cate2}">
+		          				<c:set value="${cates2.c2Name}" var="c2"/>
+		          			</c:if>
+		          		</c:forEach>
+		          	</c:if>	
+		          </c:forEach>
+	          	<p>HOME > ${c1} > ${c2} </p>
+	        </nav>
+        </section>
+<!-- 공통 nav 끝 -->
+             
+    
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             

@@ -4,22 +4,6 @@
 <jsp:include page="./_header.jsp"/>
         <!-- section list 시작 -->
         <section class="list">
-          <nav>
-            <h1>상품목록</h1>
-            
-            <c:forEach var="cates1" items="${categories1}">
-            	<c:if test="${cate1 eq cates1.cate1}">
-            		<c:set value="${cates1.c1Name}" var="c1"/>
-            		<c:forEach var="cates2" items="${categories2}">
-            			<c:if test="${cates1.cate1 eq cates2.cate1 && cate2 eq cates2.cate2}">
-            				<c:set value="${cates2.c2Name}" var="c2"/>
-            			</c:if>
-            		</c:forEach>
-            	</c:if>	
-            </c:forEach>
-            
-            <p>HOME > ${c1} > ${c2} </p>
-          </nav>
           <ul class="sort">
             <li><a href="/Kmarket/product/list.do?cate1=${cate1}&cate2=${cate2}&listSort=soldDesc">판매많은순</a></li>
             <li><a href="/Kmarket/product/list.do?cate1=${cate1}&cate2=${cate2}&listSort=priceAsc">낮은가격순</a></li>
@@ -40,7 +24,7 @@
                 </td>
                 <td>
                   <h1 class="name">${vo.prodName}</h1>
-                  <a href="/Kmarket/product/view.do?prodNo=${vo.prodNo}"><p class="desc">${vo.descript}</p></a>
+                  <a href="/Kmarket/product/view.do?cate1=${cate1}&cate2=${cate2}&listSort=${listSort}&pg=${pg}&prodNo=${vo.prodNo}"><p class="desc">${vo.descript}</p></a>
                 </td>
                 <td>
                   <c:choose>
@@ -54,7 +38,7 @@
                   </c:otherwise>
                   </c:choose>
                   <c:if test="${vo.discount ne 0}">
-                  	<del class="ori_price"><fmt:formatNumber value="${vo.price}" pattern="#,###"/> </del><span class="discount">10%↓</span><br />
+                  	<del class="ori_price"><fmt:formatNumber value="${vo.price}" pattern="#,###"/> </del><span class="discount">${vo.discount}%↓</span><br />
                   </c:if>
                   <c:choose>
                   	<c:when test="${vo.delivery eq 0}">

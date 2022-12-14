@@ -1,41 +1,78 @@
+<%@page import="java.util.Date"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="./_header.jsp"/>
         <!-- section view 시작 -->
-        <section class="view">
-          <!-- 공통 nav 시작-->
-          <nav>
-            <h1>상품보기</h1>
-            <p>HOME > 패션·의류·뷰티 > 남성의류</p>
-          </nav>
-          <!-- 공통 nav 끝 -->
+        
+
+          <section class="view">
+       
           <!-- 개별 파트 시작 -->
           <article class="info">
             <div class="image">
-              <img src="./img/apple.jpg" alt="상품사진" />
+              <img src="http://13.125.215.198:8080/file/${product.thumb3}" alt="상품사진" />
             </div>
             <div class="summary">
               <div class="view_seller">
-                <h1>(주)판매자명</h1>
-                <h2>상품번호 : 10010118412</h2>
+                <h1>${product.seller}</h1>
+                <h2>상품번호 : <span class="prodNo">${product.prodNo}</span></h2>
               </div>
               <div class="view_content">
-                <p>상품명<br /></p>
-                <p>상품설명 출력</p>
+                <p>${product.prodName}<br /></p>
+                <p>${product.descript}</p>
                 <br />
                 <div class="view_star star2-4"></div>
-                <a href="#">상품평보기</a><br />
+                <a href="/Kmarket/product/review.do?prodNo=${product.prodNo}">상품평보기</a><br />
               </div>
               <div class="view_price">
-                <del class="ori_price">30,000원</del>
+<!--                 <del class="ori_price">30,000원</del>
                 <span class="discount">10%↓</span><br />
-                <ins class="cur_price">27,000원</ins><br />
+                <ins class="cur_price">27,000원</ins><br /> -->
+                
+                
+                <c:if test="${product.discount ne 0}">
+                  	<del class="ori_price"><fmt:formatNumber value="${product.price}" pattern="#,###"/>원</del><span class="discount">${product.discount}%↓</span><br />
+                  </c:if>
+                 <c:choose>
+                  <c:when test="${product.discount ne 0}">
+                  	<ins class="cur_price"><fmt:formatNumber value="${product.price * (100-product.discount)/100}" pattern="#,###"/>원</ins><br />
+                  </c:when>
+                  <c:otherwise>
+                  	<ins class="cur_price">
+                  		<fmt:formatNumber value="${product.price}"  pattern="#,###"/>원
+                  	</ins><br />
+                  </c:otherwise>
+                  </c:choose>
+                  
+                
               </div>
+              
               <div class="view_delivery">
-                <p><span class="free">무료배송</span> 모레(금) 7/8 도착예정<br /></p>
-                <p>
+              <!-- 2일뒤 날짜 -->
+              	<c:set var="daythree" value="<%= new Date(new Date().getTime() + 60*60*24*1000*2) %>"/>
+                <c:choose>
+               		<c:when test="${product.delivery eq 0}">
+						<p>
+							<span class="free">무료배송</span>
+							
+					모레<fmt:formatDate value="${daythree}" type="DATE" pattern="(E) MM-dd"/>&nbsp;도착예정
+	          			</p>
+                 	</c:when>
+                 	<c:otherwise>
+                 		<p>
+                 			<span class="nofree">배송비: ${product.delivery}</span>
+							모레<fmt:formatDate value="${daythree}" type="DATE" pattern="(E) MM-dd"/>&nbsp;도착예정
+                 		</p>
+                 	</c:otherwise>
+                </c:choose>
+                
+                  <p>
                   <span>본 상품은 국내배송만 가능합니다.</span>
                 </p>
+                
               </div>
+              
               <div class="view_benefits">
                 <p>무이자할부</p>
                 <p>카드추가혜택</p>
@@ -52,7 +89,7 @@
                 <button class="incrBtn">+</button>
               </div>
               <div class="view_total_price">
-                <p>총 상품금액 <span>35,000원</span></p>
+                <p>총 상품금액 <span><fmt:formatNumber value="${product.price * (100-product.discount)/100}" pattern="#,###"/>원</span></p>
               </div>
               <div class="view_button">
                 <button class="btnCart">장바구니</button>
@@ -64,9 +101,8 @@
             <nav>
               <h1>상품정보</h1>
             </nav>
-            <img src="./img/apple.jpg" alt="상품사진1" />
-            <img src="./img/apple.jpg" alt="상품사진2" />
-            <img src="./img/apple.jpg" alt="상품사진3" />
+            <img src="http://13.125.215.198:8080/file/${product.detail}" alt="상품사진1" />
+            
           </article>
           <article class="notice">
             <nav>

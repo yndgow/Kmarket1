@@ -149,4 +149,53 @@ public class ProductDAO extends DBHelper {
 		logger.debug("result :" + result);
 		return result;
 	}
+	
+	// 상품 한개 출력
+	public ProductVO selectProduct(String prodNo) {
+		logger.info("selectProduct");
+		ProductVO vo = null;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.SELECT_PRODUCT);
+			psmt.setString(1, prodNo);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				vo = new ProductVO();
+				vo.setProdNo(rs.getInt(1));
+				vo.setProdCate1(rs.getInt(2));
+				vo.setProdCate2(rs.getInt(3));
+				vo.setProdName(rs.getString(4));
+				vo.setDescript(rs.getString(5));
+				vo.setCompany(rs.getString(6));
+				vo.setSeller(rs.getString(7));
+				vo.setPrice(rs.getInt(8));
+				vo.setDiscount(rs.getInt(9));
+				vo.setPoint(rs.getInt(10));
+				vo.setStock(rs.getInt(11));
+				vo.setSold(rs.getInt(12));
+				vo.setDelivery(rs.getInt(13));
+				vo.setHit(rs.getInt(14));
+				vo.setScore(rs.getInt(15));
+				vo.setReview(rs.getInt(16));
+				vo.setThumb1(rs.getString(17));
+				vo.setThumb2(rs.getString(18));
+				vo.setThumb3(rs.getString(19));
+				vo.setDetail(rs.getString(20));
+				vo.setStatus(rs.getString(21));
+				vo.setDuty(rs.getString(22));
+				vo.setReceipt(rs.getString(23));
+				vo.setBizType(rs.getString(24));
+				vo.setOrigin(rs.getString(25));
+				vo.setIp(rs.getString(26));
+				vo.setRdate(rs.getString(27));
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("vo : " + vo);
+		return vo;
+	}
+	
+	
 }

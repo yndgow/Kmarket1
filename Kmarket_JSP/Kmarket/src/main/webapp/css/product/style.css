@@ -349,7 +349,7 @@ del {
 /* 별점 */
 .rating {
   font-size: 11px;
-  background-image: url(../img/rating_star.png);
+  background-image: url('/Kmarket/img/product/rating_star.png');
   background-repeat: no-repeat;
   background-position: 36px 0px;
   background-size: auto 100%;
@@ -443,7 +443,7 @@ del {
   float: left;
   width: 90px;
   height: 20px;
-  background-image: url("../img/ico_rating_star.png");
+  background-image: url("/Kmarket/img/product/ico_rating_star.png");
   background-repeat: no-repeat;
 }
 
@@ -481,9 +481,13 @@ del {
 }
 .view > .info > .summary > .view_delivery > p {
   color: #000;
-  font-size: 14px;
+  font-size: 16px;
 }
 .view > .info > .summary > .view_delivery .free {
+  color: #2e8de5;
+  font-size: 16px;
+}
+.view > .info > .summary > .view_delivery .nofree {
   color: #2e8de5;
   font-size: 16px;
 }
@@ -517,7 +521,7 @@ del {
   border: none;
   font-size: 0;
   background: none;
-  background: url("../img/ico_sprites.png");
+  background: url("/Kmarket/img/product/ico_sprites.png");
   position: absolute;
 }
 .view > .info > .summary > .view_quantity > .descBtn {
@@ -590,9 +594,9 @@ article > nav > h1 {
 /* article nav 공통 css 끝 */
 
 /* 상품정보 detail */
-.view > .detail > nav > img {
-  width: 860px;
-  height: 460px;
+.view > .detail > img {
+  width: 940px;
+  height: auto;
   object-fit: cover;
 }
 /* 상품정보제공고시 notice */
@@ -644,7 +648,7 @@ article > nav > h1 {
   float: left;
   width: 90px;
   height: 20px;
-  background-image: url("../img/ico_rating_star.png");
+  background-image: url("/Kmarket/img/product/ico_rating_star.png");
   background-repeat: no-repeat;
 }
 .view > .review > ul > li:nth-child(1) > div > p {

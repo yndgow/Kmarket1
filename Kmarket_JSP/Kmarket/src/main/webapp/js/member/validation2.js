@@ -18,8 +18,7 @@ let isBizOk = false;
 let isComOk = false;
 let isTelOk    = false;
 let isFaxOk  = false;
-let isZipOk = false;
-let isAddr2Ok = false;
+let isAddrOk = false;
 let receivedCode = 0;
 
 
@@ -130,7 +129,7 @@ $(function(){
 		
 		if(!biz.match(regBiz)){
 			isBizOk = false;
-			$('.resultBiz').css('color', 'red').text('-표시 포함 12자리를 입력하세요.');
+			$('.resultBiz').css('color', 'red').text('-표시 포함 12자리를 입력하세요. 예) 123-12-12345');
 		}else{
 			isBizOk = true;
 			$('.resultBiz').css('color', 'green').text('');
@@ -145,7 +144,7 @@ $(function(){
 		
 		if(!com.match(regCom)){
 			isComOk = false;
-			$('.resultCom').css('color', 'red').text('형식이 맞지않습니다.');
+			$('.resultCom').css('color', 'red').text('-표시 포함, 예) 강남-12345, 제 1-01-23-4567호, 2017-경기성남-0011');
 		}else{
 			isComOk = true;
 			$('.resultCom').css('color', 'green').text('');
@@ -173,35 +172,26 @@ $(function(){
 		
 		if(!fax.match(regFax)){
 			isFaxOk = false;
-			$('.resultFax').css('color', 'red').text('팩스번호가 유효하지 않습니다.');
+			$('.resultFax').css('color', 'red').text('-표시포함. 예) 1234-123-1234');
 		}else{
 			isFaxOk = true;
 			$('.resultFax').text('');
 		}			
 	});
 	
+	
+		
 	//주소 유효성 검사
-	$('input[name=zip]').focusout(function(){
-		let zip = $(this).val();
-		
-		if(zip == ''){
-			isZipOk = false;
-			$('.resultZip').css('color', 'red').text('우편번호를 입력해 주세요.');
-		}else{
-			isZipOk = true;
-			$('.resultZip').css('color', 'green').text('확인되었습니다.');
-		}
-		});
-		
-	//상세주소 유효성 검사
 	$('input[name=addr2]').focusout(function(){
+		let zip = $('input[name=zip]').val();
+		let addr1 = $('input[name=addr1]').val();
 		let addr2 = $(this).val();
 		
-		if(addr2 == ''){
-			isAddr2Ok = false;
-			$('.resultAddr').css('color', 'red').text('우편상세번호를 입력해 주세요.');
+		if(zip == ''|| addr1 == ''|| addr2 == ''){
+			isAddrOk = false;
+			$('.resultAddr').css('color', 'red').text('주소를 입력해 주세요.');
 		}else{
-			isAddr2Ok = true;
+			isAddrOk = true;
 			$('.resultAddr').css('color', 'green').text('확인되었습니다.');
 		}
 		});
@@ -249,15 +239,10 @@ $(function(){
 			return false;
 		}
 		
-		//주소 검증
-		if(!isZipOk){
-			alert('주소를 확인 하십시요.');
-			return false;
-		}
 		
-		//상세주소 검증
-		if(!isAddr2Ok){
-			alert('상세주소를 확인 하십시요.');
+		//주소 검증
+		if(!isAddrOk){
+			alert('주소를 확인 하십시요.');
 			return false;
 		}
 		

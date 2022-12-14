@@ -26,7 +26,7 @@ public class MemberRegisterController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/member/register.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/member/register.jsp");
 		dispatcher.forward(req, resp);	
 	}
 	
@@ -60,7 +60,7 @@ public class MemberRegisterController extends HttpServlet {
 		
 		
 		//데이터베이스 처리
-		service.insertSeller(vo);
+		service.insertMember(vo);
 		
 		
 		//리다이렉트

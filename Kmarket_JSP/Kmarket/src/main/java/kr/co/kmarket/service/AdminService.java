@@ -89,7 +89,7 @@ public enum AdminService {
 	public int getCurrentPage(String pg) {
 		int currentPage = 1;
 		
-		if(pg != null){
+		if(pg != null && !pg.equals("") ){
 			currentPage = Integer.parseInt(pg);	
 		}
 		return currentPage;

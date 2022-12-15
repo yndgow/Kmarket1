@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>케이마켓 고객센터</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>    
+    <script src="/Kmarket/js/cs/cateJs.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/Kmarket/css/cs/style.css">
-    <style>
-       
-
-    </style>
 </head>
 <body>
     <div id="wrapper">
@@ -54,24 +56,14 @@
                     </aside>
                     <article>
                         <nav>
-                            <h2 class="title">[${articles.qc2Name}] ${articles.qnaTitle}</h2>
+                            <h2 class="title">[${article.qc2Name}] ${article.qnaTitle}</h2>
                             <p>
-                                <span>${articles.uid}</span>
-                                <span>${articles.wdate.substring(2, 10)}</span>
+                                <span class="uid">${article.uid}</span>
+                                <span>${article.wdate.substring(2, 10)}</span>
                             </p>
                         </nav>
                         <div class="content">
-                            <p>${articles.content}</p>
-                            <p>
-                                ※ 피싱 관련 피해신고
-                                <br>
-                                <br>
-                                ▶ 경찰청 사이버수사국 (국번없이)182 : https://cyberbureau.police.go.kr
-                                <br>
-                                ▶ KISA 인터넷침해대응센터 (국번없이)118 : http://www.krcert.or.kr
-                                <br>
-                                감사합니다.
-                            </p>
+                            <p>${article.qnaContent}</p>
                         </div>
                         <a href="./list.do" class="btnList">목록보기</a>
                     </article>

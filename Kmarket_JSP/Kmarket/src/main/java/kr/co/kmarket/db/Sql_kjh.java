@@ -35,8 +35,9 @@ public class Sql_kjh {
 	// prodct_list 
 	public static final String SELECT_PRODUCT_LIST = "SELECT * FROM `km_product` "
 														+ "WHERE `prodCate1` = ? AND `prodCate2` = ? "
-														+ "ORDER BY ? "
-														+ "LIMIT ?, 10;";
+														+ "ORDER BY ";
+//														+ "? DESC "
+//														+ "LIMIT ?, 10;";
 	
 	// 1차 카테고리 
 	public static final String SELECT_CATEGORY_1 = "SELECT * FROM `km_product_cate1`";
@@ -47,7 +48,7 @@ public class Sql_kjh {
 	// 상품 한개 출력
 	public static final String SELECT_PRODUCT = "SELECT * FROM `km_product` WHERE `prodNo` = ?";
 	// 리뷰 출력
-	public static final String SELECT_REVIEWS = "SELECT * FROM `km_product_review` WHERE `prodNo` = ? LIMIT ?, 5";
+	public static final String SELECT_REVIEWS = "SELECT * FROM `km_product_review` WHERE `prodNo` = ? ORDER BY `revNo` DESC LIMIT ?, 5;";
 	// 리뷰 전체갯수 출력
 	public static final String SELECT_REVIEW_COUNT_PRODNO ="SELECT COUNT(`revNo`) FROM `km_product_review` WHERE `prodNo` = ?";
 	

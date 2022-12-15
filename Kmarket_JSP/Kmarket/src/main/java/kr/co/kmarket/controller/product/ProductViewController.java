@@ -1,6 +1,7 @@
 package kr.co.kmarket.controller.product;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.kmarket.service.ProductService;
+import kr.co.kmarket.vo.ProductReviewVO;
 import kr.co.kmarket.vo.ProductVO;
 
 @WebServlet("/product/view.do")
@@ -28,8 +30,10 @@ public class ProductViewController extends HttpServlet{
 		ProductVO vo = service.selectProduct(prodNo);
 		req.setAttribute("product", vo);
 		
+		
 		// 리뷰 페이징 
 		String pg = req.getParameter("pg");
+		
 		int currentPage = service.getCurrentPage(pg);// 현재 페이지 번호
 		int total = 0; // 전체 게시물 갯수
 		total = service.selectCountTotalReview(prodNo);
@@ -44,11 +48,20 @@ public class ProductViewController extends HttpServlet{
 		req.setAttribute("pageGroupEnd", result[1]);
 		req.setAttribute("pageStartNum", pageStartNum+1);
 		
-		// 리뷰 출력
-		req.setAttribute("reviews", service.selectReviews(prodNo, start));
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/product/view.jsp");
-		dispatcher.forward(req, resp);
+		
+		// 리뷰 출력
+		List<ProductReviewVO> reviews = service.selectReviews(prodNo, start);
+		
+		if(pg == null || pg.equals("")) {
+			// view 페이지 첫 진입시
+			req.setAttribute("reviews", reviews);
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/product/view.jsp");
+			dispatcher.forward(req, resp);
+		}else {
+			// review 페이지번호 선택시 리뷰 json 출력
+			service.gsonTojson(reviews, resp);
+		}
 	}
 	
 	@Override

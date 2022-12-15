@@ -29,22 +29,23 @@ public class ProductDAO extends DBHelper {
 		if(listSort == null) listSort = "soldDesc";
 		List<ProductVO> products = new ArrayList<>();
 		String sort[] = {"soldDesc", "priceAsc", "priceDesc", "scoreDesc", "reviewDesc", "rdateDesc"};
-		String sql_txt[] = {"`sold` DESC", "`price` DESC", "`price` ASC", "`score` DESC", "`review` DESC", "`rdate` DESC"};
+		String sql_txt[] = {"sold DESC ", "price ASC ", "price DESC ", "score DESC ", "review DESC ", "rdate DESC "};
 		String sql_sort= "";
 		for(int i=0; i<sort.length; i++) {
 			if(listSort.equals(sort[i])) {
 				sql_sort = sql_txt[i];
 			}
 		}
+		
 		logger.info(sql_sort);
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.SELECT_PRODUCT_LIST);
+			psmt = conn.prepareStatement(Sql_kjh.SELECT_PRODUCT_LIST+sql_sort+"LIMIT "+ start +" , 10");
 			logger.info(Sql_kjh.SELECT_PRODUCT_LIST);
 			psmt.setString(1, cate1);
 			psmt.setString(2, cate2);
-			psmt.setString(3, sql_sort);
-			psmt.setInt(4, start);
+			//psmt.setString(3, sql_sort);
+			//psmt.setInt(4, start);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				ProductVO vo = new ProductVO();
@@ -82,6 +83,7 @@ public class ProductDAO extends DBHelper {
 			logger.error(e.getMessage());
 		}
 		logger.debug("products : " + products);
+		
 		return products;
 	}
 	

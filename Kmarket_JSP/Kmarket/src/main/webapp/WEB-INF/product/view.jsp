@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="./_header.jsp"/>
+
         <!-- section view 시작 -->
           <section class="view">
           <!-- 개별 파트 시작 -->
@@ -208,6 +209,25 @@
           </article>
 
           <div class="paging">
+           <c:if test="${pageGroupStart > 1}">
+            <span class="prev">
+              <a href="/Kmarket/product/view.do?prodNo=${product.prodNo}&pg=${pageGroupStart-1}"><i class="fa-light fa-less-than"></i>이전</a>
+            </span>
+             </c:if>
+           
+            <span class="num">
+             <c:forEach var="num" begin="${pageGroupStart}" end="${pageGroupEnd}">
+               <a href="/Kmarket/product/view.do?prodNo=${product.prodNo}&pg=${num}" class="num ${num == currentPage ? 'on' : 'off'}">${num}</a>
+             </c:forEach>
+            </span>
+           <c:if test="${pageGroupEnd < lastPageNum}">
+            <span class="next">
+              <a href="/Kmarket/product/view.do?prodNo=${product.prodNo}&pg=${pageGroupEnd+1}">다음<i class="fa-light fa-greater-than"></i></a>
+            </span>
+            </c:if>
+          </div>
+
+         <!--  <div class="paging">
             <span class="prev">
               <a href="#"><i class="fa-light fa-less-than"></i>이전</a>
             </span>
@@ -223,7 +243,7 @@
             <span class="next">
               <a href="#">다음<i class="fa-light fa-greater-than"></i></a>
             </span>
-          </div>
+          </div> -->
         </section>
         <!-- section list 끝 -->
       </main>

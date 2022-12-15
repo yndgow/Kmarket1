@@ -29,11 +29,11 @@
                 <td>
                   <c:choose>
                   <c:when test="${vo.discount ne 0}">
-                  	<ins class="cur_price"><fmt:formatNumber value="${vo.price * (100-vo.discount)/100}" pattern="#,###"/></ins><br />
+                  	<ins class="cur_price"><fmt:formatNumber value="${vo.price * (100-vo.discount)/100}" pattern="#,###"/>원</ins><br />
                   </c:when>
                   <c:otherwise>
                   	<ins class="cur_price">
-                  		<fmt:formatNumber value="${vo.price}"  pattern="#,###"/>
+                  		<fmt:formatNumber value="${vo.price}"  pattern="#,###"/>원
                   	</ins><br />
                   </c:otherwise>
                   </c:choose>

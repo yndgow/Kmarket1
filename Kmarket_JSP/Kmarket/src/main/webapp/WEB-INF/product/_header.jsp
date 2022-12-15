@@ -76,7 +76,7 @@
             
             <c:forEach var="cates1" items="${categories1}" varStatus="status">
             <li>
-              <a href="/Kmarket/product/list.do?cate1=${cates1.cate1}">
+              <a href="/Kmarket/product/list.do?cate1=${cates1.cate1}&cate2=&listSort=">
               	<c:choose>
               		<c:when test="${status.index eq 0}">
               			<i class="fa-sharp fa-solid fa-shirt"></i>
@@ -112,7 +112,7 @@
               <ol class="sub_category">
               	<c:forEach var="cates2" items="${categories2}">
               	<c:if test="${cates1.cate1 eq cates2.cate1}">
-                <li><a href="/Kmarket/product/list.do?cate1=${cates1.cate1}&cate2=${cates2.cate2}&listSort=${listSort}">${cates2.c2Name}</a></li>
+                <li><a href="/Kmarket/product/list.do?cate1=${cates1.cate1}&cate2=${cates2.cate2}&listSort=soldDesc">${cates2.c2Name}</a></li>
                 </c:if>
                 
                 </c:forEach>
@@ -140,20 +140,4 @@
 	        </nav>
         </section>
 <!-- 공통 nav 끝 -->
-             
-    
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
              

@@ -261,6 +261,7 @@ ul.sort > li > a {
 }
 ul.sort > li > a.on {
   font-weight: bold;
+  color: #217fd7;
 }
 /* table 시작*/
 .list > table {

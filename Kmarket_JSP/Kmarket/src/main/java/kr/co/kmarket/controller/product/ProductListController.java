@@ -29,13 +29,13 @@ public class ProductListController extends HttpServlet{
 		String listSort = req.getParameter("listSort");
 		
 		// 쿼리 없이 접근시 초기화
-		if(listSort == null) listSort = "soldDesc";
-		if(cate1 == null) cate1 = "10";
-		if(cate2 == null) cate2 = "10";
+		if(listSort == null || listSort.equals("")) listSort = "soldDesc";
+		if(cate1 == null || cate1.equals("")) cate1 = "10";
+		if(cate2 == null || cate2.equals("")) cate2 = "10";
 		
 		String pg = req.getParameter("pg");
 		String search = req.getParameter("search");
-		// 페이징 
+		// 페이징		
 		int currentPage = service.getCurrentPage(pg);// 현재 페이지 번호
 		int total = 0; // 전체 게시물 갯수
 		if(search == null || search.equals("")){

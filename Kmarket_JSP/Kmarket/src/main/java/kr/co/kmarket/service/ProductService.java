@@ -1,6 +1,12 @@
 package kr.co.kmarket.service;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
 
 import kr.co.kmarket.dao.ProductDAO;
 import kr.co.kmarket.vo.ProductCate1VO;
@@ -61,7 +67,7 @@ public enum ProductService {
 	
 	
 	
-public int getLastPageNum(int total) {
+	public int getLastPageNum(int total) {
 		int lastPageNum = 0;
 		if(total % 10 == 0){
 			lastPageNum = total / 10;
@@ -99,9 +105,12 @@ public int getLastPageNum(int total) {
 		return (currentPage - 1) * 10;
 	}
 	
-	public String idMasking(String uid) {
-		// 정규식이용 숫자 범위 뒤로 마스킹 처리
-		String maskingId = uid.replaceAll("(?<=.{3}.", "*");
-		return maskingId;
-	}
+	// list json 변환 메서드 김지홍
+		public void gsonTojson(Object obj, HttpServletResponse resp) throws IOException {
+			resp.setContentType("application/x-json; charset=UTF-8");
+			Gson gson = new Gson();
+			String jsonData = gson.toJson(obj);
+			PrintWriter writer = resp.getWriter();
+			writer.print(jsonData);
+		}
 }

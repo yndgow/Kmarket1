@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>케이마켓 고객센터</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>    
-    <script src="../js/cateJs.js"></script>
+    <script src="/Kmarket/js/cs/cateJs.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/Kmarket/css/cs/style.css">
@@ -27,7 +27,7 @@
             </div>
             <div class="logo">
                 <div>
-                    <a href="../index.jsp">
+                    <a href="../index.do">
                         <img src="/Kmarket/img/cs/logo.png" alt="로고">
                     </a>
                 </div>
@@ -83,7 +83,7 @@
                                 </tr>
                             </table>
                             <div>
-                                <a href="./list.jsp" class="btnList">취소하기</a>
+                                <a href="./list.do" class="btnList">취소하기</a>
                                 <input type="submit" class="btnSubmit" value="등록하기">
                             </div>
                         </form>

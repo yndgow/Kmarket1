@@ -13,16 +13,13 @@ import kr.co.kmarket.vo.CsCate1VO;
 import kr.co.kmarket.vo.CsCate2VO;
 import kr.co.kmarket.vo.CsQnaVO;
 
-public class CsDAO extends DBHelper {
+public class CsDAO_kkj extends DBHelper {
 
-	private static CsDAO instance = new CsDAO();
-	public static CsDAO getInstance() {
+	private static CsDAO_kkj instance = new CsDAO_kkj();
+	public static CsDAO_kkj getInstance() {
 		return instance;
 	}
-	private CsDAO() {}
-
-	// 정규식 (3자 뒤 부터 마스킹 처리)
-	String pattern = "(?<=.{3}).";
+	private CsDAO_kkj() {}
 	
 	// 로거 생성
 	Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -116,7 +113,7 @@ public class CsDAO extends DBHelper {
 			rs = stmt.executeQuery(Sql_hong.SELECT_QNA_ARTICLES);
 			while(rs.next()) {
 				CsQnaVO vo = new CsQnaVO();
-				vo.setUid(rs.getString(1).replaceAll(pattern, "*"));
+				vo.setUid(rs.getString(1));
 				vo.setQc1Name(rs.getString(2));
 				vo.setQc2Name(rs.getString(3));
 				vo.setQnaTitle(rs.getString(4));
@@ -146,7 +143,7 @@ public class CsDAO extends DBHelper {
 			rs = psmt.executeQuery();
 			if(rs.next()) {
 				vo = new CsQnaVO();
-				vo.setUid(rs.getString(1).replaceAll(pattern, "*"));
+				vo.setUid(rs.getString(1));
 				vo.setQc1Name(rs.getString(2));
 				vo.setQc2Name(rs.getString(3));
 				vo.setQnaTitle(rs.getString(4));

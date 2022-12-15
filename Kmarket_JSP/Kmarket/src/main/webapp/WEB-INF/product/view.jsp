@@ -24,10 +24,6 @@
                 <a href="/Kmarket/product/review.do?prodNo=${product.prodNo}">상품평보기</a><br />
               </div>
               <div class="view_price">
-<!--                 <del class="ori_price">30,000원</del>
-                <span class="discount">10%↓</span><br />
-                <ins class="cur_price">27,000원</ins><br /> -->
-                
                 
                 <c:if test="${product.discount ne 0}">
                   	<del class="ori_price"><fmt:formatNumber value="${product.price}" pattern="#,###"/>원</del><span class="discount">${product.discount}%↓</span><br />
@@ -42,7 +38,6 @@
                   	</ins><br />
                   </c:otherwise>
                   </c:choose>
-                  
                 
               </div>
               
@@ -195,7 +190,7 @@
               <li>
                 <div>
                   <h5 class="star2-${review.rating}"></h5>
-                  <p class="ordUid">${review.uid}<span class="ordDate">${review.rdate}</span></p>
+                  <p class="ordUid">${review.uid}<span class="ordDate">&nbsp;${review.rdate}</span></p>
                 </div>
               </li>
               <!-- ORDER -->

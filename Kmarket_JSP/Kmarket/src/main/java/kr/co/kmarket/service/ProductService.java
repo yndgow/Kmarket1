@@ -7,8 +7,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import kr.co.kmarket.dao.ProductDAO;
+import kr.co.kmarket.vo.ProductCartVO;
 import kr.co.kmarket.vo.ProductCate1VO;
 import kr.co.kmarket.vo.ProductCate2VO;
 import kr.co.kmarket.vo.ProductReviewVO;
@@ -53,8 +55,10 @@ public enum ProductService {
 	public int selectCountTotalReview(String prodNo) {
 		return dao.selectCountTotalReview(prodNo);
 	}
-	
-	
+	// 장바구니 입력
+	public int insertProductCart(ProductCartVO vo) {
+		return dao.insertProductCart(vo);
+	}
 	
 	
 	
@@ -69,18 +73,18 @@ public enum ProductService {
 	
 	public int getLastPageNum(int total) {
 		int lastPageNum = 0;
-		if(total % 10 == 0){
-			lastPageNum = total / 10;
+		if(total % 5 == 0){
+			lastPageNum = total / 5;
 		}else{
-			lastPageNum = total / 10 + 1;
+			lastPageNum = total / 5 + 1;
 		}
 		return lastPageNum;
 	}
 	
 	public int[] getPageGroupNum(int currentPage, int lastPageNum) {
-		int currentPageGroup = (int)Math.ceil(currentPage / 10.0);
-		int pageGroupStart = (currentPageGroup - 1) * 10 + 1;
-		int pageGroupEnd = currentPageGroup * 10;
+		int currentPageGroup = (int)Math.ceil(currentPage / 5.0);
+		int pageGroupStart = (currentPageGroup - 1) * 5 + 1;
+		int pageGroupEnd = currentPageGroup * 5;
 		if(pageGroupEnd > lastPageNum){
 			pageGroupEnd = lastPageNum;
 		}
@@ -89,7 +93,7 @@ public enum ProductService {
 	}
 	
 	public int getPageStartNum(int total, int currentPage) {
-		int start = (currentPage - 1) * 10;
+		int start = (currentPage - 1) * 5;
 		return total - start;
 	}
 	
@@ -102,15 +106,23 @@ public enum ProductService {
 	}
 	
 	public int getStartNum(int currentPage) {
-		return (currentPage - 1) * 10;
+		return (currentPage - 1) * 5;
 	}
 	
 	// list json 변환 메서드 김지홍
-		public void gsonTojson(Object obj, HttpServletResponse resp) throws IOException {
-			resp.setContentType("application/x-json; charset=UTF-8");
-			Gson gson = new Gson();
-			String jsonData = gson.toJson(obj);
-			PrintWriter writer = resp.getWriter();
-			writer.print(jsonData);
-		}
+	public void gsonTojson(Object obj, HttpServletResponse resp) throws IOException {
+		resp.setContentType("application/x-json; charset=UTF-8");
+		Gson gson = new Gson();
+		String jsonData = gson.toJson(obj);
+		PrintWriter writer = resp.getWriter();
+		writer.print(jsonData);
+	}
+	
+	// json property 추가 후 json 반환
+	public void jsonObj(String key, int value, HttpServletResponse resp) throws IOException {
+		JsonObject json = new JsonObject();
+		json.addProperty(key, value);
+		PrintWriter writer = resp.getWriter();
+		writer.print(json.toString());
+	}
 }

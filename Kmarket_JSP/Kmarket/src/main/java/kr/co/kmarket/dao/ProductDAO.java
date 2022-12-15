@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import kr.co.kmarket.db.DBHelper;
 import kr.co.kmarket.db.Sql_kjh;
+import kr.co.kmarket.vo.ProductCartVO;
 import kr.co.kmarket.vo.ProductCate1VO;
 import kr.co.kmarket.vo.ProductCate2VO;
 import kr.co.kmarket.vo.ProductReviewVO;
@@ -30,17 +31,17 @@ public class ProductDAO extends DBHelper {
 		List<ProductVO> products = new ArrayList<>();
 		String sort[] = {"soldDesc", "priceAsc", "priceDesc", "scoreDesc", "reviewDesc", "rdateDesc"};
 		String sql_txt[] = {"sold DESC ", "price ASC ", "price DESC ", "score DESC ", "review DESC ", "rdate DESC "};
-		String sql_sort= "";
+		String sql_sort = "";
 		for(int i=0; i<sort.length; i++) {
 			if(listSort.equals(sort[i])) {
 				sql_sort = sql_txt[i];
 			}
 		}
-		
+		String sql_limit = "LIMIT " + start + ", 10"; 
 		logger.info(sql_sort);
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.SELECT_PRODUCT_LIST+sql_sort+"LIMIT "+ start +" , 10");
+			psmt = conn.prepareStatement(Sql_kjh.SELECT_PRODUCT_LIST+ sql_sort + sql_limit);
 			logger.info(Sql_kjh.SELECT_PRODUCT_LIST);
 			psmt.setString(1, cate1);
 			psmt.setString(2, cate2);
@@ -218,6 +219,7 @@ public class ProductDAO extends DBHelper {
 				vo.setUid(rs.getString(4).replaceAll("(?<=.{3}).", "*"));
 				vo.setRating(rs.getInt(5));
 				vo.setRegip(rs.getString(6));
+				vo.setRdate(rs.getString(7).substring(0,10));
 				reviews.add(vo);
 			}
 			close();
@@ -247,6 +249,28 @@ public class ProductDAO extends DBHelper {
 		return result;
 	}
 	
+	// 장바구니 입력
+	public int insertProductCart(ProductCartVO vo) {
+		logger.info("insertProductCart");
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.INSERT_PRODUCTCART);
+			psmt.setString(1, vo.getUid());
+			psmt.setInt(2, vo.getProdNo());
+			psmt.setInt(3, vo.getCount());
+			psmt.setInt(4, vo.getPrice());
+			psmt.setInt(5, vo.getDiscount());
+			psmt.setInt(6, vo.getPoint());
+			psmt.setInt(7, vo.getDelivery());
+			result = psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
 	
 	
 	

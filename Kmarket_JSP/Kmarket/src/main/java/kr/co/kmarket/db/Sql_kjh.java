@@ -36,9 +36,6 @@ public class Sql_kjh {
 	public static final String SELECT_PRODUCT_LIST = "SELECT * FROM `km_product` "
 														+ "WHERE `prodCate1` = ? AND `prodCate2` = ? "
 														+ "ORDER BY ";
-//														+ "? DESC "
-//														+ "LIMIT ?, 10;";
-	
 	// 1차 카테고리 
 	public static final String SELECT_CATEGORY_1 = "SELECT * FROM `km_product_cate1`";
 	// 2차 카테고리
@@ -48,24 +45,20 @@ public class Sql_kjh {
 	// 상품 한개 출력
 	public static final String SELECT_PRODUCT = "SELECT * FROM `km_product` WHERE `prodNo` = ?";
 	// 리뷰 출력
-	public static final String SELECT_REVIEWS = "SELECT * FROM `km_product_review` WHERE `prodNo` = ? ORDER BY `revNo` DESC LIMIT ?, 5;";
+	public static final String SELECT_REVIEWS = "SELECT * FROM `km_product_review` WHERE `prodNo` = ? ORDER BY `rdate` DESC LIMIT ?, 5;";
 	// 리뷰 전체갯수 출력
 	public static final String SELECT_REVIEW_COUNT_PRODNO ="SELECT COUNT(`revNo`) FROM `km_product_review` WHERE `prodNo` = ?";
-	
-	
-	
-	// 판매 많은순
-	public static final String SELECT_PRODUCT_LIST_SOLD_DESC = "SELECT * FROM `km_product` ORDER BY `sold` DESC";
-	// 높은가격순
-	public static final String SELECT_PRODUCT_LIST_PRICE_DESC = "SELECT * FROM `km_product` ORDER BY `price` DESC";
-	// 낮은 가격순
-	public static final String SELECT_PRODUCT_LIST_PRICE_ASC = "SELECT * FROM `km_product` ORDER BY `price` ASC";
-	// 평점 높은순
-	public static final String SELECT_PRODUCT_LIST_SCORE_DESC = "SELECT * FROM `km_product` ORDER BY `score` DESC";
-	// 후기 많은순
-	public static final String SELECT_PRODUCT_LIST_REVIEW_DESC = "SELECT * FROM `km_product` ORDER BY `review` DESC";
-	// 최근 등록순
-	public static final String SELECT_PRODUCT_LIST_RDATE_DESC = "SELECT * FROM `km_product` ORDER BY `rdate` DESC";
+	// 장바구니 입력
+	public static final String INSERT_PRODUCTCART = "INSERT INTO `km_product_cart` SET "
+			+ "`uid` = ?, "
+			+ "`prodNo` = ?, "
+			+ "`count` = ?, "
+			+ "`price` = ?, "
+			+ "`discount` = ?, "
+			+ "`point` = ?, "
+			+ "`delivery` = ?, "
+			+ "`total` = ((`price`* (100-discount)/100)*`count`)-`point`+`delivery`, "
+			+ "`rdate` = NOW()";
 	
 }
 

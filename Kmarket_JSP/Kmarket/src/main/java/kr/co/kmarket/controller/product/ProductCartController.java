@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.kmarket.service.ProductService;
+import kr.co.kmarket.vo.ProductCartVO;
 
 @WebServlet("/product/cart.do")
 public class ProductCartController extends HttpServlet{
@@ -28,6 +29,10 @@ public class ProductCartController extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		ProductCartVO vo = new ProductCartVO();
+		int result = service.insertProductCart(vo);
+		service.jsonObj("result", result, resp);
 		
 	}
 

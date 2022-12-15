@@ -5,6 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <title>케이마켓 고객센터</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>    
+    <script src="/Kmarket/js/cs/cateJs.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/Kmarket/css/cs/style.css">
 </head>
 <body>
@@ -57,8 +63,8 @@
                         <table>
                         <c:forEach var="article" items="${articles}">
                             <tr>
-                                <td><a href="./view.do?no=${article.qnaNo}">[${article.qc2Name}] ${article.qnaTitle}</a></td>
-                                <td>${article.uid}</td>
+                                <td><a href="./view.do?qnaNo=${article.qnaNo}">[${article.qc2Name}] ${article.qnaTitle}</a></td>
+                                <td class="uid">${article.uid}</td>
                                 <td>${article.qnaCond}</td>
                                 <td>${article.wdate.substring(2, 10)}</td>
                             </tr>

@@ -12,3 +12,6 @@ list 로직 구현 중 (controller)
 view vo null 뜸
 controller 실행 안됨
 write, list 큰 틀 구성 완료
+
+2022/12/15
+계정 마스킹 처리 완료

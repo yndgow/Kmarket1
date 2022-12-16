@@ -52,7 +52,7 @@ public class AdminListController extends HttpServlet{
 		List<ProductVO> products = service.selectProductByAdmin("uid");
 		req.setAttribute("products", products);
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/product/list.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/admin/product/list.jsp");
 		dispatcher.forward(req, resp);
 	}
 	

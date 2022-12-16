@@ -66,7 +66,7 @@
                         </c:if>
                         <c:forEach var="num" begin="${pageGroupStart}" end="${pageGroupEnd}">
                         <span class="num ${num == currentPage ? 'current' : 'off'}">
-                            <a href="/Kmarket/admin/product/list.do?pg=${num}" class="on">${num}</a>
+                            <a href="/Kmarket/admin/product/list.do?pg=${num}" >${num}</a>
                         </span>
                         </c:forEach>
                         <c:if test="${pageGroupEnd < lastPageNum}">

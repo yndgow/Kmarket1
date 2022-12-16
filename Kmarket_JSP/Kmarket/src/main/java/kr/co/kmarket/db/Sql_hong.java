@@ -39,7 +39,10 @@ public class Sql_hong {
 	public static final String SELECT_CATEGORY2_BY_CS = "SELECT * FROM `km_cs_cate2` where `qnaCate1`=?";	
 	
 	// cs qna list 출력
-	public static final String SELECT_QNA_ARTICLES = "SELECT * FROM `km_cs_qna`";
+	public static final String SELECT_QNA_ARTICLES = "SELECT * FROM `km_cs_qna`"
+													+ "ORDER BY `qnaNO` DESC "
+													+ "LIMIT ?, 10";
+	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(`qnaNo`) FROM `km_cs_qna`";
 	
 	// cs qna view 출력
 	public static final String SELECT_QNA_ARTICLE = "SELECT * FROM `km_cs_qna` where `qnaNo`=?";

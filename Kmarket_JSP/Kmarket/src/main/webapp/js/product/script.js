@@ -15,24 +15,26 @@ $(() => {
     if (loginCheck()) {
       let btnClassName = $(this).attr('class');
       if (btnClassName == 'btnCart') {
-        if (confirm('장바구니에 담겼습니다. 이동하시겠습니까?')) {
-          let jsonData = {
-            prodNo: $('.prodNo').text(),
-            uid: $('.sessUser_uid').text(),
-            count: $('input[name=num]').val(),
-          };
-          console.log(jsonData);
-          jsonData = JSON.stringify(jsonData);
-          $.ajax({
-            type: 'post',
-            url: '/Kmarket/product/cart.do',
-            data: jsonData,
-            dataType: 'json',
-            success: function (data) {
-              if(data.result > 0) location.href = '/Kmarket/product/cart.do';
-            },
-          });
-        }
+        let jsonData = {
+          uid: $('.sessUser_uid').text(),
+          prodNo: $('input[name=prodNo').val(),
+          count: $('input[name=num]').val(),
+          price: $('input[name=ori_price]').val(),
+          discount: $('input[name=discount]').val(),
+          delivery: $('input[name=delivery]').val(),
+        };
+
+        $.ajax({
+          type: 'post',
+          url: '/Kmarket/product/cart.do',
+          data: jsonData,
+          dataType: 'json',
+          success: function (data) {
+            if (data.result > 0 && confirm('장바구니에 담겼습니다. 이동하시겠습니까?')) {
+              location.href = '/Kmarket/product/cart.do?uid=' + $('.sessUser_uid').text();
+            }
+          },
+        });
       } else if (btnClassName == 'btnBuy') {
         location.href = '/Kmarket/product/order.do?prodNo=' + $('.prodNo').text();
       }
@@ -131,4 +133,11 @@ function loginCheck() {
   } else {
     return true;
   }
+}
+// 가격에서 , 원을 떼고 숫자로 만들기
+function removeCommaWon(price) {
+  let pricetxt = $('.' + price).text();
+  pricetxt = pricetxt.split('원', '1')[0];
+  let priceNum = stringNumberToInt(pricetxt);
+  return priceNum;
 }

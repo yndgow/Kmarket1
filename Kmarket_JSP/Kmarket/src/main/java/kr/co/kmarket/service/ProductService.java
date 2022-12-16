@@ -23,6 +23,15 @@ public enum ProductService {
 
 	// product list 
 	public List<ProductVO> selectProductList(String cate1, String cate2, String listSort, int start){
+		if(listSort == null || listSort.equals("")) listSort = "soldDesc";
+		
+		for(int i=0; i<listSort.length(); i++) {
+			if(listSort.charAt(i)<= 90) {
+				listSort = listSort.substring(0, i)+" "+listSort.substring(i)+" ";
+				break;
+			}
+		}
+		
 		return dao.selectProductList(cate1, cate2, listSort, start);
 	}
 	
@@ -59,7 +68,10 @@ public enum ProductService {
 	public int insertProductCart(ProductCartVO vo) {
 		return dao.insertProductCart(vo);
 	}
-	
+	// 장바구니 출력
+	public ProductCartVO selectCart(String uid) {
+		return dao.selectProductCart(uid);
+	}
 	
 	
 	

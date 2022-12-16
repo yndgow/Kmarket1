@@ -27,26 +27,17 @@ public class ProductDAO extends DBHelper {
 	
 	public List<ProductVO> selectProductList(String cate1, String cate2, String listSort, int start){
 		logger.info("selectProductList");
-		if(listSort == null) listSort = "soldDesc";
+		
 		List<ProductVO> products = new ArrayList<>();
-		String sort[] = {"soldDesc", "priceAsc", "priceDesc", "scoreDesc", "reviewDesc", "rdateDesc"};
-		String sql_txt[] = {"sold DESC ", "price ASC ", "price DESC ", "score DESC ", "review DESC ", "rdate DESC "};
-		String sql_sort = "";
-		for(int i=0; i<sort.length; i++) {
-			if(listSort.equals(sort[i])) {
-				sql_sort = sql_txt[i];
-			}
-		}
+		
 		String sql_limit = "LIMIT " + start + ", 10"; 
-		logger.info(sql_sort);
+		
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.SELECT_PRODUCT_LIST+ sql_sort + sql_limit);
+			psmt = conn.prepareStatement(Sql_kjh.SELECT_PRODUCT_LIST+ listSort + sql_limit);
 			logger.info(Sql_kjh.SELECT_PRODUCT_LIST);
 			psmt.setString(1, cate1);
 			psmt.setString(2, cate2);
-			//psmt.setString(3, sql_sort);
-			//psmt.setInt(4, start);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				ProductVO vo = new ProductVO();
@@ -261,8 +252,7 @@ public class ProductDAO extends DBHelper {
 			psmt.setInt(3, vo.getCount());
 			psmt.setInt(4, vo.getPrice());
 			psmt.setInt(5, vo.getDiscount());
-			psmt.setInt(6, vo.getPoint());
-			psmt.setInt(7, vo.getDelivery());
+			psmt.setInt(6, vo.getDelivery());
 			result = psmt.executeUpdate();
 			close();
 		} catch (Exception e) {
@@ -272,7 +262,35 @@ public class ProductDAO extends DBHelper {
 		return result;
 	}
 	
-	
+	// 장바구니 출력
+	public ProductCartVO selectProductCart(String uid) {
+		logger.info("selectProductCart");
+		ProductCartVO vo = null;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.SELECT_PRODUCTCART);
+			psmt.setString(1, uid);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				vo = new ProductCartVO();
+				vo.setCartNo(rs.getInt(1));
+				vo.setUid(rs.getString(2));
+				vo.setProdNo(rs.getInt(3));
+				vo.setCount(rs.getInt(4));
+				vo.setPrice(rs.getInt(5));
+				vo.setDiscount(rs.getInt(6));
+				vo.setPoint(rs.getInt(7));
+				vo.setDelivery(rs.getInt(8));
+				vo.setTotal(rs.getInt(9));
+				vo.setRdate(rs.getString(10));
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("vo : " + vo);
+		return vo;
+	}
 	
 	
 	

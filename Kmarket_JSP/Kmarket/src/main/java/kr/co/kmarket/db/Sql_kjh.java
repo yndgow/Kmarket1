@@ -55,10 +55,18 @@ public class Sql_kjh {
 			+ "`count` = ?, "
 			+ "`price` = ?, "
 			+ "`discount` = ?, "
-			+ "`point` = ?, "
+			+ "`point` = ((`price`* (100-discount)/100) * `count`) * 0.01, "
 			+ "`delivery` = ?, "
-			+ "`total` = ((`price`* (100-discount)/100)*`count`)-`point`+`delivery`, "
+			+ "`total` = ((`price`* (100-discount)/100) * `count`) + `delivery`, "
 			+ "`rdate` = NOW()";
+	// 장바구니 출력
+	public static final String SELECT_PRODUCTCART = "SELECT * FROM `km_product_cart` WHERE `uid` = ?";
+	
+	
+	
+	
+	
+	
 	
 }
 

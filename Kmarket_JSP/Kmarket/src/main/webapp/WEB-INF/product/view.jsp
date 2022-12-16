@@ -26,7 +26,7 @@
               <div class="view_price">
                 
                 <c:if test="${product.discount ne 0}">
-                  	<del class="ori_price"><fmt:formatNumber value="${product.price}" pattern="#,###"/>원</del><span class="discount">${product.discount}%↓</span><br />
+                  	<del class="ori_price"><fmt:formatNumber value="${product.price}" 	pattern="#,###"/>원</del><span class="discount">${product.discount}%↓</span><br />
                   </c:if>
                  <c:choose>
                   <c:when test="${product.discount ne 0}">
@@ -44,6 +44,7 @@
               <div class="view_delivery">
               <!-- 2일뒤 날짜 -->
               	<c:set var="daythree" value="<%= new Date(new Date().getTime() + 60*60*24*1000*2) %>"/>
+              
                 <c:choose>
                		<c:when test="${product.delivery eq 0}">
 						<p>
@@ -85,6 +86,11 @@
                 <p>총 상품금액 <span><fmt:formatNumber value="${product.price * (100-product.discount)/100}" pattern="#,###"/>원</span></p>
               </div>
               <div class="view_button">
+	            <input type="hidden" name="prodNo" value="${product.prodNo}">
+              	<input type="hidden" name="ori_price" value="${product.price}">
+              	<input type="hidden" name="cur_price" value="${product.price * (100-product.discount)/100}">
+              	<input type="hidden" name="discount" value="${product.discount}">
+           		<input type="hidden" name="delivery" value="${product.delivery}">
                 <button class="btnCart">장바구니</button>
                 <button class="btnBuy">구매하기</button>
               </div>

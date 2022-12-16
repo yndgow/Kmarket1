@@ -24,9 +24,37 @@ public class QnaListController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		List<CsQnaVO> articles = service.selectQnaArticles();
+		String pg = req.getParameter("pg");
 		
+		//현재 페이지 번호
+		int currentPage = service.getCurrentPage(pg);
+		
+		// 전체 게시물 갯수 
+		int total = service.selectCountTotal();
+		
+		// 마지막 페이지 번호
+		int lastPageNum = service.getLastPageNum(total);
+		
+		// 페이지 그룹 start, end 번호
+		int[] result = service.getPageGroupNum(currentPage, lastPageNum);
+		
+		// 페이지 시작번호
+		int pageStartNum = service.getPageStartNum(total, currentPage);
+		
+		// 시작 인덱스
+		int start = service.getStartNum(currentPage);
+		
+		// view 글 가져오기
+		List<CsQnaVO> articles = service.selectQnaArticles(start);
+		
+		// View에서 데이터 출력을 위한 request Scope 데이터 설정
+		req.setAttribute("pg", pg);
 		req.setAttribute("articles", articles);
+		req.setAttribute("lastPageNum", lastPageNum);		
+		req.setAttribute("currentPage", currentPage);		
+		req.setAttribute("pageGroupStart", result[0]);
+		req.setAttribute("pageGroupEnd", result[1]);
+		req.setAttribute("pageStartNum", pageStartNum+1);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/cs/qna/list.jsp");
 		dispatcher.forward(req, resp);

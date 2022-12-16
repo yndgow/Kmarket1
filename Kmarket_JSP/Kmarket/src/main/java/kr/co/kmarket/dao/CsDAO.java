@@ -107,13 +107,14 @@ public class CsDAO extends DBHelper {
 	}
 	
 	//cs list 출력
-	public List<CsQnaVO> selectQnaArticles() {
+	public List<CsQnaVO> selectQnaArticles(int start) {
 		logger.info("selectQnaArticles start...");
 		List<CsQnaVO> articles = new ArrayList<>();
 		try {
 			conn = getConnection();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(Sql_hong.SELECT_QNA_ARTICLES);
+			psmt = conn.prepareStatement(Sql_hong.SELECT_QNA_ARTICLES);
+			psmt.setInt(1, start);
+			rs = psmt.executeQuery();
 			while(rs.next()) {
 				CsQnaVO vo = new CsQnaVO();
 				vo.setUid(rs.getString(1).replaceAll(pattern, "*"));
@@ -132,6 +133,25 @@ public class CsDAO extends DBHelper {
 			logger.error(e.getMessage());
 		}
 		return articles;
+	}
+	
+	// 전체 게시물 쿠은트
+	public int selectCountTotal() {
+		int total = 0;
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			
+			rs = stmt.executeQuery(Sql_hong.SELECT_COUNT_TOTAL);
+			
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+			close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return total;
 	}
 	
 	//cs view 출력

@@ -1,9 +1,12 @@
 package kr.co.kmarket.service;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
@@ -66,13 +69,34 @@ public enum ProductService {
 	}
 	// 장바구니 입력
 	public int insertProductCart(ProductCartVO vo) {
-		return dao.insertProductCart(vo);
+		
+		// 장바구니에 이미 존재하는지 체크
+		int result = dao.selectProductCart(vo.getUid(), vo.getProdNo());
+		
+		if(result > 0) {
+			// 있으면
+			return dao.updateProductCartCount(vo.getUid(), vo.getProdNo());
+		}else {
+			// 없으면 
+			return dao.insertProductCart(vo);
+		}
 	}
 	// 장바구니 출력
-	public ProductCartVO selectCart(String uid) {
-		return dao.selectProductCart(uid);
+	public List<ProductCartVO> selectCarts(String uid) {
+		return dao.selectProductCarts(uid);
 	}
 	
+	public int deleteProductCart(String uid, String[] prodNo) {
+		String sql = "";
+		for(int i=0; i<prodNo.length; i++) {
+			sql += prodNo[i];
+			if(i != prodNo.length-1) {
+				sql += ", ";
+			}
+		}
+		sql += ")";
+		return dao.deleteProductCart(uid, sql);
+	}
 	
 	
 	
@@ -137,4 +161,18 @@ public enum ProductService {
 		PrintWriter writer = resp.getWriter();
 		writer.print(json.toString());
 	}
+	
+	public String getBody(HttpServletRequest request) throws IOException {
+		 
+		BufferedReader input = new BufferedReader(new InputStreamReader(request.getInputStream()));
+        StringBuilder builder = new StringBuilder();
+        String buffer;
+        while ((buffer = input.readLine()) != null) {
+            if (builder.length() > 0) {
+                builder.append("\n");
+            }
+            builder.append(buffer);
+        }
+        return builder.toString();
+    }
 }

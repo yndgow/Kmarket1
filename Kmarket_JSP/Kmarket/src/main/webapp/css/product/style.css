@@ -579,7 +579,7 @@ del {
   border: 1px solid #217fd7;
   color: #fff;
 }
-button {
+input[type=button] {
   cursor: pointer;
 }
 
@@ -1044,8 +1044,8 @@ text-align: center;
 letter-spacing: -0.1em;
 }
 .cart > form > table th:first-child {width: 60px;}
-.cart > form > table .empty {display: none;}
-.cart > form > table td {text-align: center;}
+.cart > form > table .empty {height: 40px;}
+.cart > form > table td {text-align: center;font-size: 14px;}
 .cart > form > table td:first-child {width: 60px;}
 .cart > form > table td:last-child {
 color: #ff006c;

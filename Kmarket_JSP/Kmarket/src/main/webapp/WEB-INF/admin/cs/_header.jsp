@@ -7,10 +7,11 @@
     <title>케이마켓::관리자</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="/Kmarket/js/admin/gnb.js"></script>
+    <script src="/Kmarket/js/admin/cs/script.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <link rel="stylesheet" href="/Kmarket/css/admin/admin.css" />
+    <link rel="stylesheet" href="/Kmarket/css/admin/cs/style.css" />
     <style>
       .searchbtn {
         position: absolute;
@@ -82,7 +83,7 @@
               </ol>
             </li>
             <li>
-              <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>게시판관리</a>
+              <a href="#"><i class="fa-regular fa-pen-to-square"></i>게시판관리</a>
               <ol>
                 <li><a href="#">게시판현황</a></li>
                 <li><a href="#">고객문의</a></li>
@@ -91,9 +92,9 @@
             <li>
               <a href="/Kmarket/admin/cs/notice/list.do"><i class="fa-solid fa-headphones"></i>고객센터</a>
               <ol>
-                <li><a href="/Kmarket/admin/cs/notice/list.do">공지사항</a></li>
-                <li><a href="/Kmarket/admin/cs/faq/list.do">자주묻는질문</a></li>
-                <li><a href="/Kmarket/admin/cs/qna/list.do">문의하기</a></li>
+                <li><a href="/Kmarket/admin/cs/list.do?csType=notice">공지사항</a></li>
+                <li><a href="/Kmarket/admin/cs/list.do?csType=faq">자주묻는질문</a></li>
+                <li><a href="/Kmarket/admin/cs/list.do?csType=qna">문의하기</a></li>
               </ol>
             </li>
           </ul>

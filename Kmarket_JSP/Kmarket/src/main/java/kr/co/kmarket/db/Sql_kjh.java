@@ -33,7 +33,7 @@ public class Sql_kjh {
 	public static final String SELECT_IMG_FILENAME = "SELECT `thumb1`, `thumb2`, `thumb3`, `detail` FROM `km_product` WHERE `prodNo` = ?";
 	
 	// prodct_list 
-	public static final String SELECT_PRODUCT_LIST = "SELECT * FROM `km_product` "
+	public static final String SELECT_PRODUCT_LIST = "SELECT *, CEIL(price*(100-discount)/100) AS discountPrice FROM `km_product` "
 														+ "WHERE `prodCate1` = ? AND `prodCate2` = ? "
 														+ "ORDER BY ";
 	// 1차 카테고리 
@@ -55,19 +55,29 @@ public class Sql_kjh {
 			+ "`count` = ?, "
 			+ "`price` = ?, "
 			+ "`discount` = ?, "
-			+ "`point` = ((`price`* (100-discount)/100) * `count`) * 0.01, "
+			+ "`point` = (`price` * `count`) * 0.01, "
 			+ "`delivery` = ?, "
-			+ "`total` = ((`price`* (100-discount)/100) * `count`) + `delivery`, "
+			+ "`total` = ((`price` * (100-`discount`)/100)  * `count`) + `delivery`, "
 			+ "`rdate` = NOW()";
 	// 장바구니 출력
-	public static final String SELECT_PRODUCTCART = "SELECT * FROM `km_product_cart` WHERE `uid` = ?";
+	public static final String SELECT_PRODUCTCARTS = "SELECT a.*, b.thumb1, b.descript, b.prodName "
+													+ "FROM `km_product_cart` AS a "
+													+ "JOIN `km_product` AS b "
+													+ "USING (`prodNo`) "
+													+ "WHERE `uid` = ? ";
 	
-	
-	
-	
-	
-	
-	
+	// 장바구니 이미 있는지 여부
+	public static final String SELECT_PRODUCTCART = "SELECT COUNT(`prodNo`) FROM `km_product_cart` "
+													+ "WHERE `uid` = ? AND `prodNo` = ?";
+	// 장바구니 이미 있으면 수량 증가 
+	public static final String UPDATE_PRODUCTCART_COUNT = "UPDATE `km_product_cart` SET "
+														+ "`count` = `count`+1, "
+														+ "`point`= `price`* `count` * 0.01, "
+														+ "`total` = `price` * `count` + `delivery` "
+														+ "WHERE `uid` = ? AND `prodNo` = ?";
+	// 장바구니 선택 삭제
+	public static final String DELTE_PRODUCTCART = "DELETE FROM `km_product_cart` WHERE `uid` = ? AND `prodNo` IN (";
+												
 }
 
 

@@ -12,6 +12,29 @@ public class ProductCartVO {
 	private int total;
 	private String rdate;
 	
+	// 추가 필드
+	private String thumb1;
+	private String descript;
+	private String prodName;
+	
+	public String getProdName() {
+		return prodName;
+	}
+	public void setProdName(String prodName) {
+		this.prodName = prodName;
+	}
+	public String getThumb1() {
+		return thumb1;
+	}
+	public void setThumb1(String thumb1) {
+		this.thumb1 = thumb1;
+	}
+	public String getDescript() {
+		return descript;
+	}
+	public void setDescript(String descript) {
+		this.descript = descript;
+	}
 	public int getCartNo() {
 		return cartNo;
 	}

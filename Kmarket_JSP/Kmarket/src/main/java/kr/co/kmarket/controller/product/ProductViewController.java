@@ -25,6 +25,15 @@ public class ProductViewController extends HttpServlet{
 		req.setAttribute("categories1", service.selectCategory1());
 		req.setAttribute("categories2", service.selectCategory2());
 		
+		String cate1 =req.getParameter("cate1");
+		String cate2 = req.getParameter("cate2");
+		
+		// nav 카테고리 
+		req.setAttribute("cate1", cate1);
+		req.setAttribute("cate2", cate2);
+		
+		
+		
 		// 상품 출력
 		String prodNo = req.getParameter("prodNo");
 		ProductVO vo = service.selectProduct(prodNo);

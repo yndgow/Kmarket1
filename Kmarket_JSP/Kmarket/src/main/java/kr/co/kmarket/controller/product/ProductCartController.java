@@ -22,7 +22,7 @@ public class ProductCartController extends HttpServlet{
 		// aside 공통 
 		req.setAttribute("categories1", service.selectCategory1());
 		req.setAttribute("categories2", service.selectCategory2());
-		req.setAttribute("carts", service.selectCart(req.getParameter("uid")));
+		req.setAttribute("carts", service.selectCarts(req.getParameter("uid")));
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/product/cart.jsp");
 		dispatcher.forward(req, resp);
@@ -43,5 +43,5 @@ public class ProductCartController extends HttpServlet{
 		service.jsonObj("result", result, resp);
 		
 	}
-
+	
 }

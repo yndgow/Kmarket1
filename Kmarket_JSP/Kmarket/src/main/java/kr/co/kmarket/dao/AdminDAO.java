@@ -111,7 +111,7 @@ public class AdminDAO extends DBHelper {
 	// admin 카테고리 리스트 출력 	
 
 	public List<ProductCate1VO> selectCategory1ByAdmin() {
-		logger.info("insertProductByAdmin...");
+		logger.info("selectCategory1ByAdmin...");
 		List<ProductCate1VO> cates = new ArrayList<>();
 		
 		try {
@@ -135,7 +135,7 @@ public class AdminDAO extends DBHelper {
 
 	// admin 카테고리2 리스트 출력 	
 	public List<ProductCate2VO> selectCategory2ByAdmin(String cate2) {
-		logger.info("insertProductByAdmin2...");
+		logger.info("selectCategory2ByAdmin...");
 		List<ProductCate2VO> cates = new ArrayList<>();
 		
 		try {

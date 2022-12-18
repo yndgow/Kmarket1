@@ -68,7 +68,7 @@
 				</c:otherwise>
             </c:choose>
            
-            <a href=""><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>&nbsp;장바구니</a>
+            <a href="/Kmarket/product/cart.do?uid=${sessUser.uid}"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>&nbsp;장바구니</a>
           </div>
         </div>
         <div class="logo">

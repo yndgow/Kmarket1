@@ -3,7 +3,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="./_header.jsp"/>
-
+       <section>
+        	<nav>
+          		<h1>상품보기</h1>
+		          <c:forEach var="cates1" items="${categories1}">
+		          	<c:if test="${cate1 eq cates1.cate1}">
+		          		<c:set value="${cates1.c1Name}" var="c1"/>
+		          		<c:forEach var="cates2" items="${categories2}">
+		          			<c:if test="${cates1.cate1 eq cates2.cate1 && cate2 eq cates2.cate2}">
+		          				<c:set value="${cates2.c2Name}" var="c2"/>
+		          			</c:if>
+		          		</c:forEach>
+		          	</c:if>	
+		          </c:forEach>
+				<p>HOME > ${c1} > ${c2} </p>
+	        </nav>
+        </section>	          	
         <!-- section view 시작 -->
           <section class="view">
           <!-- 개별 파트 시작 -->

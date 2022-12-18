@@ -24,6 +24,7 @@ public class ProductListController extends HttpServlet{
 		req.setAttribute("categories1", service.selectCategory1());
 		req.setAttribute("categories2", service.selectCategory2());
 		
+		// nav 카테고리
 		String cate1 =req.getParameter("cate1");
 		String cate2 = req.getParameter("cate2");
 		String listSort = req.getParameter("listSort");

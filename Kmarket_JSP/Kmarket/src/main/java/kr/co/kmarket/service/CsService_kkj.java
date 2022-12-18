@@ -31,10 +31,10 @@ public enum CsService_kkj {
 	}
 	
 	//cs list 출력 홍민준
-	public List<CsQnaVO> selectQnaArticles(){
-		return dao.selectQnaArticles();
-		
-	}
+//	public List<CsQnaVO> selectQnaArticles(){
+//		return dao.selectQnaArticles();
+//		
+//	}
 	//cs view 출력
 	public CsQnaVO selectQnaArticle(String qnaNo) {
 		return dao.selectQnaArticle(qnaNo);

@@ -68,6 +68,7 @@ public class ProductDAO extends DBHelper {
 				vo.setOrigin(rs.getString(25));
 				vo.setIp(rs.getString(26));
 				vo.setRdate(rs.getString(27));
+				vo.setDiscountPrice(rs.getInt(33));
 				products.add(vo);
 			}
 			close();
@@ -263,16 +264,16 @@ public class ProductDAO extends DBHelper {
 	}
 	
 	// 장바구니 출력
-	public ProductCartVO selectProductCart(String uid) {
-		logger.info("selectProductCart");
-		ProductCartVO vo = null;
+	public List<ProductCartVO> selectProductCarts(String uid) {
+		logger.info("selectProductCarts");
+		List<ProductCartVO> carts = new ArrayList<>();
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.SELECT_PRODUCTCART);
+			psmt = conn.prepareStatement(Sql_kjh.SELECT_PRODUCTCARTS);
 			psmt.setString(1, uid);
 			rs = psmt.executeQuery();
-			if(rs.next()) {
-				vo = new ProductCartVO();
+			while(rs.next()) {
+				ProductCartVO vo = new ProductCartVO();
 				vo.setCartNo(rs.getInt(1));
 				vo.setUid(rs.getString(2));
 				vo.setProdNo(rs.getInt(3));
@@ -283,19 +284,72 @@ public class ProductDAO extends DBHelper {
 				vo.setDelivery(rs.getInt(8));
 				vo.setTotal(rs.getInt(9));
 				vo.setRdate(rs.getString(10));
+				vo.setThumb1(rs.getString(11));
+				vo.setDescript(rs.getString(12));
+				vo.setProdName(rs.getString(13));
+				carts.add(vo);
 			}
 			close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		logger.debug("vo : " + vo);
-		return vo;
+		logger.debug("carts : " + carts);
+		return carts;
 	}
 	
+	// 장바구니 상품 존재여부
+	public int selectProductCart(String uid, int prodNo) {
+		logger.info("selectProductCart");
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.SELECT_PRODUCTCART);
+			psmt.setString(1, uid);
+			psmt.setInt(2, prodNo);
+			rs = psmt.executeQuery();
+			if(rs.next()) result = rs.getInt(1);
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
 	
+	// 장바구니 이미 있으면 수량 증가 
+	public int updateProductCartCount(String uid, int prodNo) {
+		logger.info("updateProductCartCount");
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.UPDATE_PRODUCTCART_COUNT);
+			psmt.setString(1, uid);
+			psmt.setInt(2, prodNo);
+			result = psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
 	
-	
-	
+	// 장바구니 체크 삭제
+	public int deleteProductCart(String uid, String sql) {
+		int result = 0;
+		logger.info("deleteProductCart");
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.DELTE_PRODUCTCART + sql);
+			psmt.setString(1, uid);
+			result = psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
 	
 	
 	

@@ -4,19 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <title>케이마켓 고객센터</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/Kmarket/css/cs/style.css">
     <style>
       
     </style>
 </head>
 <body>
     <div id="wrapper">
-        <header>
+       <header>
             <div class="top">
                 <div>
                     <p>
-                        <a href="#">로그인</a>
-                        <a href="#">회원가입</a>
+                        <a href="/Kmarket/member/login.do">로그인</a>
+                        <a href="/Kmarket/member/register.do">회원가입</a>
                         <a href="#">마이페이지</a>
                         <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>장바구니</a>
                     </p>
@@ -24,8 +24,8 @@
             </div>
             <div class="logo">
                 <div>
-                    <a href="../index.html">
-                        <img src="../images/logo.png" alt="로고">
+                    <a href="/Kmarket/index.do">
+                        <img src="/Kmarket/img/cs/logo.png" alt="로고">
                         고객센터
                     </a>
                 </div>
@@ -205,7 +205,7 @@
           <li><a href="#">전자금융거래약관</a></li>
         </ul>
         <div>
-          <p><img src="../images/footer_logo.png" alt="로고" /></p>
+          <p><img src="/Kmarket/img/cs/footer_logo.png" alt="로고" /></p>
           <p>
             <strong>(주)KMARKET</strong><br />
             부산시 강남구 테헤란로 152 (역삼동 강남파이낸스센터)<br />

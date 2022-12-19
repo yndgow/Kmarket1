@@ -13,8 +13,8 @@
             <div class="top">
                 <div>
                     <p>
-                        <a href="#">로그인</a>
-                        <a href="#">회원가입</a>
+                        <a href="/Kmarket/member/login.do">로그인</a>
+                        <a href="/Kmarket/member/register.do">회원가입</a>
                         <a href="#">마이페이지</a>
                         <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>장바구니</a>
                     </p>
@@ -22,8 +22,8 @@
             </div>
             <div class="logo">
                 <div>
-                    <a href="/Kmarket/index.do">
-                        <img src="../images/logo.png" alt="로고">
+                    <a href="/Kmarket/cs/index.do">
+                        <img src="/Kmarket/img/cs/logo.png" alt="로고">
                         고객센터
                     </a>
                 </div>
@@ -40,69 +40,52 @@
                     <aside>
                         <h2>공지사항</h2>
                         <ul>
-                            <li class="on"><a href="/Kmarket/cs/notice/list.do?kind=A">전체</a></li>
-                            <li><a href="/Kmarket/cs/notice/list.do?kind=C">고객서비스</a></li>
-                            <li><a href="/Kmarket/cs/notice/list.do?kind=S">안전거래</a></li>
-                            <li><a href="/Kmarket/cs/notice/list.do?kind=D">위해상품</a></li>
-                            <li><a href="/Kmarket/cs/notice/list.do?kind=E">이벤트당첨</a></li>
+                            <li class="${cate1 eq null?'on':'off'}"><a href="/Kmarket/cs/notice/list.do?cate=">전체</a></li>
+                            <li class="${cate1 eq 1?'on':'off'}"><a href="/Kmarket/cs/notice/list.do?cate1=1">고객서비스</a></li>
+                            <li class="${cate1 eq 2?'on':'off'}"><a href="/Kmarket/cs/notice/list.do?cate1=2">안전거래</a></li>
+                            <li class="${cate1 eq 3?'on':'off'}"><a href="/Kmarket/cs/notice/list.do?cate1=3">위해상품</a></li>
+                            <li class="${cate1 eq 4?'on':'off'}"><a href="/Kmarket/cs/notice/list.do?cate1=4">이벤트당첨</a></li>
                         </ul>
                     </aside>
                     <article>
                         <nav>
                             <h1>전체</h1>
-                            <h2>공지사항 전체 내용입니다.</h2>
+                            <h2>공지사항 전체 내용 입니다.</h2>
                         </nav>
-                         <c:forEach var="notice" items="${notices}">
+                        
+                        
+                         
                         <table>
-                            <tr>
-                                <td><a href="/Kmarket/cs/notice/view.do?no=${notice.noticeNo }">${notice.title}</a></td>
-                                <td>${notice.rdate.substring(2, 10)}</td>
-                            </tr>
-                            <tr>
-                                <td><a href="./view.html">[안내] 해외결제 사칭 문자 주의</a></td>
-                                <td>2022.12.05</td>
-                            </tr>
-                            <tr>
-                                <td><a href="./view.html">[안내] 해외결제 사칭 문자 주의</a></td>
-                                <td>2022.12.05</td>
-                            </tr>
-                            <tr>
-                                <td><a href="./view.html">[안내] 해외결제 사칭 문자 주의</a></td>
-                                <td>2022.12.05</td>
-                            </tr>
-                            <tr>
-                                <td><a href="./view.html">[안내] 해외결제 사칭 문자 주의</a></td>
-                                <td>2022.12.05</td>
-                            </tr>
-                            <tr>
-                                <td><a href="./view.html">[안내] 해외결제 사칭 문자 주의</a></td>
-                                <td>2022.12.05</td>
-                            </tr>
-                            <tr>
-                                <td><a href="./view.html">[안내] 해외결제 사칭 문자 주의</a></td>
-                                <td>2022.12.05</td>
-                            </tr>
-                            <tr>
-                                <td><a href="./view.html">[안내] 해외결제 사칭 문자 주의</a></td>
-                                <td>2022.12.05</td>
-                            </tr>
-                            <tr>
-                                <td><a href="./view.html">[안내] 해외결제 사칭 문자 주의</a></td>
-                                <td>2022.12.05</td>
-                            </tr>
-                            <tr>
-                                <td><a href="./view.html">[안내] 해외결제 사칭 문자 주의</a></td>
-                                <td>2022.12.05</td>
-                            </tr>
+                        	
+                        	<c:forEach var="article" items="${articles}">
+	                            <tr>
+	                                <td><a href="/Kmarket/cs/notice/view.do?no=${article.no }&cate1=${cate1}">[${article.c2Name }]${article.title}</a></td>
+	                                <td>${article.rdate.substring(2, 10)}</td>
+	                            </tr>
+                        	</c:forEach>
+                        	
+                        	
+                        	
+                        	
+                        	
                         </table>
-                        </c:forEach>
-                        <div class="page">
-                            <a href="#" class="prev">이전</a>
-                            <a href="#" class="num on">1</a>
-                            <a href="#" class="num">2</a>
-                            <a href="#" class="num">3</a>
-                            <a href="#" class="next">다음</a>
-                        </div>
+                      
+                        
+                        
+                        
+                        
+                        
+                         <div class="page">
+				        	<c:if test="${pageGroupStart > 1}">
+				            <a href="/Kmarket/cs/notice/list.do?pg=${pageGroupStart - 1}" class="prev">이전</a>
+				            </c:if>
+				            <c:forEach var="num" begin="${pageGroupStart}" end="${pageGroupEnd}">
+				            <a href="/Kmarket/cs/notice/list.do?pg=${num}" class="num ${num == currentPage ? 'current':'off'}">${num}</a>
+				            </c:forEach>
+				            <c:if test="${pageGroupEnd < lastPageNum}">
+				            <a href="/Kmarket/cs/notice/list.do?pg=${pageGroupEnd + 1}" class="next">다음</a>
+				            </c:if>
+				        </div>
                     </article>
                 </section>
             </div>
@@ -115,7 +98,7 @@
               <li><a href="#">전자금융거래약관</a></li>
             </ul>
             <div>
-              <p><img src="../images/footer_logo.png" alt="로고" /></p>
+              <p><img src="/Kmarket/img/cs/footer_logo.png" alt="로고" /></p>
               <p>
                 <strong>(주)KMARKET</strong><br />
                 부산시 강남구 테헤란로 152 (역삼동 강남파이낸스센터)<br />

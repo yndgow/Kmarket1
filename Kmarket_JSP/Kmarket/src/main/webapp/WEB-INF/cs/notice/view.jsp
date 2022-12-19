@@ -4,19 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <title>케이마켓 고객센터</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/Kmarket/css/cs/style.css">
     <style>
        
     </style>
 </head>
 <body>
     <div id="wrapper">
-        <header>
+         <header>
             <div class="top">
                 <div>
                     <p>
-                        <a href="#">로그인</a>
-                        <a href="#">회원가입</a>
+                        <a href="/Kmarket/member/login.do">로그인</a>
+                        <a href="/Kmarket/member/register.do">회원가입</a>
                         <a href="#">마이페이지</a>
                         <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>장바구니</a>
                     </p>
@@ -24,8 +24,8 @@
             </div>
             <div class="logo">
                 <div>
-                    <a href="../index.html">
-                        <img src="../images/logo.png" alt="로고">
+                    <a href="/Kmarket/index.do">
+                        <img src="/Kmarket/img/cs/logo.png" alt="로고">
                         고객센터
                     </a>
                 </div>
@@ -42,39 +42,24 @@
                     <aside>
                         <h2>공지사항</h2>
                         <ul>
-                            <li class="on"><a href="#">전체</a></li>
-                            <li><a href="#">고객서비스</a></li>
-                            <li><a href="#">안전거래</a></li>
-                            <li><a href="#">위해상품</a></li>
-                            <li><a href="#">이벤트당첨</a></li>
+                            <li class="${cate1 eq null?'on':'off'}"><a href="/Kmarket/cs/notice/list.do?cate1=">전체</a></li>
+                            <li class="${cate1 eq 1?'on':'off'}"><a href="/Kmarket/cs/notice/list.do?cate1=1">고객서비스</a></li>
+                            <li class="${cate1 eq 2?'on':'off'}"><a href="/Kmarket/cs/notice/list.do?cate1=2">안전거래</a></li>
+                            <li class="${cate1 eq 3?'on':'off'}"><a href="/Kmarket/cs/notice/list.do?cate1=3">위해상품</a></li>
+                            <li class="${cate1 eq 4?'on':'off'}"><a href="/Kmarket/cs/notice/list.do?cate1=4">이벤트당첨</a></li>
                         </ul>
                     </aside>
                    <article>
                         <nav>
-                            <h2 class="title">[안내] 해외결제 사칭 문자 주의</h2>
-                            <span class="date">2022.12.06</span>
+                            <h4 class="title">[${article.c2Name }] ${article.title }</h4>
+                            <span class="date">${article.rdate.substring(0, 10)}</span>
                         </nav>
                         <div class="content">
                             <p>
-                                인녕하세요. G마켓입니다.<br>
-                                G마켓 해외직구를 사칭하는 피싱 문자가 최근 다시 신고되고 있어 주의 안내드립니다.<br>
-                                아래와 같이 G마켓 해외직구 승인 결제 피싱 문자 또는 발신번호 006, 002 등으로 시작하는 피싱 문자를 수신하신 고객님<br>
-                                꼐서는 통화 또는 문자 내 기재된 번호/링크 등을 클릭하지 않도록 주의하여 주시기 바랍니다.
-                                <br>
-                                <br>
-                            </p>
-                            <p>
-                                ※ 피싱 관련 피해신고
-                                <br>
-                                <br>
-                                ▶ 경찰청 사이버수사국 (국번없이)182 : https://cyberbureau.police.go.kr
-                                <br>
-                                ▶ KISA 인터넷침해대응센터 (국번없이)118 : http://www.krcert.or.kr
-                                <br>
-                                감사합니다.
+                               ${article.content }
                             </p>
                         </div>
-                        <a href="./list.html" class="btnList">목록보기</a>
+                        <a href="/Kmarket/cs/notice/list.do?cate1=${cate1}" class="btnList">목록</a>
                    </article>
                 </section>
             </div>
@@ -87,7 +72,7 @@
               <li><a href="#">전자금융거래약관</a></li>
             </ul>
             <div>
-              <p><img src="../images/footer_logo.png" alt="로고" /></p>
+              <p><img src="/Kmarket/img/cs/footer_logo.png" alt="로고" /></p>
               <p>
                 <strong>(주)KMARKET</strong><br />
                 부산시 강남구 테헤란로 152 (역삼동 강남파이낸스센터)<br />

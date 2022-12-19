@@ -290,7 +290,26 @@ public class AdminDAO extends DBHelper {
 		logger.debug("result :" + products);
 		return products;
 	}
-
+	
+	// 선택삭제
+	public int deleteAdmin(String prodNo) {
+		int result1 = 0;
+		
+		try {
+			logger.info("deleteAdmin...");
+			conn = getConnection();
+			
+			psmt = conn.prepareStatement(Sql_Kbs.DELETE_ADMIN);
+			psmt.setString(1, prodNo);
+			result1 = psmt.executeUpdate();
+			
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result1 : " + result1);
+		return result1;
+	}
 	
 	
 	

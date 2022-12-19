@@ -1,6 +1,61 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="./_header.jsp"/>
+<script>
+	$(()=>{
+		//체크박스 전체 선택$해제
+		$('#ck_all').click(function(){
+			let checked = $(this).is(':checked');
+	         if(checked){
+	            $('input:checkbox[name=checklist]').prop('checked',true); 
+	        }else{
+	            $('input:checkbox[name=checklist]').prop('checked',false); 
+	        }
+	    });
+		
+		// 개별 체크박스 해제시 전체 체크박스 표시 해제
+		$('input:checkbox[name=checklist]').click(function(){
+			let checked = $('#ck_all').is(':checked');
+			if (checked) $('input:checkbox[name=all]').prop('checked', false);
+		});	   
+		
+		// 선택삭제
+		  $('input[name=del]').click(function () {
+		    if ($('input[name=checklist]:checked').length == 0) {
+		      alert('선택된 상품이 없습니다.');
+		      return false;
+		    }
+		    let prodNo = [];
+
+		    $('input[name=checklist]:checked').each(function (e) {
+		      prodNo.push($(this).val());
+		    });
+
+		    if (confirm('선택된 상품을 삭제하시겠습니까?')) {
+		      let jsonData = {
+		        prodNo: prodNo
+		      };
+		      $.ajax({
+		        type: 'post',
+		        url: '/Kmarket/admin/delete.do',
+		        data: jsonData,
+		        dataType: 'json',
+		        success: function (data) {
+		          if (data.result > 0) {
+		            $('input[name=checklist]:checked').parents('tr').remove();
+		            alert('삭제 성공');
+		            if ($('input[name=checklist]').length == 0) {
+		              $('input:checkbox[name=all]').prop('checked', false);
+		            }
+		          }else {
+		        	  alert('실패');
+		          }
+		        }
+		      });
+		    }
+		  });
+	});
+</script>
             
             <section id="admin-product-list">
                 <nav>
@@ -25,7 +80,7 @@
 					<input type="hidden" id="prodNo">
                     <table>
                         <tr>
-                            <th><input type="checkbox" name="all"></th>
+                            <th><input type="checkbox" name="all" id="ck_all"></th>
                             <th>이미지</th>
                             <th>상품코드</th>
                             <th>상품명</th>
@@ -39,7 +94,7 @@
                         </tr>
                         <c:forEach items="${products}" var="vo">
                         <tr>
-                            <td><input type="checkbox" name="상품코드"></td>
+                            <td><input type="checkbox" name="checklist" value="${vo.prodNo}"></td>
                             <td><img src="http://13.125.215.198:8080/file/${vo.thumb1}" class="thumb"></td>
                             <td>${vo.prodNo}</td>
                             <td>${vo.prodName}</td>
@@ -57,8 +112,8 @@
 						</c:forEach>
 						
                     </table>
-					
-                    <input type="button" value="선택삭제">
+                    
+                    <input type="button" name="del" class="selectDelete_btn" value="선택삭제">
                     
                      <div class="paging">
                      	<c:if test="${pageGroupStart > 1}">

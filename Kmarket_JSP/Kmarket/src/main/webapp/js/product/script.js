@@ -26,7 +26,7 @@ $(() => {
 
         $.ajax({
           type: 'post',
-          url: '/Kmarket/product/cart.do',
+          url: '/Kmarket/product/view.do',
           data: jsonData,
           dataType: 'json',
           success: function (data) {
@@ -92,21 +92,17 @@ $(() => {
       alert('선택된 상품이 없습니다.');
       return false;
     }
-    let prodNo = [];
 
+    let cartNo = [];
     $('input[name=cartProduct]:checked').each(function (e) {
-      prodNo.push($(this).val());
+      cartNo.push($(this).val());
     });
 
     if (confirm('선택된 상품을 삭제하시겠습니까?')) {
-      let jsonData = {
-        uid: $('input[name=uid]').val(),
-        prodNo: prodNo,
-      };
       $.ajax({
         type: 'post',
         url: '/Kmarket/product/cartDelete.do',
-        data: jsonData,
+        data: { cartNo: cartNo },
         dataType: 'json',
         success: function (data) {
           if (data.result > 0) {
@@ -125,9 +121,49 @@ $(() => {
       });
     }
   });
+
+  // 장바구니에서 오더로 체크한 상품만 보내기
+  $('input[name=cartOrder]').click(function (e) {
+    e.preventDefault();
+    checkedOrder();
+  });
 });
 
-// 함수 모음
+///////////////
+///함수 모음///
+//////////////
+// 장바구니에서 오더로 체크한 상품만 보내기
+function checkedOrder() {
+  console.log('test');
+  // 리스트 생성
+  let list = new Array();
+  $('input[name=cartProduct]:checked').each(function (e) {
+    // 객체 생성
+    let prod = new Object();
+    prod.prodNo = $(this).siblings('input[name=prodNo]').val();
+    prod.count = $(this).parent().siblings('.count').text();
+    prod.price = $(this).parent().siblings('.price').text();
+    prod.discount = $(this).parent().siblings('.discount').text();
+    prod.point = $(this).parent().siblings('.point').text();
+    prod.delivery = $(this).parent().siblings('.delivery').text();
+    prod.total = $(this).parent().siblings('.total').text();
+    list.push(prod);
+  });
+  
+  console.log(JSON.stringify(list));
+  $.ajax({
+    type: 'post',
+    url: '/Kmarket/product/cart.do',
+    tranditional: true,
+    data: JSON.stringify(list),
+    dataType: 'json',
+    success: function (data) {
+      console.log(data);
+    },
+  });
+}
+
+
 // 서브 카테고리 보이기
 function subCategoryShowHide() {
   for (let i = 2; i <= 10; i++) {

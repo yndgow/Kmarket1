@@ -335,13 +335,13 @@ public class ProductDAO extends DBHelper {
 	}
 	
 	// 장바구니 체크 삭제
-	public int deleteProductCart(String uid, String sql) {
+	public int deleteProductCart(String sql) {
 		int result = 0;
 		logger.info("deleteProductCart");
 		try {
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql_kjh.DELTE_PRODUCTCART + sql);
-			psmt.setString(1, uid);
+			
 			result = psmt.executeUpdate();
 			close();
 		} catch (Exception e) {

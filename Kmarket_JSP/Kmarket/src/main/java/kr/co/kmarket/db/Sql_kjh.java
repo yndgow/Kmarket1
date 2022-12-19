@@ -76,7 +76,7 @@ public class Sql_kjh {
 														+ "`total` = `price` * `count` + `delivery` "
 														+ "WHERE `uid` = ? AND `prodNo` = ?";
 	// 장바구니 선택 삭제
-	public static final String DELTE_PRODUCTCART = "DELETE FROM `km_product_cart` WHERE `uid` = ? AND `prodNo` IN (";
+	public static final String DELTE_PRODUCTCART = "DELETE FROM `km_product_cart` WHERE `cartNo` IN (";
 												
 }
 

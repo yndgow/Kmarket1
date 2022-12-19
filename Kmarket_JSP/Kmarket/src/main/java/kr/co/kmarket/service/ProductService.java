@@ -86,16 +86,16 @@ public enum ProductService {
 		return dao.selectProductCarts(uid);
 	}
 	
-	public int deleteProductCart(String uid, String[] prodNo) {
+	public int deleteProductCart(String[] cartNo) {
 		String sql = "";
-		for(int i=0; i<prodNo.length; i++) {
-			sql += prodNo[i];
-			if(i != prodNo.length-1) {
+		for(int i=0; i<cartNo.length; i++) {
+			sql += cartNo[i];
+			if(i != cartNo.length-1) {
 				sql += ", ";
 			}
 		}
 		sql += ")";
-		return dao.deleteProductCart(uid, sql);
+		return dao.deleteProductCart(sql);
 	}
 	
 	

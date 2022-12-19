@@ -11,7 +11,8 @@
             </p>
           </nav>
 
-          <form action="/kmarket/product/order.do" method="post">
+          <form action="/Kmarket/product/cart.do" method="post">
+          
             <table>
               <thead>
                 <tr>
@@ -33,28 +34,33 @@
 				</c:when>
               	<c:otherwise>
               	<c:forEach var="cart" items="${carts}">
-	              <tr>
-	                <td><input type="checkbox" name="cartProduct" value="${cart.prodNo}" ></td>
-	                <td>
-	                  <article>
-	                    <a href="/Kmarket/product/view.do?prodNo=${cart.prodNo}">
-	                      <img src="http://13.125.215.198:8080/file/${cart.thumb1}" alt="장바구니thumb1">
-	                    </a>
-	                    <div>
-	                      <h2>
-	                        <a href="/Kmarket/product/view.do?prodNo=${cart.prodNo}">${cart.prodName}</a>
-	                      </h2>
-	                      <p>${cart.descript}</p>
-	                    </div>
-	                  </article>
-	                </td>
-	                <td class="count">${cart.count}</td>
-	                <td class="price">${cart.price}</td>
-	                <td class="discount">${cart.discount}</td>
-	                <td class="point">${cart.point}</td>
-	                <td class="delivery">${cart.delivery}</td>
-	                <td class="total">${cart.total}</td>
-	              </tr>
+           		
+				 <tr>
+				   <td>
+				   <input type="checkbox" name="cartProduct" value="${cart.cartNo}" >
+				   <input type="hidden" name="prodNo" value="${cart.prodNo}"/>
+				   </td>
+				   <td>
+				     <article>
+				       <a href="/Kmarket/product/view.do?prodNo=${cart.prodNo}">
+				         <img src="http://13.125.215.198:8080/file/${cart.thumb1}" alt="장바구니thumb1">
+				       </a>
+				       <div>
+				         <h2>
+				           <a href="/Kmarket/product/view.do?prodNo=${cart.prodNo}">${cart.prodName}</a>
+				         </h2>
+				         <p>${cart.descript}</p>
+				       </div>
+				     </article>
+				   </td>
+				   <td class="count">${cart.count}</td>
+				   <td class="price">${cart.price}</td>
+				   <td class="discount">${cart.discount}</td>
+				   <td class="point">${cart.point}</td>
+				   <td class="delivery">${cart.delivery}</td>
+				   <td class="total">${cart.total}</td>
+				   
+				 </tr>
 	              </c:forEach>
 	            </c:otherwise>
 			</c:choose>   

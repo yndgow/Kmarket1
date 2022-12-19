@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.kmarket.service.ProductService;
+import kr.co.kmarket.vo.ProductCartVO;
 import kr.co.kmarket.vo.ProductReviewVO;
 import kr.co.kmarket.vo.ProductVO;
 
@@ -76,6 +77,16 @@ public class ProductViewController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		ProductCartVO vo = new ProductCartVO();
+		vo.setUid(req.getParameter("uid"));
+		vo.setProdNo(req.getParameter("prodNo"));
+		vo.setCount(req.getParameter("count"));
+		vo.setPrice(req.getParameter("price"));
+		vo.setDiscount(req.getParameter("discount"));
+		vo.setDelivery(req.getParameter("delivery"));
+		
+		int result = service.insertProductCart(vo);
+		service.jsonObj("result", result, resp);
 	}
 
 }

@@ -77,7 +77,33 @@ public class Sql_kjh {
 														+ "WHERE `uid` = ? AND `prodNo` = ?";
 	// 장바구니 선택 삭제
 	public static final String DELTE_PRODUCTCART = "DELETE FROM `km_product_cart` WHERE `cartNo` IN (";
-												
+	
+	public static final String INSERT_PRODUCTORDER = "INSERT INTO `km_product_order` SET "
+													+ "`ordUid` = ?, "
+													+ "`ordCount` = ?, "
+													+ "`ordPrice` = ?, "
+													+ "`ordDiscount` = ?, "
+													+ "`ordDelivery` = ?, "
+													+ "`savePoint` = ?, "
+													+ "`ordTotPrice` = ?, "
+													+ "`recipName` = ?, "
+													+ "`recipHp` = ?, "
+													+ "`recipZip` = ?, "
+													+ "`recipAddr1` = ?, "
+													+ "`recipAddr2` = ?, "
+													+ "`ordDate` = NOW()";
+	
+	// 주문 페이지 장바구니 부분 출력
+	public static final String SELECT_PRODUCTCART_FOR_ORDER = "SELECT a.*, b.thumb1, b.descript, b.prodName	"
+															+ "FROM `km_product_cart` AS a "
+															+ "JOIN `km_product` AS b "
+															+ "USING (`prodNo`) "
+															+ "WHERE `uid` = 'qwqwqw' "
+															+ "AND `cartNo` IN(";
+	
+	public static final String SELECT_ORDER = "SELECT * FROM `km_product_order` WHERE `ordUid` = ? ORDER BY `ordNo` DESC LIMIT 1";
+	
+	
 }
 
 

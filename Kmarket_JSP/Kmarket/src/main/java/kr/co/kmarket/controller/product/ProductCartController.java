@@ -1,7 +1,6 @@
 package kr.co.kmarket.controller.product;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,12 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.servlet.http.HttpSession;
 
 import kr.co.kmarket.service.ProductService;
-import kr.co.kmarket.vo.ProductOrderItemVO;
+import kr.co.kmarket.vo.MemberVO;
+import kr.co.kmarket.vo.ProductOrderVO;
 
 @WebServlet("/product/cart.do")
 public class ProductCartController extends HttpServlet{
@@ -36,13 +34,45 @@ public class ProductCartController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		// 장바구니에서 주문으로
-
-		String jsonStr = service.getBody(req);
-		ObjectMapper om = new ObjectMapper();
-		List<ProductOrderItemVO> m = om.readValue(jsonStr, new TypeReference<List<ProductOrderItemVO>>(){});
-		
-		for(int i=0; i<m.size(); i++) {
-			System.out.println(m.get(i).getPrice());
+		String cartNo[] = req.getParameterValues("cartProduct");
+		String query = "";
+		for(int i=0; i<cartNo.length; i++) {
+			query += cartNo[i];
+			if(i < cartNo.length-1) {
+				query += "&cartNo=";
+			}
 		}
+		
+		// 세션 가져오기
+		HttpSession sess = req.getSession();
+		MemberVO mem = (MemberVO) sess.getAttribute("sessUser");
+		
+		// product order 객체 생성
+		ProductOrderVO povo = new ProductOrderVO();
+		povo.setOrdUid(mem.getUid());
+		povo.setOrdCount(req.getParameter("cartCount"));
+		povo.setOrdPrice(req.getParameter("cartPrice"));
+		povo.setOrdDiscount(req.getParameter("cartDiscount"));
+		povo.setOrdDelivery(req.getParameter("cartDelivery"));
+		povo.setSavePoint(req.getParameter("cartPoint"));
+		povo.setOrdTotPrice(req.getParameter("cartTotal"));
+		
+		povo.setRecipName(mem.getName());
+		povo.setRecipHp(mem.getHp());
+		povo.setRecipZip(mem.getZip());
+		povo.setRecipAddr1(mem.getAddr1());
+		povo.setRecipAddr2(mem.getAddr2());
+		
+		service.insertProductOrder(povo);
+		
+		
+		resp.sendRedirect("/Kmarket/product/order.do?uid="+mem.getUid()+"&cartNo="+query);
+		
+		
+		//JSON 문자열을 리스트로 받을때(Jackson)
+//		String jsonStr = service.getBody(req);
+//		ObjectMapper om = new ObjectMapper();
+//		List<ProductOrderItemVO> m = om.readValue(jsonStr, new TypeReference<List<ProductOrderItemVO>>(){});
+		
 	}
 }

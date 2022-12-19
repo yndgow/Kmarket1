@@ -11,7 +11,7 @@
             </p>
           </nav>
 
-          <form action="/Kmarket/product/cart.do" method="post">
+          <form action="/Kmarket/product/cart.do" method="post" id="cartForm">
           
             <table>
               <thead>
@@ -38,7 +38,7 @@
 				 <tr>
 				   <td>
 				   <input type="checkbox" name="cartProduct" value="${cart.cartNo}" >
-				   <input type="hidden" name="prodNo" value="${cart.prodNo}"/>
+				   <%-- <input type="hidden" name="prodNo" value="${cart.prodNo}"/> --%>
 				   </td>
 				   <td>
 				     <article>
@@ -71,29 +71,30 @@
             <input type="button" name="del" value="선택삭제">
             <div class="total">
               <h2>전체합계</h2>
-              <table border="0">
+              <table>
                 <tr>
-                  <td>상품수</td>
+                  <td>상품수<input type="hidden" name="cartCount" value=""></td>
                   <td id="cartCount">0</td>
                 </tr>
                 <tr>
-                  <td>상품금액</td>
+                  <td>상품금액<input type="hidden" name="cartPrice" value=""></td>
                   <td id="cartPrice">0</td>
+                  
                 </tr>
                 <tr>
-                  <td>할인금액</td>
+                  <td>할인금액<input type="hidden" name="cartDiscount" value=""></td>
                   <td id="cartDiscount">0</td>
                 </tr>
                 <tr>
-                  <td>배송비</td>
+                  <td>배송비<input type="hidden" name="cartDelivery" value=""></td>
                   <td id="cartDelivery">0</td>
                 </tr>              
                 <tr>
-                  <td>포인트</td>
+                  <td>포인트<input type="hidden" name="cartPoint" value=""></td>
                   <td id="cartPoint">0</td>
                 </tr>
                 <tr>
-                  <td>전체주문금액</td>
+                  <td>전체주문금액<input type="hidden" name="cartTotal" value=""></td>
                   <td id="cartTotal">0</td>
                 </tr>
               </table>

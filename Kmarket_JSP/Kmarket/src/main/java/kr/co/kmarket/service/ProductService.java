@@ -16,6 +16,7 @@ import kr.co.kmarket.dao.ProductDAO;
 import kr.co.kmarket.vo.ProductCartVO;
 import kr.co.kmarket.vo.ProductCate1VO;
 import kr.co.kmarket.vo.ProductCate2VO;
+import kr.co.kmarket.vo.ProductOrderVO;
 import kr.co.kmarket.vo.ProductReviewVO;
 import kr.co.kmarket.vo.ProductVO;
 
@@ -86,6 +87,7 @@ public enum ProductService {
 		return dao.selectProductCarts(uid);
 	}
 	
+	// 장바구니 삭제
 	public int deleteProductCart(String[] cartNo) {
 		String sql = "";
 		for(int i=0; i<cartNo.length; i++) {
@@ -98,6 +100,34 @@ public enum ProductService {
 		return dao.deleteProductCart(sql);
 	}
 	
+	// 상품 주문 입력
+	public int insertProductOrder(ProductOrderVO vo) {
+		return dao.insertProductOrder(vo);
+	}
+	
+	// 주문 페이지 장바구니 부분 출력
+	public List<ProductCartVO> selectProductCartForOrder(String[] cartNo){
+		String sql = "";
+		for(int i=0; i<cartNo.length; i++) {
+			sql += cartNo[i];
+			if(i != cartNo.length-1) {
+				sql += ", ";
+			}
+		}
+		sql += ")";
+		
+		return dao.selectProductCartForOrder(sql);
+	}
+	
+	// 주문 페이지 전체 합계 출력
+	public ProductOrderVO selectOrder(String uid) {
+		return dao.selectOrder(uid);
+	}
+	
+	
+	
+
+
 	
 	
 	

@@ -123,15 +123,15 @@ $(() => {
   });
 
   // 장바구니에서 오더로 체크한 상품만 보내기
-  $('input[name=cartOrder]').click(function (e) {
-    e.preventDefault();
-    checkedOrder();
-  });
+  /*$('input[name=cartOrder]').click(function (e) {
+	e.preventDefault();
+  });*/
 });
 
 ///////////////
 ///함수 모음///
 //////////////
+
 // 장바구니에서 오더로 체크한 상품만 보내기
 function checkedOrder() {
   console.log('test');
@@ -149,13 +149,14 @@ function checkedOrder() {
     prod.total = $(this).parent().siblings('.total').text();
     list.push(prod);
   });
+  //JSON.stringify(list);
+	console.log($('#cartForm').serialize());
   
-  console.log(JSON.stringify(list));
   $.ajax({
     type: 'post',
     url: '/Kmarket/product/cart.do',
-    tranditional: true,
-    data: JSON.stringify(list),
+    //tranditional: true,
+    data: $('#cartForm').serialize(),
     dataType: 'json',
     success: function (data) {
       console.log(data);
@@ -255,9 +256,18 @@ function cartCheckTotal() {
     totalPoint += Number($(this).parent().siblings('.point').text());
     totalSum += Number($(this).parent().siblings('.total').text());
   });
+  // 보여주는 데이터
   $('#cartPrice').text(totalPrice);
   $('#cartDiscount').text(totalDiscount);
   $('#cartDelivery').text(totalDelivery);
   $('#cartPoint').text(totalPoint);
   $('#cartTotal').text(totalSum);
+  // form 전송을 위한 데이터 입력
+  $('input[name=cartCount]').val(cartCheck.length);
+  $('input[name=cartPrice]').val(totalPrice);
+  $('input[name=cartDiscount]').val(totalDiscount);
+  $('input[name=cartDelivery]').val(totalDelivery);
+  $('input[name=cartPoint]').val(totalPoint);
+  $('input[name=cartTotal]').val(totalSum);
+  
 }

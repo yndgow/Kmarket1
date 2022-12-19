@@ -48,4 +48,12 @@ public class Sql_kkj {
 	public static final String SELECT_COUNT_UID  = "select count(`uid`) from `km_member` where `uid`=?";
 	
 	
+	
+	public static final String SELECT_NOTICE_ARTICLES = "SELECT * FROM `km_cs_notice`"
+													+ "ORDER BY `no` DESC "
+													+ "LIMIT ?, 10";
+	
+	public static final String SELECT_NOTICE_ARTICLE = "SELECT * FROM `km_cs_notice` where `no`=?";
+	
+	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(`no`) FROM `km_cs_notice`";
 }

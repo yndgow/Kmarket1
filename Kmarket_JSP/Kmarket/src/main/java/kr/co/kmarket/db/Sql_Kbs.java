@@ -12,4 +12,5 @@ public class Sql_Kbs {
 	
 	public static final String SELECT_PRODUCTS = "SELECT * FROM `km_product` WHERE `seller`=? LIMIT ?, 10";
 	public static final String SELECT_ADMIN_SEARCH_KEYWORDS = "SELECT * FROM `km_product` WHERE `prodName` LIKE ? LIMIT 0,10";
+	public static final String DELETE_ADMIN = "DELETE FROM `km_product` WHERE `prodNo`=?";
 }

@@ -416,22 +416,29 @@ public class ProductDAO extends DBHelper {
 	}
 	
 	// product order item 입력
-	public int insertProductOrderItem(List<ProductOrderVO> vo) {
-		logger.info("insertProductOrder");
+	public int insertProductOrderItem(List<ProductCartVO> vo) {
 		int result = 0;
-		try {
-			conn = getConnection();
-			psmt = conn.prepareStatement("");
-			
-			
-			
-			
-			
-			result = psmt.executeUpdate();
-			close();
-		} catch (Exception e) {
-			logger.error(e.getMessage());
+		for(int i=0; i<vo.size(); i++) {
+			logger.info("insertProductOrder "+i);
+			try {
+				conn = getConnection();
+				psmt = conn.prepareStatement(Sql_kjh.INSERT_PRODUCTORDERITEM);
+				psmt.setString(1, vo.get(i).getUid());
+				psmt.setInt(2, vo.get(i).getProdNo());
+				psmt.setInt(3, vo.get(i).getCount());
+				psmt.setInt(4, vo.get(i).getPrice());
+				psmt.setInt(5, vo.get(i).getDiscount());
+				psmt.setInt(6, vo.get(i).getPoint());
+				psmt.setInt(7, vo.get(i).getDelivery());
+				psmt.setInt(8, vo.get(i).getTotal());
+				
+				result += psmt.executeUpdate();
+				close();
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+			}
 		}
+		
 		logger.debug("result : " + result);
 		return result;
 	}

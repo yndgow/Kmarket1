@@ -101,9 +101,19 @@ public class Sql_kjh {
 															+ "WHERE `uid` = 'qwqwqw' "
 															+ "AND `cartNo` IN(";
 	
+	// 최신 주문 출력
 	public static final String SELECT_ORDER = "SELECT * FROM `km_product_order` WHERE `ordUid` = ? ORDER BY `ordNo` DESC LIMIT 1";
 	
-	
+	// 주문 상품 입력
+	public static final String INSERT_PRODUCTORDERITEM ="INSERT INTO `km_product_order_item` SET "
+			+ "`ordNo` = (SELECT MAX(`ordNo`) FROM `km_product_order` WHERE `ordUid` = ?), "
+			+ "`prodNo` = ?, "
+			+ "`count` = ?, "
+			+ "`price` = ?, "
+			+ "`discount` = ?, "
+			+ "`point` = ?, "
+			+ "`delivery` = ?, "
+			+ "`total` = ?";
 }
 
 

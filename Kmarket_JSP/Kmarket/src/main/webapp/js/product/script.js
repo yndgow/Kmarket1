@@ -15,6 +15,8 @@ $(() => {
     if (loginCheck()) {
       let btnClassName = $(this).attr('class');
       if (btnClassName == 'btnCart') {
+		
+	
         let jsonData = {
           uid: $('.sessUser_uid').text(),
           prodNo: $('input[name=prodNo').val(),
@@ -36,10 +38,56 @@ $(() => {
           },
         });
       } else if (btnClassName == 'btnBuy') {
-        location.href = '/Kmarket/product/order.do?prodNo=' + $('.prodNo').text();
+		let uid = $('.sessUser_uid').text();
+		let prodNo = $('input[name=prodNo').val();
+		let price = $('input[name=ori_price]').val();
+		let count = $('input[name=num]').val();
+		let discount = $('input[name=discount]').val();
+		let delivery = Number($('input[name=delivery]').val());
+		let point = Math.ceil(price * (100-discount)/100 * count * 0.01);
+		let total = Math.ceil(price * (100-discount)/100 * count) + delivery;
+		let jsonData = {
+          uid: uid,
+          prodNo: prodNo,
+          cartCount: count,
+          cartPrice: price,
+          cartDiscount: discount,
+          cartDelivery: delivery,
+          cartPoint: point,
+          cartTotal: total,
+        };
+	
+		$.ajax({
+          type: 'post',
+          url: '/Kmarket/product/cart.do',
+          data: jsonData,
+          dataType: 'json',
+          success: function (data) {
+            if (data.result > 0) {
+              location.href = `/Kmarket/product/order.do?uid=${uid}&prodNo=${prodNo}&count=${count}`;
+            }
+          },
+        });
       }
     }
   });
+  
+  // 장바구니 주문하기 버튼 이벤트
+  $('input[name=cartOrder]').click(function(e){
+	e.preventDefault();
+	if($('input[name=cartProduct]').is(':checked')==false){
+		alert('상품이 선택되지 않았습니다');
+		return false;
+	}else{
+		if(confirm('주문하시겠습니까?')){
+			$('#cartForm').submit();	
+		}else{
+			return false;
+		}
+	}
+  })
+	
+
 
   // 상품평 페이징 ajax
   $('.paging a').on('click', function (e) {
@@ -94,7 +142,7 @@ $(() => {
     }
 
     let cartNo = [];
-    $('input[name=cartProduct]:checked').each(function (e) {
+    $('input[name=cartProduct]:checked').each(function () {
       cartNo.push($(this).val());
     });
 
@@ -161,23 +209,26 @@ $(() => {
 			let total = Number($('input[name=ordTotPrice]').val());
 			if(sendPoint>total){
 				$('#aTotalPrice').text(0);
+				$('input[name=ordTotPrice]').val(0);
 				$('#aUsedPoint').text(total);
 				$('input[name=usedPoint]').val(total);
 				resultPoint = point - total;
 			}else{
 				$('#aTotalPrice').text(total-sendPoint);
+				$('input[name=ordTotPrice]').val(total-sendPoint);
 				resultPoint = point - sendPoint;
 			}
-			
 			$('#cur_point').text('현재 포인트 : '+resultPoint+'점');
 			alert('포인트가 적용되었습니다.');			
 		}
-	
   	})
   }
   
-  
-  
+  // 주문 입력 유효성 검증
+  $('#btnPayment').click(function(e){
+	e.preventDefault();
+	orderValidation();
+  });
 });
 
 ///////////////
@@ -189,7 +240,7 @@ function checkedOrder() {
   console.log('test');
   // 리스트 생성
   let list = new Array();
-  $('input[name=cartProduct]:checked').each(function (e) {
+  $('input[name=cartProduct]:checked').each(function () {
     // 객체 생성
     let prod = new Object();
     prod.prodNo = $(this).siblings('input[name=prodNo]').val();
@@ -301,7 +352,7 @@ function cartCheckTotal() {
   // 상품수
   $('#cartCount').text(cartCheck.length);
 
-  $('input[name=cartProduct]:checked').each(function (e) {
+  $('input[name=cartProduct]:checked').each(function () {
     totalPrice += Number($(this).parent().siblings('.price').text()); // 상품금액
     totalDiscount -= Math.ceil(Number(($(this).parent().siblings('.discount').text() / 100) * $(this).parent().siblings('.price').text()));
     totalDelivery += Number($(this).parent().siblings('.delivery').text());
@@ -321,10 +372,9 @@ function cartCheckTotal() {
   $('input[name=cartDelivery]').val(totalDelivery);
   $('input[name=cartPoint]').val(totalPoint);
   $('input[name=cartTotal]').val(totalSum);
-  
 }
 
-	// 주소 API
+// 주소 API
 function execDaumPostcode() {
   new daum.Postcode({
     oncomplete: function (data) {
@@ -357,7 +407,7 @@ function execDaumPostcode() {
         }
         // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
         if (extraAddr !== '') {
-          extraAddr = ' (' + extraAddr + ')';
+          extraAddr = '(' + extraAddr + ')';
         }
         // 조합된 참고항목을 해당 필드에 넣는다.
         document.getElementById('addr2').value = extraAddr;
@@ -370,5 +420,51 @@ function execDaumPostcode() {
       document.getElementById('addr1').value = addr;
       // 커서를 상세주소 필드로 이동한다.
       document.getElementById('addr2').focus();
+      
+      document.getElementById('zip').setAttribute('readonly', true);
+      document.getElementById('addr1').setAttribute('readonly', 'true');
     },
 }).open();}
+// 주문 유효성 검증 체크
+function orderValidation(){
+	let nameReg = /^[가-힣]{2,10}$/;
+	let hpReg = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/;
+	let addr2Reg = /^[가-힣0-9\(\)\-\s]{3,15}$/;
+	
+	let nameInput = $('input[name=name]').val();
+	let hpInput = $('input[name=hp]').val();
+	let addr2 = $('input[name=addr2]').val();
+	let payment = $('input[name=payments]').val();
+	
+	let nameCheck = false;
+	let hpCheck = false;
+	let addr2Check = false;
+	let paymentCheck = false;
+	
+	nameCheck = !nameReg.test(nameInput) ? false : true;
+	hpCheck = !hpReg.test(hpInput) ? false : true;
+	addr2Check = !addr2Reg.test(addr2) ? false : true;
+	paymentCheck = payment == "" ? false : true; 	
+	
+	if(!nameCheck){
+		alert('이름을 확인하세요 2~10자');
+		return false;
+	}
+	if(!hpCheck){
+		alert('전화번호를 확인하세요.');
+		return false;
+	}
+	if(!addr2Check){
+		alert("상세주소를 입력하세요. 3~15자");
+		return false;
+	}
+	if(!paymentCheck){
+		alert("결제방법을 선택하세요.");
+		return false;
+	}
+	if(confirm('아래 정보로 결제하시겠습니까?')){
+		$('.order_info').submit();	
+	}else{
+		alert('결제가 취소되었습니다.');
+	}
+}

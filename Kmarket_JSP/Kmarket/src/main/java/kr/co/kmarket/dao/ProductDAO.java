@@ -11,6 +11,7 @@ import kr.co.kmarket.db.Sql_kjh;
 import kr.co.kmarket.vo.ProductCartVO;
 import kr.co.kmarket.vo.ProductCate1VO;
 import kr.co.kmarket.vo.ProductCate2VO;
+import kr.co.kmarket.vo.ProductOrderItemVO;
 import kr.co.kmarket.vo.ProductOrderVO;
 import kr.co.kmarket.vo.ProductReviewVO;
 import kr.co.kmarket.vo.ProductVO;
@@ -297,13 +298,15 @@ public class ProductDAO extends DBHelper {
 	}
 
 	// 주문 페이지 상품 부분 출력
-	public List<ProductCartVO> selectProductCartForOrder(String sql){
+	public List<ProductCartVO> selectProductCartForOrder(String sql, String uid){
 		logger.info("selectProductCartForOrder");
 		List<ProductCartVO> carts = new ArrayList<>();
 		try {
 			conn = getConnection();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(Sql_kjh.SELECT_PRODUCTCART_FOR_ORDER + sql);
+			psmt = conn.prepareStatement(Sql_kjh.SELECT_PRODUCTCART_FOR_ORDER + sql);
+			psmt.setString(1, uid);
+			rs = psmt.executeQuery();
+			
 			while(rs.next()) {
 				ProductCartVO vo = new ProductCartVO();
 				vo.setCartNo(rs.getInt(1));
@@ -363,6 +366,56 @@ public class ProductDAO extends DBHelper {
 		return vo;
 	}
 	
+	// 주문 완료 페이지 출력
+	public List<ProductOrderVO> selectProductComplete(String ordNo) {
+		logger.info("selectProductComplete");
+		List<ProductOrderVO> completes = new ArrayList<>();
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.SELECT_PRODUCT_COMPLETE);
+			psmt.setString(1, ordNo);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				ProductOrderVO vo = new ProductOrderVO();
+				vo.setOrdNo(rs.getInt(1));
+				vo.setOrdUid(rs.getString(2));
+				vo.setOrdCount(rs.getInt(3));
+				vo.setOrdPrice(rs.getInt(4));
+				vo.setOrdDiscount(rs.getInt(5));
+				vo.setOrdDelivery(rs.getInt(6));
+				vo.setSavePoint(rs.getInt(7));
+				vo.setUsedPoint(rs.getInt(8));
+				vo.setOrdTotPrice(rs.getInt(9));
+				vo.setRecipName(rs.getString(10));
+				vo.setRecipHp(rs.getString(11));
+				vo.setRecipZip(rs.getString(12));
+				vo.setRecipAddr1(rs.getString(13));
+				vo.setRecipAddr2(rs.getString(14));
+				vo.setOrdPayment(rs.getInt(15));
+				vo.setOrdComplete(rs.getInt(16));
+				
+				vo.setProdNo(rs.getInt(19));
+				vo.setCount(rs.getInt(20));
+				vo.setPrice(rs.getInt(21));
+				vo.setDiscount(rs.getInt(22));
+				vo.setPoint(rs.getInt(23));
+				vo.setDelivery(rs.getInt(24));
+				vo.setTotal(rs.getInt(25));
+				vo.setProdName(rs.getString(26));
+				vo.setDescript(rs.getString(27));
+				vo.setThumb1(rs.getString(28));
+				completes.add(vo);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("completes : " + completes);
+		return completes;
+	}
+	
+	
+	
 // INSERT	
 	// 장바구니 입력
 	public int insertProductCart(ProductCartVO vo) {
@@ -415,22 +468,22 @@ public class ProductDAO extends DBHelper {
 		return result;
 	}
 	
-	// product order item 입력
-	public int insertProductOrderItem(List<ProductCartVO> vo) {
+	// product order item 입력 장바구니 리스트 입력
+	public int insertProductOrderItem(List<ProductCartVO> cartList, String ordNo) {
 		int result = 0;
-		for(int i=0; i<vo.size(); i++) {
-			logger.info("insertProductOrder "+i);
+		for(int i=0; i<cartList.size(); i++) {
+			logger.info("insertProductOrderItem LIST"+i);
 			try {
 				conn = getConnection();
 				psmt = conn.prepareStatement(Sql_kjh.INSERT_PRODUCTORDERITEM);
-				psmt.setString(1, vo.get(i).getUid());
-				psmt.setInt(2, vo.get(i).getProdNo());
-				psmt.setInt(3, vo.get(i).getCount());
-				psmt.setInt(4, vo.get(i).getPrice());
-				psmt.setInt(5, vo.get(i).getDiscount());
-				psmt.setInt(6, vo.get(i).getPoint());
-				psmt.setInt(7, vo.get(i).getDelivery());
-				psmt.setInt(8, vo.get(i).getTotal());
+				psmt.setString(1, ordNo);
+				psmt.setInt(2, cartList.get(i).getProdNo());
+				psmt.setInt(3, cartList.get(i).getCount());
+				psmt.setInt(4, cartList.get(i).getPrice());
+				psmt.setInt(5, cartList.get(i).getDiscount());
+				psmt.setInt(6, cartList.get(i).getPoint());
+				psmt.setInt(7, cartList.get(i).getDelivery());
+				psmt.setInt(8, cartList.get(i).getTotal());
 				
 				result += psmt.executeUpdate();
 				close();
@@ -442,7 +495,53 @@ public class ProductDAO extends DBHelper {
 		logger.debug("result : " + result);
 		return result;
 	}
+	
+	// product order item 입력
+	public int insertProductOrderItem(ProductOrderItemVO vo) {
+		int result = 0;
+			logger.info("insertProductOrderItem VO");
+			try {
+				conn = getConnection();
+				psmt = conn.prepareStatement(Sql_kjh.INSERT_PRODUCTORDERITEM);
+				psmt.setInt(1, vo.getOrdNo());
+				psmt.setInt(2, vo.getProdNo());
+				psmt.setInt(3, vo.getCount());
+				psmt.setInt(4, vo.getPrice());
+				psmt.setInt(5, vo.getDiscount());
+				psmt.setInt(6, vo.getPoint());
+				psmt.setInt(7, vo.getDelivery());
+				psmt.setInt(8, vo.getTotal());
+				
+				result = psmt.executeUpdate();
+				close();
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+			}
+		
+		logger.debug("result : " + result);
+		return result;
+	}
 
+	// point 입력
+	public int insertPoint(String uid, int point, String ordNo) {
+		int result = 0;
+		logger.info("insertPoint");
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.INSERT_POINT);
+			psmt.setString(1, uid);
+			psmt.setString(2, ordNo);
+			psmt.setInt(3, point);
+			
+			result = psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
+	
 	
 // UPDATE
 	// 장바구니 이미 있으면 수량 증가 
@@ -463,6 +562,53 @@ public class ProductDAO extends DBHelper {
 		return result;
 	}
 
+	// 주문 정보 업데이트
+	public int updateProductOrder(ProductOrderVO vo, String uid, String ordNo) {
+		logger.info("updateProductOrder");
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.UPDATE_PRODUCTORDER);
+			psmt.setInt(1, vo.getUsedPoint());
+			psmt.setInt(2, vo.getOrdTotPrice());
+			psmt.setString(3, vo.getRecipName());
+			psmt.setString(4, vo.getRecipHp());
+			psmt.setString(5, vo.getRecipZip());
+			psmt.setString(6, vo.getRecipAddr1());
+			psmt.setString(7, vo.getRecipAddr2());
+			psmt.setInt(8, vo.getOrdPayment());
+			psmt.setInt(9, vo.getOrdComplete());
+			psmt.setString(10, uid);
+			psmt.setString(11, ordNo);
+			result = psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
+
+	// member DB 포인트 업데이트 추후 멤버로 이동
+	public int updateMemberPoint(int point, String uid) {
+		logger.info("updateProductOrder");
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.UPDATE_MEMBER_POINT);
+			psmt.setInt(1, point);
+			psmt.setString(2, uid);
+			result = psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
+
+	
+	
 // DELTE
 	// 장바구니 체크 삭제
 	public int deleteProductCart(String sql) {
@@ -470,7 +616,7 @@ public class ProductDAO extends DBHelper {
 		logger.info("deleteProductCart");
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.DELTE_PRODUCTCART + sql);
+			psmt = conn.prepareStatement(Sql_kjh.DELETE_PRODUCTCART + sql);
 			
 			result = psmt.executeUpdate();
 			close();
@@ -481,7 +627,21 @@ public class ProductDAO extends DBHelper {
 		return result;
 	}
 	
-	
+	// 장바구니 주문 물품 삭제
+	public int deleteProductCartOrderd(String sql) {
+		int result = 0;
+		logger.info("deleteProductCartOrderd");
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.DELETE_PRODUCTCART_ORDERED + sql);
+			result = psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}	
 	
 	
 	

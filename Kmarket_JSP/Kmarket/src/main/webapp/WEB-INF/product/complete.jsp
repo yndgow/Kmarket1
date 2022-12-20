@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="./_header.jsp"/>
         <!-- section complete start -->
         <section class="complete">
@@ -21,78 +23,56 @@
 
           <article class="info">
             <h1>상품정보</h1>
-            <table border="0">
+            <table>
               <tr>
                 <th>상품명</th>
                 <th>상품금액</th>
                 <th>할인금액</th>
                 <th>수량</th>
                 <th>주문금액</th>
-              </tr명>
+              </tr>
+              
+              <c:forEach var="vo" items="${completes}">
               <tr>
                 <td>
-                  <article>
-                    <img src="https://via.placeholder.com/80x80" alt>
+                   <article>
+                    <img src="http://13.125.215.198:8080/file/${vo.thumb1}" alt="thumb1">
                     <div>
-                      <h2><a href="#">상품명</a></h2>
-                      <p>상품설명</p>
+                      <h2><a href="/Kmarket/product/view.do?prodNo=${vo.prodNo}">${vo.prodName}</a></h2>
+                      <p>${vo.descript}</p>
                     </div>
                   </article>
                 </td>
-                <td>17,000원</td>
-                <td>1,000원</td>
-                <td>1</td>
-                <td>16,000원</td>
+                <td>${vo.price}원</td>
+                <td>${vo.price * vo.discount/100}원</td>
+                <td>${vo.count}</td>
+                <td>${vo.total}원</td>
               </tr>
-              <tr>
-                <td>
-                  <article>
-                    <img src="https://via.placeholder.com/80x80" alt>
-                    <div>
-                      <h2><a href="#">상품명</a></h2>
-                      <p>상품설명</p>
-                    </div>
-                  </article>
-                </td>
-                <td>17,000원</td>
-                <td>1,000원</td>
-                <td>1</td>
-                <td>16,000원</td>
-              </tr>
-              <tr>
-                <td>
-                  <article>
-                    <img src="https://via.placeholder.com/80x80" alt>
-                    <div>
-                      <h2><a href="#">상품명</a></h2>
-                      <p>상품설명</p>
-                    </div>
-                  </article>
-                </td>
-                <td>17,000원</td>
-                <td>1,000원</td>
-                <td>1</td>
-                <td>16,000원</td>
-              </tr>
+              </c:forEach>
+              
               <tr class="total">
                 <td colspan="4"></td>
                 <td>
-                  <table border="0">
+                  <table>
                     <tr>
                       <td>총 상품금액</td>
-                      <td><span>34,000</span>원</td>
+                      <td><span>${completes[0].ordPrice}</span>원</td>
                     </tr>
                     <tr>
                       <td>총 할인금액</td>
-                      <td><span>-2,000</span>원</td>
+                      <td><span>${completes[0].ordDiscount}</span>원</td>
                     </tr>
                     <tr>
                       <td>배송비</td>
-                      <td><span>3,000</span>원</td>
+                      <td><span>${completes[0].ordDelivery}</span>원</td>
+                    </tr>
+                    <tr>
+                      <td>포인트 사용</td>
+                      <td><span>${completes[0].usedPoint}</span>원</td>
                     </tr>
                     <tr>
                       <td>총 결제금액</td>
-                      <td><span>35,000</span>원</td>
+                      <td><span>${completes[0].ordTotPrice}</span>원</td>
                     </tr>
                   </table>
                 </td>
@@ -102,43 +82,53 @@
 
           <article class="order">
             <h1>주문정보</h1>
-            <table border="0">
+            <table>
               <tr>
                 <td>주문번호</td>
-                <td>2008101324568</td>
+                <td>${completes[0].ordNo}</td>
                 <td rowspan="3">총 결제금액</td>
-                <td rowspan="3"><span>35,000</span>원</td>
+                <td rowspan="3"><span>${completes[0].ordTotPrice}</span>원</td>
               </tr>
               <tr>
                 <td>결제방법</td>
-                <td>신용카드</td>
+                <td>
+                <c:choose>
+                	<c:when test="${completes[0].ordPayment eq 1}">신용카드</c:when>
+                	<c:when test="${completes[0].ordPayment eq 2}">체크카드</c:when>
+                	<c:when test="${completes[0].ordPayment eq 3}">실시간 계좌이체</c:when>
+                	<c:when test="${completes[0].ordPayment eq 4}">무통장 입금</c:when>
+                	<c:when test="${completes[0].ordPayment eq 5}">휴대폰 결제</c:when>
+                	<c:when test="${completes[0].ordPayment eq 6}">카카오 페이</c:when>
+                </c:choose>
+
+                </td>
               </tr>
               <tr>
                 <td>주문자/연락처</td>
-                <td>홍길동/010-1234-1234</td>
+                <td>${sessUser.name}/${sessUser.hp}</td>
               </tr>
             </table>
           </article>
 
           <article class="delivery">
             <h1>배송정보</h1>
-            <table border="0">
+            <table>
               <tr>
                 <td>수취인</td>
-                <td>홍길동</td>                    
+                <td>${completes[0].recipName}</td>                    
                 <td>주문자 정보</td>
               </tr>
               <tr>
                 <td>연락처</td>
-                <td>010-1234-1234</td>
+                <td>${completes[0].recipHp}</td>
                 <td rowspan="2">
-                  홍길동<br/>
-                  010-1234-1234
+                  ${sessUser.name}<br/>
+                  ${sessUser.hp}
                 </td>
               </tr>
               <tr>
                 <td>배송지 주소</td>
-                <td>부산광역시 강남구 대연동 123 10층</td>
+                <td>${completes[0].recipAddr1}&nbsp;${completes[0].recipAddr2}</td>
               </tr>
             </table>
           </article>

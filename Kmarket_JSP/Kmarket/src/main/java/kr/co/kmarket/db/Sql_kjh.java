@@ -76,7 +76,7 @@ public class Sql_kjh {
 														+ "`total` = `price` * `count` + `delivery` "
 														+ "WHERE `uid` = ? AND `prodNo` = ?";
 	// 장바구니 선택 삭제
-	public static final String DELTE_PRODUCTCART = "DELETE FROM `km_product_cart` WHERE `cartNo` IN (";
+	public static final String DELETE_PRODUCTCART = "DELETE FROM `km_product_cart` WHERE `cartNo` IN (";
 	
 	public static final String INSERT_PRODUCTORDER = "INSERT INTO `km_product_order` SET "
 													+ "`ordUid` = ?, "
@@ -98,22 +98,61 @@ public class Sql_kjh {
 															+ "FROM `km_product_cart` AS a "
 															+ "JOIN `km_product` AS b "
 															+ "USING (`prodNo`) "
-															+ "WHERE `uid` = 'qwqwqw' "
+															+ "WHERE `uid` = ? "
 															+ "AND `cartNo` IN(";
 	
 	// 최신 주문 출력
 	public static final String SELECT_ORDER = "SELECT * FROM `km_product_order` WHERE `ordUid` = ? ORDER BY `ordNo` DESC LIMIT 1";
 	
 	// 주문 상품 입력
-	public static final String INSERT_PRODUCTORDERITEM ="INSERT INTO `km_product_order_item` SET "
-			+ "`ordNo` = (SELECT MAX(`ordNo`) FROM `km_product_order` WHERE `ordUid` = ?), "
-			+ "`prodNo` = ?, "
-			+ "`count` = ?, "
-			+ "`price` = ?, "
-			+ "`discount` = ?, "
+	public static final String INSERT_PRODUCTORDERITEM  = "INSERT INTO `km_product_order_item` SET "
+														+ "`ordNo` = ?, "
+														+ "`prodNo` = ?, "
+														+ "`count` = ?, "
+														+ "`price` = ?, "
+														+ "`discount` = ?, "
+														+ "`point` = ?, "
+														+ "`delivery` = ?, "
+														+ "`total` = ?";
+	
+	// 주문 정보 업데이트
+	public static final String UPDATE_PRODUCTORDER = "UPDATE `km_product_order` SET "
+													+ "`usedPoint` = ?, "
+													+ "`ordTotPrice` = ?, "
+													+ "`recipName` = ?, "
+													+ "`recipHp` = ?, "
+													+ "`recipZip` = ?, "
+													+ "`recipAddr1` = ?, "
+													+ "`recipAddr2` = ?, "
+													+ "`ordPayment` = ?, "
+													+ "`ordComplete` = ?, "
+													+ "`ordDate` = NOW() WHERE "
+													+ "`ordUid` = ? AND "
+													+ " `ordNo` = ?";
+	
+	// member DB 포인트 업데이트 추후 멤버로 이동
+	public static final String UPDATE_MEMBER_POINT = "UPDATE `km_member` SET "
+													+ "`point` = ? "
+													+ "WHERE `uid` = ?";
+	
+	// point 적립 입력
+	public static final String INSERT_POINT = "INSERT INTO `km_member_point` SET "
+			+ "`uid` = ?, "
+			+ "`ordNo` = ?, "
 			+ "`point` = ?, "
-			+ "`delivery` = ?, "
-			+ "`total` = ?";
+			+ "`pointDate` = NOW()";
+	
+	// 장바구니 주문물품 삭제
+	public static final String DELETE_PRODUCTCART_ORDERED = "DELETE FROM `km_product_cart` WHERE `cartNo` IN (";
+	
+	// 주문완료 출력
+	public static final String SELECT_PRODUCT_COMPLETE = "SELECT a.*, b.*, c.prodName ,c.descript, c.thumb1 "
+														+ "FROM `km_product_order` AS a "
+														+ "JOIN `km_product_order_item` AS b "
+														+ "USING (`ordNo`)"
+														+ "JOIN `km_product` AS c "
+														+ "USING (`prodNo`) "
+														+ "WHERE `ordNo` = ?";
 }
 
 

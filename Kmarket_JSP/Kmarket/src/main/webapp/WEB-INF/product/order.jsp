@@ -21,9 +21,9 @@
             </tr>
           </thead>
           <tbody>
-          
-          	<c:forEach var="cart" items="${carts}">
-            <tr>
+          <c:choose>
+          	<c:when test="${empty carts}">
+       		<tr>
               <td>
                 <img src="http://13.125.215.198:8080/file/${cart.thumb1}" alt="상품이미지20_20" />
                 <div id="orderDescrpit">
@@ -41,15 +41,43 @@
 	                  <c:when test="${cart.delivery eq 0}">무료배송</c:when>
     	              <c:otherwise>${cart.delivery}</c:otherwise>
                   </c:choose></td>
-              <td>${cart.total}</td>
+              <td>${order.ordTotPrice}</td>
             </tr>
-            </c:forEach>
+          	</c:when>
+          	<c:otherwise>
+	       		<c:forEach var="cart" items="${carts}">
+	            <tr>
+	              <td>
+	                <img src="http://13.125.215.198:8080/file/${cart.thumb1}" alt="상품이미지20_20" />
+	                <div id="orderDescrpit">
+	                  <p>${cart.prodName}</p>
+	                  <br />
+	                  <p>
+	                    ${cart.descript}
+	                </div>
+	              </td>
+	              <td>${cart.count}</td>
+	              <td>${cart.price}</td>
+	              <td>${cart.discount}%</td>
+	              <td>${cart.point}</td>
+	              <td><c:choose>
+		                  <c:when test="${cart.delivery eq 0}">무료배송</c:when>
+	    	              <c:otherwise>${cart.delivery}</c:otherwise>
+	                  </c:choose></td>
+	              <td>${cart.total}</td>
+	            </tr>
+	           	</c:forEach>
+          	</c:otherwise>
+          </c:choose>
+          	
             
           </tbody>
         </table>
         <form action="/Kmarket/product/order.do" class="order_info" method="post">
+        	<input type="hidden" name="uid" value="${sessUser.uid}" />
         	<c:forEach var="cart" items="${carts}">
               	<input type="hidden" name="cartNo" value="${cart.cartNo}" readonly/>
+              	<input type="hidden" name="cartPoints" value="${cart.point}" readonly/>
         	</c:forEach>
           <div>
             <article class="delivery_info">
@@ -63,16 +91,16 @@
                     <td><input type="text" name="name" id="name" value="${sessUser.name}"/></td>
                   </tr>
                   <tr>
-                    <td>휴대폰</td>
+                    <td>전화번호</td>
                     <td><input type="text" name="hp" id="hp" value="${sessUser.hp}"/> - 포함</td>
                   </tr>
                   <tr>
                     <td>우편번호</td>
-                    <td><input type="text" name="zip" id="zip" value="${sessUser.zip}"/> <button type="button" class="btnZip">검색</button></td>
+                    <td><input type="text" name="zip" id="zip" value="${sessUser.zip}" readonly/> <button type="button" class="btnZip">검색</button></td>
                   </tr>
                   <tr>
                     <td>기본주소</td>
-                    <td><input type="text" name="addr1" id="addr1" value="${sessUser.addr1}"/></td>
+                    <td><input type="text" name="addr1" id="addr1" value="${sessUser.addr1}" readonly/></td>
                   </tr>
                   <tr>
                     <td>상세주소</td>
@@ -92,7 +120,7 @@
               </div>
               <div>
                 
-                <input type="text" name="usedPoint" value=""/><span>점</span>
+                <input type="text" name="usedPoint" value="0"/><span>점</span>
                 <button type="button" class="pointApplyBtn">적용</button>
               </div>
             </article>
@@ -105,7 +133,7 @@
                   <td colspan="2"> <label for="">신용카드</label></td>
                 </tr>
                 <tr>
-                  <td><input type="radio" name="payments" id="credit_card" value="1"/><span>신용카드 결제</span></td>
+                  <td><input type="radio" name="payments" id="credit_card" value="1" checked/><span>신용카드 결제</span></td>
                   <td><input type="radio" name="payments" id="check_card" value="2"/><span>체크카드결제</span></td>
                 </tr>
 
@@ -136,6 +164,7 @@
           <article class="final_payment_info">
             <nav>
               <h1>최종결제 정보</h1>
+              
             </nav>
             <table>
               <tbody>
@@ -176,8 +205,16 @@
                 </tr>
               </tbody>
             </table>
-            <button type="submit">결제하기</button>
+            <button type="submit" id="btnPayment">결제하기</button>
           </article>
+          <input type="hidden" name="ordNo" value="${order.ordNo}"/>
+          <input type="hidden" name="prodNo" value="${cart.prodNo}"/>
+          <input type="hidden" name="count" value="${cart.count}"/>
+          <input type="hidden" name="price" value="${cart.price}"/>
+          <input type="hidden" name="discount" value="${cart.discount}"/>
+          <input type="hidden" name="cartPoint" value="${cart.point}"/>
+          <input type="hidden" name="delivery" value="${cart.delivery}"/>
+          <input type="hidden" name="total" value="${order.ordTotPrice}"/>
         </form>
       </section>
       <!-- section order 끝 -->

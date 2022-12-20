@@ -34,14 +34,7 @@ public class ProductCartController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		// 장바구니에서 주문으로
-		String cartNo[] = req.getParameterValues("cartProduct");
-		String query = "";
-		for(int i=0; i<cartNo.length; i++) {
-			query += cartNo[i];
-			if(i < cartNo.length-1) {
-				query += "&cartNo=";
-			}
-		}
+		
 		
 		// 세션 가져오기
 		HttpSession sess = req.getSession();
@@ -63,10 +56,23 @@ public class ProductCartController extends HttpServlet{
 		povo.setRecipAddr1(mem.getAddr1());
 		povo.setRecipAddr2(mem.getAddr2());
 		
-		service.insertProductOrder(povo);
+		int result = service.insertProductOrder(povo);
 		
+		// 쿼리 생성
+		String cartNo[] = req.getParameterValues("cartProduct");
+		if(cartNo != null) {
+			String query = "";
+			for(int i=0; i<cartNo.length; i++) {
+				query += cartNo[i];
+				if(i < cartNo.length-1) {
+					query += "&cartNo=";
+				}
+			}
+			resp.sendRedirect("/Kmarket/product/order.do?uid="+mem.getUid()+"&cartNo="+query);
+		}else {
+			service.jsonObj("result", result, resp);
+		}
 		
-		resp.sendRedirect("/Kmarket/product/order.do?uid="+mem.getUid()+"&cartNo="+query);
 		
 		
 		//JSON 문자열을 리스트로 받을때(Jackson)

@@ -16,6 +16,7 @@ import kr.co.kmarket.dao.ProductDAO;
 import kr.co.kmarket.vo.ProductCartVO;
 import kr.co.kmarket.vo.ProductCate1VO;
 import kr.co.kmarket.vo.ProductCate2VO;
+import kr.co.kmarket.vo.ProductOrderItemVO;
 import kr.co.kmarket.vo.ProductOrderVO;
 import kr.co.kmarket.vo.ProductReviewVO;
 import kr.co.kmarket.vo.ProductVO;
@@ -89,14 +90,7 @@ public enum ProductService {
 	
 	// 장바구니 삭제
 	public int deleteProductCart(String[] cartNo) {
-		String sql = "";
-		for(int i=0; i<cartNo.length; i++) {
-			sql += cartNo[i];
-			if(i != cartNo.length-1) {
-				sql += ", ";
-			}
-		}
-		sql += ")";
+		String sql = deleteQuery(cartNo);
 		return dao.deleteProductCart(sql);
 	}
 	
@@ -106,31 +100,56 @@ public enum ProductService {
 	}
 	
 	// 주문 페이지 장바구니 부분 출력
-	public List<ProductCartVO> selectProductCartForOrder(String[] cartNo){
-		String sql = "";
-		for(int i=0; i<cartNo.length; i++) {
-			sql += cartNo[i];
-			if(i != cartNo.length-1) {
-				sql += ", ";
-			}
-		}
-		sql += ")";
-		
-		return dao.selectProductCartForOrder(sql);
+	public List<ProductCartVO> selectProductCartForOrder(String[] cartNo, String uid){
+		String sql = deleteQuery(cartNo);
+		return dao.selectProductCartForOrder(sql, uid);
 	}
 	
 	// 주문 페이지 전체 합계 출력
 	public ProductOrderVO selectOrder(String uid) {
 		return dao.selectOrder(uid);
 	}
-	// product order item 입력
-	public int insertProductOrderItem(List<ProductCartVO> list) {
-		return dao.insertProductOrderItem(list);
+	// 주문 상품 입력 장바구니 리스트 
+	public int insertProductOrderItem(List<ProductCartVO> list, String ordNo) {
+		return dao.insertProductOrderItem(list, ordNo);
+	}
+	
+	// 주문 상품 입력 바로주문하기 단건
+	public int insertProductOrderItem(ProductOrderItemVO vo) {
+		return dao.insertProductOrderItem(vo);
 	}
 	
 	
+	// 주문 정보 업데이트
+	public int updateProductOrder(ProductOrderVO vo, String uid, String ordNo) {
+		// 무통장 입금인 경우만 입금대기
+		if(vo.getOrdPayment() == 4) {
+			vo.setOrdComplete(2); // 0 기본값, 1 완료, 2 입금대기
+		}else {
+			vo.setOrdComplete(1); // 0 기본값, 1 완료, 2 입금대기
+		}
+		return dao.updateProductOrder(vo, uid, ordNo);
+	}
+	
+	// member DB포인트 업데이트
+	public int updateMemberPoint(int point, String uid) {
+		return dao.updateMemberPoint(point, uid);
+	}
+	
+	// point 입력
+	public int insertPoint(String uid, int point, String ordNo) {
+		return dao.insertPoint(uid, point, ordNo);
+	}
 
-
+	// 장바구니 주문물품 삭제 
+	public int deleteProductCartOrderd(String cartNo[]) {
+		String sql = deleteQuery(cartNo);
+		return dao.deleteProductCartOrderd(sql);
+	}
+	
+	public List<ProductOrderVO> selectProductComplete(String ordNo){
+		return dao.selectProductComplete(ordNo);
+	}
 	
 	
 	
@@ -139,6 +158,20 @@ public enum ProductService {
 	
 	
 	
+	
+	
+	// 쿼리 구문 작성 IN (
+	public String deleteQuery(String arr[]) {
+		String sql = "";
+		for(int i=0; i<arr.length; i++) {
+			sql += arr[i];
+			if(i != arr.length-1) {
+				sql += ", ";
+			}
+		}
+		sql += ")";
+		return sql;
+	}
 	
 	public int getLastPageNum(int total) {
 		int lastPageNum = 0;

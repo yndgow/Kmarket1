@@ -34,8 +34,19 @@ public class ProductVO {
 	private String etc4;
 	private String etc5;
 	
+	// 추가 필드 김지홍
+	private int count;
+	
 	// 임시 필드
 	private int discountPrice;
+	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	
 
 	public int getDiscountPrice() {
 		return discountPrice;

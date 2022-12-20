@@ -1023,8 +1023,9 @@ article > nav > h1 {
   font-weight: bold;
 }
 #orderDescrpit{
-	display: inline-block;
+	/*display: inline-block;*/
 	padding: 5px;
+	box-sizing: border-box;
 }   
 /* product order main 끝  */
 /* cart */

@@ -19,6 +19,79 @@ public class ProductOrderVO {
 	private int ordComplete;
 	private String ordDate;
 	
+	// 추가 필드 주문완료페이지
+	private int prodNo;
+	private int count;
+	private int price;
+	private int discount;
+	private int point;
+	private int delivery;
+	private int total;
+	
+	private String prodName;
+	private String descript;
+	private String thumb1;
+	
+	public String getProdName() {
+		return prodName;
+	}
+	public void setProdName(String prodName) {
+		this.prodName = prodName;
+	}
+	public String getDescript() {
+		return descript;
+	}
+	public void setDescript(String descript) {
+		this.descript = descript;
+	}
+	public String getThumb1() {
+		return thumb1;
+	}
+	public void setThumb1(String thumb1) {
+		this.thumb1 = thumb1;
+	}
+	public int getProdNo() {
+		return prodNo;
+	}
+	public void setProdNo(int prodNo) {
+		this.prodNo = prodNo;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getDiscount() {
+		return discount;
+	}
+	public void setDiscount(int discount) {
+		this.discount = discount;
+	}
+	public int getPoint() {
+		return point;
+	}
+	public void setPoint(int point) {
+		this.point = point;
+	}
+	public int getDelivery() {
+		return delivery;
+	}
+	public void setDelivery(int delivery) {
+		this.delivery = delivery;
+	}
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
+	}
 	public int getOrdNo() {
 		return ordNo;
 	}
@@ -82,6 +155,9 @@ public class ProductOrderVO {
 	public void setUsedPoint(int usedPoint) {
 		this.usedPoint = usedPoint;
 	}
+	public void setUsedPoint(String usedPoint) {
+		this.usedPoint = Integer.parseInt(usedPoint);
+	}
 	public int getOrdTotPrice() {
 		return ordTotPrice;
 	}
@@ -126,6 +202,9 @@ public class ProductOrderVO {
 	}
 	public void setOrdPayment(int ordPayment) {
 		this.ordPayment = ordPayment;
+	}
+	public void setOrdPayment(String ordPayment) {
+		this.ordPayment = Integer.parseInt(ordPayment);
 	}
 	public int getOrdComplete() {
 		return ordComplete;

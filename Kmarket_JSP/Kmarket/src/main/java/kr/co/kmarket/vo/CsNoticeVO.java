@@ -1,32 +1,29 @@
 package kr.co.kmarket.vo;
 
 public class CsNoticeVO {
-	private int no;
-	private String title;
-	private String content;
+	private int notNo;
+	private String uid;
 	private int cate1;
-	private String c1Name;
-	private String c2Name;
+	private String notTitle;
+	private String notContent;
+	private int hit;
 	private String regip;
 	private String rdate;
 	
-	public int getNo() {
-		return no;
+	// 추가필드
+	private String c1Name;
+	
+	public int getNotNo() {
+		return notNo;
 	}
-	public void setNo(int no) {
-		this.no = no;
+	public void setNotNo(int notNo) {
+		this.notNo = notNo;
 	}
-	public String getTitle() {
-		return title;
+	public String getUid() {
+		return uid;
 	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 	public int getCate1() {
 		return cate1;
@@ -34,17 +31,23 @@ public class CsNoticeVO {
 	public void setCate1(int cate1) {
 		this.cate1 = cate1;
 	}
-	public String getC1Name() {
-		return c1Name;
+	public String getNotTitle() {
+		return notTitle;
 	}
-	public void setC1Name(String c1Name) {
-		this.c1Name = c1Name;
+	public void setNotTitle(String notTitle) {
+		this.notTitle = notTitle;
 	}
-	public String getC2Name() {
-		return c2Name;
+	public String getNotContent() {
+		return notContent;
 	}
-	public void setC2Name(String c2Name) {
-		this.c2Name = c2Name;
+	public void setNotContent(String notContent) {
+		this.notContent = notContent;
+	}
+	public int getHit() {
+		return hit;
+	}
+	public void setHit(int hit) {
+		this.hit = hit;
 	}
 	public String getRegip() {
 		return regip;
@@ -58,6 +61,14 @@ public class CsNoticeVO {
 	public void setRdate(String rdate) {
 		this.rdate = rdate;
 	}
+	public String getC1Name() {
+		return c1Name;
+	}
+	public void setC1Name(String c1Name) {
+		this.c1Name = c1Name;
+	}
+	
+	
 	
 	
 }

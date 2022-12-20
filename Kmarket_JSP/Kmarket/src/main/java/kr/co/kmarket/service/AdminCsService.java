@@ -9,40 +9,75 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import kr.co.kmarket.dao.AdminDAO_kjh;
-import kr.co.kmarket.vo.CsCate1DTO;
-import kr.co.kmarket.vo.CsCate2DTO;
+import kr.co.kmarket.vo.AdminCsNoticeCate1VO;
+import kr.co.kmarket.vo.CsNoticeVO;
 
 public enum AdminCsService {
 	INSTANCE;
 	
 	AdminDAO_kjh dao = AdminDAO_kjh.getInstance();
 	
-	// cs cate1 출력
-	public List<CsCate1DTO> selectCsCate1(String csType) {
-		
-		if(csType.equals("notice")) {
-			csType = "km_cs_notice_cate1";
-		}else if(csType.equals("faq")) {
-			csType = "km_cs_faq_cate1";
-		}else if(csType.equals("qna")) {
-			csType = "km_cs_qna_cate1";
-		}
-		
-		return dao.selectCsCate1(csType);
+	//cs cate1 출력 홍민준
+	public List<AdminCsNoticeCate1VO> selectCate1ByCs(){
+		return dao.selectCate1ByCs();
 	}
 	
-	public List<CsCate2DTO> selectCsCate2(String csType, String cate1){
-			
-		if(csType.equals("faq")) {
-			csType = "km_cs_faq_cate2";
-		}else if(csType.equals("qna")) {
-			csType = "km_cs_qna_cate2";
-		}
-		
-		return dao.selectCsCate2(csType, cate1);
+	// notice list 전체 출력
+	public List<CsNoticeVO> selectAllNoticeArticles(int start){
+		return dao.selectAllNoticeArticles(start);
+	}
+	
+	// notice list 유형별 출력
+	public List<CsNoticeVO> selectNoticeArticles(String cate1, int start){
+		return dao.selectNoticeArticles(cate1,start);
 	}
 	
 	
+	// list pg 처리
+	public int selectCountTotal() {
+		return dao.selectCountTotal();
+	}
+	
+	public int getLastPageNum(int total) {
+		int lastPageNum = 0 ;
+		if(total % 10 == 0) {
+			lastPageNum = total / 10;
+		}else {
+			lastPageNum = total / 10 + 1;
+		}
+		return lastPageNum;
+	}
+	
+	public int[] getPageGroupNum(int currentPage, int lastPageNum) {
+		int currentPageGroup = (int)Math.ceil(currentPage/10.0);
+		int pageGroupStart = (currentPageGroup - 1) * 10 + 1;
+		int pageGroupEnd = currentPageGroup * 10;
+		
+		if(pageGroupEnd > lastPageNum) {
+			pageGroupEnd = lastPageNum;
+		}
+		
+		int [] result = {pageGroupStart, pageGroupEnd};
+		
+		return result;
+	}
+	
+	public int getPageStartNum(int total, int currentPage) {
+		int start = (currentPage -1) * 10;
+		return total - start;
+	}
+	
+	public int getCurrentPage(String pg) {
+		int currentPage = 1;
+		if(pg != null) {
+			currentPage = Integer.parseInt(pg);
+		}
+		return currentPage;
+	}
+	
+	public int getStartNum(int currentPage) {
+		return (currentPage - 1) * 10;
+	}
 	
 	// list json 변환 메서드 김지홍
 	public void gsonTojson(Object obj, HttpServletResponse resp) throws IOException {

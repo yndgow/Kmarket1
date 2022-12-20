@@ -35,8 +35,11 @@ public class Sql_hong {
 	public static final String INSERT_ARTICLE_QNA_OF_CS = "INSERT INTO `km_cs_qna` values(?,?,?,?,?,?,now(),'검토 중')";
 	
 	// cs qna cate 출력
-	public static final String SELECT_CATEGORY1_BY_CS = "SELECT * FROM `km_cs_cate1`";	
-	public static final String SELECT_CATEGORY2_BY_CS = "SELECT * FROM `km_cs_cate2` where `qnaCate1`=?";	
+	public static final String SELECT_CATEGORY1_BY_CS = "SELECT * FROM `km_cs_qna_cate1`";	
+	public static final String SELECT_CATEGORY2_BY_CS = "SELECT * FROM `km_cs_qna_cate2` where `cate1`=?";	
+	
+	// admin cs notice cate 출력
+	public static final String SELECT_CATEGORY1_BY_CS_ADMIN_NOTICE = "SELECT * FROM `km_cs_notice_cate1`";	
 	
 	// cs qna list 출력
 	public static final String SELECT_QNA_ARTICLES = "SELECT * FROM `km_cs_qna`"
@@ -47,7 +50,23 @@ public class Sql_hong {
 	// cs qna view 출력
 	public static final String SELECT_QNA_ARTICLE = "SELECT * FROM `km_cs_qna` where `qnaNo`=?";
 	
+	// admin cs notice 전체 list 출력
+	public static final String SELECT_COUNT_TOTAL_NOTICE = "SELECT COUNT(`notNo`) FROM `km_cs_notice`";
 	
+	public static final String SELECT_ADMIN_ALL_NOTICE_ARTICLES ="SELECT a.* , b.`c1Name` FROM `km_cs_notice` as a "
+													+ "JOIN `km_cs_notice_cate1` as b "
+													+ "ON a.cate1 = b.cate1"
+													+ "ORDER BY `notNo` DESC "
+													+ "LIMIT ?, 10";
+	
+	
+	// admin cs notice 유형별 list 출력
+	public static final String SELECT_ADMIN_NOTICE_ARTICLES ="SELECT a.* , b.c1Name FROM `km_cs_notice` AS a "
+													+ "JOIN `km_cs_notice_cate1` AS b "
+													+ "ON a.cate1 = b.cate1 "
+													+ "WHERE a.cate1 = ?"
+													+ "ORDER BY `notNo` DESC "
+													+ "LIMIT ?, 10";
 	
 	
 	

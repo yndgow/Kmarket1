@@ -31,12 +31,10 @@ public class CsDAO_kkj extends DBHelper {
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				CsNoticeVO vo = new CsNoticeVO();
-				vo.setNo(rs.getInt(1));
-				vo.setTitle(rs.getString(2));
-				vo.setContent(rs.getString(3));
+				vo.setNotNo(rs.getInt(1));
+				vo.setNotTitle(rs.getString(2));
+				vo.setNotContent(rs.getString(3));
 				vo.setCate1(rs.getInt(4));
-				vo.setC1Name(rs.getString(5));
-				vo.setC2Name(rs.getString(6));
 				vo.setRegip(rs.getString(7));
 				vo.setRdate(rs.getString(8));
 				articles.add(vo);
@@ -61,12 +59,10 @@ public class CsDAO_kkj extends DBHelper {
 			rs = psmt.executeQuery();
 			if(rs.next()) {
 				vo = new CsNoticeVO();
-				vo.setNo(rs.getInt(1));
-				vo.setTitle(rs.getString(2));
-				vo.setContent(rs.getString(3));
+				vo.setNotNo(rs.getInt(1));
+				vo.setNotTitle(rs.getString(2));
+				vo.setNotContent(rs.getString(3));
 				vo.setCate1(rs.getInt(4));
-				vo.setC1Name(rs.getString(5));
-				vo.setC2Name(rs.getString(6));
 				vo.setRegip(rs.getString(7));
 				vo.setRdate(rs.getString(8));
 				

@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.kmarket.service.CsService;
-import kr.co.kmarket.vo.CsCate1VO;
-import kr.co.kmarket.vo.CsCate2VO;
+import kr.co.kmarket.vo.CsCate1DTO;
+import kr.co.kmarket.vo.CsCate2DTO;
 
 @WebServlet("/cs/qna/cate.do")
 public class CsCateController extends HttpServlet{
@@ -25,10 +25,10 @@ public class CsCateController extends HttpServlet{
 		String cate2 = req.getParameter("cate2");
 		
 		if(cate1.equals("1")) {
-			List<CsCate1VO> cates1 = service.selectCate1ByCs();
+			List<CsCate1DTO> cates1 = service.selectCate1ByCs();
 			service.gsonTojson(cates1, resp);
 		}else {
-			List<CsCate2VO> cates2 = service.selectCate2ByCs(cate2);
+			List<CsCate2DTO> cates2 = service.selectCate2ByCs(cate2);
 			service.gsonTojson(cates2, resp);
 		}
 		

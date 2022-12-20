@@ -8,21 +8,26 @@ public class Sql {
 			+ "`prodName` = ?, "
 			+ "`descript` = ?, "
 			+ "`company` = ?, "
-			+ "`seller` = 'admin', "
 			+ "`price` = ?, "
+			+ "`discount` = ?, "
+			+ "`point` = ?, "
+			+ "`stock` = ?, "
+			+ "`delivery` = ?, "
 			+ "`thumb1` = ?, "
 			+ "`thumb2` = ?, "
 			+ "`thumb3` = ?, "
 			+ "`detail` = ?, "
+			+ "`seller` = ?, "
+			+ "`status` = ?, "
+			+ "`duty` = ?, "
+			+ "`receipt` = ?, "
+			+ "`bizType` = ?, "
+			+ "`origin` = ?, "
 			+ "`ip` = ?, "
-			+ "`point` = ?, "
-			+ "`stock` = ?, "
-			+ "`delivery` = ?, "
-			+ "`discount` = ?, "
-			+ "`rdate` = NOW()";
+			+ "`rdate`=NOW()";
 
 	// admin 상품출력 김지홍
-	public static final String SELECT_PRODUCT_BY_ADMIN = "SELECT * FROM `km_product`";
+	public static final String SELECT_PRODUCT_BY_ADMIN = "SELECT * FROM `km_product` ORDER BY `prodNo` DESC ";
 	
 	// admin category1 출력 김지홍
 	public static final String SELECT_CATEGORY1_BY_ADMIN = "SELECT * FROM `km_product_cate1`";

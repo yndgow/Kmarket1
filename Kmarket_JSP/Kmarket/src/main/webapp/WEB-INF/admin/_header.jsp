@@ -8,9 +8,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="/Kmarket/js/admin/gnb.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-    <link rel="stylesheet" href="/Kmarket/css/admin/admin.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/Kmarket/css/admin/admin.css">
     <style>
       .searchbtn {
         position: absolute;
@@ -27,9 +28,7 @@
             <img src="/Kmarket/img/admin/admin_logo.png" alt="admin_logo" />
           </a>
           <p>
-            <c:if test="${sessUser.uid eq admin}">
-            	<span>홍길동님 반갑습니다.</span>
-            </c:if>
+            <span>${sessUser.uid}님 반갑습니다</span>
             <a href="/Kmarket/">HOME |</a>
             <a href="/Kmarket/member/logout.do">로그아웃 |</a>
             <a href="/Kmarket/cs/index.do">고객센터</a>

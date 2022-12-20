@@ -1,8 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="./_header.jsp"/>
+<jsp:include page="../_header.jsp"/>
 <script>
 cate1List();
+
+	$(function(){
+		$('input[name=price]').focusout(function(){
+			Point();
+		});
+		
+		function Point(){
+			let price = $('input[name=price]').val();
+			let point = (price/100);
+			$('input[name=point]').val(point);
+		}
+	});
 </script>
             <section id="admin-product-register">
                 <nav>
@@ -119,72 +131,28 @@ cate1List();
                             </p>
                             <table>
                                 <tr>
-                                    <td>상품번호</td>
-                                    <td><input type="text" name="prodCode"/></td>
+                                    <td>판매자</td>
+                                    <td><input type="text" name="seller" /></td>
                                 </tr>
                                 <tr>
                                     <td>상품상태</td>
-                                    <td><input type="text" name="status"/></td>
+                                    <td><input type="text" name="status" value="새상품"/></td>
                                 </tr>
                                 <tr>
                                     <td>부가세 면세여부</td>
-                                    <td><input type="text" name="duty"/></td>
+                                    <td><input type="text" name="duty" value="과세상품"/></td>
                                 </tr>
                                 <tr>
                                     <td>영수증발행</td>
-                                    <td><input type="text" name="receipt"/></td>
+                                    <td><input type="text" name="receipt" value="발행가능 - 신용카드 전표, 온라인 현금영수증"/></td>
                                 </tr>
                                 <tr>
                                     <td>사업자구분</td>
-                                    <td><input type="text" name="bizType"/></td>
-                                </tr>
-                                <tr>
-                                    <td>브랜드</td>
-                                    <td><input type="text" name="brand"/></td>
+                                    <td><input type="text" name="bizType" value="사업자 판매자"/></td>
                                 </tr>
                                 <tr>
                                     <td>원산지</td>
-                                    <td><input type="text" name="origin"/></td>
-                                </tr>
-                                <tr>
-                                    <td>제품소재</td>
-                                    <td><input type="text" name="material"/></td>
-                                </tr>
-                                <tr>
-                                    <td>색상</td>
-                                    <td><input type="text" name="color"/></td>
-                                </tr>
-                                <tr>
-                                    <td>치수</td>
-                                    <td><input type="text" name="size"/></td>
-                                </tr>
-                                <tr>
-                                    <td>제조자/수입국</td>
-                                    <td><input type="text" name="manuCompany"/></td>
-                                </tr>
-                                <tr>
-                                    <td>제조국</td>
-                                    <td><input type="text" name="manuCountry"/></td>
-                                </tr>
-                                <tr>
-                                    <td>취급시 주의사항</td>
-                                    <td><input type="text" name="warning"/></td>
-                                </tr>
-                                <tr>
-                                    <td>제조연월</td>
-                                    <td><input type="text" name="manuDate"/></td>
-                                </tr>
-                                <tr>
-                                    <td>품질보증기준</td>
-                                    <td><input type="text" name="qa"/></td>
-                                </tr>
-                                <tr>
-                                    <td>A/S 책임자와 전화번호</td>
-                                    <td><input type="text" name="as"/></td>
-                                </tr>
-                                <tr>
-                                    <td>주문후 예상 배송기간</td>
-                                    <td><input type="text" name="deliveryTime"/></td>
+                                    <td><input type="text" name="origin" value="국내산"/></td>
                                 </tr>
                             </table>       
                         </section>
@@ -202,4 +170,4 @@ cate1List();
           
         </main>
 
-<jsp:include page="./_footer.jsp"/>
+<jsp:include page="../_footer.jsp"/>

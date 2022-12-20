@@ -49,11 +49,17 @@ public class Sql_kkj {
 	
 	
 	
-	public static final String SELECT_NOTICE_ARTICLES = "SELECT * FROM `km_cs_notice`"
-													+ "ORDER BY `no` DESC "
+	public static final String SELECT_NOTICE_ARTICLES = "SELECT a.*, b.cate1 FROM `km_cs_notice` AS a "
+													+ "JOIN `km_cs_notice_cate1` AS b "
+													+ "USING (cate1) "
+													+ "ORDER BY `notNo` DESC "
 													+ "LIMIT ?, 10";
 	
-	public static final String SELECT_NOTICE_ARTICLE = "SELECT * FROM `km_cs_notice` where `no`=?";
+	public static final String SELECT_NOTICE_ARTICLE = "SELECT * FROM `km_cs_notice` where `notNo`=?";
 	
-	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(`no`) FROM `km_cs_notice`";
+	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(`notNo`) FROM `km_cs_notice`";
+	
+	public static final String SELECT_FAQ_ARTICLES = "SELECT * FROM `km_cs_faq`"
+													+ "ORDER BY `faNo` DESC "
+													+ "LIMIT 10";
 }

@@ -40,7 +40,7 @@
                     <aside>
                         <h2>공지사항</h2>
                         <ul>
-                            <li class="${cate1 eq null?'on':'off'}"><a href="/Kmarket/cs/notice/list.do?cate=">전체</a></li>
+                            <li class="${cate1 eq null?'on':'off'}"><a href="/Kmarket/cs/notice/list.do?cate1=">전체</a></li>
                             <li class="${cate1 eq 1?'on':'off'}"><a href="/Kmarket/cs/notice/list.do?cate1=1">고객서비스</a></li>
                             <li class="${cate1 eq 2?'on':'off'}"><a href="/Kmarket/cs/notice/list.do?cate1=2">안전거래</a></li>
                             <li class="${cate1 eq 3?'on':'off'}"><a href="/Kmarket/cs/notice/list.do?cate1=3">위해상품</a></li>
@@ -59,7 +59,7 @@
                         	
                         	<c:forEach var="article" items="${articles}">
 	                            <tr>
-	                                <td><a href="/Kmarket/cs/notice/view.do?no=${article.no }&cate1=${cate1}">[${article.c2Name }]${article.title}</a></td>
+	                                <td><a href="/Kmarket/cs/notice/view.do?notNo=${article.notNo }&cate1=${cate1}">${article.notTitle}</a></td>
 	                                <td>${article.rdate.substring(2, 10)}</td>
 	                            </tr>
                         	</c:forEach>

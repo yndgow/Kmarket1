@@ -55,6 +55,8 @@ public class Sql_kkj {
 													+ "ORDER BY `notNo` DESC "
 													+ "LIMIT ?, 10";
 	
+	public static final String SELECT_NOTICE_ARTICLES_CATE1 = "SELECT * FROM `km_cs_notice` WHERE `cate1`=? ORDER BY `notNo` DESC LIMIT ?,10";
+	
 	public static final String SELECT_NOTICE_ARTICLE = "SELECT * FROM `km_cs_notice` where `notNo`=?";
 	
 	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(`notNo`) FROM `km_cs_notice`";

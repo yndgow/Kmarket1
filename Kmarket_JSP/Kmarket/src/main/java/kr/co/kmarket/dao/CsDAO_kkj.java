@@ -22,24 +22,33 @@ public class CsDAO_kkj extends DBHelper {
 	// 로거 생성
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	public List<CsNoticeVO> selectNoticeArticles(int start) {
+	public List<CsNoticeVO> selectNoticeArticles(String cate1, int start) {
 		logger.info("selectNoticeArticles start...");
 		List<CsNoticeVO> articles = new ArrayList<>();
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kkj.SELECT_NOTICE_ARTICLES);
-			psmt.setInt(1, start);
+			
+			if(cate1 == null) {
+				 psmt = conn.prepareStatement(Sql_kkj.SELECT_NOTICE_ARTICLES);
+				 psmt.setInt(1, start);
+			}else {
+				psmt = conn.prepareStatement(Sql_kkj.SELECT_NOTICE_ARTICLES_CATE1);
+				psmt.setString(1, cate1);
+				psmt.setInt(2, start);
+			}
+			
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				CsNoticeVO vo = new CsNoticeVO();
 				vo.setNotNo(rs.getInt(1));
 				vo.setUid(rs.getString(2));
 				vo.setCate1(rs.getInt(3));
-				vo.setNotTitle(rs.getString(4));
-				vo.setNotContent(rs.getString(5));
-				vo.setHit(rs.getInt(6));
-				vo.setRegip(rs.getString(7));
-				vo.setRdate(rs.getString(8));
+				vo.setC1Name(rs.getString(4));
+				vo.setNotTitle(rs.getString(5));
+				vo.setNotContent(rs.getString(6));
+				vo.setHit(rs.getInt(7));
+				vo.setRegip(rs.getString(8));
+				vo.setRdate(rs.getString(9));
 				articles.add(vo);
 			}
 			close();
@@ -82,13 +91,14 @@ public class CsDAO_kkj extends DBHelper {
 	}
 	
 	
-	public int selectCountTotal() {
+	public int selectCountTotal(String cate1) {
 		int total = 0;
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
 			
 			rs = stmt.executeQuery(Sql_kkj.SELECT_COUNT_TOTAL);
+			psmt.setString(1, cate1);
 			
 			if(rs.next()) {
 				total = rs.getInt(1);

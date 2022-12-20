@@ -29,13 +29,12 @@ public class NoticeListController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String cate1 = req.getParameter("cate1");
-		
 		req.setAttribute("cate1", cate1);
 		
 		String pg = req.getParameter("pg");
 		
 		int currentPage = service.getCurrentPage(pg); // 현재 페이지 번호
-		int total = service.selectCountTotal();
+		int total = service.selectCountTotal(cate1);
 		
 		
 		
@@ -47,7 +46,7 @@ public class NoticeListController extends HttpServlet{
 		int start = service.getStartNum(currentPage); // 시작 인덱스
 		
 		// 글 가져오기
-		List<CsNoticeVO> articles = service.selectNoticeArticles(start); 
+		List<CsNoticeVO> articles = service.selectNoticeArticles(cate1, start); 
 		
 		
 		

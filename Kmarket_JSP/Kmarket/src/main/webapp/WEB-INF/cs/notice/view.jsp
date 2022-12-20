@@ -42,7 +42,7 @@
                     <aside>
                         <h2>공지사항</h2>
                         <ul>
-                            <li class="${cate1 eq null?'on':'off'}"><a href="/Kmarket/cs/notice/list.do?cate1=">전체</a></li>
+                            <li class="${cate1 eq null?'on':'off'}"><a href="/Kmarket/cs/notice/list.do">전체</a></li>
                             <li class="${cate1 eq 1?'on':'off'}"><a href="/Kmarket/cs/notice/list.do?cate1=1">고객서비스</a></li>
                             <li class="${cate1 eq 2?'on':'off'}"><a href="/Kmarket/cs/notice/list.do?cate1=2">안전거래</a></li>
                             <li class="${cate1 eq 3?'on':'off'}"><a href="/Kmarket/cs/notice/list.do?cate1=3">위해상품</a></li>
@@ -59,7 +59,7 @@
                                ${article.notContent }
                             </p>
                         </div>
-                        <a href="/Kmarket/cs/notice/list.do?cate1=${cate1}" class="btnList">목록</a>
+                        <a href="/Kmarket/cs/notice/list.do?cate1=${article.cate1}" class="btnList">목록</a>
                    </article>
                 </section>
             </div>

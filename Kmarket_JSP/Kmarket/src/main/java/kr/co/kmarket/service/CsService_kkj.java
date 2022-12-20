@@ -23,12 +23,12 @@ public enum CsService_kkj {
 //		return dao.InserArticleQna(vo);
 //	}
 		
-	public List<CsNoticeVO> selectNoticeArticles(int start){
-		return dao.selectNoticeArticles(start);
+	public List<CsNoticeVO> selectNoticeArticles(String cate1, int start){
+		return dao.selectNoticeArticles(cate1, start);
 	}
 	
-	public int selectCountTotal() {
-		return dao.selectCountTotal();
+	public int selectCountTotal(String cate1) {
+		return dao.selectCountTotal(cate1);
 	}
 	
 	public CsNoticeVO selectNoticeArticle(String notNo) {

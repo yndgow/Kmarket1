@@ -9,8 +9,8 @@ import org.slf4j.LoggerFactory;
 import kr.co.kmarket.db.DBHelper;
 import kr.co.kmarket.db.Sql;
 import kr.co.kmarket.db.Sql_hong;
-import kr.co.kmarket.vo.CsCate1VO;
-import kr.co.kmarket.vo.CsCate2VO;
+import kr.co.kmarket.vo.CsCate1DTO;
+import kr.co.kmarket.vo.CsCate2DTO;
 import kr.co.kmarket.vo.CsQnaVO;
 
 public class CsDAO extends DBHelper {
@@ -52,18 +52,18 @@ public class CsDAO extends DBHelper {
 	}
 	
 	//cs cate1 출력
-	public List<CsCate1VO> selectCate1ByCs(){
+	public List<CsCate1DTO> selectCate1ByCs(){
 		logger.info("select cate1 start...");
-		List<CsCate1VO> cates = new ArrayList<>();
+		List<CsCate1DTO> cates = new ArrayList<>();
 		
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(Sql_hong.SELECT_CATEGORY1_BY_CS);
 			while(rs.next()){
-				CsCate1VO vo = new CsCate1VO();
-				vo.setQnaCate1(rs.getInt(1));
-				vo.setQc1Name(rs.getString(2));
+				CsCate1DTO vo = new CsCate1DTO();
+				vo.setCate1(rs.getInt(1));
+				vo.setC1Name(rs.getString(2));
 				cates.add(vo);
 				
 			}
@@ -79,9 +79,9 @@ public class CsDAO extends DBHelper {
 	}
 	
 	//cs cate2 출력
-	public List<CsCate2VO> selectCate2ByCs(String cate2){
+	public List<CsCate2DTO> selectCate2ByCs(String cate2){
 		logger.info("select cate2 start...");
-		List<CsCate2VO> cates = new ArrayList<>();
+		List<CsCate2DTO> cates = new ArrayList<>();
 		
 		try {
 			conn = getConnection();
@@ -89,10 +89,10 @@ public class CsDAO extends DBHelper {
 			psmt.setString(1, cate2);
 			rs = psmt.executeQuery();
 			while(rs.next()){
-				CsCate2VO vo = new CsCate2VO();
-				vo.setQnaCate1(rs.getInt(1));
-				vo.setQnaCate2(rs.getInt(2));
-				vo.setQc2Name(rs.getString(3));
+				CsCate2DTO vo = new CsCate2DTO();
+				vo.setCate1(rs.getInt(1));
+				vo.setCate2(rs.getInt(2));
+				vo.setC2Name(rs.getString(3));
 				cates.add(vo);
 				
 			}

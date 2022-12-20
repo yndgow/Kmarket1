@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import kr.co.kmarket.dao.CsDAO;
-import kr.co.kmarket.vo.CsCate1VO;
-import kr.co.kmarket.vo.CsCate2VO;
+import kr.co.kmarket.vo.CsCate1DTO;
+import kr.co.kmarket.vo.CsCate2DTO;
 import kr.co.kmarket.vo.CsQnaVO;
 
 public enum CsService {
@@ -22,11 +22,11 @@ public enum CsService {
 		return dao.InserArticleQna(vo);
 	}
 	//cs cate1 출력 홍민준
-	public List<CsCate1VO> selectCate1ByCs(){
+	public List<CsCate1DTO> selectCate1ByCs(){
 		return dao.selectCate1ByCs();
 	}
 	//cs cate2 출력 홍민준
-	public List<CsCate2VO> selectCate2ByCs(String cate2){
+	public List<CsCate2DTO> selectCate2ByCs(String cate2){
 		return dao.selectCate2ByCs(cate2);
 	}
 	

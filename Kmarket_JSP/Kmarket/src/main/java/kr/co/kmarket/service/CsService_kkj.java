@@ -11,11 +11,17 @@ import com.google.gson.Gson;
 import kr.co.kmarket.dao.CsDAO_kkj;
 import kr.co.kmarket.vo.CsFaqVO;
 import kr.co.kmarket.vo.CsNoticeVO;
+import kr.co.kmarket.vo.CsQnaVO;
 
 public enum CsService_kkj {
 	INSTANCE;
 	CsDAO_kkj dao = CsDAO_kkj.getInstance();
 	
+
+	//cs 문의하기 등록 홍민준
+//	public int InsertArticleQnaOfCs(CsQnaVO vo){
+//		return dao.InserArticleQna(vo);
+//	}
 		
 	public List<CsNoticeVO> selectNoticeArticles(int start){
 		return dao.selectNoticeArticles(start);
@@ -43,10 +49,12 @@ public enum CsService_kkj {
 //	}
 	//cs view 출력
 //	public CsQnaVO selectQnaArticle(String qnaNo) {
+
 	//	return dao.selectQnaArticle(qnaNo);
 //	}
 	
 	
+
 
 	
 		public int getLastPageNum(int total) {

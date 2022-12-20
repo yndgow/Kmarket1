@@ -8,9 +8,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import kr.co.kmarket.db.DBHelper;
+import kr.co.kmarket.db.Sql_hong;
 import kr.co.kmarket.db.Sql_kjh;
+import kr.co.kmarket.vo.AdminCsNoticeCate1VO;
+import kr.co.kmarket.vo.AdminCsNoticeCate2VO;
 import kr.co.kmarket.vo.CsCate1DTO;
 import kr.co.kmarket.vo.CsCate2DTO;
+import kr.co.kmarket.vo.CsNoticeVO;
+import kr.co.kmarket.vo.CsQnaVO;
 import kr.co.kmarket.vo.ProductVO;
 
 public class AdminDAO_kjh extends DBHelper {
@@ -47,51 +52,125 @@ public class AdminDAO_kjh extends DBHelper {
 		
 	}
 	
-	// cs 카테고리 1차 출력
-	public List<CsCate1DTO> selectCsCate1(String csType) {
-		logger.info("selectCsCate1");
-		List<CsCate1DTO> cate1List = new ArrayList<>(); 
+	//cs cate1 출력
+	public List<AdminCsNoticeCate1VO> selectCate1ByCs(){
+		logger.info("SELECT_CATEGORY1_BY_CS_ADMIN_NOTICE start...");
+		List<AdminCsNoticeCate1VO> cates = new ArrayList<>();
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement("SELECT * FROM " + csType);
-			rs = psmt.executeQuery();
-			while(rs.next()) {
-				CsCate1DTO vo = new CsCate1DTO();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(Sql_hong.SELECT_CATEGORY1_BY_CS_ADMIN_NOTICE);
+			while(rs.next()){
+				AdminCsNoticeCate1VO vo = new AdminCsNoticeCate1VO();
 				vo.setCate1(rs.getInt(1));
 				vo.setC1Name(rs.getString(2));
-				cate1List.add(vo);
+				cates.add(vo);
 			}
 			close();
-		} catch (Exception e) {
+		}catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		logger.debug("cate1List : " + cate1List);
-		return cate1List;
+		logger.debug("cates : "+cates);
+		return cates;
 	}
+		
 	
-	// cs 카테고리 2차 출력
-	public List<CsCate2DTO> selectCsCate2(String csType, String cate1) {
-		logger.info("selectCsCate2");
-		List<CsCate2DTO> cate2List = new ArrayList<>(); 
+	// 전체 게시물 카운트
+	public int selectCountTotal() {
+		int total = 0;
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement("SELECT * FROM " + csType + " WHERE `cate1` = ?");
-			psmt.setString(1, cate1);
-			rs = psmt.executeQuery();
-			while(rs.next()) {
-				CsCate2DTO vo = new CsCate2DTO();
-				vo.setCate1(rs.getInt(1));
-				vo.setCate2(rs.getInt(2));
-				vo.setC2Name(rs.getString(3));
-				cate2List.add(vo);
+			stmt = conn.createStatement();
+			
+			rs = stmt.executeQuery(Sql_hong.SELECT_COUNT_TOTAL_NOTICE);
+			
+			if(rs.next()) {
+				total = rs.getInt(1);
 			}
 			close();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			e.printStackTrace();
 		}
-		logger.debug("cate2List : " + cate2List);
-		return cate2List;
+		logger.debug("total : "+total);
+		return total;
 	}
 	
-	// cs list 출력
+	// cs notice 전체 list 출력
+	public List<CsNoticeVO> selectAllNoticeArticles(int start){
+		logger.info("selectAllNoticeArticles start...");
+		List<CsNoticeVO> allArticles = new ArrayList<>();
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_hong.SELECT_ADMIN_ALL_NOTICE_ARTICLES);
+			psmt.setInt(1, start);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				CsNoticeVO vo = new CsNoticeVO();
+				vo.setNotNo(rs.getInt(1));
+				vo.setUid(rs.getString(2));
+				vo.setCate1(rs.getInt(3));
+				vo.setNotTitle(rs.getString(4));
+				vo.setNotContent(rs.getString(5));
+				vo.setHit(rs.getInt(6));
+				vo.setRegip(rs.getString(7));
+				vo.setRdate(rs.getString(8));
+				vo.setC1Name(rs.getString(9));
+				allArticles.add(vo);
+			}
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return allArticles;
+	}
+	
+	// cs notice 유형별 list 출력
+	public List<CsNoticeVO> selectNoticeArticles(String cate1, int start) {
+		logger.info("selectNoticeArticles start...");
+		List<CsNoticeVO> articles = new ArrayList<>();
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_hong.SELECT_ADMIN_NOTICE_ARTICLES);
+			psmt.setString(1, cate1);
+			psmt.setInt(2, start);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				CsNoticeVO vo = new CsNoticeVO();
+				vo.setNotNo(rs.getInt(1));
+				vo.setUid(rs.getString(2));
+				vo.setCate1(rs.getInt(3));
+				vo.setNotTitle(rs.getString(4));
+				vo.setNotContent(rs.getString(5));
+				vo.setHit(rs.getInt(6));
+				vo.setRegip(rs.getString(7));
+				vo.setRdate(rs.getString(8));
+				vo.setC1Name(rs.getString(9));
+				articles.add(vo);
+			}
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return articles;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

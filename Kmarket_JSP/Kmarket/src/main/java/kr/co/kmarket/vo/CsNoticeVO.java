@@ -10,6 +10,9 @@ public class CsNoticeVO {
 	private String regip;
 	private String rdate;
 	
+
+	// 추가필드
+	private String c1Name;
 	
 	public int getNotNo() {
 		return notNo;
@@ -35,7 +38,7 @@ public class CsNoticeVO {
 	public void setNotTitle(String notTitle) {
 		this.notTitle = notTitle;
 	}
-	public String getNotContent() {
+		public String getNotContent() {
 		return notContent;
 	}
 	public void setNotContent(String notContent) {
@@ -59,6 +62,14 @@ public class CsNoticeVO {
 	public void setRdate(String rdate) {
 		this.rdate = rdate;
 	}
+	public String getC1Name() {
+		return c1Name;
+	}
+	public void setC1Name(String c1Name) {
+		this.c1Name = c1Name;
+	}
+	
+	
 	
 	
 	

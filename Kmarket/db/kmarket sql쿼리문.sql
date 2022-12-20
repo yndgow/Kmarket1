@@ -442,4 +442,18 @@ INSERT INTO `km_cs_qna` (`uid`, `qc1Name`, `qc2Name`, `qnaTitle`, `qnaContent`, 
 INSERT INTO `km_cs_qna` (`uid`, `qc1Name`, `qc2Name`, `qnaTitle`, `qnaContent`, `regip`, `wdate`, `qnaCond`) VALUES ('test', '1', '회원정보', 'test', 'test', '0:0:0:0:0:0:0:1', '2022-12-13 13:29:25', '검토 중');
 INSERT INTO `km_cs_qna` (`uid`, `qc1Name`, `qc2Name`, `qnaTitle`, `qnaContent`, `regip`, `wdate`, `qnaCond`) VALUES ('test', '1', '회원정보', 'test', 'test', '0:0:0:0:0:0:0:1', '2022-12-13 13:29:30', '검토 중');
 
+-- -----------------------------------------------------
+-- Table `Kmarket`.`km_cs_notice_cate2`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Kmarket`.`km_cs_notice_cate2` (
+  `cate1` TINYINT(2) NOT NULL,
+  `cate2` INT(2) NOT NULL,
+  `c2Name` VARCHAR(20) NOT NULL,
+  INDEX `fk_km_cs_cate2_km_cs_cate1_idx` (`qnaCate1` ASC) VISIBLE,
+  CONSTRAINT `fk_km_cs_cate2_km_cs_cate11`
+    FOREIGN KEY (`qnaCate1`)
+    REFERENCES `Kmarket`.`km_cs_cate1` (`qnaCate1`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 

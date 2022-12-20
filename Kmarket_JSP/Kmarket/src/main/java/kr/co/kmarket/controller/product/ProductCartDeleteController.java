@@ -18,8 +18,7 @@ public class ProductCartDeleteController extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String uid = req.getParameter("uid");
-		String prodNo[] = req.getParameterValues("prodNo[]");
-		service.jsonObj("result", service.deleteProductCart(uid, prodNo), resp);
+		String cartNo[] = req.getParameterValues("cartNo[]");
+		service.jsonObj("result", service.deleteProductCart(cartNo), resp);
 	}
 }

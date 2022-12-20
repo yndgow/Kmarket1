@@ -11,7 +11,8 @@
             </p>
           </nav>
 
-          <form action="/kmarket/product/order.do" method="post">
+          <form action="/Kmarket/product/cart.do" method="post" id="cartForm">
+          
             <table>
               <thead>
                 <tr>
@@ -33,28 +34,33 @@
 				</c:when>
               	<c:otherwise>
               	<c:forEach var="cart" items="${carts}">
-	              <tr>
-	                <td><input type="checkbox" name="cartProduct" value="${cart.prodNo}" ></td>
-	                <td>
-	                  <article>
-	                    <a href="/Kmarket/product/view.do?prodNo=${cart.prodNo}">
-	                      <img src="http://13.125.215.198:8080/file/${cart.thumb1}" alt="장바구니thumb1">
-	                    </a>
-	                    <div>
-	                      <h2>
-	                        <a href="/Kmarket/product/view.do?prodNo=${cart.prodNo}">${cart.prodName}</a>
-	                      </h2>
-	                      <p>${cart.descript}</p>
-	                    </div>
-	                  </article>
-	                </td>
-	                <td class="count">${cart.count}</td>
-	                <td class="price">${cart.price}</td>
-	                <td class="discount">${cart.discount}</td>
-	                <td class="point">${cart.point}</td>
-	                <td class="delivery">${cart.delivery}</td>
-	                <td class="total">${cart.total}</td>
-	              </tr>
+           		
+				 <tr>
+				   <td>
+				   <input type="checkbox" name="cartProduct" value="${cart.cartNo}" >
+				   <%-- <input type="hidden" name="prodNo" value="${cart.prodNo}"/> --%>
+				   </td>
+				   <td>
+				     <article>
+				       <a href="/Kmarket/product/view.do?prodNo=${cart.prodNo}">
+				         <img src="http://13.125.215.198:8080/file/${cart.thumb1}" alt="장바구니thumb1">
+				       </a>
+				       <div>
+				         <h2>
+				           <a href="/Kmarket/product/view.do?prodNo=${cart.prodNo}">${cart.prodName}</a>
+				         </h2>
+				         <p>${cart.descript}</p>
+				       </div>
+				     </article>
+				   </td>
+				   <td class="count">${cart.count}</td>
+				   <td class="price">${cart.price}</td>
+				   <td class="discount">${cart.discount}</td>
+				   <td class="point">${cart.point}</td>
+				   <td class="delivery">${cart.delivery}</td>
+				   <td class="total">${cart.total}</td>
+				   
+				 </tr>
 	              </c:forEach>
 	            </c:otherwise>
 			</c:choose>   
@@ -65,29 +71,30 @@
             <input type="button" name="del" value="선택삭제">
             <div class="total">
               <h2>전체합계</h2>
-              <table border="0">
+              <table>
                 <tr>
-                  <td>상품수</td>
+                  <td>상품수<input type="hidden" name="cartCount" value=""></td>
                   <td id="cartCount">0</td>
                 </tr>
                 <tr>
-                  <td>상품금액</td>
+                  <td>상품금액<input type="hidden" name="cartPrice" value=""></td>
                   <td id="cartPrice">0</td>
+                  
                 </tr>
                 <tr>
-                  <td>할인금액</td>
+                  <td>할인금액<input type="hidden" name="cartDiscount" value=""></td>
                   <td id="cartDiscount">0</td>
                 </tr>
                 <tr>
-                  <td>배송비</td>
+                  <td>배송비<input type="hidden" name="cartDelivery" value=""></td>
                   <td id="cartDelivery">0</td>
                 </tr>              
                 <tr>
-                  <td>포인트</td>
+                  <td>포인트<input type="hidden" name="cartPoint" value=""></td>
                   <td id="cartPoint">0</td>
                 </tr>
                 <tr>
-                  <td>전체주문금액</td>
+                  <td>전체주문금액<input type="hidden" name="cartTotal" value=""></td>
                   <td id="cartTotal">0</td>
                 </tr>
               </table>

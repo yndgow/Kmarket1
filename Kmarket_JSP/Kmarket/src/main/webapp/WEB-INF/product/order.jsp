@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="./_header.jsp"/>
       <!-- section order 시작 -->
       <section class="order">
@@ -17,6 +19,8 @@
             </tr>
           </thead>
           <tbody>
+          
+          	<c:forEach var="cart" items="${carts}">
             <tr>
               <td>
                 <img src="./img/apple.jpg" alt="상품이미지20_20" />
@@ -35,45 +39,11 @@
               <td>무료배송</td>
               <td>27,000</td>
             </tr>
-            <tr>
-              <td>
-                <img src="./img/apple.jpg" alt="상품이미지20_20" />
-                <div>
-                  <p>상품명</p>
-                  <br />
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, rem minima aperiam cupiditate error
-                    tempora suscipit nobis voluptas
-                    consequatur dolore sunt dicta officiis, culpa voluptatum sapiente ad ut pariatur hic!
-                  </p>
-                </div>
-              </td>
-              <td>1</td>
-              <td>27,000</td>
-              <td>무료배송</td>
-              <td>27,000</td>
-            </tr>
-            <tr>
-              <td>
-                <img src="./img/apple.jpg" alt="상품이미지20_20" />
-                <div>
-                  <p>상품명</p>
-                  <br />
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, rem minima aperiam cupiditate error
-                    tempora suscipit nobis voluptas
-                    consequatur dolore sunt dicta officiis, culpa voluptatum sapiente ad ut pariatur hic!
-                  </p>
-                </div>
-              </td>
-              <td>1</td>
-              <td>27,000</td>
-              <td>무료배송</td>
-              <td>27,000</td>
-            </tr>
+            </c:forEach>
+            
           </tbody>
         </table>
-        <form action="#" class="order_info" method="post">
+        <form action="/Kmarket/product/order.do" class="order_info" method="post">
           <div>
             <article class="delivery_info">
               <nav>
@@ -163,27 +133,27 @@
               <tbody>
                 <tr>
                   <td>총</td>
-                  <td>2 건</td>
+                  <td>${order.ordCount} 건</td>
                 </tr>
                 <tr>
                   <td>상품금액</td>
-                  <td>27,000</td>
+                  <td>${order.ordPrice}</td>
                 </tr>
                 <tr>
                   <td>할인금액</td>
-                  <td>-1,000</td>
+                  <td>${order.ordDiscount}</td>
                 </tr>
                 <tr>
                   <td>배송비</td>
-                  <td>0</td>
+                  <td>${order.ordDelivery}</td>
                 </tr>
                 <tr>
                   <td>포인트 할인</td>
-                  <td>-1000</td>
+                  <td>${order.usedPoint}</td>
                 </tr>
                 <tr>
                   <td>전체주문금액</td>
-                  <td>25,000</td>
+                  <td>${order.ordTotPrice}</td>
                 </tr>
               </tbody>
             </table>

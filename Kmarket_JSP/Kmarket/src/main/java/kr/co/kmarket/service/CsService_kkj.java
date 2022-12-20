@@ -27,9 +27,18 @@ public enum CsService_kkj {
 	public CsNoticeVO selectNoticeArticle(String no) {
 		return dao.selectNoticeArticle(no);
 	}
-	
-	
-	
+
+
+	//cs list 출력 홍민준
+//	public List<CsQnaVO> selectQnaArticles(){
+//		return dao.selectQnaArticles(start);
+		
+//	}
+	//cs view 출력
+	public CsQnaVO selectQnaArticle(String qnaNo) {
+		return dao.selectQnaArticle(qnaNo);
+	}
+
 	
 		public int getLastPageNum(int total) {
 			
@@ -76,6 +85,7 @@ public enum CsService_kkj {
 		public int getStartNum(int currentPage) {
 			return (currentPage - 1) * 10;
 		}
+
 	
 	
 	

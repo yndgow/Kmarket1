@@ -16,29 +16,11 @@ public enum CsService_kkj {
 	INSTANCE;
 	CsDAO_kkj dao = CsDAO_kkj.getInstance();
 	
-<<<<<<< HEAD
-	//cs 문의하기 등록 홍민준
-	public int InsertArticleQnaOfCs(CsQnaVO vo){
-		return dao.InserArticleQna(vo);
-	}
-	//cs cate1 출력 홍민준
-	public List<CsCate1VO> selectCate1ByCs(){
-		return dao.selectCate1ByCs();
-	}
-	//cs cate2 출력 홍민준
-	public List<CsCate2VO> selectCate2ByCs(String cate2){
-		return dao.selectCate2ByCs(cate2);
-	}
 
-	//cs list 출력 홍민준
-//	public List<CsQnaVO> selectQnaArticles(){
-//		return dao.selectQnaArticles(start);
-		
+	//cs 문의하기 등록 홍민준
+//	public int InsertArticleQnaOfCs(CsQnaVO vo){
+//		return dao.InserArticleQna(vo);
 //	}
-	//cs view 출력
-	public CsQnaVO selectQnaArticle(String qnaNo) {
-		return dao.selectQnaArticle(qnaNo);
-=======
 		
 	public List<CsNoticeVO> selectNoticeArticles(int start){
 		return dao.selectNoticeArticles(start);
@@ -46,15 +28,25 @@ public enum CsService_kkj {
 	
 	public int selectCountTotal() {
 		return dao.selectCountTotal();
->>>>>>> a19c66324a8a1beec30a3495e99533da149e705e
 	}
 	
 	public CsNoticeVO selectNoticeArticle(String no) {
 		return dao.selectNoticeArticle(no);
 	}
-	
-	
-	
+
+
+	//cs list 출력 홍민준
+//	public List<CsQnaVO> selectQnaArticles(){
+//		return dao.selectQnaArticles(start);
+		
+//	}
+	//cs view 출력
+//	public CsQnaVO selectQnaArticle(String qnaNo) {
+//		return dao.selectQnaArticle(qnaNo);
+//	}
+		
+
+
 	
 		public int getLastPageNum(int total) {
 			
@@ -101,6 +93,7 @@ public enum CsService_kkj {
 		public int getStartNum(int currentPage) {
 			return (currentPage - 1) * 10;
 		}
+
 	
 	
 	

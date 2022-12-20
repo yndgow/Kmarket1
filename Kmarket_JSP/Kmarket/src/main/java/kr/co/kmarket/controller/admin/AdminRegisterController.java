@@ -37,13 +37,13 @@ public class AdminRegisterController extends HttpServlet{
 				int maxSize = 1024 * 1024 * 5;
 		MultipartRequest mr = new MultipartRequest(req, savePath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 		
-		String prodCate1 = mr.getParameter("category1");
+		// 기본정보
+		String prodCate1 = mr.getParameter("category1"); 
 		String prodCate2 = mr.getParameter("category2");
 		String prodName = mr.getParameter("prodName");
 		String descript = mr.getParameter("descript");
 		String company = mr.getParameter("company");
 		String price = mr.getParameter("price");
-		String ip = req.getRemoteAddr();
 		String point = mr.getParameter("point");
 		String stock = mr.getParameter("stock");
 		String delivery = mr.getParameter("delivery");
@@ -52,14 +52,15 @@ public class AdminRegisterController extends HttpServlet{
 		String thumb2 = mr.getFilesystemName("thumb2");
 		String thumb3 = mr.getFilesystemName("thumb3");
 		String detail = mr.getFilesystemName("detail");
+		String ip = req.getRemoteAddr();
 		
-		//String status = mr.getParameter("status");
-		//String duty = mr.getParameter("duty");
-		//String receipt = mr.getParameter("receipt");
-		//String bizType = mr.getParameter("bizType");
-		//String brand = mr.getParameter("brand");
-		//String origin = mr.getParameter("origin");
-		//String stock = mr.getParameter("stock");
+		// 상품정보 제공고시
+		String seller = mr.getParameter("seller");
+		String status = mr.getParameter("status");
+		String duty = mr.getParameter("duty");
+		String receipt = mr.getParameter("receipt");
+		String bizType = mr.getParameter("bizType");
+		String origin = mr.getParameter("origin");
 		
 		
 		
@@ -86,7 +87,6 @@ public class AdminRegisterController extends HttpServlet{
 		vo.setDescript(descript);
 		vo.setCompany(company);
 		vo.setPrice(price);
-		vo.setIp(ip);
 		vo.setPoint(point);
 		vo.setStock(stock);
 		vo.setDelivery(delivery);
@@ -95,24 +95,19 @@ public class AdminRegisterController extends HttpServlet{
 		vo.setThumb2(newThumb2);
 		vo.setThumb3(newThumb3);
 		vo.setDetail(newDetail);
+		vo.setIp(ip);
 		
 		// 상품정보 제공고시
-		
-//		vo.setStatus(status);
-//		vo.setDuty(duty);
-//		vo.setReceipt(receipt);
-//		vo.setBizType(bizType);
-//		vo.setBrand(brand);
-//		vo.setOrigin(origin);
-		
-		
-		
-		
-		
+		vo.setSeller(seller);
+		vo.setStatus(status);
+		vo.setDuty(duty);
+		vo.setReceipt(receipt);
+		vo.setBizType(bizType);
+		vo.setOrigin(origin);
 		
 		int result = service.insertProductByAdmin(vo);
 		
-		if(result >0) resp.sendRedirect("./list.do");
+		if(result > 0) resp.sendRedirect("./register.do");
 		
 	}
 }

@@ -11,6 +11,7 @@ import kr.co.kmarket.db.Sql_kjh;
 import kr.co.kmarket.vo.ProductCartVO;
 import kr.co.kmarket.vo.ProductCate1VO;
 import kr.co.kmarket.vo.ProductCate2VO;
+import kr.co.kmarket.vo.ProductOrderVO;
 import kr.co.kmarket.vo.ProductReviewVO;
 import kr.co.kmarket.vo.ProductVO;
 
@@ -24,29 +25,22 @@ public class ProductDAO extends DBHelper {
 	
 	// 로거 생성
 	Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
+// SELECT
+	// 상품 목록 출력
 	public List<ProductVO> selectProductList(String cate1, String cate2, String listSort, int start){
 		logger.info("selectProductList");
-		if(listSort == null) listSort = "soldDesc";
+		
 		List<ProductVO> products = new ArrayList<>();
-		String sort[] = {"soldDesc", "priceAsc", "priceDesc", "scoreDesc", "reviewDesc", "rdateDesc"};
-		String sql_txt[] = {"sold DESC ", "price ASC ", "price DESC ", "score DESC ", "review DESC ", "rdate DESC "};
-		String sql_sort = "";
-		for(int i=0; i<sort.length; i++) {
-			if(listSort.equals(sort[i])) {
-				sql_sort = sql_txt[i];
-			}
-		}
+		
 		String sql_limit = "LIMIT " + start + ", 10"; 
-		logger.info(sql_sort);
+		
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.SELECT_PRODUCT_LIST+ sql_sort + sql_limit);
+			psmt = conn.prepareStatement(Sql_kjh.SELECT_PRODUCT_LIST+ listSort + sql_limit);
 			logger.info(Sql_kjh.SELECT_PRODUCT_LIST);
 			psmt.setString(1, cate1);
 			psmt.setString(2, cate2);
-			//psmt.setString(3, sql_sort);
-			//psmt.setInt(4, start);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				ProductVO vo = new ProductVO();
@@ -77,6 +71,7 @@ public class ProductDAO extends DBHelper {
 				vo.setOrigin(rs.getString(25));
 				vo.setIp(rs.getString(26));
 				vo.setRdate(rs.getString(27));
+				vo.setDiscountPrice(rs.getInt(33));
 				products.add(vo);
 			}
 			close();
@@ -132,7 +127,6 @@ public class ProductDAO extends DBHelper {
 		logger.debug("categories :" + categories2);
 		return categories2;
 	}
-	
 	
 	// 상품 최대갯수 출력 
 	public int selectCountTotal(String cate1, String cate2) {
@@ -249,6 +243,127 @@ public class ProductDAO extends DBHelper {
 		return result;
 	}
 	
+	// 장바구니 출력
+	public List<ProductCartVO> selectProductCarts(String uid) {
+		logger.info("selectProductCarts");
+		List<ProductCartVO> carts = new ArrayList<>();
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.SELECT_PRODUCTCARTS);
+			psmt.setString(1, uid);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				ProductCartVO vo = new ProductCartVO();
+				vo.setCartNo(rs.getInt(1));
+				vo.setUid(rs.getString(2));
+				vo.setProdNo(rs.getInt(3));
+				vo.setCount(rs.getInt(4));
+				vo.setPrice(rs.getInt(5));
+				vo.setDiscount(rs.getInt(6));
+				vo.setPoint(rs.getInt(7));
+				vo.setDelivery(rs.getInt(8));
+				vo.setTotal(rs.getInt(9));
+				vo.setRdate(rs.getString(10));
+				vo.setThumb1(rs.getString(11));
+				vo.setDescript(rs.getString(12));
+				vo.setProdName(rs.getString(13));
+				carts.add(vo);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("carts : " + carts);
+		return carts;
+	}
+	
+	// 장바구니 상품 존재여부
+	public int selectProductCart(String uid, int prodNo) {
+		logger.info("selectProductCart");
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.SELECT_PRODUCTCART);
+			psmt.setString(1, uid);
+			psmt.setInt(2, prodNo);
+			rs = psmt.executeQuery();
+			if(rs.next()) result = rs.getInt(1);
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
+
+	// 주문 페이지 상품 부분 출력
+	public List<ProductCartVO> selectProductCartForOrder(String sql){
+		logger.info("selectProductCartForOrder");
+		List<ProductCartVO> carts = new ArrayList<>();
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(Sql_kjh.SELECT_PRODUCTCART_FOR_ORDER + sql);
+			while(rs.next()) {
+				ProductCartVO vo = new ProductCartVO();
+				vo.setCartNo(rs.getInt(1));
+				vo.setUid(rs.getString(2));
+				vo.setProdNo(rs.getInt(3));
+				vo.setCount(rs.getInt(4));
+				vo.setPrice(rs.getInt(5));
+				vo.setDiscount(rs.getInt(6));
+				vo.setPoint(rs.getInt(7));
+				vo.setDelivery(rs.getInt(8));
+				vo.setTotal(rs.getInt(9));
+				vo.setRdate(rs.getString(10));
+				vo.setThumb1(rs.getString(11));
+				vo.setDescript(rs.getString(12));
+				vo.setProdName(rs.getString(13));
+				carts.add(vo);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("carts : " + carts);
+		return carts;
+	}
+	
+	// 주문 페이지 전체합계 출력
+	public ProductOrderVO selectOrder(String uid) {
+		logger.info("selectOrder");
+		ProductOrderVO vo = null;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.SELECT_ORDER);
+			psmt.setString(1, uid);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				vo = new ProductOrderVO();
+				vo.setOrdNo(rs.getInt(1));
+				vo.setOrdUid(rs.getString(2));
+				vo.setOrdCount(rs.getInt(3));
+				vo.setOrdPrice(rs.getInt(4));
+				vo.setOrdDiscount(rs.getInt(5));
+				vo.setOrdDelivery(rs.getInt(6));
+				vo.setSavePoint(rs.getInt(7));
+				vo.setUsedPoint(rs.getInt(8));
+				vo.setOrdTotPrice(rs.getInt(9));
+				vo.setRecipName(rs.getString(10));
+				vo.setRecipHp(rs.getString(11));
+				vo.setRecipZip(rs.getString(12));
+				vo.setRecipAddr1(rs.getString(13));
+				vo.setRecipAddr2(rs.getString(14));
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("vo : " + vo);
+		return vo;
+	}
+	
+// INSERT	
 	// 장바구니 입력
 	public int insertProductCart(ProductCartVO vo) {
 		logger.info("insertProductCart");
@@ -261,8 +376,36 @@ public class ProductDAO extends DBHelper {
 			psmt.setInt(3, vo.getCount());
 			psmt.setInt(4, vo.getPrice());
 			psmt.setInt(5, vo.getDiscount());
-			psmt.setInt(6, vo.getPoint());
-			psmt.setInt(7, vo.getDelivery());
+			psmt.setInt(6, vo.getDelivery());
+			result = psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
+
+	// product order 입력
+	public int insertProductOrder(ProductOrderVO vo) {
+		logger.info("insertProductOrder");
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.INSERT_PRODUCTORDER);
+			psmt.setString(1, vo.getOrdUid());
+			psmt.setInt(2, vo.getOrdCount());
+			psmt.setInt(3, vo.getOrdPrice());
+			psmt.setInt(4, vo.getOrdDiscount());
+			psmt.setInt(5, vo.getOrdDelivery());
+			psmt.setInt(6, vo.getSavePoint());
+			psmt.setInt(7, vo.getOrdTotPrice());
+			psmt.setString(8, vo.getRecipName());
+			psmt.setString(9, vo.getRecipHp());
+			psmt.setString(10, vo.getRecipZip());
+			psmt.setString(11, vo.getRecipAddr1());
+			psmt.setString(12, vo.getRecipAddr2());
+			
 			result = psmt.executeUpdate();
 			close();
 		} catch (Exception e) {
@@ -272,12 +415,64 @@ public class ProductDAO extends DBHelper {
 		return result;
 	}
 	
+	// product order item 입력
+	public int insertProductOrderItem(List<ProductOrderVO> vo) {
+		logger.info("insertProductOrder");
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement("");
+			
+			
+			
+			
+			
+			result = psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
+
 	
-	
-	
-	
-	
-	
+// UPDATE
+	// 장바구니 이미 있으면 수량 증가 
+	public int updateProductCartCount(String uid, int prodNo) {
+		logger.info("updateProductCartCount");
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.UPDATE_PRODUCTCART_COUNT);
+			psmt.setString(1, uid);
+			psmt.setInt(2, prodNo);
+			result = psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
+
+// DELTE
+	// 장바구니 체크 삭제
+	public int deleteProductCart(String sql) {
+		int result = 0;
+		logger.info("deleteProductCart");
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.DELTE_PRODUCTCART + sql);
+			
+			result = psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
 	
 	
 	

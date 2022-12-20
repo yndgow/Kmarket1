@@ -33,7 +33,16 @@ public class ProductVO {
 	private String etc3;
 	private String etc4;
 	private String etc5;
+	
+	// 임시 필드
+	private int discountPrice;
 
+	public int getDiscountPrice() {
+		return discountPrice;
+	}
+	public void setDiscountPrice(int discountPrice) {
+		this.discountPrice = discountPrice;
+	}
 	public int getProdNo() {
 		return prodNo;
 	}

@@ -15,24 +15,26 @@ $(() => {
     if (loginCheck()) {
       let btnClassName = $(this).attr('class');
       if (btnClassName == 'btnCart') {
-        if (confirm('장바구니에 담겼습니다. 이동하시겠습니까?')) {
-          let jsonData = {
-            prodNo: $('.prodNo').text(),
-            uid: $('.sessUser_uid').text(),
-            count: $('input[name=num]').val(),
-          };
-          console.log(jsonData);
-          jsonData = JSON.stringify(jsonData);
-          $.ajax({
-            type: 'post',
-            url: '/Kmarket/product/cart.do',
-            data: jsonData,
-            dataType: 'json',
-            success: function (data) {
-              if(data.result > 0) location.href = '/Kmarket/product/cart.do';
-            },
-          });
-        }
+        let jsonData = {
+          uid: $('.sessUser_uid').text(),
+          prodNo: $('input[name=prodNo').val(),
+          count: $('input[name=num]').val(),
+          price: $('input[name=ori_price]').val(),
+          discount: $('input[name=discount]').val(),
+          delivery: $('input[name=delivery]').val(),
+        };
+
+        $.ajax({
+          type: 'post',
+          url: '/Kmarket/product/view.do',
+          data: jsonData,
+          dataType: 'json',
+          success: function (data) {
+            if (data.result > 0 && confirm('장바구니에 담겼습니다. 이동하시겠습니까?')) {
+              location.href = '/Kmarket/product/cart.do?uid=' + $('.sessUser_uid').text();
+            }
+          },
+        });
       } else if (btnClassName == 'btnBuy') {
         location.href = '/Kmarket/product/order.do?prodNo=' + $('.prodNo').text();
       }
@@ -64,9 +66,105 @@ $(() => {
       },
     });
   });
+  // 체크박스 이벤트
+  // 체크박스 전체 체크 또는 해제
+  $('input:checkbox[name=all]').click(function () {
+    let checked = $(this).is(':checked');
+    if (checked) {
+      $('input:checkbox[name=cartProduct]').prop('checked', true);
+      cartCheckTotal();
+    } else {
+      $('input:checkbox[name=cartProduct]').prop('checked', false);
+      cartCheckTotal();
+    }
+  });
+
+  // 개별 체크박스 해제시 전체 체크박스 표시 해제
+  $('input:checkbox[name=cartProduct]').click(function () {
+    let checked = $('input:checkbox[name=all]').is(':checked');
+    if (checked) $('input:checkbox[name=all]').prop('checked', false);
+    cartCheckTotal();
+  });
+
+  // 선택삭제
+  $('input[name=del]').click(function () {
+    if ($('input[name=cartProduct]:checked').length == 0) {
+      alert('선택된 상품이 없습니다.');
+      return false;
+    }
+
+    let cartNo = [];
+    $('input[name=cartProduct]:checked').each(function (e) {
+      cartNo.push($(this).val());
+    });
+
+    if (confirm('선택된 상품을 삭제하시겠습니까?')) {
+      $.ajax({
+        type: 'post',
+        url: '/Kmarket/product/cartDelete.do',
+        data: { cartNo: cartNo },
+        dataType: 'json',
+        success: function (data) {
+          if (data.result > 0) {
+            $('input[name=cartProduct]:checked').parents('tr').remove();
+            if ($('input[name=cartProduct]').length == 0) {
+              let content = `<tr class="empty">
+                <td colspan="7">장바구니에 상품이 없습니다.</td>
+              </tr>`;
+              $('.cart table').append(content);
+              $('.total').hide();
+              $('input[name=del]').hide();
+              $('input:checkbox[name=all]').prop('checked', false);
+            }
+          }
+        },
+      });
+    }
+  });
+
+  // 장바구니에서 오더로 체크한 상품만 보내기
+  /*$('input[name=cartOrder]').click(function (e) {
+	e.preventDefault();
+  });*/
 });
 
-// 함수 모음
+///////////////
+///함수 모음///
+//////////////
+
+// 장바구니에서 오더로 체크한 상품만 보내기
+function checkedOrder() {
+  console.log('test');
+  // 리스트 생성
+  let list = new Array();
+  $('input[name=cartProduct]:checked').each(function (e) {
+    // 객체 생성
+    let prod = new Object();
+    prod.prodNo = $(this).siblings('input[name=prodNo]').val();
+    prod.count = $(this).parent().siblings('.count').text();
+    prod.price = $(this).parent().siblings('.price').text();
+    prod.discount = $(this).parent().siblings('.discount').text();
+    prod.point = $(this).parent().siblings('.point').text();
+    prod.delivery = $(this).parent().siblings('.delivery').text();
+    prod.total = $(this).parent().siblings('.total').text();
+    list.push(prod);
+  });
+  //JSON.stringify(list);
+	console.log($('#cartForm').serialize());
+  
+  $.ajax({
+    type: 'post',
+    url: '/Kmarket/product/cart.do',
+    //tranditional: true,
+    data: $('#cartForm').serialize(),
+    dataType: 'json',
+    success: function (data) {
+      console.log(data);
+    },
+  });
+}
+
+
 // 서브 카테고리 보이기
 function subCategoryShowHide() {
   for (let i = 2; i <= 10; i++) {
@@ -131,4 +229,45 @@ function loginCheck() {
   } else {
     return true;
   }
+}
+// 가격에서 , 원을 떼고 숫자로 만들기
+function removeCommaWon(price) {
+  let pricetxt = $('.' + price).text();
+  pricetxt = pricetxt.split('원', '1')[0];
+  let priceNum = stringNumberToInt(pricetxt);
+  return priceNum;
+}
+// 전체합계
+function cartCheckTotal() {
+  let totalPrice = 0;
+  let totalDiscount = 0;
+  let totalDelivery = 0;
+  let totalPoint = 0;
+  let totalSum = 0;
+
+  let cartCheck = $('input[name=cartProduct]:checked');
+  // 상품수
+  $('#cartCount').text(cartCheck.length);
+
+  $('input[name=cartProduct]:checked').each(function (e) {
+    totalPrice += Number($(this).parent().siblings('.price').text()); // 상품금액
+    totalDiscount -= Math.ceil(Number(($(this).parent().siblings('.discount').text() / 100) * $(this).parent().siblings('.price').text()));
+    totalDelivery += Number($(this).parent().siblings('.delivery').text());
+    totalPoint += Number($(this).parent().siblings('.point').text());
+    totalSum += Number($(this).parent().siblings('.total').text());
+  });
+  // 보여주는 데이터
+  $('#cartPrice').text(totalPrice);
+  $('#cartDiscount').text(totalDiscount);
+  $('#cartDelivery').text(totalDelivery);
+  $('#cartPoint').text(totalPoint);
+  $('#cartTotal').text(totalSum);
+  // form 전송을 위한 데이터 입력
+  $('input[name=cartCount]').val(cartCheck.length);
+  $('input[name=cartPrice]').val(totalPrice);
+  $('input[name=cartDiscount]').val(totalDiscount);
+  $('input[name=cartDelivery]').val(totalDelivery);
+  $('input[name=cartPoint]').val(totalPoint);
+  $('input[name=cartTotal]').val(totalSum);
+  
 }

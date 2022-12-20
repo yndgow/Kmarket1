@@ -1,9 +1,12 @@
 package kr.co.kmarket.service;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
@@ -13,6 +16,7 @@ import kr.co.kmarket.dao.ProductDAO;
 import kr.co.kmarket.vo.ProductCartVO;
 import kr.co.kmarket.vo.ProductCate1VO;
 import kr.co.kmarket.vo.ProductCate2VO;
+import kr.co.kmarket.vo.ProductOrderVO;
 import kr.co.kmarket.vo.ProductReviewVO;
 import kr.co.kmarket.vo.ProductVO;
 
@@ -23,6 +27,15 @@ public enum ProductService {
 
 	// product list 
 	public List<ProductVO> selectProductList(String cate1, String cate2, String listSort, int start){
+		if(listSort == null || listSort.equals("")) listSort = "soldDesc";
+		
+		for(int i=0; i<listSort.length(); i++) {
+			if(listSort.charAt(i)<= 90) {
+				listSort = listSort.substring(0, i)+" "+listSort.substring(i)+" ";
+				break;
+			}
+		}
+		
 		return dao.selectProductList(cate1, cate2, listSort, start);
 	}
 	
@@ -57,11 +70,64 @@ public enum ProductService {
 	}
 	// 장바구니 입력
 	public int insertProductCart(ProductCartVO vo) {
-		return dao.insertProductCart(vo);
+		
+		// 장바구니에 이미 존재하는지 체크
+		int result = dao.selectProductCart(vo.getUid(), vo.getProdNo());
+		
+		if(result > 0) {
+			// 있으면
+			return dao.updateProductCartCount(vo.getUid(), vo.getProdNo());
+		}else {
+			// 없으면 
+			return dao.insertProductCart(vo);
+		}
+	}
+	// 장바구니 출력
+	public List<ProductCartVO> selectCarts(String uid) {
+		return dao.selectProductCarts(uid);
+	}
+	
+	// 장바구니 삭제
+	public int deleteProductCart(String[] cartNo) {
+		String sql = "";
+		for(int i=0; i<cartNo.length; i++) {
+			sql += cartNo[i];
+			if(i != cartNo.length-1) {
+				sql += ", ";
+			}
+		}
+		sql += ")";
+		return dao.deleteProductCart(sql);
+	}
+	
+	// 상품 주문 입력
+	public int insertProductOrder(ProductOrderVO vo) {
+		return dao.insertProductOrder(vo);
+	}
+	
+	// 주문 페이지 장바구니 부분 출력
+	public List<ProductCartVO> selectProductCartForOrder(String[] cartNo){
+		String sql = "";
+		for(int i=0; i<cartNo.length; i++) {
+			sql += cartNo[i];
+			if(i != cartNo.length-1) {
+				sql += ", ";
+			}
+		}
+		sql += ")";
+		
+		return dao.selectProductCartForOrder(sql);
+	}
+	
+	// 주문 페이지 전체 합계 출력
+	public ProductOrderVO selectOrder(String uid) {
+		return dao.selectOrder(uid);
 	}
 	
 	
 	
+
+
 	
 	
 	
@@ -125,4 +191,18 @@ public enum ProductService {
 		PrintWriter writer = resp.getWriter();
 		writer.print(json.toString());
 	}
+	
+	public String getBody(HttpServletRequest request) throws IOException {
+		 
+		BufferedReader input = new BufferedReader(new InputStreamReader(request.getInputStream()));
+        StringBuilder builder = new StringBuilder();
+        String buffer;
+        while ((buffer = input.readLine()) != null) {
+            if (builder.length() > 0) {
+                builder.append("\n");
+            }
+            builder.append(buffer);
+        }
+        return builder.toString();
+    }
 }

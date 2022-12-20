@@ -8,15 +8,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import kr.co.kmarket.dao.CsDAO;
-import kr.co.kmarket.vo.CsCate1VO;
-import kr.co.kmarket.vo.CsCate2VO;
+import kr.co.kmarket.dao.CsDAO_kkj;
+import kr.co.kmarket.vo.CsNoticeVO;
 import kr.co.kmarket.vo.CsQnaVO;
 
 public enum CsService_kkj {
 	INSTANCE;
-	CsDAO dao = CsDAO.getInstance();
+	CsDAO_kkj dao = CsDAO_kkj.getInstance();
 	
+<<<<<<< HEAD
 	//cs 문의하기 등록 홍민준
 	public int InsertArticleQnaOfCs(CsQnaVO vo){
 		return dao.InserArticleQna(vo);
@@ -38,7 +38,69 @@ public enum CsService_kkj {
 	//cs view 출력
 	public CsQnaVO selectQnaArticle(String qnaNo) {
 		return dao.selectQnaArticle(qnaNo);
+=======
+		
+	public List<CsNoticeVO> selectNoticeArticles(int start){
+		return dao.selectNoticeArticles(start);
 	}
+	
+	public int selectCountTotal() {
+		return dao.selectCountTotal();
+>>>>>>> a19c66324a8a1beec30a3495e99533da149e705e
+	}
+	
+	public CsNoticeVO selectNoticeArticle(String no) {
+		return dao.selectNoticeArticle(no);
+	}
+	
+	
+	
+	
+		public int getLastPageNum(int total) {
+			
+			int lastPageNum = 0;
+			
+			if(total % 10 == 0){
+				lastPageNum = total / 10;
+			}else{
+				lastPageNum = total / 10 + 1;
+			}
+			
+			return lastPageNum;
+		}
+		
+		public int[] getPageGroupNum(int currentPage, int lastPageNum) {
+			int currentPageGroup = (int)Math.ceil(currentPage / 10.0);
+			int pageGroupStart = (currentPageGroup - 1) * 10 + 1;
+			int pageGroupEnd = currentPageGroup * 10;
+			
+			if(pageGroupEnd > lastPageNum){
+				pageGroupEnd = lastPageNum;
+			}
+			
+			int[] result = {pageGroupStart, pageGroupEnd};
+			
+			return result;
+		}
+		
+		public int getPageStartNum(int total, int currentPage) {
+			int start = (currentPage - 1) * 10;
+			return total - start;
+		}
+		
+		public int getCurrentPage(String pg) {
+			int currentPage = 1;
+			
+			if(pg != null){
+				currentPage = Integer.parseInt(pg);	
+			}
+			
+			return currentPage;
+		}
+		
+		public int getStartNum(int currentPage) {
+			return (currentPage - 1) * 10;
+		}
 	
 	
 	

@@ -22,6 +22,14 @@ public class ProductOrderController extends HttpServlet{
 		req.setAttribute("categories1", service.selectCategory1());
 		req.setAttribute("categories2", service.selectCategory2());
 		
+		String cartNo[] = req.getParameterValues("cartNo");
+		
+		// 선택된 상품만 셀렉
+		req.setAttribute("carts", service.selectProductCartForOrder(cartNo));
+		
+		// 주문정보 셀렉
+		req.setAttribute("order", service.selectOrder(req.getParameter("uid")));
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/product/order.jsp");
 		dispatcher.forward(req, resp);
 	}
@@ -29,6 +37,9 @@ public class ProductOrderController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		// order item 입력
+		
+		// order 업데이트
 	}
 
 }

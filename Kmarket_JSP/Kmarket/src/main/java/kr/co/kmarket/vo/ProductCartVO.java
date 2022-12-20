@@ -12,6 +12,29 @@ public class ProductCartVO {
 	private int total;
 	private String rdate;
 	
+	// 추가 필드
+	private String thumb1;
+	private String descript;
+	private String prodName;
+	
+	public String getProdName() {
+		return prodName;
+	}
+	public void setProdName(String prodName) {
+		this.prodName = prodName;
+	}
+	public String getThumb1() {
+		return thumb1;
+	}
+	public void setThumb1(String thumb1) {
+		this.thumb1 = thumb1;
+	}
+	public String getDescript() {
+		return descript;
+	}
+	public void setDescript(String descript) {
+		this.descript = descript;
+	}
 	public int getCartNo() {
 		return cartNo;
 	}
@@ -30,11 +53,17 @@ public class ProductCartVO {
 	public void setProdNo(int prodNo) {
 		this.prodNo = prodNo;
 	}
+	public void setProdNo(String prodNo) {
+		this.prodNo = Integer.parseInt(prodNo);
+	}
 	public int getCount() {
 		return count;
 	}
 	public void setCount(int count) {
 		this.count = count;
+	}
+	public void setCount(String count) {
+		this.count = Integer.parseInt(count);
 	}
 	public int getPrice() {
 		return price;
@@ -42,11 +71,17 @@ public class ProductCartVO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	public void setPrice(String price) {
+		this.price = Integer.parseInt(price);
+	}
 	public int getDiscount() {
 		return discount;
 	}
 	public void setDiscount(int discount) {
 		this.discount = discount;
+	}
+	public void setDiscount(String discount) {
+		this.discount = Integer.parseInt(discount);
 	}
 	public int getPoint() {
 		return point;
@@ -59,6 +94,9 @@ public class ProductCartVO {
 	}
 	public void setDelivery(int delivery) {
 		this.delivery = delivery;
+	}
+	public void setDelivery(String delivery) {
+		this.delivery = Integer.parseInt(delivery);
 	}
 	public int getTotal() {
 		return total;

@@ -15,7 +15,6 @@ $(document).ready(function(){
     
     // 카테고리 김지홍
     // 카테고리 1번 리스트 출력 함수 김지홍
-	cate1List();
     // 카테고리 2번 김지홍
     $('select[name=category1]').on('change', function(){
 		let cate2Val =$(this).val();

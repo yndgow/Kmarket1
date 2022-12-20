@@ -50,8 +50,16 @@ public enum AdminService {
 	}
 	
 	// admin list 페이지 번호
+	public List<ProductVO> selectProducts(String seller, int start) {
+		return dao.selectProducts(seller, start);
+	}
+	
 	public int selectCountTotal() {
 		return dao.selectCountTotal();
+	}
+	
+	public int selectCountTotal(String keyword, String searchCate) {
+		return dao.selectCountTotal(keyword, searchCate);
 	}
 	
 	public int getLastPageNum(int total) {
@@ -97,6 +105,10 @@ public enum AdminService {
 	
 	public int getStartNum(int currentPage) {
 		return (currentPage - 1) * 10;
+	}
+	
+	public List<ProductVO> selectproductByKeyword(String keyword, int start, String searchCate) {
+		return dao.selectproductByKeyword(keyword, start, searchCate);
 	}
 	
 	

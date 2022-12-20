@@ -51,12 +51,12 @@
                     </aside>
                    <article>
                         <nav>
-                            <h4 class="title">[${article.c2Name }] ${article.title }</h4>
+                            <h4 class="title">${article.notTitle }</h4>
                             <span class="date">${article.rdate.substring(0, 10)}</span>
                         </nav>
                         <div class="content">
                             <p>
-                               ${article.content }
+                               ${article.notContent }
                             </p>
                         </div>
                         <a href="/Kmarket/cs/notice/list.do?cate1=${cate1}" class="btnList">목록</a>

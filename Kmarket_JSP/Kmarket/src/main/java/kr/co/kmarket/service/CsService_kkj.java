@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import kr.co.kmarket.dao.CsDAO_kkj;
+import kr.co.kmarket.vo.CsFaqVO;
 import kr.co.kmarket.vo.CsNoticeVO;
 
 public enum CsService_kkj {
@@ -24,10 +25,16 @@ public enum CsService_kkj {
 		return dao.selectCountTotal();
 	}
 	
-	public CsNoticeVO selectNoticeArticle(String no) {
-		return dao.selectNoticeArticle(no);
+	public CsNoticeVO selectNoticeArticle(String notNo) {
+		return dao.selectNoticeArticle(notNo);
 	}
 
+	
+	public List<CsFaqVO> selectFaqArticles(int start){
+		return dao.selectFaqArticles(start);
+	}
+	
+	
 
 	//cs list 출력 홍민준
 //	public List<CsQnaVO> selectQnaArticles(){
@@ -35,9 +42,11 @@ public enum CsService_kkj {
 		
 //	}
 	//cs view 출력
-	public CsQnaVO selectQnaArticle(String qnaNo) {
-		return dao.selectQnaArticle(qnaNo);
-	}
+//	public CsQnaVO selectQnaArticle(String qnaNo) {
+	//	return dao.selectQnaArticle(qnaNo);
+//	}
+	
+	
 
 	
 		public int getLastPageNum(int total) {

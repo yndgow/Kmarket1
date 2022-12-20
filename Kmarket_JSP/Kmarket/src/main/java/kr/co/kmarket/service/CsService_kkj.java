@@ -29,12 +29,12 @@ public enum CsService_kkj {
 	public List<CsCate2VO> selectCate2ByCs(String cate2){
 		return dao.selectCate2ByCs(cate2);
 	}
-	
+
 	//cs list 출력 홍민준
-	public List<CsQnaVO> selectQnaArticles(){
-		return dao.selectQnaArticles();
+//	public List<CsQnaVO> selectQnaArticles(){
+//		return dao.selectQnaArticles(start);
 		
-	}
+//	}
 	//cs view 출력
 	public CsQnaVO selectQnaArticle(String qnaNo) {
 		return dao.selectQnaArticle(qnaNo);

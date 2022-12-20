@@ -123,7 +123,10 @@ public enum ProductService {
 	public ProductOrderVO selectOrder(String uid) {
 		return dao.selectOrder(uid);
 	}
-	
+	// product order item 입력
+	public int insertProductOrderItem(List<ProductCartVO> list) {
+		return dao.insertProductOrderItem(list);
+	}
 	
 	
 

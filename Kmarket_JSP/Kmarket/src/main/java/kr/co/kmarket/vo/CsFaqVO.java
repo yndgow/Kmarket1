@@ -1,24 +1,22 @@
 package kr.co.kmarket.vo;
 
-public class CsNoticeVO {
-	private int notNo;
+public class CsFaqVO {
+	private int faNo;
 	private String uid;
 	private int cate1;
-	private String notTitle;
-	private String notContent;
+	private int cate2;
+	private String faTitle;
+	private String faContent;
 	private int hit;
 	private String regip;
 	private String rdate;
 	
-
-	// 추가필드
-	private String c1Name;
 	
-	public int getNotNo() {
-		return notNo;
+	public int getFaNo() {
+		return faNo;
 	}
-	public void setNotNo(int notNo) {
-		this.notNo = notNo;
+	public void setFaNo(int faNo) {
+		this.faNo = faNo;
 	}
 	public String getUid() {
 		return uid;
@@ -32,17 +30,23 @@ public class CsNoticeVO {
 	public void setCate1(int cate1) {
 		this.cate1 = cate1;
 	}
-	public String getNotTitle() {
-		return notTitle;
+	public int getCate2() {
+		return cate2;
 	}
-	public void setNotTitle(String notTitle) {
-		this.notTitle = notTitle;
+	public void setCate2(int cate2) {
+		this.cate2 = cate2;
 	}
-		public String getNotContent() {
-		return notContent;
+	public String getFaTitle() {
+		return faTitle;
 	}
-	public void setNotContent(String notContent) {
-		this.notContent = notContent;
+	public void setFaTitle(String faTitle) {
+		this.faTitle = faTitle;
+	}
+	public String getFaContent() {
+		return faContent;
+	}
+	public void setFaContent(String faContent) {
+		this.faContent = faContent;
 	}
 	public int getHit() {
 		return hit;
@@ -62,13 +66,6 @@ public class CsNoticeVO {
 	public void setRdate(String rdate) {
 		this.rdate = rdate;
 	}
-	public String getC1Name() {
-		return c1Name;
-	}
-	public void setC1Name(String c1Name) {
-		this.c1Name = c1Name;
-	}
-	
 	
 	
 	

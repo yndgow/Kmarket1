@@ -38,8 +38,13 @@ public class ProductOrderController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		// order item 입력
+		String cartNo[] = req.getParameterValues("cartNo");
+		
+		
 		
 		// order 업데이트
+
+		// 포인트 사용시 세션/DB 포인트 업데이트
 	}
 
 }

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import kr.co.kmarket.db.DBHelper;
 import kr.co.kmarket.db.Sql_kkj;
+import kr.co.kmarket.vo.CsFaqVO;
 import kr.co.kmarket.vo.CsNoticeVO;
 
 public class CsDAO_kkj extends DBHelper {
@@ -32,9 +33,11 @@ public class CsDAO_kkj extends DBHelper {
 			while(rs.next()) {
 				CsNoticeVO vo = new CsNoticeVO();
 				vo.setNotNo(rs.getInt(1));
-				vo.setNotTitle(rs.getString(2));
-				vo.setNotContent(rs.getString(3));
-				vo.setCate1(rs.getInt(4));
+				vo.setUid(rs.getString(2));
+				vo.setCate1(rs.getInt(3));
+				vo.setNotTitle(rs.getString(4));
+				vo.setNotContent(rs.getString(5));
+				vo.setHit(rs.getInt(6));
 				vo.setRegip(rs.getString(7));
 				vo.setRdate(rs.getString(8));
 				articles.add(vo);
@@ -48,21 +51,23 @@ public class CsDAO_kkj extends DBHelper {
 	}
 	
 	
-	public CsNoticeVO selectNoticeArticle(String no) {
+	public CsNoticeVO selectNoticeArticle(String notNo) {
 		logger.info("selectNoticeArticle start...");
 		CsNoticeVO vo = null;
 		
 		try {
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql_kkj.SELECT_NOTICE_ARTICLE);
-			psmt.setString(1, no);
+			psmt.setString(1, notNo);
 			rs = psmt.executeQuery();
 			if(rs.next()) {
 				vo = new CsNoticeVO();
 				vo.setNotNo(rs.getInt(1));
-				vo.setNotTitle(rs.getString(2));
-				vo.setNotContent(rs.getString(3));
-				vo.setCate1(rs.getInt(4));
+				vo.setUid(rs.getString(2));
+				vo.setCate1(rs.getInt(3));
+				vo.setNotTitle(rs.getString(4));
+				vo.setNotContent(rs.getString(5));
+				vo.setHit(rs.getInt(6));
 				vo.setRegip(rs.getString(7));
 				vo.setRdate(rs.getString(8));
 				
@@ -93,6 +98,38 @@ public class CsDAO_kkj extends DBHelper {
 			e.printStackTrace();
 		}
 		return total;
+	}
+	
+	
+	
+	
+	public List<CsFaqVO> selectFaqArticles(int start) {
+		logger.info("selectFaqArticles start...");
+		List<CsFaqVO> articles = new ArrayList<>();
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kkj.SELECT_FAQ_ARTICLES);
+			psmt.setInt(1, start);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				CsFaqVO vo = new CsFaqVO();
+				vo.setFaNo(rs.getInt(1));
+				vo.setUid(rs.getString(2));
+				vo.setCate1(rs.getInt(3));
+				vo.setCate2(rs.getInt(4));
+				vo.setFaTitle(rs.getString(5));
+				vo.setFaContent(rs.getString(6));
+				vo.setHit(rs.getInt(7));
+				vo.setRegip(rs.getString(8));
+				vo.setRdate(rs.getString(9));
+				articles.add(vo);
+			}
+			close();
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return articles;
 	}
 	
 	

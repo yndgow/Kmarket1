@@ -1,4 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script>
+	// 더보기
+	$(function() {
+		$('li').slice(0,1).show();
+		
+		$('.more').click(function(e) {
+			e.preventDefault();
+			$('div:hidden').slice(0,10).show();
+		});
+	});
+
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +37,7 @@
             </div>
             <div class="logo">
                 <div>
-                    <a href="/Kmarket/index.do">
+                    <a href="/Kmarket/cs/index.do">
                         <img src="/Kmarket/img/cs/logo.png" alt="로고">
                         고객센터
                     </a>
@@ -42,13 +55,13 @@
                     <aside>
                         <h2>자주묻는 질문</h2>
                         <ul>
-                            <li class="on"><a href="#">회원</a></li>
-                            <li><a href="#">쿠폰/이벤트</a></li>
-                            <li><a href="#">주문/결제</a></li>
-                            <li><a href="#">배송</a></li>
-                            <li><a href="#">취소/반품/교환</a></li>
-                            <li><a href="#">여행/숙박/항공</a></li>
-                            <li><a href="#">안전거래</a></li>
+                            <li class="${cate1 eq 1?'on':'off'}"><a href="/Kmarket/cs/faq/list.do?cate1=1">회원</a></li>
+                            <li class="${cate1 eq 2?'on':'off'}"><a href="/Kmarket/cs/faq/list.do?cate1=2">쿠폰/이벤트</a></li>
+                            <li class="${cate1 eq 3?'on':'off'}"><a href="/Kmarket/cs/faq/list.do?cate1=3">주문/결제</a></li>
+                            <li class="${cate1 eq 4?'on':'off'}"><a href="/Kmarket/cs/faq/list.do?cate1=4">배송</a></li>
+                            <li class="${cate1 eq 5?'on':'off'}"><a href="/Kmarket/cs/faq/list.do?cate1=5">취소/반품/교환</a></li>
+                            <li class="${cate1 eq 6?'on':'off'}"><a href="/Kmarket/cs/faq/list.do?cate1=6">여행/숙박/항공</a></li>
+                            <li class="${cate1 eq 7?'on':'off'}"><a href="/Kmarket/cs/faq/list.do?cate1=7">안전거래</a></li>
                         </ul>
                     </aside>
                     <article>
@@ -60,34 +73,61 @@
                             <h3>가입</h3>
                             <ul>
                                 <li>
-                                    <a href="./view.html">
+                                   <a href="./view.html">
                                         <span>Q.</span>개인회원과 법인회원에 차이가 있나요?
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="./view.html">
+                                 <li>
+                                   <a href="./view.html">
                                         <span>Q.</span>개인회원과 법인회원에 차이가 있나요?
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="./view.html">
+                                 <li>
+                                   <a href="./view.html">
                                         <span>Q.</span>개인회원과 법인회원에 차이가 있나요?
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="./view.html">
+                                 <li>
+                                   <a href="./view.html">
                                         <span>Q.</span>개인회원과 법인회원에 차이가 있나요?
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="./view.html">
+                                 <li>
+                                   <a href="./view.html">
                                         <span>Q.</span>개인회원과 법인회원에 차이가 있나요?
                                     </a>
                                 </li>
+                                 <li>
+                                   <a href="./view.html">
+                                        <span>Q.</span>개인회원과 법인회원에 차이가 있나요?
+                                    </a>
+                                </li>
+                                 <li>
+                                   <a href="./view.html">
+                                        <span>Q.</span>개인회원과 법인회원에 차이가 있나요?
+                                    </a>
+                                </li>
+                                 <li>
+                                   <a href="./view.html">
+                                        <span>Q.</span>개인회원과 법인회원에 차이가 있나요?
+                                    </a>
+                                </li>
+                                 <li>
+                                   <a href="./view.html">
+                                        <span>Q.</span>개인회원과 법인회원에 차이가 있나요?
+                                    </a>
+                                </li>
+                                 <li>
+                                   <a href="./view.html">
+                                        <span>Q.</span>개인회원과 법인회원에 차이가 있나요?
+                                    </a>
+                                </li>
+                               
                                 <li class="more">
                                     <a href="#">더보기</a>
                                 </li>
                             </ul>
+                            
                         </div>
                         <div>
                             <h3>탈퇴</h3>

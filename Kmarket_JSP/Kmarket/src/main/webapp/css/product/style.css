@@ -1022,6 +1022,10 @@ article > nav > h1 {
   font-size: 22px;
   font-weight: bold;
 }
+#orderDescrpit{
+	display: inline-block;
+	padding: 5px;
+}   
 /* product order main 끝  */
 /* cart */
 

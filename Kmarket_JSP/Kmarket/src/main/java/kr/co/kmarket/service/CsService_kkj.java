@@ -8,27 +8,26 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import kr.co.kmarket.dao.CsDAO;
-import kr.co.kmarket.vo.CsCate1VO;
-import kr.co.kmarket.vo.CsCate2VO;
-import kr.co.kmarket.vo.CsQnaVO;
+import kr.co.kmarket.dao.CsDAO_kkj;
+import kr.co.kmarket.vo.CsNoticeVO;
 
 public enum CsService_kkj {
 	INSTANCE;
-	CsDAO dao = CsDAO.getInstance();
+	CsDAO_kkj dao = CsDAO_kkj.getInstance();
 	
-	//cs 문의하기 등록 홍민준
-	public int InsertArticleQnaOfCs(CsQnaVO vo){
-		return dao.InserArticleQna(vo);
+		
+	public List<CsNoticeVO> selectNoticeArticles(int start){
+		return dao.selectNoticeArticles(start);
 	}
-	//cs cate1 출력 홍민준
-	public List<CsCate1VO> selectCate1ByCs(){
-		return dao.selectCate1ByCs();
+	
+	public int selectCountTotal() {
+		return dao.selectCountTotal();
 	}
-	//cs cate2 출력 홍민준
-	public List<CsCate2VO> selectCate2ByCs(String cate2){
-		return dao.selectCate2ByCs(cate2);
+	
+	public CsNoticeVO selectNoticeArticle(String no) {
+		return dao.selectNoticeArticle(no);
 	}
+
 
 	//cs list 출력 홍민준
 //	public List<CsQnaVO> selectQnaArticles(){
@@ -39,6 +38,54 @@ public enum CsService_kkj {
 	public CsQnaVO selectQnaArticle(String qnaNo) {
 		return dao.selectQnaArticle(qnaNo);
 	}
+
+	
+		public int getLastPageNum(int total) {
+			
+			int lastPageNum = 0;
+			
+			if(total % 10 == 0){
+				lastPageNum = total / 10;
+			}else{
+				lastPageNum = total / 10 + 1;
+			}
+			
+			return lastPageNum;
+		}
+		
+		public int[] getPageGroupNum(int currentPage, int lastPageNum) {
+			int currentPageGroup = (int)Math.ceil(currentPage / 10.0);
+			int pageGroupStart = (currentPageGroup - 1) * 10 + 1;
+			int pageGroupEnd = currentPageGroup * 10;
+			
+			if(pageGroupEnd > lastPageNum){
+				pageGroupEnd = lastPageNum;
+			}
+			
+			int[] result = {pageGroupStart, pageGroupEnd};
+			
+			return result;
+		}
+		
+		public int getPageStartNum(int total, int currentPage) {
+			int start = (currentPage - 1) * 10;
+			return total - start;
+		}
+		
+		public int getCurrentPage(String pg) {
+			int currentPage = 1;
+			
+			if(pg != null){
+				currentPage = Integer.parseInt(pg);	
+			}
+			
+			return currentPage;
+		}
+		
+		public int getStartNum(int currentPage) {
+			return (currentPage - 1) * 10;
+		}
+
 	
 	
 	

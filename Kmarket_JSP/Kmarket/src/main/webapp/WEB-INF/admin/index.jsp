@@ -6,17 +6,17 @@
     <title>케이마켓::관리자</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>    
-    <script src="./js/gnb.js"></script>
+    <script src="/Kmarket/js/admin/gnb.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="./css/admin.css">
+    <link rel="stylesheet" href="/Kmarket/css/admin/admin.css">
 </head>
 <body>
     <div id="admin-wrapper">
         <header>
             <div>
-                <a href="./index.do" class="logo"><img src="./img/admin_logo.png" alt="admin_logo"/></a>
+                <a href="/Kmarket/admin/index.do" class="logo"><img src="/Kmarket/img/admin/admin_logo.png" alt="admin_logo"/></a>
                 <p>
                     <span>홍길동님 반갑습니다.</span>
                     <a href="/Kmarket/">HOME |</a>
@@ -76,6 +76,14 @@
                             <li><a href="#">고객문의</a></li>
                         </ol>
                     </li>
+                    <li>
+              			<a href="/Kmarket/admin/cs/notice/list.do"><i class="fa-solid fa-headphones"></i>고객센터</a>
+						<ol>
+              				<li><a href="/Kmarket/admin/cs/list.do?csType=notice">공지사항</a></li>
+              				<li><a href="/Kmarket/admin/cs/list.do?csType=faq">자주묻는질문</a></li>
+              				<li><a href="/Kmarket/admin/cs/list.do?csType=qna">문의하기</a></li>
+						</ol>
+            		</li>
                 </ul>
             </aside>
             <section id="admin-index">

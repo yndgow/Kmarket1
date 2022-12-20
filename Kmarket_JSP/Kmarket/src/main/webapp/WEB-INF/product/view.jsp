@@ -3,7 +3,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="./_header.jsp"/>
-
+       <section>
+        	<nav>
+          		<h1>상품보기</h1>
+		          <c:forEach var="cates1" items="${categories1}">
+		          	<c:if test="${cate1 eq cates1.cate1}">
+		          		<c:set value="${cates1.c1Name}" var="c1"/>
+		          		<c:forEach var="cates2" items="${categories2}">
+		          			<c:if test="${cates1.cate1 eq cates2.cate1 && cate2 eq cates2.cate2}">
+		          				<c:set value="${cates2.c2Name}" var="c2"/>
+		          			</c:if>
+		          		</c:forEach>
+		          	</c:if>	
+		          </c:forEach>
+				<p>HOME > ${c1} > ${c2} </p>
+	        </nav>
+        </section>	          	
         <!-- section view 시작 -->
           <section class="view">
           <!-- 개별 파트 시작 -->
@@ -26,7 +41,7 @@
               <div class="view_price">
                 
                 <c:if test="${product.discount ne 0}">
-                  	<del class="ori_price"><fmt:formatNumber value="${product.price}" pattern="#,###"/>원</del><span class="discount">${product.discount}%↓</span><br />
+                  	<del class="ori_price"><fmt:formatNumber value="${product.price}" 	pattern="#,###"/>원</del><span class="discount">${product.discount}%↓</span><br />
                   </c:if>
                  <c:choose>
                   <c:when test="${product.discount ne 0}">
@@ -44,6 +59,7 @@
               <div class="view_delivery">
               <!-- 2일뒤 날짜 -->
               	<c:set var="daythree" value="<%= new Date(new Date().getTime() + 60*60*24*1000*2) %>"/>
+              
                 <c:choose>
                		<c:when test="${product.delivery eq 0}">
 						<p>
@@ -85,6 +101,11 @@
                 <p>총 상품금액 <span><fmt:formatNumber value="${product.price * (100-product.discount)/100}" pattern="#,###"/>원</span></p>
               </div>
               <div class="view_button">
+	            <input type="hidden" name="prodNo" value="${product.prodNo}">
+              	<input type="hidden" name="ori_price" value="${product.price}">
+              	<input type="hidden" name="cur_price" value="${product.price * (100-product.discount)/100}">
+              	<input type="hidden" name="discount" value="${product.discount}">
+           		<input type="hidden" name="delivery" value="${product.delivery}">
                 <button class="btnCart">장바구니</button>
                 <button class="btnBuy">구매하기</button>
               </div>

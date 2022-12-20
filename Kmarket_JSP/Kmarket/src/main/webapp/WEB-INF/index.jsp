@@ -51,13 +51,24 @@
 					<a href="/Kmarket/member/join.do">회원가입</a>
 				</c:when>
 				<c:otherwise>
+					<!-- 삭제 예정 시작-->
 					<a href="" class="sessUser_uid">${sessUser.uid}</a>
+					<!-- 삭제 예정 끝-->
+					<input type="hidden" class="uid" value="${sessUser.uid}"/>
+					<c:choose>
+						<c:when test="${sessUser.type eq 3}">
+							<a href="/Kmarket/admin/index.do?type=${sessUser.type}">관리자</a>
+						</c:when>
+						<c:when test="${sessUser.type eq 2}">
+							<a href="/Kmarket/admin/index.do?type=${sessUser.type}">사업자</a>
+						</c:when>
+					</c:choose>
 					<a href="/Kmarket/member/logout.do">로그아웃</a>
 					<a href="">마이페이지</a>
 				</c:otherwise>
             </c:choose>
            
-            <a href=""><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>&nbsp;장바구니</a>
+            <a href="/Kmarket/product/cart.do?uid=${sessUser.uid}"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>&nbsp;장바구니</a>
           </div>
         </div>
         <div class="logo">

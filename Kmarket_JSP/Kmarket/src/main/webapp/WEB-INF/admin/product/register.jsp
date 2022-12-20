@@ -1,7 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="./_header.jsp"/>
-            
+<script>
+cate1List();
+</script>
             <section id="admin-product-register">
                 <nav>
                     <h3>상품등록</h3>
@@ -67,7 +69,7 @@
                                     <td>할인율</td>
                                     <td>
                                         <span>0을 입력하면 할인율 없음</span>
-                                        <input type="text" name="discount"/>원
+                                        <input type="text" name="discount"/>%
                                     </td>
                                 </tr>
                                 <tr>

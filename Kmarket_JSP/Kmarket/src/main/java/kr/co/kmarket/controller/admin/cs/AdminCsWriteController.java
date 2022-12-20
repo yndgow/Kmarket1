@@ -1,4 +1,4 @@
-package kr.co.kmarket.controller.admin;
+package kr.co.kmarket.controller.admin.cs;
 
 import java.io.IOException;
 
@@ -9,29 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.kmarket.service.AdminService;
-import kr.co.kmarket.vo.ProductOrderVO;
-
-@WebServlet("/admin/index.do")
-public class AdminIndexController extends HttpServlet {
+@WebServlet("/admin/cs/write.do")
+public class AdminCsWriteController extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
-	AdminService service = AdminService.INSTANCE;
-	
-	@Override
-	public void init() throws ServletException {
-		
-	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setAttribute("csType", req.getParameter("csType"));
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/admin/index.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/admin/cs/write.jsp");
 		dispatcher.forward(req, resp);
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 	}
 }

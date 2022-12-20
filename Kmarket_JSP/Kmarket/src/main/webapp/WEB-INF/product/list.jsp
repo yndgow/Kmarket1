@@ -2,6 +2,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="./_header.jsp"/>
+<!-- 공통 nav 시작-->
+        <section>
+        	<nav>
+          		<h1>상품목록</h1>
+		          <c:forEach var="cates1" items="${categories1}">
+		          	<c:if test="${cate1 eq cates1.cate1}">
+		          		<c:set value="${cates1.c1Name}" var="c1"/>
+		          		<c:forEach var="cates2" items="${categories2}">
+		          			<c:if test="${cates1.cate1 eq cates2.cate1 && cate2 eq cates2.cate2}">
+		          				<c:set value="${cates2.c2Name}" var="c2"/>
+		          			</c:if>
+		          		</c:forEach>
+		          	</c:if>	
+		          </c:forEach>
+				<p>HOME > ${c1} > ${c2} </p>
+	        </nav>
+        </section>	          	
+<!-- 공통 nav 끝 -->
         <!-- section list 시작 -->
         <section class="list">
           <ul class="sort">

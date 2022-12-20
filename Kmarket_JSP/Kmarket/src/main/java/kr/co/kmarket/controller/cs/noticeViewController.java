@@ -1,4 +1,4 @@
-package kr.co.kmarket.controller.admin;
+package kr.co.kmarket.controller.cs;
 
 import java.io.IOException;
 
@@ -9,29 +9,36 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.kmarket.service.AdminService;
-import kr.co.kmarket.vo.ProductOrderVO;
+import kr.co.kmarket.service.CsService_kkj;
+import kr.co.kmarket.vo.CsNoticeVO;
 
-@WebServlet("/admin/index.do")
-public class AdminIndexController extends HttpServlet {
-
+@WebServlet("/cs/notice/view.do")
+public class noticeViewController extends HttpServlet{
+	
+	
 	private static final long serialVersionUID = 1L;
-	AdminService service = AdminService.INSTANCE;
+	CsService_kkj service = CsService_kkj.INSTANCE;
 	
 	@Override
 	public void init() throws ServletException {
-		
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/admin/index.jsp");
+		String no = req.getParameter("no");
+		String cate1 = req.getParameter("cate1");
+		
+		CsNoticeVO article = service.selectNoticeArticle(no);
+		
+		req.setAttribute("article", article);
+		req.setAttribute("cate1", cate1);
+		
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/cs/notice/view.jsp");
 		dispatcher.forward(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 	}
 }

@@ -11,7 +11,24 @@ public class CsFaqVO {
 	private String regip;
 	private String rdate;
 	
+	//추가필드
 	
+	private String c1Name;
+	private String c2Name;
+	
+	
+	public String getC1Name() {
+		return c1Name;
+	}
+	public void setC1Name(String c1Name) {
+		this.c1Name = c1Name;
+	}
+	public String getC2Name() {
+		return c2Name;
+	}
+	public void setC2Name(String c2Name) {
+		this.c2Name = c2Name;
+	}
 	public int getFaNo() {
 		return faNo;
 	}

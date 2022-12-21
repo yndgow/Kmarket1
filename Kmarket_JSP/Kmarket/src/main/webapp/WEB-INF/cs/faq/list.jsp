@@ -1,17 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script>
-	// 더보기
-	$(function() {
-		$('li').slice(0,1).show();
-		
-		$('.more').click(function(e) {
-			e.preventDefault();
-			$('div:hidden').slice(0,10).show();
-		});
-	});
 
-</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,7 +40,7 @@
                         <p>홈<span>></span>자주묻는 질문</p>
                     </div>
                 </nav>
-                <section class="list">
+               <section class="list">
                     <aside>
                         <h2>자주묻는 질문</h2>
                         <ul>
@@ -65,174 +54,62 @@
                         </ul>
                     </aside>
                     <article>
-                        <nav>
-                            <h1>회원</h1>
-                            <h2>가장 자주 묻는 질문입니다.</h2>
-                        </nav>
+                        	<nav>
+                        		<c:if test="${cate1 eq 1 }">
+	                            <h1>회원</h1>
+	                            <h2>가장 자주 묻는 질문입니다.</h2>
+	                            </c:if>
+	                            
+	                            <c:if test="${cate1 eq 2 }">
+	                            <h1>쿠폰/이벤트</h1>
+	                            <h2>가장 자주 묻는 질문입니다.</h2>
+	                            </c:if>
+	                            
+	                             <c:if test="${cate1 eq 3 }">
+	                            <h1>주문/결제</h1>
+	                            <h2>가장 자주 묻는 질문입니다.</h2>
+	                            </c:if>
+	                            
+	                             <c:if test="${cate1 eq 4 }">
+	                            <h1>배송</h1>
+	                            <h2>가장 자주 묻는 질문입니다.</h2>
+	                            </c:if>
+	                            
+	                             <c:if test="${cate1 eq 5 }">
+	                            <h1>취소/반품/교환</h1>
+	                            <h2>가장 자주 묻는 질문입니다.</h2>
+	                            </c:if>
+	                            
+	                             <c:if test="${cate1 eq 6 }">
+	                            <h1>여행/숙박/항공</h1>
+	                            <h2>가장 자주 묻는 질문입니다.</h2>
+	                            </c:if>
+	                            
+	                             <c:if test="${cate1 eq 7 }">
+	                            <h1>안전거래</h1>
+	                            <h2>가장 자주 묻는 질문입니다.</h2>
+	                            </c:if>
+	                            
+                       		</nav>
+                       		<c:forEach var="article" items="${articles}">
+                       		<c:if test="${cate1 eq article.cate1 }">
                         <div>
-                            <h3>가입</h3>
+                            <h3>${article.c2Name }</h3>
                             <ul>
                                 <li>
-                                   <a href="./view.html">
-                                        <span>Q.</span>개인회원과 법인회원에 차이가 있나요?
+                                    <a href="/Kmarket/cs/faq/view.do">
+                                        <span>Q.</span>${article.faTitle} 
                                     </a>
                                 </li>
-                                 <li>
-                                   <a href="./view.html">
-                                        <span>Q.</span>개인회원과 법인회원에 차이가 있나요?
-                                    </a>
-                                </li>
-                                 <li>
-                                   <a href="./view.html">
-                                        <span>Q.</span>개인회원과 법인회원에 차이가 있나요?
-                                    </a>
-                                </li>
-                                 <li>
-                                   <a href="./view.html">
-                                        <span>Q.</span>개인회원과 법인회원에 차이가 있나요?
-                                    </a>
-                                </li>
-                                 <li>
-                                   <a href="./view.html">
-                                        <span>Q.</span>개인회원과 법인회원에 차이가 있나요?
-                                    </a>
-                                </li>
-                                 <li>
-                                   <a href="./view.html">
-                                        <span>Q.</span>개인회원과 법인회원에 차이가 있나요?
-                                    </a>
-                                </li>
-                                 <li>
-                                   <a href="./view.html">
-                                        <span>Q.</span>개인회원과 법인회원에 차이가 있나요?
-                                    </a>
-                                </li>
-                                 <li>
-                                   <a href="./view.html">
-                                        <span>Q.</span>개인회원과 법인회원에 차이가 있나요?
-                                    </a>
-                                </li>
-                                 <li>
-                                   <a href="./view.html">
-                                        <span>Q.</span>개인회원과 법인회원에 차이가 있나요?
-                                    </a>
-                                </li>
-                                 <li>
-                                   <a href="./view.html">
-                                        <span>Q.</span>개인회원과 법인회원에 차이가 있나요?
-                                    </a>
-                                </li>
-                               
-                                <li class="more">
-                                    <a href="#">더보기</a>
-                                </li>
-                            </ul>
-                            
-                        </div>
-                        <div>
-                            <h3>탈퇴</h3>
-                            <ul>
-                                <li>
-                                    <a href="./view.html">
-                                        <span>Q.</span>회원탈퇴 후 재가입이 가능한가요?
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="./view.html">
-                                        <span>Q.</span>회원탈퇴 후 재가입이 가능한가요?
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="./view.html">
-                                        <span>Q.</span>회원탈퇴 후 재가입이 가능한가요?
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="./view.html">
-                                        <span>Q.</span>회원탈퇴 후 재가입이 가능한가요?
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="./view.html">
-                                        <span>Q.</span>회원탈퇴 후 재가입이 가능한가요?
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="./view.html">
-                                        <span>Q.</span>회원탈퇴 후 재가입이 가능한가요?
-                                    </a>
-                                </li>
+                                
                                 <li class="more">
                                     <a href="#">더보기</a>
                                 </li>
                             </ul>
                         </div>
-                        <div>
-                            <h3>회원정보</h3>
-                            <ul>
-                                <li>
-                                    <a href="./view.html">
-                                        <span>Q.</span>회원정보를 수정하고 싶어요?
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="./view.html">
-                                        <span>Q.</span>회원정보를 수정하고 싶어요?
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="./view.html">
-                                        <span>Q.</span>회원정보를 수정하고 싶어요?
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="./view.html">
-                                        <span>Q.</span>회원정보를 수정하고 싶어요?
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="./view.html">
-                                        <span>Q.</span>회원정보를 수정하고 싶어요?
-                                    </a>
-                                </li>
-                                <li class="more">
-                                    <a href="#">더보기</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3>로그인</h3>
-                            <ul>
-                                <li>
-                                    <a href="./view.html">
-                                        <span>Q.</span>로그인에 문제가 있어요.
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="./view.html">
-                                        <span>Q.</span>로그인에 문제가 있어요.
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="./view.html">
-                                        <span>Q.</span>로그인에 문제가 있어요.
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="./view.html">
-                                        <span>Q.</span>로그인에 문제가 있어요.
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="./view.html">
-                                        <span>Q.</span>로그인에 문제가 있어요.
-                                    </a>
-                                </li>
-                                <li class="more">
-                                    <a href="#">더보기</a>
-                                </li>
-                            </ul>
-                        </div>
+                        
+                        </c:if>
+                        </c:forEach>
                     </article>
                 </section>
             </div>

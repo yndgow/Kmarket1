@@ -43,12 +43,11 @@ public class CsDAO_kkj extends DBHelper {
 				vo.setNotNo(rs.getInt(1));
 				vo.setUid(rs.getString(2));
 				vo.setCate1(rs.getInt(3));
-				vo.setC1Name(rs.getString(4));
-				vo.setNotTitle(rs.getString(5));
-				vo.setNotContent(rs.getString(6));
-				vo.setHit(rs.getInt(7));
-				vo.setRegip(rs.getString(8));
-				vo.setRdate(rs.getString(9));
+				vo.setNotTitle(rs.getString(4));
+				vo.setNotContent(rs.getString(5));
+				vo.setHit(rs.getInt(6));
+				vo.setRegip(rs.getString(7));
+				vo.setRdate(rs.getString(8));
 				articles.add(vo);
 			}
 			close();
@@ -90,15 +89,34 @@ public class CsDAO_kkj extends DBHelper {
 		return vo;
 	}
 	
-	
-	public int selectCountTotal(String cate1) {
+	public int selectCountTotal() {
 		int total = 0;
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
 			
 			rs = stmt.executeQuery(Sql_kkj.SELECT_COUNT_TOTAL);
+			
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+			close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return total;
+	}
+	
+	
+	public int selectCountCateTotal(String cate1) {
+		int total = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kkj.SELECT_COUNT_CATE_TOTAL);
 			psmt.setString(1, cate1);
+			
+			rs = psmt.executeQuery();
+			
 			
 			if(rs.next()) {
 				total = rs.getInt(1);
@@ -113,13 +131,14 @@ public class CsDAO_kkj extends DBHelper {
 	
 	
 	
-	public List<CsFaqVO> selectFaqArticles(int start) {
+	public List<CsFaqVO> selectFaqArticles(String cate1) {
 		logger.info("selectFaqArticles start...");
 		List<CsFaqVO> articles = new ArrayList<>();
 		try {
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql_kkj.SELECT_FAQ_ARTICLES);
-			psmt.setInt(1, start);
+			psmt.setString(1, cate1);
+			
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				CsFaqVO vo = new CsFaqVO();
@@ -132,6 +151,8 @@ public class CsDAO_kkj extends DBHelper {
 				vo.setHit(rs.getInt(7));
 				vo.setRegip(rs.getString(8));
 				vo.setRdate(rs.getString(9));
+				vo.setC1Name(rs.getString(10));
+				vo.setC2Name(rs.getString(11));
 				articles.add(vo);
 			}
 			close();
@@ -141,6 +162,7 @@ public class CsDAO_kkj extends DBHelper {
 		}
 		return articles;
 	}
+	
 	
 	
 	

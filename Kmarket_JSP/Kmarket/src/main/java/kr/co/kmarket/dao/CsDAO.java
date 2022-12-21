@@ -36,8 +36,8 @@ public class CsDAO extends DBHelper {
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql_hong.INSERT_ARTICLE_QNA_OF_CS);
 			psmt.setString(1, vo.getUid());
-			psmt.setString(2, vo.getQc1Name());
-			psmt.setString(3, vo.getQc2Name());
+			psmt.setInt(2, vo.getCate1());
+			psmt.setInt(3, vo.getCate2());
 			psmt.setString(4, vo.getQnaTitle());
 			psmt.setString(5, vo.getQnaContent());
 			psmt.setString(6, vo.getRegip());
@@ -107,42 +107,46 @@ public class CsDAO extends DBHelper {
 	}
 	
 	//cs list 출력
-	public List<CsQnaVO> selectQnaArticles(int start) {
+	public List<CsQnaVO> selectQnaArticles(String cate1 ,int start) {
 		logger.info("selectQnaArticles start...");
 		List<CsQnaVO> articles = new ArrayList<>();
 		try {
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql_hong.SELECT_QNA_ARTICLES);
-			psmt.setInt(1, start);
+			psmt.setString(1, cate1);
+			psmt.setInt(2, start);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				CsQnaVO vo = new CsQnaVO();
-				vo.setUid(rs.getString(1).replaceAll(pattern, "*"));
-				vo.setQc1Name(rs.getString(2));
-				vo.setQc2Name(rs.getString(3));
-				vo.setQnaTitle(rs.getString(4));
-				vo.setQnaContent(rs.getString(5));
-				vo.setRegip(rs.getString(6));
-				vo.setWdate(rs.getString(7));
-				vo.setQnaCond(rs.getString(8));
-				vo.setQnaNo(rs.getInt(9));
+				vo.setQnaNo(rs.getInt(1));
+				vo.setUid(rs.getString(2).replaceAll(pattern, "*"));
+				vo.setCate1(rs.getInt(3));
+				vo.setCate2(rs.getInt(4));
+				vo.setQnaTitle(rs.getString(5));
+				vo.setQnaContent(rs.getString(6));
+				vo.setRegip(rs.getString(7));
+				vo.setWdate(rs.getString(8));
+				vo.setQnaCond(rs.getString(9));
+				vo.setC1Name(rs.getString(10));
+				vo.setC2Name(rs.getString(11));
 				articles.add(vo);
 			}
 			
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
+		logger.debug("articles : "+articles);
 		return articles;
 	}
 	
 	// 전체 게시물 쿠은트
-	public int selectCountTotal() {
+	public int selectCountTotal(String cate1) {
 		int total = 0;
 		try {
 			conn = getConnection();
-			stmt = conn.createStatement();
-			
-			rs = stmt.executeQuery(Sql_hong.SELECT_COUNT_TOTAL);
+			psmt = conn.prepareStatement(Sql_hong.SELECT_COUNT_TOTAL);
+			psmt.setString(1, cate1);
+			rs = psmt.executeQuery();
 			
 			if(rs.next()) {
 				total = rs.getInt(1);
@@ -166,15 +170,16 @@ public class CsDAO extends DBHelper {
 			rs = psmt.executeQuery();
 			if(rs.next()) {
 				vo = new CsQnaVO();
-				vo.setUid(rs.getString(1).replaceAll(pattern, "*"));
-				vo.setQc1Name(rs.getString(2));
-				vo.setQc2Name(rs.getString(3));
-				vo.setQnaTitle(rs.getString(4));
-				vo.setQnaContent(rs.getString(5));
-				vo.setRegip(rs.getString(6));
-				vo.setWdate(rs.getString(7));
-				vo.setQnaCond(rs.getString(8));
-				vo.setQnaNo(rs.getInt(9));
+				vo.setQnaNo(rs.getInt(1));
+				vo.setUid(rs.getString(2).replaceAll(pattern, "*"));
+				vo.setCate1(rs.getInt(3));
+				vo.setCate2(rs.getInt(4));
+				vo.setQnaTitle(rs.getString(5));
+				vo.setQnaContent(rs.getString(6));
+				vo.setRegip(rs.getString(7));
+				vo.setWdate(rs.getString(8));
+				vo.setQnaCond(rs.getString(9));
+				
 			}
 			close();
 			

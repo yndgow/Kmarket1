@@ -1,18 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="./_header.jsp"/>
-              <article>
-                  <nav>
-                      <h1>회원</h1>
-                      <h2>회원관련 문의 내용입니다.</h2>
-                  </nav>
-                  <table>
+<jsp:include page="./cate/_cate${cate1}.jsp"/>
                   <c:forEach var="article" items="${articles}">
                       <tr>
-                          <td><a href="./view.do?qnaNo=${article.qnaNo}">[${article.qc2Name}] ${article.qnaTitle}</a></td>
+                          <td><a href="./view.do?qnaNo=${article.qnaNo}">[${article.c2Name}] ${article.qnaTitle}</a></td>
                           <td class="uid">${article.uid}</td>
                           <td>${article.qnaCond}</td>
-                          <td>${article.wdate.substring(2, 10)}</td>
+                          <td>${article.rdate.substring(2, 10)}</td>
                       </tr>
                   </c:forEach>
                   </table>
@@ -21,7 +16,7 @@
                       <a href="/Kmarket/cs/qna/list.do?pg=${pageGroupStart - 1}" class="prev">이전</a>
                   	  </c:if>
                   	  <c:forEach var="num" begin="${pageGroupStart}" end="${pageGroupEnd}">
-                      <a href="/Kmarket/cs/qna/list.do?pg=${num}" class="num ${num == currentPage ? 'on':'off'}">${num}</a>
+                      <a href="/Kmarket/cs/qna/list.do?pg=${num}&cate1=${cate1}" class="num ${num == currentPage ? 'on':'off'}">${num}</a>
                   	  </c:forEach>
                   	  <c:if test="${pageGroupEnd < lastPageNum}">
                       <a href="/Kmarket/cs/qna/list.do?pg=${pageGroupEnd + 1}" class="next">다음</a>

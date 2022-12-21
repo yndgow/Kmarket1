@@ -117,10 +117,12 @@ public class AdminDAO_kjh extends DBHelper {
 				vo.setC1Name(rs.getString(9));
 				allArticles.add(vo);
 			}
+			close();
 			
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
+		logger.debug("allArticles : "+allArticles);
 		return allArticles;
 	}
 	
@@ -147,10 +149,11 @@ public class AdminDAO_kjh extends DBHelper {
 				vo.setC1Name(rs.getString(9));
 				articles.add(vo);
 			}
-			
+			close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
+		logger.debug("articles : "+articles);
 		return articles;
 	}
 	

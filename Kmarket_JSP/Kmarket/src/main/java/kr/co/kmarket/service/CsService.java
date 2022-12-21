@@ -31,12 +31,12 @@ public enum CsService {
 	}
 	
 	//cs list 출력 홍민준
-	public List<CsQnaVO> selectQnaArticles(int start){
-		return dao.selectQnaArticles(start);
+	public List<CsQnaVO> selectQnaArticles(String cate1, int start){
+		return dao.selectQnaArticles(cate1, start);
 	}
 	
-	public int selectCountTotal() {
-		return dao.selectCountTotal();
+	public int selectCountTotal(String cate1) {
+		return dao.selectCountTotal(cate1);
 	}
 	
 	//cs view 출력

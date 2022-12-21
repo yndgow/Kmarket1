@@ -34,8 +34,8 @@ public class WriteController extends HttpServlet{
 	
 		String uid = "test";
 //		String uid = req.getParameter("uid");
-		String qc1Name = req.getParameter("qc1Name");
-		String qc2Name = req.getParameter("qc2Name");
+		String cate1 = req.getParameter("c1Name");
+		String cate2 = req.getParameter("c2Name");
 		String qnaTitle = req.getParameter("title");
 		String qnaContent = req.getParameter("content");
 		String regip = req.getRemoteAddr();
@@ -43,8 +43,8 @@ public class WriteController extends HttpServlet{
 		
 		CsQnaVO vo = new CsQnaVO();
 		vo.setUid(uid);
-		vo.setQc1Name(qc1Name);
-		vo.setQc2Name(qc2Name);
+		vo.setCate1(cate1);
+		vo.setCate2(cate2);
 		vo.setQnaTitle(qnaTitle);
 		vo.setQnaContent(qnaContent);
 		vo.setRegip(regip);

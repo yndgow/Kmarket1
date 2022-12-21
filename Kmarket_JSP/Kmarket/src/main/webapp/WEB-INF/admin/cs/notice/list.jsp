@@ -15,20 +15,19 @@
            <tr>
                <th><input type="checkbox" name="all"></th>
                <th>번호</th>
-               <th>1차유형</th>
-               <th>2차유형</th>
+               <th>유형</th>
                <th>제목</th>
                <th>조회</th>
                <th>날짜</th>
                <th>관리</th>
            </tr>
-           <c:forEach var="article" items="${articles}">
+           <c:forEach var="article" items="${allArticles}">
                 <tr>
                 	<td>${article.notNo}</td>
                 	<td>${article.c1Name}</td>
                     <td><a href="./view.do?notNo=${article.notNo}">[2차유형] ${article.notTitle}</a></td>
                     <td>${article.hit}</td>
-                    <td>${article.wdate.substring(2, 10)}</td>
+                    <td>${article.rdate.substring(2, 10)}</td>
                     <td>
 	                   <a href="#" class="btnDeleteNotice">[삭제]</a>
 	                   <a href="#" class="btnModifyNotice">[수정]</a>
@@ -41,7 +40,7 @@
        <input type="button" class="btnAdminCsWri btnWriteNotice" value="작성하기">
        
         <div class="paging">
-        	<c:if test="${pageGroupStart > 1}">
+       	   <c:if test="${pageGroupStart > 1}">	
            <span class="prev">
                <a href="/Kmarket/admin/cs/notice/list.do?pg=${pageGroupStart-1}">&nbsp;이전</a>
            </span>

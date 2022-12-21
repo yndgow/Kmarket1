@@ -27,8 +27,8 @@
                <option value="${cate1.cate1}">${cate1.c1Name}</option>
             </c:forEach>
            </select>
-           <select name="cate2">
-               <option value="none">2차유형</option>
+           <select name="cate2" class="cate2">
+               <option value="0">2차유형</option>
            </select>
        </div>
        <table class="cs">
@@ -48,7 +48,7 @@
                <td>${faq.faNo}</td>
                <td>${faq.c1Name}</td>
                <td>${faq.c2Name}</td>
-               <td><a href="/Kmarket/cs/faq/view.do?faNo=${faq.faNo}">${faq.faTitle}</a></td>
+               <td><a href="/Kmarket/admin/cs/view.do?no=${faq.faNo}&csType=${csType}&cate1=${faq.cate1}&cate2=${faq.cate2}">${faq.faTitle}</a></td>
                <td>${faq.hit}</td>
                <td>${faq.rdate}</td>
                <td>

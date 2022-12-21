@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import kr.co.kmarket.dao.AdminDAO_kjh;
 import kr.co.kmarket.vo.AdminCsNoticeCate1VO;
@@ -14,6 +15,7 @@ import kr.co.kmarket.vo.CsCate1DTO;
 import kr.co.kmarket.vo.CsCate2DTO;
 import kr.co.kmarket.vo.CsFaqVO;
 import kr.co.kmarket.vo.CsNoticeVO;
+import kr.co.kmarket.vo.CsQnaVO;
 
 public enum AdminCsService {
 	INSTANCE;
@@ -328,17 +330,51 @@ public enum AdminCsService {
 	}
 	
 	// faq 리스트 출력 cate1 1 cate1 1 기본값
-	public List<CsFaqVO> selectAdminCsFaqList(String cate1, String cate2){
+	public List<Object> selectAdminCsFaqList(String cate1, String cate2, String csType){
 		if(cate1 == null || cate1.equals("")) {
 			cate1 = "1";
 			cate2 = "1";
 		}
 		
-		return dao.selectAdminCsFaqList(cate1, cate2);
+		if(csType.equals("faq")) {
+			return dao.selectAdminCsFaqList(cate1, cate2);
+			
+		}else if(csType.equals("qna")) {
+			return dao.selectAdminCsQnaList(cate1, cate2);
+		}else {
+			// notice?
+			return dao.selectAdminCsFaqList(cate1, cate2);
+		}
+	}	
+	
+	// insert faq
+	public int insertAdminCsFaq(CsFaqVO vo) {
+		return dao.insertAdminCsFaq(vo);
+	}
+	
+	// count faq cate2 max 10
+	public int selectCountFaqCate2(String cate1, String cate2){
+		return dao.selectCountFaqCate2(cate1, cate2);
+	}
+	
+	// qna view
+	public CsQnaVO selectAdminCsQnaView(String cate1, String cate2, String qnaNo){
+		return dao.selectAdminCsQnaView(cate1, cate2, qnaNo);
+	}
+	
+	// update qna answer
+	public int updateQnaAnswer(String answer, String qnaNo){
+		return dao.updateQnaAnswer(answer, qnaNo);
 	}
 	
 	
 	
 	
-	
+	// json property 추가 후 json 반환
+	public void jsonObj(String key, int value, HttpServletResponse resp) throws IOException {
+		JsonObject json = new JsonObject();
+		json.addProperty(key, value);
+		PrintWriter writer = resp.getWriter();
+		writer.print(json.toString());
+	}
 }

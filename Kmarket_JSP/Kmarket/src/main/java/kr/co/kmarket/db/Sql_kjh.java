@@ -175,7 +175,35 @@ public class Sql_kjh {
 																+ "JOIN `km_cs_qna_cate2` AS c "
 																+ "ON b.cate1 = c.cate1 and a.cate2 = c.cate2 "
 																+ "WHERE a.`cate1` = ? AND a.`cate2` = ?";
-	}
+	// cs view
+	public static final String SELECT_ADMIN_CS_QNA_VIEW = "SELECT a.*, b.c1Name, c.c2Name "
+													+ "FROM `km_cs_qna` AS a "
+													+ "JOIN `km_cs_qna_cate1` AS b "
+													+ "ON a.cate1 = b.cate1 "
+													+ "JOIN `km_cs_qna_cate2` AS c "
+													+ "ON b.cate1 = c.cate1 and a.cate2 = c.cate2 "
+													+ "WHERE a.`cate1` = ? "
+													+ "AND a.`cate2` = ? "
+													+ "AND `qnaNo` = ?";
+	
+	// cs insert
+	public static final String INSERT_ADMIN_CS_FAQ = "INSERT INTO `km_cs_faq` SET "
+													+ "`cate1` = ?, "
+													+ "`cate2` = ?, "
+													+ "`faTitle` = ?, "
+													+ "`faContent` = ?, "
+													+ "`regip` = ?, "
+													+ "`rdate` = NOW()";
+	
+	public static final String SELECT_COUNT_FAQ_CATE2 = "SELECT COUNT(`faNo`) FROM km_cs_faq WHERE `cate1`= ? AND `cate2` = ?";
+	
+	public static final String UPDATE_QNA_ANSWER = "UPDATE `km_cs_qna` SET "
+													+ "`answer`= ?, "
+													+ "`qnaCond`='답변완료' "
+													+ "WHERE `qnaNo` = ?";
+}
+
+
 
 
 

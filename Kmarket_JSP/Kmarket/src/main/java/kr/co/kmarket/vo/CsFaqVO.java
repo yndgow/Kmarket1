@@ -48,11 +48,17 @@ public class CsFaqVO {
 	public void setCate1(int cate1) {
 		this.cate1 = cate1;
 	}
+	public void setCate1(String cate1) {
+		this.cate1 = Integer.parseInt(cate1);
+	}
 	public int getCate2() {
 		return cate2;
 	}
 	public void setCate2(int cate2) {
 		this.cate2 = cate2;
+	}
+	public void setCate2(String cate2) {
+		this.cate2 = Integer.parseInt(cate2);
 	}
 	public String getFaTitle() {
 		return faTitle;

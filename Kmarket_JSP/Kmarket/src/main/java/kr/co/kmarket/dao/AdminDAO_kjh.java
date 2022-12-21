@@ -4,14 +4,15 @@ package kr.co.kmarket.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 
 import kr.co.kmarket.db.DBHelper;
 import kr.co.kmarket.db.Sql_hong;
 import kr.co.kmarket.db.Sql_kjh;
 import kr.co.kmarket.vo.AdminCsNoticeCate1VO;
-import kr.co.kmarket.vo.AdminCsNoticeCate2VO;
 import kr.co.kmarket.vo.CsCate1DTO;
 import kr.co.kmarket.vo.CsCate2DTO;
 import kr.co.kmarket.vo.CsFaqVO;
@@ -402,7 +403,7 @@ public class AdminDAO_kjh extends DBHelper {
 	
 	
 	// 여기부터 김지홍 작업부분
-	// cs 카테고리 1차 출력
+	// cs category 1 list
 	public List<CsCate1DTO> selectAdminCsCate1(String tableName) {
 		logger.info("selectCsCate1...kjh");
 		List<CsCate1DTO> cate1List = new ArrayList<>(); 
@@ -423,9 +424,8 @@ public class AdminDAO_kjh extends DBHelper {
 		logger.debug("cate1List : "+cate1List);
 		return cate1List;
 	}
-	
 
-	// cs 카테고리 2차 출력
+	// cs category 2 list
 	public List<CsCate2DTO> selectAdminCsCate2(String tableName, String cate1) {
 		logger.info("selectCsCate2...kjh");
 		List<CsCate2DTO> cate2List = new ArrayList<>(); 
@@ -451,13 +451,12 @@ public class AdminDAO_kjh extends DBHelper {
 		}
 		logger.debug("cate2List : " + cate2List);
 		return cate2List;
-		
 	}
 
-	// faq 리스트 출력
-	public List<CsFaqVO> selectAdminCsFaqList(String cate1, String cate2){
+	// faq list
+	public List<Object> selectAdminCsFaqList(String cate1, String cate2){
 		logger.info("selectAdminCsFaqList...kjh");
-		List<CsFaqVO> faqList = new ArrayList<>(); 
+		List<Object> faqList = new ArrayList<>(); 
 
 		try {
 			conn = getConnection();
@@ -489,15 +488,140 @@ public class AdminDAO_kjh extends DBHelper {
 		return faqList;
 	}
 	
+	// qna list
+	public List<Object> selectAdminCsQnaList(String cate1, String cate2){
+		logger.info("selectAdminCsQnaList...kjh");
+		List<Object> qnaList = new ArrayList<>(); 
+
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.SELECT_ADMIN_CS_QNA_LIST_CATE);
+			psmt.setString(1, cate1);
+			psmt.setString(2, cate2);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				CsQnaVO vo = new CsQnaVO();
+				vo.setQnaNo(rs.getInt(1));
+				vo.setUid(rs.getString(2).replaceAll("(?<=.{3}).", "*"));
+				vo.setCate1(rs.getInt(3));
+				vo.setCate2(rs.getInt(4));
+				vo.setQnaTitle(rs.getString(5));
+				vo.setQnaContent(rs.getString(6));
+				vo.setRegip(rs.getString(7));
+				vo.setRdate(rs.getString(8).substring(2,10));
+				vo.setQnaCond(rs.getString(9));
+				vo.setAnswer(rs.getString(10));
+				vo.setC1Name(rs.getString(11));
+				vo.setC2Name(rs.getString(12));
+				qnaList.add(vo);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("qnaList : " + qnaList);
+		return qnaList;
+	}
+	
+	// faq insert
+	public int insertAdminCsFaq(CsFaqVO vo) {
+		logger.info("insertAdminCsFaq...kjh");
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.INSERT_ADMIN_CS_FAQ);
+			psmt.setInt(1, vo.getCate1());
+			psmt.setInt(2, vo.getCate2());
+			psmt.setString(3, vo.getFaTitle());
+			psmt.setString(4, vo.getFaContent());
+			psmt.setString(5, vo.getRegip());
+			result = psmt.executeUpdate();
+			
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
+	
+	// faq cate2 count
+	public int selectCountFaqCate2(String cate1, String cate2){
+		logger.info("selectCountFaqCate2...kjh");
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.SELECT_COUNT_FAQ_CATE2);
+			psmt.setString(1, cate1);
+			psmt.setString(2, cate2);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			close();
+
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
+	
+	// qna view
+	public CsQnaVO selectAdminCsQnaView(String cate1, String cate2, String qnaNo){
+		logger.info("selectAdminCsQnaView...kjh");
+		CsQnaVO vo = null; 
+
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.SELECT_ADMIN_CS_QNA_VIEW);
+			psmt.setString(1, cate1);
+			psmt.setString(2, cate2);
+			psmt.setString(3, qnaNo);
+			
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				vo = new CsQnaVO();
+				vo.setQnaNo(rs.getInt(1));
+				vo.setUid(rs.getString(2).replaceAll("(?<=.{3}).", "*"));
+				vo.setCate1(rs.getInt(3));
+				vo.setCate2(rs.getInt(4));
+				vo.setQnaTitle(rs.getString(5));
+				vo.setQnaContent(rs.getString(6));
+				vo.setRegip(rs.getString(7));
+				vo.setRdate(rs.getString(8).substring(2,10));
+				vo.setQnaCond(rs.getString(9));
+				vo.setAnswer(rs.getString(10));
+				vo.setC1Name(rs.getString(11));
+				vo.setC2Name(rs.getString(12));
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("vo : " + vo);
+		return vo;
+	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
+	// update qna answer
+	public int updateQnaAnswer(String answer, String qnaNo){
+		logger.info("updateQnaAnswer...kjh");
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.UPDATE_QNA_ANSWER);
+			psmt.setString(1, answer);
+			psmt.setString(2, qnaNo);
+			result = psmt.executeUpdate();
+			close();
+
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
 	
 	
 	

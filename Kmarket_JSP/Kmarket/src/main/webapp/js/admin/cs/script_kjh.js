@@ -1,8 +1,9 @@
 $(() => {
-
   let csType = $('input[name=csType]').val();
+  let cate1 = $('select[name=cate1]').val();
+  let cate2 = $('select[name=cate1]').val();
   $('.btnWriteNotice').click(() => {
-    location.href = '/Kmarket/admin/cs/write.do?csType=' + csType;
+    location.href = '/Kmarket/admin/cs/write.do?csType=' + csType + '&cate1=' + cate1 + '&cate2=' + cate2;
   });
 
   const url = '/Kmarket/admin/cs/cate.do?csType=' + csType;
@@ -18,16 +19,63 @@ $(() => {
     let cate1 = $(this).val();
     let content = `<option value="0">2차유형</option>`;
     if (cate1 == '0') {
-		$('select[name=cate2]').append(content);
-		return false;
+      $('select[name=cate2]').append(content);
+      return false;
     }
     let url1 = url + '&cate1=' + cate1;
     content += ajaxload(url1);
     $('select[name=cate2]').append(content);
   });
 
+  // list load
+  $('.cate2').on('change', function () {
+    let cate2Val = $(this).val();
+    adminCsList(cate2Val);
+  });
+
+  // btnCancle
+  $('.btnCancle').click(function (e) {
+    e.preventDefault();
+    history.back();
+  });
+
+  // btnWrite
+  $('.btnWriteFaq').click(function (e) {
+    e.preventDefault();
+    let title = $('#title').val();
+    let content = $('#content').val();
+    if (title == '' || content == '') {
+      alert('제목과 내용을 작성해주세요.');
+      return false;
+    }
+
+    let cate1 = $('select[name=cate1]').val();
+    let cate2 = $('select[name=cate2]').val();
+    let jsonData = { cate1: cate1, cate2: cate2 };
+    let count = 0;
+    $.ajax({
+      url: '/Kmarket/admin/cs/faq/listCate2Count.do',
+      data: jsonData,
+      dataType: 'json',
+      async: false,
+      success: function (data) {
+        count = data.result;
+      },
+    });
+    if (count >= 10) {
+      alert('2차유형당 최대갯수는 10개입니다.');
+      return false;
+    }
+    if (confirm('자주묻는질문을 등록하시겠습니까?')) {
+      $('#faqForm').submit();
+    }
+    return false;
+  });
+
+  // write page category set
 });
 
+//// 함수모음 ////
 // 사용 x
 function csCate1Load(url) {
   $('select[name=cate1]').empty();
@@ -54,4 +102,74 @@ function ajaxload(url) {
     },
   });
   return content;
+}
+
+// admin cs list
+function adminCsList(cate2Val) {
+  $('table.cs').empty();
+  let cate1 = $('select[name=cate1]').val();
+  let cate2 = cate2Val;
+  let csType = $('input[name=csType]').val();
+  $.ajax({
+    type: 'get',
+    url: '/Kmarket/admin/cs/list.do',
+    data: { cate1: cate1, cate2: cate2, csType: csType },
+    dataType: 'json',
+    success: function (data) {
+      let content = '';
+      if (csType == 'faq') {
+        content += `
+        <tr>
+          <th><input type="checkbox" name="all"></th>
+          <th>번호</th>
+          <th>1차유형</th>
+          <th>2차유형</th>
+          <th>제목</th>
+          <th>조회</th>
+          <th>날짜</th>
+          <th>관리</th>
+        </tr>`;
+        data.forEach((e) => {
+          content += `<tr>
+          <td><input type="checkbox" name="faqCheck"></td>
+          <td>${e.faNo}</td>
+          <td style="width: 140px;">${e.c1Name}</td>
+          <td style="width: 171px;">${e.c2Name}</td>
+          <td><a href="/Kmarket/admin/cs/view.do?no=${e.faNo}&csType=${csType}&cate1=${e.cate1}&cate2=${e.cate2}">${e.faTitle}</a></td>
+          <td>${e.hit}</td>
+          <td>${e.rdate}</td>
+          <td>
+            <a href="/Kmarket/admin/cs/delete.do?faNo=${e.faNo}" class="btnDeleteNotice">[삭제]</a>
+            <a href="/Kmarket/admin/cs/modify.do?faNo=${e.faNo}" class="btnModifyNotice">[수정]</a>
+          </td>
+        </tr>`;
+        });
+      } else if (csType == 'qna') {
+        content += `
+        <tr>
+          <th><input type="checkbox" name="all"></th>
+          <th>번호</th>
+          <th>1차유형</th>
+          <th>2차유형</th>
+          <th>제목</th>
+          <th>작성자</th>
+          <th>작성일</th>
+          <th>상태</th>
+        </tr>`;
+        data.forEach((e) => {
+          content += `<tr>
+          <td><input type="checkbox" name="faqCheck"></td>
+          <td>${e.qnaNo}</td>
+          <td style="width: 140px;">${e.c1Name}</td>
+          <td style="width: 171px;">${e.c2Name}</td>
+          <td><a href="/Kmarket/admin/cs/view.do?no=${e.qnaNo}&csType=${csType}&cate1=${e.cate1}&cate2=${e.cate2}">${e.qnaTitle}</a></td>
+          <td>${e.uid}</td>
+          <td>${e.rdate}</td>
+          <td>${e.qnaCond}</td>
+        </tr>`;
+        });
+      }
+      $('.cs').append(content);
+    },
+  });
 }

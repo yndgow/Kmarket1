@@ -10,12 +10,21 @@ public class CsQnaVO {
 	private String regip;
 	private String rdate;
 	private String qnaCond;
+	private String answer;
 	
 	//추가 필드
 	private String c1Name;
 	private String c2Name;
 	
-	
+	public String getAnswer() {
+		return answer;
+	}
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+	public void setRdate(String rdate) {
+		this.rdate = rdate;
+	}
 	public void setQnaNo(int qnaNo) {
 		this.qnaNo = qnaNo;
 	}

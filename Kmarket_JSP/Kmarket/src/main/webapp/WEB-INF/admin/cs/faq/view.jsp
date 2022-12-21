@@ -11,47 +11,49 @@
 		</c:when>
 		<c:when test="${csType eq 'qna'}">
 			<c:set var="csTxt" value="문의하기"/>
+			<c:set var="csTxt2" value="답변"/>
 		</c:when>
 		<c:when test="${csType eq 'notice'}">
 			<c:set var="csTxt" value="공지사항"/>
 		</c:when>
 	</c:choose>
     <nav>
-      <h3>${csTxt} 작성</h3>
+      <h3>${csTxt} ${csTxt2}</h3>
       <p>HOME > 고객센터 > <strong>${csTxt}</strong></p>
     </nav>
     <section>
-    
-    <form action="/Kmarket/admin/cs/write.do" id="faqForm" method="post">
     <input type="hidden" name="csType" value="${csType}"/>
-      <table class="update">
+      <table class="update adminCsmodify">
         <tr>
           <th>유형</th>
-          <td>
-            <select name="cate1">
-              <option value="0">1차유형</option>
-			<c:forEach var="cate1" items="${cate1List}">
-               <option value="${cate1.cate1}">${cate1.c1Name}</option>
-            </c:forEach>
-            </select>
-           <select name="cate2" class="cate3">
-               <option value="0">2차유형</option>
-           </select>
-          </td>
+          <td>${qna.c1Name}&nbsp;-&nbsp;${qna.c2Name}</td>
         </tr>
         <tr>
           <th>제목</th>
-          <td><input type="text" name="title" id="title" required="required"/></td>
+          <td>${qna.qnaTitle}</td>
         </tr>
         <tr>
           <th>내용</th>
-          <td><textarea name="content" id="content" required="required"></textarea></td>
+          <td>${qna.qnaContent}</td>
+        </tr>
+        <tr>
+          <th>답변</th>
+          <td><textarea name="reply" id="content"></textarea></td>
         </tr>
       </table>
-      </form>
-      <div class="btnGroup">
-        <input type="button" class="btnAdminCsDel btnCancle" value="취소" />
-        <input type="button" class="btnAdminCsWri btnWriteFaq" value="등록하기" />
+      <div class="btnGroup btnQnaGroup">
+      <c:choose>
+      <c:when test="${empty qna}">
+      	<input type="button" class="btnAdminCsDel btnDel" value="삭제" />
+        <input type="button" class="btnAdminCsDel btnMod" value="수정" />
+        <input type="button" class="btnAdminCsWri btnList" value="등록하기" />
+      </c:when>
+      <c:otherwise>
+      	<input type="button" class="btnAdminCsDel btnDel" value="삭제" />
+        <input type="button" class="btnAdminCsWri btnWri" value="답변등록" />
+        <input type="button" class="btnAdminCsWri btnList" value="목록" />
+      </c:otherwise>
+      </c:choose>
       </div>
     </section>
   </section>

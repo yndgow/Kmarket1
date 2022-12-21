@@ -1,6 +1,7 @@
 package kr.co.kmarket.controller.admin.cs;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,6 +28,11 @@ public class AdminCsQnaListController extends HttpServlet{
 		// 1차유형 출력
 		req.setAttribute("cate1List", service.selectAdminCsCate1(csType)); 
 		
+		// qna 리스트 출력
+		String cate1 = req.getParameter("cate1");
+		String cate2 = req.getParameter("cate2");
+		List<Object> qnaList = service.selectAdminCsFaqList(cate1, cate2, csType);
+		req.setAttribute("qnaList", qnaList);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/admin/cs/qna/list.jsp");
 		dispatcher.forward(req, resp);

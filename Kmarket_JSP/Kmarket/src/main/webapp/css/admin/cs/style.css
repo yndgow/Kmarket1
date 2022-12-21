@@ -43,6 +43,7 @@
 	color: #fff;
 }
 .btnAdminCsWri{
+	height: 31px;
 	float:right !important;
 	background-color: #1EA4FF;
 	border-color:#1EA4FF;
@@ -56,21 +57,22 @@
   font-weight: bold;
 }
 .update tr {
+  border-top: 1px solid #e9e9e9;
   border-bottom: 1px solid #e9e9e9;
 }
 
 .update tr > td {
-  text-align: left !important;
+  
 }
 .update tr:nth-child(2) > td {
 }
 .update tr:nth-child(2) > td > input {
-  width: 500px;
+  width: 100%;
 
   outline: none;
 }
 .update tr:nth-child(3) > td > textarea {
-  width: 500px;
+  width: 100%;
   height: 200px;
   background-color: #fefefe;
   outline: none;
@@ -97,4 +99,27 @@ input[type='button']:hover {
   background-color: #1ea4ff;
   border-color: #1ea4ff;
   color: #fff;
+}
+select[name=cate2]{
+	width: 180px;
+}
+.adminCsmodify th{
+	width: 15px;
+}
+.adminCsmodify tr > td{
+	text-align: left !important;
+}
+.btnQnaGroup{
+	float: right;
+	width: 310px;
+	margin: 0;
+}
+.btnList{
+	height: 31px;
+}
+.adminCsmodify tr:nth-child(4) > td > textarea {
+    width: 100%;
+    height: 200px;
+    background-color: #fefefe;
+    outline: none;
 }

@@ -27,7 +27,7 @@
                <option value="${cate1.cate1}">${cate1.c1Name}</option>
             </c:forEach>
            </select>
-           <select name="cate2">
+           <select name="cate2" class="cate2">
                <option value="0">2차유형</option>
            </select>
        </div>
@@ -42,21 +42,18 @@
                <th>작성일</th>
                <th>상태</th>
            </tr>
-           
+           <c:forEach var="qna" items="${qnaList}">
            <tr>
                <td><input type="checkbox" name="faqCheck"></td>
-               <td>100</td>
-               <td>회원</td>
-               <td>가입</td>
-               <td><a href="/Kmarket/cs/qna/view.do">개인회원과 법인회원에 차이가 있나요?</a></td>
-               <td>use***</td>
-               <td>22.12.16</td>
-               <td>
-                   <a href="#" class="btnDeleteNotice">[삭제]</a>
-                   <a href="#" class="btnModifyNotice">[수정]</a>
-               </td>
+               <td>${qna.qnaNo}</td>
+               <td>${qna.c1Name}</td>
+               <td>${qna.c2Name}</td>
+               <td><a href="/Kmarket/admin/cs/view.do?no=${qna.qnaNo}&csType=${csType}&cate1=${qna.cate1}&cate2=${qna.cate2}">${qna.qnaTitle}</a></td>
+               <td>${qna.uid}</td>
+               <td>${qna.rdate}</td>
+               <td>${qna.qnaCond}</td>
            </tr>
-           
+           </c:forEach>
 
        </table>
 

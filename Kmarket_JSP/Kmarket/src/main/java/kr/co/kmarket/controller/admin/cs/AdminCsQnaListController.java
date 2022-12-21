@@ -27,7 +27,6 @@ public class AdminCsQnaListController extends HttpServlet{
 		// 1차유형 출력
 		req.setAttribute("cate1List", service.selectAdminCsCate1(csType)); 
 		
-		service2.selectQnaArticles(0);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/admin/cs/qna/list.jsp");
 		dispatcher.forward(req, resp);

@@ -44,7 +44,7 @@
                   </article>
                 </td>
                 <td>${vo.price}원</td>
-                <td>${vo.price * vo.discount/100}원</td>
+                <td><fmt:parseNumber var="discountPrice" value="${vo.price * vo.discount/100}" integerOnly="true"/>${discountPrice}원</td>
                 <td>${vo.count}</td>
                 <td>${vo.total}원</td>
               </tr>

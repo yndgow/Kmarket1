@@ -1,10 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../_header.jsp"/>
-<script>
-
-</script>
-
+<script src="/Kmarket/js/admin/cs/script_kjh.js"></script>
   <section id="admin-product-list">
   <c:choose>
   	<c:when test="${csType eq 'faq'}">
@@ -24,15 +21,14 @@
     </nav>
      <section>
        <div class="csSelectDiv">
-           <select name="cate1">
-               <option value="none">1차유형</option>
-               <option value="csService">고객서비스</option>
-               <option value="safeTrans">안전거래</option>
-               <option value="dangerProd">위해상품</option>
-               <option value="event">이벤트 당첨</option>
+             <select name="cate1">
+               <option value="0">1차유형</option>
+			<c:forEach var="cate1" items="${cate1List}">
+               <option value="${cate1.cate1}">${cate1.c1Name}</option>
+            </c:forEach>
            </select>
            <select name="cate2">
-               <option value="none">2차유형</option>
+               <option value="0">2차유형</option>
            </select>
        </div>
        <table class="cs">
@@ -42,36 +38,25 @@
                <th>1차유형</th>
                <th>2차유형</th>
                <th>제목</th>
-               <th>조회</th>
-               <th>날짜</th>
-               <th>관리</th>
+               <th>작성자</th>
+               <th>작성일</th>
+               <th>상태</th>
            </tr>
+           
            <tr>
                <td><input type="checkbox" name="faqCheck"></td>
                <td>100</td>
                <td>회원</td>
                <td>가입</td>
-               <td><a href="#">개인회원과 법인회원에 차이가 있나요?</a></td>
-               <td>120</td>
+               <td><a href="/Kmarket/cs/qna/view.do">개인회원과 법인회원에 차이가 있나요?</a></td>
+               <td>use***</td>
                <td>22.12.16</td>
                <td>
                    <a href="#" class="btnDeleteNotice">[삭제]</a>
                    <a href="#" class="btnModifyNotice">[수정]</a>
                </td>
            </tr>
-            <tr>
-               <td><input type="checkbox" name="faqCheck"></td>
-               <td>100</td>
-               <td>회원</td>
-               <td>가입</td>
-               <td><a href="#">개인회원과 법인회원에 차이가 있나요?</a></td>
-               <td>120</td>
-               <td>22.12.16</td>
-               <td>
-                   <a href="#" class="btnDeleteNotice">[삭제]</a>
-                   <a href="#" class="btnModifyNotice">[수정]</a>
-               </td>
-           </tr>
+           
 
        </table>
 

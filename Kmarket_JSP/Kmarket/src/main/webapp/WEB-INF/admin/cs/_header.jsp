@@ -92,9 +92,9 @@
             <li>
               <a href="/Kmarket/admin/cs/notice/list.do"><i class="fa-solid fa-headphones"></i>고객센터</a>
               <ol>
-                <li><a href="/Kmarket/admin/cs/list.do?csType=notice">공지사항</a></li>
-                <li><a href="/Kmarket/admin/cs/list.do?csType=faq">자주묻는질문</a></li>
-                <li><a href="/Kmarket/admin/cs/list.do?csType=qna">문의하기</a></li>
+                <li><a href="/Kmarket/admin/cs/notice/list.do">공지사항</a></li>
+                <li><a href="/Kmarket/admin/cs/faq/list.do?csType=faq">자주묻는질문</a></li>
+                <li><a href="/Kmarket/admin/cs/qna/list.do?csType=qna">문의하기</a></li>
               </ol>
             </li>
           </ul>

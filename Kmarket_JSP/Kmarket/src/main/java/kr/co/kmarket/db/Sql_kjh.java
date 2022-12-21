@@ -153,7 +153,29 @@ public class Sql_kjh {
 														+ "JOIN `km_product` AS c "
 														+ "USING (`prodNo`) "
 														+ "WHERE `ordNo` = ?";
-}
+
+	
+	
+	
+	// admin cs 부분
+	// faq list
+	public static final String SELECT_ADMIN_CS_FAQ_LIST_CATE = "SELECT a.*, b.c1Name, c.c2Name "
+																+ "FROM `km_cs_faq` AS a "
+																+ "JOIN `km_cs_faq_cate1` AS b "
+																+ "ON a.cate1 = b.cate1 "
+																+ "JOIN `km_cs_faq_cate2` AS c "
+																+ "ON b.cate1 = c.cate1 and a.cate2 = c.cate2 "
+																+ "WHERE a.`cate1` = ? AND a.`cate2` = ?";
+	// qna list
+	public static final String SELECT_ADMIN_CS_QNA_LIST_ALL= "SELECT * FROM `km_cs_qna`";
+	public static final String SELECT_ADMIN_CS_QNA_LIST_CATE = "SELECT a.*, b.c1Name, c.c2Name "
+																+ "FROM `km_cs_qna` AS a "
+																+ "JOIN `km_cs_qna_cate1` AS b "
+																+ "ON a.cate1 = b.cate1 "
+																+ "JOIN `km_cs_qna_cate2` AS c "
+																+ "ON b.cate1 = c.cate1 and a.cate2 = c.cate2 "
+																+ "WHERE a.`cate1` = ? AND a.`cate2` = ?";
+	}
 
 
 

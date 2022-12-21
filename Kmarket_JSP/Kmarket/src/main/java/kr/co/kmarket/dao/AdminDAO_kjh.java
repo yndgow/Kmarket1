@@ -14,6 +14,7 @@ import kr.co.kmarket.vo.AdminCsNoticeCate1VO;
 import kr.co.kmarket.vo.AdminCsNoticeCate2VO;
 import kr.co.kmarket.vo.CsCate1DTO;
 import kr.co.kmarket.vo.CsCate2DTO;
+import kr.co.kmarket.vo.CsFaqVO;
 import kr.co.kmarket.vo.CsNoticeVO;
 import kr.co.kmarket.vo.CsQnaVO;
 import kr.co.kmarket.vo.ProductVO;
@@ -153,6 +154,360 @@ public class AdminDAO_kjh extends DBHelper {
 		}
 		return articles;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 여기부터 김지홍 작업부분
+	// cs 카테고리 1차 출력
+	public List<CsCate1DTO> selectAdminCsCate1(String tableName) {
+		logger.info("selectCsCate1...kjh");
+		List<CsCate1DTO> cate1List = new ArrayList<>(); 
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement("SELECT * FROM " + tableName);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				CsCate1DTO vo = new CsCate1DTO();
+				vo.setCate1(rs.getInt(1));
+				vo.setC1Name(rs.getString(2));
+				cate1List.add(vo);
+			}
+			close();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("cate1List : "+cate1List);
+		return cate1List;
+	}
+	
+
+	// cs 카테고리 2차 출력
+	public List<CsCate2DTO> selectAdminCsCate2(String tableName, String cate1) {
+		logger.info("selectCsCate2...kjh");
+		List<CsCate2DTO> cate2List = new ArrayList<>(); 
+
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement("SELECT * FROM " + tableName + " WHERE `cate1` = ?");
+			
+			psmt.setString(1, cate1);
+			
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				CsCate2DTO vo = new CsCate2DTO();
+				vo.setCate1(rs.getInt(1));
+				vo.setCate2(rs.getInt(2));
+				vo.setC2Name(rs.getString(3));
+				cate2List.add(vo);
+			}
+			close();
+
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("cate2List : " + cate2List);
+		return cate2List;
+		
+	}
+
+	// faq 리스트 출력
+	public List<CsFaqVO> selectAdminCsFaqList(String cate1, String cate2){
+		logger.info("selectAdminCsFaqList...kjh");
+		List<CsFaqVO> faqList = new ArrayList<>(); 
+
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.SELECT_ADMIN_CS_FAQ_LIST_CATE);
+			psmt.setString(1, cate1);
+			psmt.setString(2, cate2);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				CsFaqVO vo = new CsFaqVO();
+				vo.setFaNo(rs.getInt(1));
+				vo.setUid(rs.getString(2));
+				vo.setCate1(rs.getInt(3));
+				vo.setCate2(rs.getInt(4));
+				vo.setFaTitle(rs.getString(5));
+				vo.setFaContent(rs.getString(6));
+				vo.setHit(rs.getInt(7));
+				vo.setRegip(rs.getString(8));
+				vo.setRdate(rs.getString(9).substring(2,10));
+				vo.setC1Name(rs.getString(10));
+				vo.setC2Name(rs.getString(11));
+				faqList.add(vo);
+			}
+			close();
+
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("faqList : " + faqList);
+		return faqList;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

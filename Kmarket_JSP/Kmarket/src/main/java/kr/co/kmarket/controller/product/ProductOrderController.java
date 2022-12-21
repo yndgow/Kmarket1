@@ -78,7 +78,7 @@ public class ProductOrderController extends HttpServlet{
 		ProductOrderVO povo = new ProductOrderVO();
 		String usedPoint = req.getParameter("usedPoint");
 		if(usedPoint== "") usedPoint = "0"; 
-		povo.setUsedPoint(req.getParameter("usedPoint"));
+		povo.setUsedPoint(usedPoint);
 		povo.setOrdTotPrice(req.getParameter("ordTotPrice"));
 		povo.setRecipName(req.getParameter("name"));
 		povo.setRecipHp(req.getParameter("hp"));
@@ -107,7 +107,9 @@ public class ProductOrderController extends HttpServlet{
 		// session
 		HttpSession sess = req.getSession();
 		MemberVO mem = (MemberVO) sess.getAttribute("sessUser");
-		int resultPoint = mem.getPoint() - Integer.parseInt(req.getParameter("usedPoint") + savePoint);
+		int memP = mem.getPoint();
+		int usP = Integer.parseInt(usedPoint);
+		int resultPoint = memP - usP + savePoint;
 		mem.setPoint(resultPoint);
 		sess.setAttribute("sessUser", mem);		
 

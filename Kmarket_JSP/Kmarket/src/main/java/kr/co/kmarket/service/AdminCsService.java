@@ -10,6 +10,9 @@ import com.google.gson.Gson;
 
 import kr.co.kmarket.dao.AdminDAO_kjh;
 import kr.co.kmarket.vo.AdminCsNoticeCate1VO;
+import kr.co.kmarket.vo.CsCate1DTO;
+import kr.co.kmarket.vo.CsCate2DTO;
+import kr.co.kmarket.vo.CsFaqVO;
 import kr.co.kmarket.vo.CsNoticeVO;
 
 public enum AdminCsService {
@@ -87,4 +90,255 @@ public enum AdminCsService {
 		PrintWriter writer = resp.getWriter();
 		writer.print(jsonData);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 김지홍 faq qna 작업
+	// 카테고리 1차유형
+	public List<CsCate1DTO> selectAdminCsCate1(String csType){
+		String tableName = "";
+		if(csType.equals("faq")) {
+			tableName = "km_cs_faq_cate1";
+		}else if(csType.equals("qna")){
+			tableName = "km_cs_qna_cate1";
+		}else {
+			tableName = "km_cs_notice_cate1";
+		}
+		return dao.selectAdminCsCate1(tableName);
+	}
+	
+	// 카테고리 2차유형
+	public List<CsCate2DTO> selectAdminCsCate2(String csType, String cate1) {
+		String tableName = "";
+		if(csType.equals("faq")) {
+			tableName = "km_cs_faq_cate2";
+		}else if(csType.equals("qna")){
+			tableName = "km_cs_qna_cate2";
+		}else {
+			tableName = "km_cs_notice_cate2";
+		}
+		return dao.selectAdminCsCate2(tableName, cate1);
+	}
+	
+	// faq 리스트 출력 cate1 1 cate1 1 기본값
+	public List<CsFaqVO> selectAdminCsFaqList(String cate1, String cate2){
+		if(cate1 == null || cate1.equals("")) {
+			cate1 = "1";
+			cate2 = "1";
+		}
+		
+		return dao.selectAdminCsFaqList(cate1, cate2);
+	}
+	
+	
+	
+	
+	
 }

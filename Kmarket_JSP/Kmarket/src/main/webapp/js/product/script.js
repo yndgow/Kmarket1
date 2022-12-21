@@ -14,9 +14,7 @@ $(() => {
   $('.btnCart, .btnBuy').click(function () {
     if (loginCheck()) {
       let btnClassName = $(this).attr('class');
-      if (btnClassName == 'btnCart') {
-		
-	
+      if (btnClassName == 'btnCart') { // 장바구니 클릭시
         let jsonData = {
           uid: $('.sessUser_uid').text(),
           prodNo: $('input[name=prodNo').val(),
@@ -37,12 +35,13 @@ $(() => {
             }
           },
         });
-      } else if (btnClassName == 'btnBuy') {
+      } else if (btnClassName == 'btnBuy') { // 구매하기 클릭시
 		let uid = $('.sessUser_uid').text();
 		let prodNo = $('input[name=prodNo').val();
-		let price = $('input[name=ori_price]').val();
+		let price = Number($('input[name=ori_price]').val());
 		let count = $('input[name=num]').val();
-		let discount = $('input[name=discount]').val();
+		let discount = Number($('input[name=discount]').val());
+		let discountPrice = price * discount/100;
 		let delivery = Number($('input[name=delivery]').val());
 		let point = Math.ceil(price * (100-discount)/100 * count * 0.01);
 		let total = Math.ceil(price * (100-discount)/100 * count) + delivery;
@@ -51,7 +50,7 @@ $(() => {
           prodNo: prodNo,
           cartCount: count,
           cartPrice: price,
-          cartDiscount: discount,
+          cartDiscount: discountPrice,
           cartDelivery: delivery,
           cartPoint: point,
           cartTotal: total,

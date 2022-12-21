@@ -25,12 +25,13 @@ public class QnaListController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String pg = req.getParameter("pg");
+		String cate1 = req.getParameter("cate1");
 		
 		//현재 페이지 번호
 		int currentPage = service.getCurrentPage(pg);
 		
 		// 전체 게시물 갯수 
-		int total = service.selectCountTotal();
+		int total = service.selectCountTotal(cate1);
 		
 		// 마지막 페이지 번호
 		int lastPageNum = service.getLastPageNum(total);
@@ -45,10 +46,11 @@ public class QnaListController extends HttpServlet{
 		int start = service.getStartNum(currentPage);
 		
 		// view 글 가져오기
-		List<CsQnaVO> articles = service.selectQnaArticles(start);
+		List<CsQnaVO> articles = service.selectQnaArticles(cate1, start);
 		
 		// View에서 데이터 출력을 위한 request Scope 데이터 설정
 		req.setAttribute("pg", pg);
+		req.setAttribute("cate1", cate1);
 		req.setAttribute("articles", articles);
 		req.setAttribute("lastPageNum", lastPageNum);		
 		req.setAttribute("currentPage", currentPage);		

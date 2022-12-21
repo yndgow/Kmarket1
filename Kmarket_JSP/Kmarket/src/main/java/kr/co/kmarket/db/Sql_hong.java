@@ -42,29 +42,36 @@ public class Sql_hong {
 	public static final String SELECT_CATEGORY1_BY_CS_ADMIN_NOTICE = "SELECT * FROM `km_cs_notice_cate1`";	
 	
 	// cs qna list 출력
-	public static final String SELECT_QNA_ARTICLES = "SELECT * FROM `km_cs_qna`"
-													+ "ORDER BY `qnaNO` DESC "
-													+ "LIMIT ?, 10";
-	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(`qnaNo`) FROM `km_cs_qna`";
+	public static final String SELECT_QNA_ARTICLES = "SELECT a.*, b.c1Name, c.c2Name FROM km_cs_qna AS a "
+													+ "JOIN km_cs_qna_cate1 AS b ON a.cate1 = b.cate1 "
+													+ "JOIN km_cs_qna_cate2 AS c ON b.cate1 = c.cate1 "
+													+ "and a.cate2 = c.cate2 WHERE a.cate1 = ? "
+													+ "ORDER BY `qnaNo` DESC LIMIT ?, 10";
+	
+	
+	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(`qnaNo`) FROM `km_cs_qna` WHERE `cate1`=?";
 	
 	// cs qna view 출력
-	public static final String SELECT_QNA_ARTICLE = "SELECT * FROM `km_cs_qna` where `qnaNo`=?";
+	public static final String SELECT_QNA_ARTICLE = "SELECT a.* , b.c2Name FROM `km_cs_qna` AS a "
+													+ "JOIN `km_cs_qna_cate2` AS b ON a.cate1 = b.cate1 "
+													+ "and a.cate2 = b.cate2 "
+													+ "where `qnaNo`=? ";
 	
 	// admin cs notice 전체 list 출력
 	public static final String SELECT_COUNT_TOTAL_NOTICE = "SELECT COUNT(`notNo`) FROM `km_cs_notice`";
 	
 	public static final String SELECT_ADMIN_ALL_NOTICE_ARTICLES ="SELECT a.* , b.`c1Name` FROM `km_cs_notice` as a "
 													+ "JOIN `km_cs_notice_cate1` as b "
-													+ "ON a.cate1 = b.cate1"
+													+ "ON a.cate1 = b.cate1 "
 													+ "ORDER BY `notNo` DESC "
 													+ "LIMIT ?, 10";
 	
 	
 	// admin cs notice 유형별 list 출력
-	public static final String SELECT_ADMIN_NOTICE_ARTICLES ="SELECT a.* , b.c1Name FROM `km_cs_notice` AS a "
+	public static final String SELECT_ADMIN_NOTICE_ARTICLES ="SELECT a.* , b.`c1Name` FROM `km_cs_notice` AS a "
 													+ "JOIN `km_cs_notice_cate1` AS b "
 													+ "ON a.cate1 = b.cate1 "
-													+ "WHERE a.cate1 = ?"
+													+ "WHERE a.cate1 = ? "
 													+ "ORDER BY `notNo` DESC "
 													+ "LIMIT ?, 10";
 	

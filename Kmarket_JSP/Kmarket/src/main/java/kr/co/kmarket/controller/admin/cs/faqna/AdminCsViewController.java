@@ -1,8 +1,8 @@
-package kr.co.kmarket.controller.admin.cs;
+package kr.co.kmarket.controller.admin.cs.faqna;
 
 import java.io.IOException;
-import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,21 +11,27 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.kmarket.service.AdminCsService;
 
-@WebServlet("/admin/cs/list.do")
-public class AdminCsListController extends HttpServlet{
+@WebServlet("/admin/cs/view.do")
+public class AdminCsViewController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	AdminCsService service = AdminCsService.INSTANCE;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		String csType = req.getParameter("csType");
 		String cate1 = req.getParameter("cate1");
 		String cate2 = req.getParameter("cate2");
-		String csType = req.getParameter("csType");
+
+		req.setAttribute("csType", csType);
+		req.setAttribute("cate1", cate1);
+		req.setAttribute("cate2", cate2);
 		
-		List<Object> csList = service.selectAdminCsFaqList(cate1, cate2, csType);
+		String no = req.getParameter("no");		
 		
-		service.gsonTojson(csList, resp);
+		req.setAttribute("qna", service.selectAdminCsQnaView(cate1, cate2, no)); 
+		
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/admin/cs/faq/view.jsp");
+		dispatcher.forward(req, resp);
 	}
 
 }

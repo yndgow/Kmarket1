@@ -1,4 +1,4 @@
-package kr.co.kmarket.controller.admin.cs;
+package kr.co.kmarket.controller.admin.cs.faqna;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,12 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.kmarket.service.AdminCsService;
+import kr.co.kmarket.service.CsService;
 
-@WebServlet("/admin/cs/faq/list.do")
-public class AdminCsFaqListController extends HttpServlet{
+@WebServlet("/admin/cs/qna/list.do")
+public class AdminCsQnaListController extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	AdminCsService service = AdminCsService.INSTANCE;
+	CsService service2 = CsService.INSTANCE;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,13 +28,13 @@ public class AdminCsFaqListController extends HttpServlet{
 		// 1차유형 출력
 		req.setAttribute("cate1List", service.selectAdminCsCate1(csType)); 
 		
-		// 리스트 출력
+		// qna 리스트 출력
 		String cate1 = req.getParameter("cate1");
 		String cate2 = req.getParameter("cate2");
-		List<Object> faqList =service.selectAdminCsFaqList(cate1, cate2, csType);
-		req.setAttribute("faqList", faqList);
+		List<Object> qnaList = service.selectAdminCsFaqList(cate1, cate2, csType);
+		req.setAttribute("qnaList", qnaList);
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/admin/cs/faq/list.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/admin/cs/qna/list.jsp");
 		dispatcher.forward(req, resp);
 	}
 

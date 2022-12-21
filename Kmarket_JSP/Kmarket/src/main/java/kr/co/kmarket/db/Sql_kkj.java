@@ -61,7 +61,12 @@ public class Sql_kkj {
 	
 	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(`notNo`) FROM `km_cs_notice`";
 	
-	public static final String SELECT_FAQ_ARTICLES = "SELECT * FROM `km_cs_faq`"
+	public static final String SELECT_COUNT_CATE_TOTAL = "SELECT COUNT(`notNo`) FROM `km_cs_notice` where `cate1`=?";
+	
+	public static final String SELECT_FAQ_ARTICLES = "SELECT a.*, b.c1Name, c.c2Name FROM `km_cs_faq` AS a "
+													+ "JOIN `km_cs_faq_cate1` AS b ON a.cate1 = b.cate1 "
+													+ "JOIN `km_cs_faq_cate2` AS c ON a.cate2 = c.cate2 AND a.cate1 = c.cate1 "
+													+ "WHERE a.`cate1` =? "
 													+ "ORDER BY `faNo` DESC "
 													+ "LIMIT 10";
 }

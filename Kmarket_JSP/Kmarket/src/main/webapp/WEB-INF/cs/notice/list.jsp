@@ -49,8 +49,30 @@
                     </aside>
                     <article>
                         <nav>
+                        	<c:if test="${cate1 eq null }">
                             <h1>전체</h1>
                             <h2>공지사항 전체 내용 입니다.</h2>
+                            </c:if>
+                            
+                            <c:if test="${cate1 eq 1 }">
+                            <h1>고객서비스</h1>
+                            <h2>공지사항 고객서비스 내용 입니다.</h2>
+                            </c:if>
+                            
+                            <c:if test="${cate1 eq 2 }">
+                            <h1>안전거래</h1>
+                            <h2>공지사항 안전거래 내용 입니다.</h2>
+                            </c:if>
+                            
+                            <c:if test="${cate1 eq 3 }">
+                            <h1>위해상품</h1>
+                            <h2>공지사항 위해상품 내용 입니다.</h2>
+                            </c:if>
+                            
+                            <c:if test="${cate1 eq 4 }">
+                            <h1>이벤트당첨</h1>
+                            <h2>공지사항 이벤트당첨 내용 입니다.</h2>
+                            </c:if>
                         </nav>
                         <table>
                         	<c:forEach var="article" items="${articles}">
@@ -61,11 +83,6 @@
                         	</c:forEach>
                         </table>
                       
-                        
-                        
-                        
-                        
-                        
                          <div class="page">
 				        	<c:if test="${pageGroupStart > 1}">
 				            <a href="/Kmarket/cs/notice/list.do?pg=${pageGroupStart - 1}" class="prev">이전</a>

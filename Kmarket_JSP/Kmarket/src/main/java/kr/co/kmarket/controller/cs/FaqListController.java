@@ -25,17 +25,13 @@ public class FaqListController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String cate1 = req.getParameter("cate1");
-		String cate2 = req.getParameter("cate2");
-		
 		req.setAttribute("cate1", cate1);
-		req.setAttribute("cate2", cate2);
-		
 		// 글 가져오기
-		//List<CsFaqVO> articles = service.selectFaqArticles(start); 
+		List<CsFaqVO> articles = service.selectFaqArticles(cate1); 
 				
 				
 				
-		//req.setAttribute("articles", articles);
+		req.setAttribute("articles", articles);
 		
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/cs/faq/list.jsp");

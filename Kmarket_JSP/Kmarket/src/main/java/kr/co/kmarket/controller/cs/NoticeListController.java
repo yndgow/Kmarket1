@@ -34,12 +34,15 @@ public class NoticeListController extends HttpServlet{
 		String pg = req.getParameter("pg");
 		
 		int currentPage = service.getCurrentPage(pg); // 현재 페이지 번호
-		int total = service.selectCountTotal(cate1);
+		int total = 0;
+		
+		if(cate1 == null) {
+				total = service.selectCountTotal(); //전체 게시물 갯수
+		}else {
+				total = service.selectCountCateTotal(cate1); //*카테고리별* 전체 게시물 갯수
+			}
 		
 		
-		
-		
-		 
 		int lastPageNum = service.getLastPageNum(total);// 마지막 페이지 번호
 		int[] result = service.getPageGroupNum(currentPage, lastPageNum); // 페이지 그룹번호
 		int pageStartNum = service.getPageStartNum(total, currentPage); // 페이지 시작번호
@@ -56,6 +59,9 @@ public class NoticeListController extends HttpServlet{
 		req.setAttribute("pageGroupStart", result[0]);
 		req.setAttribute("pageGroupEnd", result[1]);
 		req.setAttribute("pageStartNum", pageStartNum+1);
+		 
+		
+		
 		
 		
 		

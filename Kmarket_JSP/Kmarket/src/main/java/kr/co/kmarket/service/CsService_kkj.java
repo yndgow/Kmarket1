@@ -27,8 +27,12 @@ public enum CsService_kkj {
 		return dao.selectNoticeArticles(cate1, start);
 	}
 	
-	public int selectCountTotal(String cate1) {
-		return dao.selectCountTotal(cate1);
+	public int selectCountTotal() {
+		return dao.selectCountTotal();
+	}
+	
+	public int selectCountCateTotal(String cate1) {
+		return dao.selectCountCateTotal(cate1);
 	}
 	
 	public CsNoticeVO selectNoticeArticle(String notNo) {
@@ -36,8 +40,8 @@ public enum CsService_kkj {
 	}
 
 	
-	public List<CsFaqVO> selectFaqArticles(int start){
-		return dao.selectFaqArticles(start);
+	public List<CsFaqVO> selectFaqArticles(String cate1){
+		return dao.selectFaqArticles(cate1);
 	}
 	
 	

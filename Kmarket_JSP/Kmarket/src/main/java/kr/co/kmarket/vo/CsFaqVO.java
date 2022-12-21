@@ -11,10 +11,13 @@ public class CsFaqVO {
 	private String regip;
 	private String rdate;
 	
-	// 추가필드 김지홍
+	//추가필드
+	
 	private String c1Name;
 	private String c2Name;
 	
+	
+
 	public String getC1Name() {
 		return c1Name;
 	}

@@ -69,4 +69,10 @@ public class Sql_kkj {
 													+ "WHERE a.`cate1` =? "
 													+ "ORDER BY `faNo` DESC "
 													+ "LIMIT 10";
+	
+	
+	public static final String SELECT_FAQ_CATES = "SELECT * FROM `km_cs_faq_cate2` WHERE `cate1`=?";
+
+
+	public static final String SELECT_FAQ_ARTICLE = "SELECT * FROM `km_cs_faq` where `faNo`=?";
 }

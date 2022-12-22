@@ -59,9 +59,6 @@ public class CsQnaVO {
 	public String getRdate() {
 		return rdate;
 	}
-	public void setWdate(String rdate) {
-		this.rdate = rdate;
-	}
 	public String getQnaCond() {
 		return qnaCond;
 	}

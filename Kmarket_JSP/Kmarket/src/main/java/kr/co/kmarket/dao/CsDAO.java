@@ -106,6 +106,39 @@ public class CsDAO extends DBHelper {
 		
 	}
 	
+	
+	//index list 출력
+		public List<CsQnaVO> selectIndexQnaArticles() {
+			logger.info("selectIndexQnaArticles start...");
+			List<CsQnaVO> articles = new ArrayList<>();
+			try {
+				conn = getConnection();
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(Sql_hong.SELECT_INDEX_QNA_ARTICELS);
+				while(rs.next()) {
+					CsQnaVO vo = new CsQnaVO();
+					vo.setQnaNo(rs.getInt(1));
+					vo.setUid(rs.getString(2).replaceAll(pattern, "*"));
+					vo.setCate1(rs.getInt(3));
+					vo.setCate2(rs.getInt(4));
+					vo.setQnaTitle(rs.getString(5));
+					vo.setQnaContent(rs.getString(6));
+					vo.setRegip(rs.getString(7));
+					vo.setRdate(rs.getString(8));
+					vo.setQnaCond(rs.getString(9));
+					vo.setAnswer(rs.getString(10));
+					vo.setC2Name(rs.getString(11));
+					articles.add(vo);
+				}
+				
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+			}
+			logger.debug("articles : "+articles);
+			return articles;
+		}
+	
+	
 	//cs list 출력
 	public List<CsQnaVO> selectQnaArticles(String cate1 ,int start) {
 		logger.info("selectQnaArticles start...");
@@ -125,7 +158,7 @@ public class CsDAO extends DBHelper {
 				vo.setQnaTitle(rs.getString(5));
 				vo.setQnaContent(rs.getString(6));
 				vo.setRegip(rs.getString(7));
-				vo.setWdate(rs.getString(8));
+				vo.setRdate(rs.getString(8));
 				vo.setQnaCond(rs.getString(9));
 				vo.setC1Name(rs.getString(10));
 				vo.setC2Name(rs.getString(11));
@@ -177,8 +210,10 @@ public class CsDAO extends DBHelper {
 				vo.setQnaTitle(rs.getString(5));
 				vo.setQnaContent(rs.getString(6));
 				vo.setRegip(rs.getString(7));
-				vo.setWdate(rs.getString(8));
+				vo.setRdate(rs.getString(8));
 				vo.setQnaCond(rs.getString(9));
+				vo.setAnswer(rs.getString(10));
+				vo.setC2Name(rs.getString(11));
 				
 			}
 			close();

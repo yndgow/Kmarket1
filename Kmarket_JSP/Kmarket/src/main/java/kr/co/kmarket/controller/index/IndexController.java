@@ -22,6 +22,20 @@ public class IndexController extends HttpServlet{
 		req.setAttribute("categories1", service.selectCategory1());
 		req.setAttribute("categories2", service.selectCategory2());
 		
+		// 베스트 배너 list
+		req.setAttribute("products", service.selectBestList());
+		
+		// 히트 상품 배너 list
+		req.setAttribute("hitProducts", service.selectHitList());
+		
+		// 추천 상품 배너 list
+		req.setAttribute("scoreProducts", service.selectScoreList());
+		
+		// 최신 상품 배너 list
+		req.setAttribute("newProducts", service.selectNewList());
+		
+		// 할인 상품 배너 list
+		req.setAttribute("disProducts", service.selectDisList());
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/index.jsp");
 		dispatcher.forward(req, resp);

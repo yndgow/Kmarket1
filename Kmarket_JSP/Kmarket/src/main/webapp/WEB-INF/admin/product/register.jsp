@@ -132,7 +132,7 @@ cate1List();
                             <table>
                                 <tr>
                                     <td>판매자</td>
-                                    <td><input type="text" name="seller" /></td>
+                                    <td><input type="text" name="seller" readonly="readonly" value="${sessUser.uid}" /></td>
                                 </tr>
                                 <tr>
                                     <td>상품상태</td>

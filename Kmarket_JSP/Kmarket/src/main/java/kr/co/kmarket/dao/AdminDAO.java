@@ -166,6 +166,53 @@ public class AdminDAO extends DBHelper {
 	}
 	
 	// admin 리스트 페이지
+	public List<ProductVO> selectProductsAdmin() {
+		logger.info("selectProductsAdmin...");
+		List<ProductVO> products = new ArrayList<>();
+		
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(Sql_Kbs.SELECT_PRODUCTS_ADMIN);
+			while(rs.next()) {
+				ProductVO vo = new ProductVO();
+				vo.setProdNo(rs.getInt(1));
+				vo.setProdCate1(rs.getInt(2));
+				vo.setProdCate2(rs.getInt(3));
+				vo.setProdName(rs.getString(4));
+				vo.setDescript(rs.getString(5));
+				vo.setCompany(rs.getString(6));
+				vo.setSeller(rs.getString(7));
+				vo.setPrice(rs.getInt(8));
+				vo.setDiscount(rs.getInt(9));
+				vo.setPoint(rs.getInt(10));
+				vo.setStock(rs.getInt(11));
+				vo.setSold(rs.getInt(12));
+				vo.setDelivery(rs.getInt(13));
+				vo.setHit(rs.getInt(14));
+				vo.setScore(rs.getInt(15));
+				vo.setReview(rs.getInt(16));
+				vo.setThumb1(rs.getString(17));
+				vo.setThumb2(rs.getString(18));
+				vo.setThumb3(rs.getString(19));
+				vo.setDetail(rs.getString(20));
+				vo.setStatus(rs.getString(21));
+				vo.setDuty(rs.getString(22));
+				vo.setReceipt(rs.getString(23));
+				vo.setBizType(rs.getString(24));
+				vo.setOrigin(rs.getString(25));
+				vo.setIp(rs.getString(26));
+				vo.setRdate(rs.getString(27));
+				products.add(vo);
+			}
+			close();
+		} catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result :" + products);
+		return products;
+	}
+	
 	public List<ProductVO> selectProducts(String seller, int start) {
 		logger.info("selectProducts...");
 		List<ProductVO> products = new ArrayList<>();
@@ -215,13 +262,78 @@ public class AdminDAO extends DBHelper {
 		return products;
 	}
 	
-	public int selectCountTotal() {
+	public List<ProductVO> selectProductsAdmin(int start) {
+		logger.info("selectProductsAdmin...");
+		List<ProductVO> products = new ArrayList<>();
+		
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_Kbs.SELECT_PRODUCTS_ADMIN);
+			psmt.setInt(1, start);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				ProductVO vo = new ProductVO();
+				vo.setProdNo(rs.getInt(1));
+				vo.setProdCate1(rs.getInt(2));
+				vo.setProdCate2(rs.getInt(3));
+				vo.setProdName(rs.getString(4));
+				vo.setDescript(rs.getString(5));
+				vo.setCompany(rs.getString(6));
+				vo.setSeller(rs.getString(7));
+				vo.setPrice(rs.getInt(8));
+				vo.setDiscount(rs.getInt(9));
+				vo.setPoint(rs.getInt(10));
+				vo.setStock(rs.getInt(11));
+				vo.setSold(rs.getInt(12));
+				vo.setDelivery(rs.getInt(13));
+				vo.setHit(rs.getInt(14));
+				vo.setScore(rs.getInt(15));
+				vo.setReview(rs.getInt(16));
+				vo.setThumb1(rs.getString(17));
+				vo.setThumb2(rs.getString(18));
+				vo.setThumb3(rs.getString(19));
+				vo.setDetail(rs.getString(20));
+				vo.setStatus(rs.getString(21));
+				vo.setDuty(rs.getString(22));
+				vo.setReceipt(rs.getString(23));
+				vo.setBizType(rs.getString(24));
+				vo.setOrigin(rs.getString(25));
+				vo.setIp(rs.getString(26));
+				vo.setRdate(rs.getString(27));
+				products.add(vo);
+			}
+			close();
+		} catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result :" + products);
+		return products;
+	}
+	
+	public int selectCountTotal(String seller) {
 		int result = 0;
 		try {
 			logger.info("selectCountTotal...");
 			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_Kbs.SELECT_COUNT_TOTAL);
+			psmt.setString(1, seller);
+			rs = psmt.executeQuery();
+			if(rs.next()) result = rs.getInt(1);
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
+	
+	public int selectCountTotalAdmin() {
+		int result = 0;
+		try {
+			logger.info("selectCountTotalAdmin...");
+			conn = getConnection();
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery(Sql_Kbs.SELECT_COUNT_TOTAL);
+			rs = stmt.executeQuery(Sql_Kbs.SELECT_COUNT_TOTAL_ADMIN);
 			if(rs.next()) result = rs.getInt(1);
 			close();
 		} catch (Exception e) {
@@ -255,7 +367,6 @@ public class AdminDAO extends DBHelper {
 			conn = getConnection();
 			psmt = conn.prepareStatement("SELECT * FROM `km_product` WHERE "+ searchCategory + " LIKE ? LIMIT ?,10");
 			psmt.setString(1, "%"+keyword+"%");
-		
 			psmt.setInt(2, start);
 			rs = psmt.executeQuery();
 			while(rs.next()) {

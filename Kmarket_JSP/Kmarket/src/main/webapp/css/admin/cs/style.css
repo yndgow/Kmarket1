@@ -215,3 +215,12 @@ select[name=cate2]{
 .c2NameTd{
 	width: 171px !important;
 }
+.btnWriteFaq{
+	height: 35px;
+}
+.btnModifyFaq{
+	height: 31px;
+}
+.btnSubmit{
+	height: 35px;
+}

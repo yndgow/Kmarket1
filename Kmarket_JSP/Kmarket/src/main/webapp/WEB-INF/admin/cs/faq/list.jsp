@@ -3,21 +3,12 @@
 <jsp:include page="../_header.jsp"/>
 <script src="/Kmarket/js/admin/cs/script_kjh.js"></script>
   <section id="admin-product-list">
-  <c:choose>
-  	<c:when test="${csType eq 'faq'}">
-  		<c:set var="csTxt" value="자주묻는질문"/>
-  	</c:when>
-  	<c:when test="${csType eq 'qna'}">
-  		<c:set var="csTxt" value="문의하기"/>
-  	</c:when>
-  	<c:when test="${csType eq 'notice'}">
-  		<c:set var="csTxt" value="공지사항"/>
-  	</c:when>
-  </c:choose>
   <input type="hidden" name="csType" value="${csType}">
+  <input type="hidden" name="wriCate1" value="${cate1}">
+  <input type="hidden" name="wriCate2" value="${cate2}">
     <nav>
-      <h3>${csTxt} 목록</h3>
-      <p>HOME > 고객센터 > <strong>${csTxt}</strong></p>
+      <h3>자주묻는질문 목록</h3>
+      <p>HOME > 고객센터 > <strong>자주묻는질문</strong></p>
     </nav>
      <section>
        <div class="csSelectDiv">
@@ -44,24 +35,24 @@
            </tr>
            <c:forEach var="faq" items="${faqList}">
            <tr>
-               <td><input type="checkbox" name="faqCheck"></td>
+               <td><input type="checkbox" name="faqCheck" value="${faq.faNo}"></td>
                <td>${faq.faNo}</td>
                <td class="c1NameTd">${faq.c1Name}</td>
                <td class="c2NameTd">${faq.c2Name}</td>
-               <td><a href="/Kmarket/admin/cs/view.do?no=${faq.faNo}&csType=${csType}&cate1=${faq.cate1}&cate2=${faq.cate2}">${faq.faTitle}</a></td>
+               <td><a href="/Kmarket/admin/cs/faq/view.do?no=${faq.faNo}&csType=${csType}&cate1=${faq.cate1}&cate2=${faq.cate2}">${faq.faTitle}</a></td>
                <td>${faq.hit}</td>
                <td>${faq.rdate}</td>
                <td>
-                   <a href="#" class="btnDeleteNotice">[삭제]</a>
-                   <a href="#" class="btnModifyNotice">[수정]</a>
+                   <a href="/Kmarket/admin/cs/delete.do?faNo=${faq.faNo}" class="btnDeleteFaq">[삭제]</a>
+                   <a href="/Kmarket/admin/cs/faq/modify.do?faNo=${faq.faNo}&csType=${csType}&cate1=${faq.cate1}&cate2=${faq.cate2}">[수정]</a>
                </td>
            </tr>
            </c:forEach>
 
        </table>
-
+	   
        <input type="button" class="btnAdminCsDel btnDeleteSelected" value="선택삭제">
-       <input type="button" class="btnAdminCsWri btnWriteNotice" value="작성하기">
+       <input type="button" class="btnAdminCsWri btnWriteCs" value="작성하기">
       
        
    </section>

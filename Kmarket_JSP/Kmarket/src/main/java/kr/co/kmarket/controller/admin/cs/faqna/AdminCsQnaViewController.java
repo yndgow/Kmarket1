@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.kmarket.service.AdminCsService;
 
-@WebServlet("/admin/cs/view.do")
-public class AdminCsViewController extends HttpServlet{
+@WebServlet("/admin/cs/qna/view.do")
+public class AdminCsQnaViewController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	AdminCsService service = AdminCsService.INSTANCE;
 	
@@ -30,8 +30,13 @@ public class AdminCsViewController extends HttpServlet{
 		
 		req.setAttribute("qna", service.selectAdminCsQnaView(cate1, cate2, no)); 
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/admin/cs/faq/view.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/admin/cs/qna/view.jsp");
 		dispatcher.forward(req, resp);
 	}
 
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		// faq 삭제
+	}
 }

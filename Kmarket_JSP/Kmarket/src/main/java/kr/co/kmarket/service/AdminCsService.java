@@ -458,6 +458,10 @@ public enum AdminCsService {
 	public CsQnaVO selectAdminCsQnaView(String cate1, String cate2, String qnaNo){
 		return dao.selectAdminCsQnaView(cate1, cate2, qnaNo);
 	}
+	public CsFaqVO selectAdminCsFaqView(String cate1, String cate2, String qnaNo){
+		return dao.selectAdminCsFaqView(cate1, cate2, qnaNo);
+	}
+	
 	// update qna answer
 	public int updateQnaAnswer(String answer, String qnaNo){
 		return dao.updateQnaAnswer(answer, qnaNo);
@@ -469,6 +473,30 @@ public enum AdminCsService {
 	// qna count total cate
 	public int selectCountTotalQnaCate(String cate1, String cate2){
 		return dao.selectCountTotalQnaCate(cate1, cate2);
+	}
+	// qna delete
+	public int deleteAdminCsQna(String qnaNo){
+		return dao.deleteAdminCsQna(qnaNo);
+	}
+	// delete check qna
+	public int deleteAdminCsCheckQna(String[] arrNo){
+		return dao.deleteAdminCsCheckQna(arrNo);
+	}
+	// delete check faq
+	public int deleteAdminCsCheckFaq(String[] arrNo){
+		return dao.deleteAdminCsCheckFaq(arrNo);
+	}
+	// delete faq
+	public int deleteAdminCsFaq(String arrNo) {
+		return dao.deleteAdminCsFaq(arrNo);
+	}
+	// select faq
+	public CsFaqVO selectAdminCsFaqView(String faNo) {
+		return dao.selectAdminCsFaqView(faNo);
+	}
+	// update faq
+	public int updateAdminFaq(CsFaqVO vo) {
+		return dao.updateAdminFaq(vo);
 	}
 	
 	

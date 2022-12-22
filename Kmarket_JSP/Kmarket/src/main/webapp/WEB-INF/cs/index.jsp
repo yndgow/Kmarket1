@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>케이마켓 고객센터</title>
     <link rel="stylesheet" href="/Kmarket/css/cs/style.css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 </head>
 <body>
     <div id="wrapper">

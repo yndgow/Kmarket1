@@ -703,15 +703,170 @@ public class AdminDAO_kjh extends DBHelper {
 		return result;
 	}
 	
+	// delete update qna
+	public int deleteAdminCsQna(String qnaNo){
+		logger.info("deleteAdminCsQna...kjh");
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.DELETE_QNA);
+			psmt.setString(1, qnaNo);
+			result = psmt.executeUpdate();
+			close();
+
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
 	
+	// delete check qna
+	public int deleteAdminCsCheckQna(String[] arrNo){
+		logger.info("deleteAdminCsCheckQna...kjh");
+		int result = 0;
+		for(int i=0; i<arrNo.length; i++) {
+			try {
+				conn = getConnection();
+				psmt = conn.prepareStatement(Sql_kjh.DELETE_QNA);
+				psmt.setString(1, arrNo[i]);
+				result += psmt.executeUpdate();
+				close();
+
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+			}
+		}
+		
+		logger.debug("result : " + result);
+		return result;
+	}
 	
+	// cs faq view
+	public CsFaqVO selectAdminCsFaqView(String cate1, String cate2, String faNo) {
+		logger.info("selectAdminCsFaqView...kjh");
+		CsFaqVO vo = null; 
+
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.SELECT_ADMIN_CS_FAQ_VIEW);
+			psmt.setString(1, cate1);
+			psmt.setString(2, cate2);
+			psmt.setString(3, faNo);
+			
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				vo = new CsFaqVO();
+				vo.setFaNo(rs.getInt(1));
+				vo.setUid(rs.getString(2));
+				vo.setCate1(rs.getInt(3));
+				vo.setCate2(rs.getInt(4));
+				vo.setFaTitle(rs.getString(5));
+				vo.setFaContent(rs.getString(6));
+				vo.setHit(rs.getInt(7));
+				vo.setRegip(rs.getString(8));
+				vo.setRdate(rs.getString(9).substring(2,10));
+				vo.setC1Name(rs.getString(10));
+				vo.setC2Name(rs.getString(11));
+			}
+			close();
+
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("vo : " + vo);
+		return vo;
+	}
+
+	// delete check faq
+	public int deleteAdminCsCheckFaq(String[] arrNo) {
+		logger.info("deleteAdminCsCheckFaq...kjh");
+		int result = 0;
+		for(int i=0; i<arrNo.length; i++) {
+			try {
+				conn = getConnection();
+				psmt = conn.prepareStatement(Sql_kjh.DELETE_FAQ);
+				psmt.setString(1, arrNo[i]);
+				result += psmt.executeUpdate();
+				close();
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+			}
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
 	
+	// delete faq
+	public int deleteAdminCsFaq(String arrNo) {
+		logger.info("deleteAdminCsCheckFaq...kjh");
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.DELETE_FAQ);
+			psmt.setString(1, arrNo);
+			result += psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
 	
+	// cs faq view
+	public CsFaqVO selectAdminCsFaqView(String faNo) {
+		logger.info("selectAdminCsFaqView...kjh");
+		CsFaqVO vo = null; 
+
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.SELECT_FAQ_VIEW_FANO);
+			psmt.setString(1, faNo);
+			
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				vo = new CsFaqVO();
+				vo.setFaNo(rs.getInt(1));
+				vo.setUid(rs.getString(2));
+				vo.setCate1(rs.getInt(3));
+				vo.setCate2(rs.getInt(4));
+				vo.setFaTitle(rs.getString(5));
+				vo.setFaContent(rs.getString(6));
+				vo.setHit(rs.getInt(7));
+				vo.setRegip(rs.getString(8));
+				vo.setRdate(rs.getString(9).substring(2,10));
+				vo.setC1Name(rs.getString(10));
+				vo.setC2Name(rs.getString(11));
+			}
+			close();
+
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("vo : " + vo);
+		return vo;
+	}
 	
-	
-	
-	
-	
+	// faq insert
+	public int updateAdminFaq(CsFaqVO vo) {
+		logger.info("updateAdminFaq...kjh");
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.UPDATE_ADMIN_FAQ);
+			psmt.setString(1, vo.getFaTitle());
+			psmt.setString(2, vo.getFaContent());
+			psmt.setString(3, vo.getRegip());
+			psmt.setInt(4, vo.getFaNo());
+			result = psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
 	
 	
 	

@@ -36,6 +36,9 @@ public class CsFaqVO {
 	public void setFaNo(int faNo) {
 		this.faNo = faNo;
 	}
+	public void setFaNo(String faNo) {
+		this.faNo = Integer.parseInt(faNo);
+	}
 	public String getUid() {
 		return uid;
 	}

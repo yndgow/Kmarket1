@@ -189,7 +189,7 @@ public class Sql_kjh {
 																+ "ORDER BY (`qnaNo`) DESC "
 																+ "LIMIT ?, 10";
 	
-	// cs view
+	// cs view qna
 	public static final String SELECT_ADMIN_CS_QNA_VIEW = "SELECT a.*, b.c1Name, c.c2Name "
 													+ "FROM `km_cs_qna` AS a "
 													+ "JOIN `km_cs_qna_cate1` AS b "
@@ -199,6 +199,25 @@ public class Sql_kjh {
 													+ "WHERE a.`cate1` = ? "
 													+ "AND a.`cate2` = ? "
 													+ "AND `qnaNo` = ?";
+	
+	// cs view faq
+	public static final String SELECT_ADMIN_CS_FAQ_VIEW = "SELECT a.*, b.c1Name, c.c2Name "
+													+ "FROM `km_cs_faq` AS a "
+													+ "JOIN `km_cs_faq_cate1` AS b "
+													+ "ON a.cate1 = b.cate1 "
+													+ "JOIN `km_cs_faq_cate2` AS c "
+													+ "ON b.cate1 = c.cate1 and a.cate2 = c.cate2 "
+													+ "WHERE a.`cate1` = ? "
+													+ "AND a.`cate2` = ? "
+													+ "AND `faNo` = ?";
+	
+	public static final String SELECT_FAQ_VIEW_FANO = "SELECT a.*, b.c1Name, c.c2Name "
+														+ "FROM km_cs_faq AS a "
+														+ "JOIN km_cs_faq_cate1 AS b "
+														+ "ON a.cate1 = b.cate1 "
+														+ "JOIN km_cs_faq_cate2 AS c "
+														+ "ON a.cate2 = c.cate2 AND b.cate1 = c.cate1 "
+														+ "WHERE faNo = ?";
 	
 	// cs insert
 	public static final String INSERT_ADMIN_CS_FAQ = "INSERT INTO `km_cs_faq` SET "
@@ -223,6 +242,19 @@ public class Sql_kjh {
 	// qna count total cate
 	public static final String SELECT_COUNT_TOTAL_QNA_CATE = "SELECT COUNT(`qnaNo`) FROM `km_cs_qna` WHERE `cate1` = ? AND `cate2` = ?";
 	
+	// qna update delete
+	public static final String DELETE_QNA = "DELETE FROM `km_cs_qna` WHERE `qnaNo` = ?";
+	
+	// qna delete check
+	public static final String DELETE_FAQ = "DELETE FROM `km_cs_faq` WHERE `faNo` = ?";
+	
+	// faq update
+	public static final String UPDATE_ADMIN_FAQ = "UPDATE `km_cs_faq` SET "
+												+ "`faTitle` = ?, "
+												+ "`faContent` = ?, "
+												+ "`regip` = ?, "
+												+ "`rdate` = NOW() "
+												+ "WHERE `faNo` = ?";
 }
 
 

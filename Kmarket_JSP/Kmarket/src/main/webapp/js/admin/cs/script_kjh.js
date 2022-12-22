@@ -1,8 +1,10 @@
 $(() => {
   let csType = $('input[name=csType]').val();
-  let cate1 = $('select[name=cate1]').val();
-  let cate2 = $('select[name=cate1]').val();
-  $('.btnWriteNotice').click(() => {
+  $('.btnWriteCs').click(() => {
+    csType = $('input[name=csType]').val();
+    let cate1 = $('select[name=cate1]').val();
+    let cate2 = $('select[name=cate2]').val();
+
     location.href = '/Kmarket/admin/cs/write.do?csType=' + csType + '&cate1=' + cate1 + '&cate2=' + cate2;
   });
 
@@ -27,10 +29,16 @@ $(() => {
     $('select[name=cate2]').append(content);
   });
 
-  // list load
+  // list load ajax X -> resp
   $('.cate2').on('change', function () {
+    let cate1Val = $('select[name=cate1]').val();
     let cate2Val = $(this).val();
-    adminCsList(cate2Val);
+    //adminCsList(cate2Val);
+    if (csType == 'qna') {
+      location.href = '/Kmarket/admin/cs/qna/list.do?csType=' + csType + '&cate1=' + cate1Val + '&cate2=' + cate2Val;
+    } else {
+      location.href = '/Kmarket/admin/cs/faq/list.do?csType=' + csType + '&cate1=' + cate1Val + '&cate2=' + cate2Val;
+    }
   });
 
   // btnCancle
@@ -44,7 +52,7 @@ $(() => {
     e.preventDefault();
     let title = $('#title').val();
     let content = $('#content').val();
-    if (title == '' || content == '') {
+    if (!title.trim() || !content.trim()) {
       alert('제목과 내용을 작성해주세요.');
       return false;
     }
@@ -73,6 +81,132 @@ $(() => {
   });
 
   // write page category set
+
+  // qna update answer
+  $('.btnUpdQna').click(function (e) {
+    e.preventDefault();
+    let answer = $('#content').val();
+    let qnaNo = $('input[name=qnaNo]').val();
+    let cate1 = $('input[name=wriCate1]').val();
+    let cate2 = $('input[name=wriCate2]').val();
+    
+    let jsonData = { answer: answer, qnaNo: qnaNo };
+    $.ajax({
+      type: 'post',
+      url: '/Kmarket/admin/cs/qna/update.do',
+      data: jsonData,
+      dataType: 'json',
+      success: function (data) {
+        if (data.result > 0) {
+          location.href = '/Kmarket/admin/cs/qna/list.do?csType=qna&cate1=' + cate1 + '&cate2=' + cate2;
+        }
+      },
+    });
+  });
+
+  // qna update del
+  $('.btnDelQna').click(function (e) {
+    e.preventDefault();
+    if (!confirm('삭제하시겠습니까?')) {
+      return false;
+    }
+    let qnaNo = $('input[name=qnaNo]').val();
+    let cate1 = $('input[name=wriCate1]').val();
+    let cate2 = $('input[name=wriCate2]').val();
+    $.getJSON(`/Kmarket/admin/cs/delete.do?qnaNo=${qnaNo}`, function (data) {
+      if (data.result > 0) {
+        location.href = '/Kmarket/admin/cs/qna/list.do?csType=qna&cate1=' + cate1 + '&cate2=' + cate2;
+      } else {
+        alert('삭제 실패하였습니다.');
+      }
+    });
+  });
+
+  // back to list
+  $('.btnList').click(function (e) {
+    e.preventDefault();
+    let cate1 = $('input[name=wriCate1]').val();
+    let cate2 = $('input[name=wriCate2]').val();
+    let csType = $('input[name=csType]').val();
+	location.href = '/Kmarket/admin/cs/'+csType+'/list.do?csType='+csType+'&cate1='+cate1+'&cate2='+cate2;
+  });
+ 
+	
+  // cate 1 cate 2 set
+  setCategoryValue();
+
+  // 선택삭제
+  $('.btnDeleteSelected').click(function () {
+    if ($('input[name=faqCheck]:checked').length == 0) {
+      alert('선택된 글이 없습니다.');
+      return false;
+    }
+
+    let arrNo = [];
+    $('input[name=faqCheck]:checked').each(function () {
+      arrNo.push($(this).val());
+    });
+    const url1 = new URL(window.location.href);
+    const urlParams = url1.searchParams;
+    let csType = urlParams.get('csType');
+    let url2 = '/Kmarket/admin/cs/delete.do?csType=' + csType;
+
+    if (confirm('선택된 글을 삭제하시겠습니까?')) {
+      $.ajax({
+        type: 'post',
+        url: url2,
+        data: { arrNo: arrNo },
+        dataType: 'json',
+        success: function (data) {
+          if (data.result > 0) {
+            $('input[name=faqCheck]:checked').parents('tr').remove();
+          }
+        },
+      });
+    }
+  });
+
+  // delete faq
+  $('.btnDeleteFaq').click(function (e) {
+    e.preventDefault();
+    if (!confirm('삭제하시겠습니까?')) {
+      return false;
+    }
+    let url = $(this).attr('href');
+    if (!url) {
+      let faNo = $('input[name=faNo]').val();
+      url = '/Kmarket/admin/cs/delete.do?faNo=' + faNo;
+    }
+    let cate1 = $('input[name=wriCate1]').val();
+    let cate2 = $('input[name=wriCate2]').val();
+    $.getJSON(url, function (data) {
+      if (data.result > 0) {
+        location.href = '/Kmarket/admin/cs/faq/list.do?csType=faq&cate1=' + cate1 + '&cate2=' + cate2;
+      } else {
+        alert('삭제 실패하였습니다.');
+      }
+    });
+  });
+  // move faq modify
+  $('.btnModifyFaq').click(function(e){
+	e.preventDefault();
+	let faNo = $('input[name=faNo]').val();
+	let cate1 = $('input[name=wriCate1]').val();
+    let cate2 = $('input[name=wriCate2]').val();
+	location.href = '/Kmarket/admin/cs/faq/modify.do?csType=faq&cate1='+cate1+'&cate2='+cate2+'&faNo='+faNo;
+  });
+  // update faq submit 
+  $('.btnSubmit').click(function(e){
+	e.preventDefault();
+	let title = $('input[name=title]').val();
+	let content = $('textarea[name=content]').val(); 
+	if(!title.trim() || !content.trim()){
+		alert('제목과 내용을 확인하세요.');
+		return false;
+	}else{
+		$('#faqForm').submit();	
+	}
+  });
 });
 
 //// 함수모음 ////
@@ -175,23 +309,51 @@ function adminCsList(cate2Val) {
   });
 }
 
-function getLastPageNum(total){
+function setCategoryValue() {
+  const url = new URL(window.location.href);
+  const urlParams = url.searchParams;
+
+  let cate1 = urlParams.get('cate1');
+  let cate2 = urlParams.get('cate2');
+  let csType = urlParams.get('csType');
+  if (!cate1 && !cate2) {
+    if (url.pathname == '/Kmarket/admin/cs/qna/list.do') {
+      cate1 = 0;
+      cate2 = 0;
+    } else {
+      cate1 = 1;
+      cate2 = 1;
+    }
+  }
+
+  $('select[name=cate2]').empty();
+  $('select[name=cate1]').val(cate1).prop('selected', true);
+
+  let content = `<option value="0">2차유형</option>`;
+  let url1 = '/Kmarket/admin/cs/cate.do?csType=' + csType + '&cate1=' + cate1;
+  content += ajaxload(url1);
+  $('select[name=cate2]').append(content);
+
+  $('select[name=cate2]').val(cate2).prop('selected', true);
+}
+
+function getLastPageNum(total) {
   let lastPageNum = 0;
-  if(total % 10 == 0){
+  if (total % 10 == 0) {
     lastPageNum = total / 10;
-  }else{
+  } else {
     lastPageNum = total / 10 + 1;
   }
   return lastPageNum;
 }
 
-function getPageGroupNum(currentPage, lastPageNum){
-  let currentPageGroup = Number(Math.ceil(currentPage/10.0));
-  let pageGroupStart = (currentPageGroup -1) * 10 + 1;
+function getPageGroupNum(currentPage, lastPageNum) {
+  let currentPageGroup = Number(Math.ceil(currentPage / 10.0));
+  let pageGroupStart = (currentPageGroup - 1) * 10 + 1;
   let pageGroupEnd = currentPageGroup * 10;
-  if(pageGroupEnd > lastPageNum){
+  if (pageGroupEnd > lastPageNum) {
     pageGroupEnd = lastPageNum;
   }
-  
+
   return [pageGroupStart, pageGroupEnd];
 }

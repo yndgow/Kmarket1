@@ -25,6 +25,36 @@ public enum ProductService {
 	INSTANCE;
 	
 	ProductDAO dao = ProductDAO.getInstance();
+	
+	// main index 베스트 상품 출력
+	public List<ProductVO> selectBestList(){
+		return dao.selectMainBestList();
+	}
+	
+	// main index 히트 상품 출력
+	public List<ProductVO> selectHitList(){
+		return dao.selectHitList();
+	}
+	
+	// main index 추천 상품 출력
+	public List<ProductVO> selectScoreList(){
+		return dao.selectScoreList();
+	}
+	
+	// main index 최신 상품 출력
+	public List<ProductVO> selectNewList(){
+		return dao.selectNewList();
+	}
+	
+	// main index 할인 상품 출력
+	public List<ProductVO> selectDisList(){
+		return dao.selectDisList();
+	}
+	
+	
+	
+	
+	
 
 	// product list 
 	public List<ProductVO> selectProductList(String cate1, String cate2, String listSort, int start){

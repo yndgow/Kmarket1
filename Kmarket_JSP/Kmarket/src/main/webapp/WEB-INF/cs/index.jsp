@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,41 +86,15 @@
                 <section class="qna">
                     <h1>문의하기<a href="./qna/list.do?cate1=1">전체보기</a></h1>
                     <ul>
+                    	<c:forEach var="article" items="${articles}">
                         <li>
-                            <a href="#" class="title">[회원] 개인회원과 법인회원에 차이가 있나요?</a>
+                            <a href="./qna/view.do?qnaNo=${article.qnaNo}" class="title">[${article.c2Name}]${article.qnaTitle}</a>
                             <p>
-                                <span class="uid">als***</span>
-                                <span class="date">22.12.05</span>
+                                <span class="uid">${article.uid}</span>
+                                <span class="date">${article.rdate.substring(2, 10)}</span>
                             </p>
                         </li>
-                        <li>
-                            <a href="#" class="title">[쿠폰/이벤트] 스마일포인트는 어디서 사용하나요?</a>
-                            <p>
-                                <span class="uid">als***</span>
-                                <span class="date">22.12.05</span>
-                            </p>
-                        </li>
-                        <li>
-                            <a href="#" class="title">[주문/결제] 신용카드 결제 중 오류가 난 경우 어떻게 하나요?</a>
-                            <p>
-                                <span class="uid">als***</span>
-                                <span class="date">22.12.05</span>
-                            </p>
-                        </li>
-                        <li>
-                            <a href="#" class="title">[배송] 주문한 상품은 언제 배송되나요?</a>
-                            <p>
-                                <span class="uid">als***</span>
-                                <span class="date">22.12.05</span>
-                            </p>
-                        </li>
-                        <li>
-                            <a href="#" class="title">[취소/반품/교환] 주문을 취소하고 싶어요.</a>
-                            <p>
-                                <span class="uid">als***</span>
-                                <span class="date">22.12.05</span>
-                            </p>
-                        </li>
+                        </c:forEach>
                     </ul>
                     <a href="./qna/write.do" class="ask">문의글 작성 ></a>
                 </section>

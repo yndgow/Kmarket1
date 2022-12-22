@@ -30,6 +30,12 @@ public enum CsService {
 		return dao.selectCate2ByCs(cate2);
 	}
 	
+	// cs index qna list 출력 홍민준
+	public List<CsQnaVO> selectIndexQnaArticles(){
+		return dao.selectIndexQnaArticles();
+	}
+	
+	
 	//cs list 출력 홍민준
 	public List<CsQnaVO> selectQnaArticles(String cate1, int start){
 		return dao.selectQnaArticles(cate1, start);

@@ -2,9 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="./_header.jsp"/>
 <jsp:include page="./cate/_cate${cate1}.jsp"/>
+				 <table>
                   <c:forEach var="article" items="${articles}">
                       <tr>
-                          <td><a href="./view.do?qnaNo=${article.qnaNo}">[${article.c2Name}] ${article.qnaTitle}</a></td>
+                          <td><a href="./view.do?qnaNo=${article.qnaNo}&cate1=${cate1}">[${article.c2Name}] ${article.qnaTitle}</a></td>
                           <td class="uid">${article.uid}</td>
                           <td>${article.qnaCond}</td>
                           <td>${article.rdate.substring(2, 10)}</td>

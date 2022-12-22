@@ -13,7 +13,7 @@ import kr.co.kmarket.service.CsService;
 import kr.co.kmarket.vo.CsQnaVO;
 
 @WebServlet("/cs/qna/write.do")
-public class WriteController extends HttpServlet{
+public class QnaWriteController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	CsService service = CsService.INSTANCE;
 	
@@ -48,6 +48,7 @@ public class WriteController extends HttpServlet{
 		vo.setQnaTitle(qnaTitle);
 		vo.setQnaContent(qnaContent);
 		vo.setRegip(regip);
+		
 		
 		service.InsertArticleQnaOfCs(vo);
 		

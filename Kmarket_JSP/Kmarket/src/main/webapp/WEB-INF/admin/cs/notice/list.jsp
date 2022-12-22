@@ -1,14 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../_header.jsp"/>
+<section id="admin-notice-list">
     <nav>
       <h3>공지사항 목록</h3>
       <p>HOME > 고객센터 > <strong>공지사항</strong></p>
     </nav>
      <section>
        <div class="csSelectDiv">
-           <select name="cate1" onchange="if(this.value) window.open(this.value);">
+           <select name="cate1">
                <option value="0">유형선택</option>
+               <option value="all">전체</option>
+	           <option value="service">고객서비스</option>
+	     	   <option value="deal">안전거래</option>
+	    	   <option value="danger">위해상품</option>
+	    	   <option value="lucky">이벤트당첨</option>
            </select>
        </div>
        <table class="cs">
@@ -23,9 +29,10 @@
            </tr>
            <c:forEach var="article" items="${allArticles}">
                 <tr>
+                	<td><input type="checkbox" name="noticeCheck"></td>
                 	<td>${article.notNo}</td>
                 	<td>${article.c1Name}</td>
-                    <td><a href="./view.do?notNo=${article.notNo}">[2차유형] ${article.notTitle}</a></td>
+                    <td><a href="./view.do?notNo=${article.notNo}">${article.notTitle}</a></td>
                     <td>${article.hit}</td>
                     <td>${article.rdate.substring(2, 10)}</td>
                     <td>

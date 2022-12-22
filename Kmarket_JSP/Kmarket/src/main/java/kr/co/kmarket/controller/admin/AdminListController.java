@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
+
 import kr.co.kmarket.service.AdminService;
 import kr.co.kmarket.vo.MemberVO;
 import kr.co.kmarket.vo.ProductVO;
@@ -26,12 +28,19 @@ public class AdminListController extends HttpServlet{
 		String pg = req.getParameter("pg");
 		String searchContent = req.getParameter("searchContent");
 		String searchCate= req.getParameter("search");
+		HttpSession sess = req.getSession();
+		MemberVO vo = (MemberVO) sess.getAttribute("sessUser");
+		String seller = vo.getUid();
 		int currentPage = service.getCurrentPage(pg);// 현재 페이지 번호
 		
 		//페이지 번호
 		int total = 0; // 전체 게시물 갯수 
-		if(searchContent == null ) {
-			total = service.selectCountTotal();
+		if(StringUtils.isEmpty(searchContent)) {
+			if(seller.equals("admin")) {
+				total = service.selectCountTotalAdmin();
+			}else {
+				total = service.selectCountTotal(seller);
+			}
 		}else {
 			total = service.selectCountTotal(searchContent, searchCate);
 		}
@@ -40,13 +49,15 @@ public class AdminListController extends HttpServlet{
 		int[] result = service.getPageGroupNum(currentPage, lastPageNum);// 페이지 그룹 start, end 번호
 		int pageStartNum = service.getPageStartNum(total, currentPage);// 페이지 시작번호
 		int start = service.getStartNum(currentPage);// 시작 인덱스
-		HttpSession sess = req.getSession();
-		MemberVO vo = (MemberVO) sess.getAttribute("sessUser");
-		// String seller = vo.getUid();
+	
 		
 		List<ProductVO> products = null;
-		if(searchContent == null) {
-			products = service.selectProducts("admin", start);
+		if(StringUtils.isEmpty(searchContent)) {
+			if(seller.equals("admin")) {
+				products = service.selectProductsAdmin(start);
+			}else {
+				products = service.selectProducts(seller, start);
+			}
 		}else {
 			products = service.selectproductByKeyword(searchContent, start, searchCate);
 		}

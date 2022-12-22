@@ -54,12 +54,20 @@ public enum AdminService {
 		return dao.selectProducts(seller, start);
 	}
 	
-	public int selectCountTotal() {
-		return dao.selectCountTotal();
+	public int selectCountTotal(String seller) {
+		return dao.selectCountTotal(seller);
+	}
+	
+	public int selectCountTotalAdmin() {
+		return dao.selectCountTotalAdmin();
 	}
 	
 	public int selectCountTotal(String keyword, String searchCate) {
 		return dao.selectCountTotal(keyword, searchCate);
+	}
+	
+	public List<ProductVO> selectProductsAdmin(int start) {
+		return dao.selectProductsAdmin(start);
 	}
 	
 	public int getLastPageNum(int total) {

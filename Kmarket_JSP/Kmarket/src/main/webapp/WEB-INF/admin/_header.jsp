@@ -19,6 +19,11 @@
         height: 33px;
       }
     </style>
+    <script>
+    	$(function(){
+    		
+    	});
+    </script>
   </head>
   <body>
     <div id="admin-wrapper">
@@ -40,60 +45,82 @@
         <aside>
           <!-- Global Navigation Bar -->
           <ul id="gnb">
-            <li>
-              <a href="#"><i class="fa fa-cogs" aria-hidden="true"></i>환경설정</a>
-              <ol>
-                <li><a href="#">기본환경설정</a></li>
-                <li><a href="#">배너관리</a></li>
-              </ol>
-            </li>
-            <li>
-              <a href="#"><i class="fas fa-store" aria-hidden="true"></i>상점관리</a>
-              <ol>
-                <li><a href="#">판매자현황</a></li>
-                <li><a href="#">재고관리</a></li>
-              </ol>
-            </li>
-            <li>
-              <a href="#"><i class="fa fa-users" aria-hidden="true"></i>회원관리</a>
-              <ol>
-                <li><a href="#">회원현황</a></li>
-                <li><a href="#">포인트관리</a></li>
-                <li><a href="#">비회원관리</a></li>
-                <li><a href="#">접속자집계</a></li>
-              </ol>
-            </li>
-            <li>
-              <a href="#"><i class="fas fa-box-open" aria-hidden="true"></i>상품관리</a>
-              <ol>
-                <li><a href="/Kmarket/admin/product/list.do">상품목록</a></li>
-                <li><a href="/Kmarket/admin/product/register.do">상품등록</a></li>
-                <li><a href="#">재고관리</a></li>
-              </ol>
-            </li>
-            <li>
-              <a href="#"><i class="fa fa-credit-card" aria-hidden="true"></i>주문관리</a>
-              <ol>
-                <li><a href="#">주문현황</a></li>
-                <li><a href="#">매출현황</a></li>
-                <li><a href="#">결제관리</a></li>
-                <li><a href="#">배송관리</a></li>
-              </ol>
-            </li>
-            <li>
-              <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>게시판관리</a>
-              <ol>
-                <li><a href="#">게시판현황</a></li>
-                <li><a href="#">고객문의</a></li>
-              </ol>
-            </li>
-            <li>
-              <a href="/Kmarket/admin/cs/notice/list.do"><i class="fa-solid fa-headphones"></i>고객센터</a>
-              <ol>
-                <li><a href="/Kmarket/admin/cs/notice/list.do">공지사항</a></li>
-                <li><a href="/Kmarket/admin/cs/faq/list.do?csType=faq">자주묻는질문</a></li>
-                <li><a href="/Kmarket/admin/cs/qna/list.do?csType=qna">문의하기</a></li>
-              </ol>
-            </li>
+          	<c:choose>
+          		<c:when test="${sessUser.level eq 7}">
+		            <li>
+		              <a href="#"><i class="fa fa-cogs" aria-hidden="true"></i>환경설정</a>
+		              <ol>
+		                <li><a href="#">기본환경설정</a></li>
+		                <li><a href="#">배너관리</a></li>
+		              </ol>
+		            </li>
+          			<li>
+		              <a href="#"><i class="fas fa-store" aria-hidden="true"></i>상점관리</a>
+		              <ol>
+		                <li><a href="#">판매자현황</a></li>
+		                <li><a href="#">재고관리</a></li>
+		              </ol>
+		            </li>
+		            <li>
+		              <a href="#"><i class="fa fa-users" aria-hidden="true"></i>회원관리</a>
+		              <ol>
+		                <li><a href="#">회원현황</a></li>
+		                <li><a href="#">포인트관리</a></li>
+		                <li><a href="#">비회원관리</a></li>
+		                <li><a href="#">접속자집계</a></li>
+		              </ol>
+		            </li>
+		            <li>
+		              <a href="#"><i class="fas fa-box-open" aria-hidden="true"></i>상품관리</a>
+		              <ol>
+		                <li><a href="/Kmarket/admin/product/list.do?uid=${sessUser.uid}">상품목록</a></li>
+		                <li><a href="/Kmarket/admin/product/register.do">상품등록</a></li>
+		              </ol>
+		            </li>
+		            <li>
+		              <a href="#"><i class="fa fa-credit-card" aria-hidden="true"></i>주문관리</a>
+		              <ol>
+		                <li><a href="#">주문현황</a></li>
+		                <li><a href="#">매출현황</a></li>
+		                <li><a href="#">결제관리</a></li>
+		                <li><a href="#">배송관리</a></li>
+		              </ol>
+		            </li>
+		            <li>
+		              <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>게시판관리</a>
+		              <ol>
+		                <li><a href="#">게시판현황</a></li>
+		                <li><a href="#">고객문의</a></li>
+		              </ol>
+		            </li>
+		            <li>
+		              <a href="/Kmarket/admin/cs/notice/list.do"><i class="fa-solid fa-headphones"></i>고객센터</a>
+		              <ol>
+		                <li><a href="/Kmarket/admin/cs/notice/list.do">공지사항</a></li>
+		                <li><a href="/Kmarket/admin/cs/faq/list.do?csType=faq">자주묻는질문</a></li>
+		                <li><a href="/Kmarket/admin/cs/qna/list.do?csType=qna">문의하기</a></li>
+		              </ol>
+		            </li>
+          		</c:when>
+          		<c:otherwise>
+          		
+          		         <li>
+			              <a href="#"><i class="fas fa-box-open" aria-hidden="true"></i>상품관리</a>
+			              <ol>
+			                <li><a href="/Kmarket/admin/product/list.do?uid=${sessUser.uid}">상품목록</a></li>
+			                <li><a href="/Kmarket/admin/product/register.do">상품등록</a></li>
+			              </ol>
+			            </li>
+			            <li>
+			              <a href="#"><i class="fa fa-credit-card" aria-hidden="true"></i>주문관리</a>
+			              <ol>
+			                <li><a href="#">주문현황</a></li>
+			                <li><a href="#">매출현황</a></li>
+			                <li><a href="#">결제관리</a></li>
+			                <li><a href="#">배송관리</a></li>
+			              </ol>
+			            </li>
+          		</c:otherwise>
+          	</c:choose>
           </ul>
         </aside>

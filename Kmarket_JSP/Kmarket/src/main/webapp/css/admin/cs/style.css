@@ -123,3 +123,88 @@ select[name=cate2]{
     background-color: #fefefe;
     outline: none;
 }
+
+#admin-notice-list > section > table th{
+	font-size: 14px;
+}
+#admin-notice-list > section > table tr > td{
+	font-size: 14px;
+}
+#admin-notice-list > section > table tr a{
+	font-size: 14px;
+}
+#admin-notice-list > section > table tr > td:nth-child(1){
+	width: 20px;
+}
+#admin-notice-list > section > table tr > td:nth-child(2){
+	width: 100px;
+}
+#admin-notice-list > section > table tr > td:nth-child(3){
+	width: 120px;
+}
+#admin-notice-list > section > table tr > td:nth-child(4){
+	width: auto;
+	text-align: left;
+}
+#admin-notice-list > section > table tr > td:nth-child(5){
+	width: 100px;
+}
+#admin-notice-list > section > table tr > td:nth-child(6){
+	width: 100px;
+}
+#admin-notice-list > section > table tr > td:nth-child(7){
+	width: 100px;
+}
+#admin-notice-list > section > table tr > td:nth-child(8){
+	width: 100px;
+}
+
+#admin-notice-list {}
+#admin-notice-list > section > div {margin-bottom: 10px;}
+#admin-notice-list > section > table {
+    border-top: 2px solid rgb(135, 152, 163);
+}
+#admin-notice-list > section > table img.thumb {width: 60px; height: 60px; object-fit:cover;}
+#admin-notice-list > section > table tr > th {
+    padding: 10px 0px;
+    background: rgb(246, 246, 246);
+}
+#admin-notice-list > section > table tr > td {
+    background: rgb(255, 255, 255);
+    text-align: center;
+    box-sizing: border-box;
+}
+#admin-notice-list .paging {
+    width: 100%;
+    padding: 30px 0px;
+    text-align: center;
+}
+#admin-notice-list .paging > span > a {
+    color: rgb(119, 119, 119);
+    font-family: 돋움, Dotum, Tahoma, sans-serif;
+    font-size: 11px;
+    letter-spacing: -1px;
+}
+#admin-notice-list .paging > .num > a {
+    display: inline-block;
+    min-width: 14px;
+    margin: 0px 2px;
+    padding: 8px 9px;
+    border: 1px solid rgb(196, 196, 196);
+    background: url(admin.css) 0px 0px repeat-x;
+    color: rgb(0, 0, 0);
+    font-family: Tahoma;
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+}
+#admin-notice-list .paging > .current > a {
+	 color: rgb(254, 67, 76);
+     font-weight: bold;
+}
+
+#admin-notice-list > section input[type=button] {
+	float: left;
+    width: 100px;
+    margin-top: 10px;
+}

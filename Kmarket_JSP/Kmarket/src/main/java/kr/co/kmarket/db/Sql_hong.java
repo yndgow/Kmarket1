@@ -1,6 +1,27 @@
 package kr.co.kmarket.db;
 
 public class Sql_hong {
+	
+	// main best list 출력
+	public static final String SELECT_MAIN_BEST_ARTICLES = "SELECT *, CEIL(price*(100-discount)/100) AS discountPrice "
+														+ "FROM `km_product` ORDER BY `sold` DESC LIMIT 0,5";
+	
+	// main hit list 출력
+	public static final String SELECT_MAIN_HIT_ARTICLES = "SELECT *, CEIL(price*(100-discount)/100) AS discountPrice "
+														+ "FROM `km_product` ORDER BY `hit` DESC LIMIT 0,8";
+	
+	// main score list 출력
+	public static final String SELECT_MAIN_SCORE_ARTICLES = "SELECT *, CEIL(price*(100-discount)/100) AS discountPrice "
+			+ "FROM `km_product` ORDER BY `score` DESC LIMIT 0,8";
+	
+	// main new list 출력
+	public static final String SELECT_MAIN_NEW_ARTICLES = "SELECT *, CEIL(price*(100-discount)/100) AS discountPrice "
+			+ "FROM `km_product` ORDER BY `prodNo` DESC LIMIT 0,8";
+	
+	// main dis list 출력
+	public static final String SELECT_MAIN_DIS_ARTICLES = "SELECT *, CEIL(price*(100-discount)/100) AS discountPrice "
+			+ "FROM `km_product` ORDER BY `discount` DESC LIMIT 0,8";
+	
 	// test.insert admin product 김지홍
 	public static final String INSERT_PRODUCT_BY_ADMIN = "INSERT INTO `km_product` SET "
 			+ "`prodCate1` = ?, "
@@ -32,7 +53,8 @@ public class Sql_hong {
 	public static final String SELECT_IMG_FILENAME = "SELECT `thumb1`, `thumb2`, `thumb3`, `detail` FROM `km_product` WHERE `prodNo` = ?";
 
 	//cs qna 문의하기 등록
-	public static final String INSERT_ARTICLE_QNA_OF_CS = "INSERT INTO `km_cs_qna` values(?,?,?,?,?,?,now(),'검토 중')";
+	public static final String INSERT_ARTICLE_QNA_OF_CS = "INSERT INTO `km_cs_qna`(`uid`,`cate1`,`cate2`,`qnaTitle`,`qnaContent`,`regip`,`rdate`,`qnaCond`) "
+													+ "VALUES(?,?,?,?,?,?,now(),'검토 중') ";
 	
 	// cs qna cate 출력
 	public static final String SELECT_CATEGORY1_BY_CS = "SELECT * FROM `km_cs_qna_cate1`";	
@@ -40,6 +62,12 @@ public class Sql_hong {
 	
 	// admin cs notice cate 출력
 	public static final String SELECT_CATEGORY1_BY_CS_ADMIN_NOTICE = "SELECT * FROM `km_cs_notice_cate1`";	
+	
+	// cs index qna list 출력
+	public static final String SELECT_INDEX_QNA_ARTICELS = "SELECT a.* , b.c2Name FROM (SELECT * FROM `km_cs_qna` ORDER BY `qnaNo` DESC LIMIT 0,5) AS a "
+													+ "JOIN `km_cs_qna_cate2` AS b ON a.cate1 = b.cate1 "
+													+ "and a.cate2 = b.cate2 "
+													+ "ORDER BY `qnaNo` DESC LIMIT 0,5";
 	
 	// cs qna list 출력
 	public static final String SELECT_QNA_ARTICLES = "SELECT a.*, b.c1Name, c.c2Name FROM km_cs_qna AS a "

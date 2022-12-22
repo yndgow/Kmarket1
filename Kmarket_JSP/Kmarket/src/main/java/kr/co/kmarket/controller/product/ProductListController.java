@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
+
 import kr.co.kmarket.service.ProductService;
 import kr.co.kmarket.vo.ProductVO;
 
@@ -39,7 +41,7 @@ public class ProductListController extends HttpServlet{
 		// 페이징		
 		int currentPage = service.getCurrentPage(pg);// 현재 페이지 번호
 		int total = 0; // 전체 게시물 갯수
-		if(search == null || search.equals("")){
+		if(StringUtils.isEmpty(search)){
 			total = service.selectCountTotal(cate1, cate2);
 		}else {
 			//total = service.selectCountTotal(cate1, cate2, search);
@@ -55,7 +57,7 @@ public class ProductListController extends HttpServlet{
 		req.setAttribute("pageGroupStart", result[0]);
 		req.setAttribute("pageGroupEnd", result[1]);
 		req.setAttribute("pageStartNum", pageStartNum+1);
-		// 검색
+		// 검색 사용 x
 		req.setAttribute("search", search);
 
 		// aside 카테고리

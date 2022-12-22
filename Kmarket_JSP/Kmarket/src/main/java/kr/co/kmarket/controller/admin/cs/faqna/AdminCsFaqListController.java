@@ -29,7 +29,7 @@ public class AdminCsFaqListController extends HttpServlet{
 		// 리스트 출력
 		String cate1 = req.getParameter("cate1");
 		String cate2 = req.getParameter("cate2");
-		List<Object> faqList =service.selectAdminCsFaqList(cate1, cate2, csType);
+		List<Object> faqList =service.selectAdminCsFaqList(cate1, cate2, csType, 0);
 		req.setAttribute("faqList", faqList);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/admin/cs/faq/list.jsp");

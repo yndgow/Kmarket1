@@ -24,10 +24,12 @@ public class QnaViewController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String qnaNo = req.getParameter("qnaNo");
+		String cate1 = req.getParameter("cate1");
 		
 		CsQnaVO article = service.selectQnaArticle(qnaNo);
 		
 		req.setAttribute("article", article);
+		req.setAttribute("cate1", cate1);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/cs/qna/view.jsp");
 		dispatcher.forward(req, resp);

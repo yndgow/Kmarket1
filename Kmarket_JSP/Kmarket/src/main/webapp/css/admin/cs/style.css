@@ -208,3 +208,10 @@ select[name=cate2]{
     width: 100px;
     margin-top: 10px;
 }
+
+.c1NameTd{
+	width: 140px !important;
+}
+.c2NameTd{
+	width: 171px !important;
+}

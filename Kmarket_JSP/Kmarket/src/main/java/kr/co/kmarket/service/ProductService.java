@@ -25,6 +25,36 @@ public enum ProductService {
 	INSTANCE;
 	
 	ProductDAO dao = ProductDAO.getInstance();
+	
+	// main index 베스트 상품 출력
+	public List<ProductVO> selectBestList(){
+		return dao.selectMainBestList();
+	}
+	
+	// main index 히트 상품 출력
+	public List<ProductVO> selectHitList(){
+		return dao.selectHitList();
+	}
+	
+	// main index 추천 상품 출력
+	public List<ProductVO> selectScoreList(){
+		return dao.selectScoreList();
+	}
+	
+	// main index 최신 상품 출력
+	public List<ProductVO> selectNewList(){
+		return dao.selectNewList();
+	}
+	
+	// main index 할인 상품 출력
+	public List<ProductVO> selectDisList(){
+		return dao.selectDisList();
+	}
+	
+	
+	
+	
+	
 
 	// product list 
 	public List<ProductVO> selectProductList(String cate1, String cate2, String listSort, int start){
@@ -58,6 +88,11 @@ public enum ProductService {
 	// 상품 한개 출력
 	public ProductVO selectProduct(String prodNo) {
 		return dao.selectProduct(prodNo);
+	}
+	
+	// 상품 한개 출력시 조회수 증가
+	public int updateProductHit(String prodNo) {
+		return dao.updateProductHit(prodNo);
 	}
 	
 	// 리뷰 출력
@@ -119,7 +154,6 @@ public enum ProductService {
 		return dao.insertProductOrderItem(vo);
 	}
 	
-	
 	// 주문 정보 업데이트
 	public int updateProductOrder(ProductOrderVO vo, String uid, String ordNo) {
 		// 무통장 입금인 경우만 입금대기
@@ -147,11 +181,15 @@ public enum ProductService {
 		return dao.deleteProductCartOrderd(sql);
 	}
 	
+	// 주문완료 페이지 출력
 	public List<ProductOrderVO> selectProductComplete(String ordNo){
 		return dao.selectProductComplete(ordNo);
 	}
 	
-	
+	// 주문완료시 상품 재고 감소
+	public int updateProductStock(List<ProductOrderVO> completes) {
+		return dao.updateProductStock(completes);
+	}
 	
 	
 	

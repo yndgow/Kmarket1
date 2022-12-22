@@ -47,7 +47,7 @@ public class AdminDAO_kjh extends DBHelper {
 			}
 			close();
 		} catch (Exception e) {
-			// TODO: handle exception
+			logger.error(e.getMessage());
 		}
 		logger.debug("vo: "+vo);
 		return vo;
@@ -489,7 +489,7 @@ public class AdminDAO_kjh extends DBHelper {
 	}
 	
 	// qna list
-	public List<Object> selectAdminCsQnaList(String cate1, String cate2){
+	public List<Object> selectAdminCsQnaList(String cate1, String cate2, int start){
 		logger.info("selectAdminCsQnaList...kjh");
 		List<Object> qnaList = new ArrayList<>(); 
 
@@ -498,6 +498,7 @@ public class AdminDAO_kjh extends DBHelper {
 			psmt = conn.prepareStatement(Sql_kjh.SELECT_ADMIN_CS_QNA_LIST_CATE);
 			psmt.setString(1, cate1);
 			psmt.setString(2, cate2);
+			psmt.setInt(3, start);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				CsQnaVO vo = new CsQnaVO();
@@ -522,6 +523,41 @@ public class AdminDAO_kjh extends DBHelper {
 		logger.debug("qnaList : " + qnaList);
 		return qnaList;
 	}
+	
+	// qna list all
+	public List<Object> selectAdminCsQnaListAll(int start){
+		logger.info("selectAdminCsQnaListAll...kjh");
+		List<Object> qnaList = new ArrayList<>(); 
+
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.SELECT_ADMIN_CS_QNA_LIST_ALL);
+			psmt.setInt(1, start);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				CsQnaVO vo = new CsQnaVO();
+				vo.setQnaNo(rs.getInt(1));
+				vo.setUid(rs.getString(2).replaceAll("(?<=.{3}).", "*"));
+				vo.setCate1(rs.getInt(3));
+				vo.setCate2(rs.getInt(4));
+				vo.setQnaTitle(rs.getString(5));
+				vo.setQnaContent(rs.getString(6));
+				vo.setRegip(rs.getString(7));
+				vo.setRdate(rs.getString(8).substring(2,10));
+				vo.setQnaCond(rs.getString(9));
+				vo.setAnswer(rs.getString(10));
+				vo.setC1Name(rs.getString(11));
+				vo.setC2Name(rs.getString(12));
+				qnaList.add(vo);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("qnaList : " + qnaList);
+		return qnaList;
+	}
+	
 	
 	// faq insert
 	public int insertAdminCsFaq(CsFaqVO vo) {
@@ -623,11 +659,49 @@ public class AdminDAO_kjh extends DBHelper {
 		return result;
 	}
 	
+
+	// qna count total all
+	public int selectCountTotalQna(){
+		logger.info("selectCountTotalQna...kjh");
+		int result = 0;
+
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(Sql_kjh.SELECT_COUNT_TOTAL_QNA);
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
 	
 	
-	
-	
-	
+	// qna count total cate
+	public int selectCountTotalQnaCate(String cate1, String cate2){
+		logger.info("selectCountTotalQnaCate...kjh");
+		int result = 0;
+
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.SELECT_COUNT_TOTAL_QNA_CATE);
+			psmt.setString(1, cate1);
+			psmt.setString(2, cate2);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
 	
 	
 	
@@ -656,3 +730,4 @@ public class AdminDAO_kjh extends DBHelper {
 	
 	
 }
+

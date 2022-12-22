@@ -27,11 +27,21 @@ public class ProductOrderVO {
 	private int point;
 	private int delivery;
 	private int total;
+	private int stock;
 	
 	private String prodName;
 	private String descript;
 	private String thumb1;
 	
+	public int getStock() {
+		return stock;
+	}
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+	public void setStock(String stock) {
+		this.stock = Integer.parseInt(stock);
+	}
 	public String getProdName() {
 		return prodName;
 	}

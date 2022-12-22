@@ -44,6 +44,8 @@ public class Sql_kjh {
 	public static final String SELECT_PRODUCT_COUNT_PRODNO = "SELECT COUNT(`prodNo`) FROM `km_product` WHERE `prodCate1` = ? AND `prodCate2` = ?";
 	// 상품 한개 출력
 	public static final String SELECT_PRODUCT = "SELECT * FROM `km_product` WHERE `prodNo` = ?";
+	// 상품 한개 출력시 조회수 업데이트
+	public static final String UPDATE_PRODUCT_HIT = "UPDATE `km_product` SET `hit` = `hit` + 1 WHERE `prodNo` = ?";
 	// 리뷰 출력
 	public static final String SELECT_REVIEWS = "SELECT * FROM `km_product_review` WHERE `prodNo` = ? ORDER BY `rdate` DESC LIMIT ?, 5;";
 	// 리뷰 전체갯수 출력
@@ -153,7 +155,8 @@ public class Sql_kjh {
 														+ "JOIN `km_product` AS c "
 														+ "USING (`prodNo`) "
 														+ "WHERE `ordNo` = ?";
-
+	// 주문완료시 재고 감소
+	public static final String UPDATE_PRODUCT_STOCK = "UPDATE `km_product` SET `stock`= `stock` - ? WHERE `prodNo` = ?";
 	
 	
 	
@@ -166,15 +169,26 @@ public class Sql_kjh {
 																+ "JOIN `km_cs_faq_cate2` AS c "
 																+ "ON b.cate1 = c.cate1 and a.cate2 = c.cate2 "
 																+ "WHERE a.`cate1` = ? AND a.`cate2` = ?";
-	// qna list
-	public static final String SELECT_ADMIN_CS_QNA_LIST_ALL= "SELECT * FROM `km_cs_qna`";
+	// qna list all
+	public static final String SELECT_ADMIN_CS_QNA_LIST_ALL = "SELECT a.*, b.c1Name, c.c2Name "
+															+ "FROM `km_cs_qna` AS a "
+															+ "JOIN `km_cs_qna_cate1` AS b "
+															+ "ON a.cate1 = b.cate1 "
+															+ "JOIN `km_cs_qna_cate2` AS c "
+															+ "ON b.cate1 = c.cate1 and a.cate2 = c.cate2 "
+															+ "ORDER BY (`qnaNo`) DESC "
+															+ "LIMIT ?, 10";
+	// qna list cate
 	public static final String SELECT_ADMIN_CS_QNA_LIST_CATE = "SELECT a.*, b.c1Name, c.c2Name "
 																+ "FROM `km_cs_qna` AS a "
 																+ "JOIN `km_cs_qna_cate1` AS b "
 																+ "ON a.cate1 = b.cate1 "
 																+ "JOIN `km_cs_qna_cate2` AS c "
 																+ "ON b.cate1 = c.cate1 and a.cate2 = c.cate2 "
-																+ "WHERE a.`cate1` = ? AND a.`cate2` = ?";
+																+ "WHERE a.`cate1` = ? AND a.`cate2` = ? "
+																+ "ORDER BY (`qnaNo`) DESC "
+																+ "LIMIT ?, 10";
+	
 	// cs view
 	public static final String SELECT_ADMIN_CS_QNA_VIEW = "SELECT a.*, b.c1Name, c.c2Name "
 													+ "FROM `km_cs_qna` AS a "
@@ -194,13 +208,21 @@ public class Sql_kjh {
 													+ "`faContent` = ?, "
 													+ "`regip` = ?, "
 													+ "`rdate` = NOW()";
-	
+	// qna count max 10 
 	public static final String SELECT_COUNT_FAQ_CATE2 = "SELECT COUNT(`faNo`) FROM km_cs_faq WHERE `cate1`= ? AND `cate2` = ?";
 	
+	// qna answer
 	public static final String UPDATE_QNA_ANSWER = "UPDATE `km_cs_qna` SET "
 													+ "`answer`= ?, "
 													+ "`qnaCond`='답변완료' "
 													+ "WHERE `qnaNo` = ?";
+	
+	// qna count total all
+	public static final String SELECT_COUNT_TOTAL_QNA = "SELECT COUNT(`qnaNo`) FROM `km_cs_qna`";
+	
+	// qna count total cate
+	public static final String SELECT_COUNT_TOTAL_QNA_CATE = "SELECT COUNT(`qnaNo`) FROM `km_cs_qna` WHERE `cate1` = ? AND `cate2` = ?";
+	
 }
 
 

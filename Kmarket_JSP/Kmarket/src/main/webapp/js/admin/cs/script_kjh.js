@@ -107,6 +107,7 @@ function ajaxload(url) {
 // admin cs list
 function adminCsList(cate2Val) {
   $('table.cs').empty();
+  $('.paging').empty();
   let cate1 = $('select[name=cate1]').val();
   let cate2 = cate2Val;
   let csType = $('input[name=csType]').val();
@@ -133,8 +134,8 @@ function adminCsList(cate2Val) {
           content += `<tr>
           <td><input type="checkbox" name="faqCheck"></td>
           <td>${e.faNo}</td>
-          <td style="width: 140px;">${e.c1Name}</td>
-          <td style="width: 171px;">${e.c2Name}</td>
+          <td class="c1NameTd">${e.c1Name}</td>
+          <td class="c2NameTd">${e.c2Name}</td>
           <td><a href="/Kmarket/admin/cs/view.do?no=${e.faNo}&csType=${csType}&cate1=${e.cate1}&cate2=${e.cate2}">${e.faTitle}</a></td>
           <td>${e.hit}</td>
           <td>${e.rdate}</td>
@@ -160,8 +161,8 @@ function adminCsList(cate2Val) {
           content += `<tr>
           <td><input type="checkbox" name="faqCheck"></td>
           <td>${e.qnaNo}</td>
-          <td style="width: 140px;">${e.c1Name}</td>
-          <td style="width: 171px;">${e.c2Name}</td>
+          <td class="c1NameTd">${e.c1Name}</td>
+          <td class="c2NameTd">${e.c2Name}</td>
           <td><a href="/Kmarket/admin/cs/view.do?no=${e.qnaNo}&csType=${csType}&cate1=${e.cate1}&cate2=${e.cate2}">${e.qnaTitle}</a></td>
           <td>${e.uid}</td>
           <td>${e.rdate}</td>
@@ -172,4 +173,25 @@ function adminCsList(cate2Val) {
       $('.cs').append(content);
     },
   });
+}
+
+function getLastPageNum(total){
+  let lastPageNum = 0;
+  if(total % 10 == 0){
+    lastPageNum = total / 10;
+  }else{
+    lastPageNum = total / 10 + 1;
+  }
+  return lastPageNum;
+}
+
+function getPageGroupNum(currentPage, lastPageNum){
+  let currentPageGroup = Number(Math.ceil(currentPage/10.0));
+  let pageGroupStart = (currentPageGroup -1) * 10 + 1;
+  let pageGroupEnd = currentPageGroup * 10;
+  if(pageGroupEnd > lastPageNum){
+    pageGroupEnd = lastPageNum;
+  }
+  
+  return [pageGroupStart, pageGroupEnd];
 }

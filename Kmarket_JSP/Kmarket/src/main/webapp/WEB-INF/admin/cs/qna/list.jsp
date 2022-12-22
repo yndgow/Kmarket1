@@ -46,8 +46,8 @@
            <tr>
                <td><input type="checkbox" name="faqCheck"></td>
                <td>${qna.qnaNo}</td>
-               <td>${qna.c1Name}</td>
-               <td>${qna.c2Name}</td>
+               <td class="c1NameTd">${qna.c1Name}</td>
+               <td class="c2NameTd">${qna.c2Name}</td>
                <td><a href="/Kmarket/admin/cs/view.do?no=${qna.qnaNo}&csType=${csType}&cate1=${qna.cate1}&cate2=${qna.cate2}">${qna.qnaTitle}</a></td>
                <td>${qna.uid}</td>
                <td>${qna.rdate}</td>
@@ -58,22 +58,22 @@
        </table>
 
        <input type="button" class="btnAdminCsDel btnDeleteSelected" value="선택삭제">
-       <input type="button" class="btnAdminCsWri btnWriteNotice" value="작성하기">
+       <!-- <input type="button" class="btnAdminCsWri btnWriteNotice" value="작성하기"> -->
        
         <div class="paging">
         	<c:if test="${pageGroupStart > 1}">
            <span class="prev">
-               <a href="/Kmarket/admin/cs/notice/list.do?pg=${pageGroupStart-1}">&nbsp;이전</a>
+               <a href="/Kmarket/admin/cs/qna/list.do?csType=${csType}&cate1=${cate1.cate1}&cate2=${cate2.cate2}&pg=${pageGroupStart-1}">&nbsp;이전</a>
            </span>
            </c:if>
            <c:forEach var="num" begin="${pageGroupStart}" end="${pageGroupEnd}">
            <span class="num ${num == currentPage ? 'current' : 'off'}">
-               <a href="/Kmarket/admin/cs/notice/list.do?pg=${num}">${num}</a>
+               <a href="/Kmarket/admin/cs/qna/list.do?csType=${csType}&cate1=${cate1.cate1}&cate2=${cate2.cate2}&pg=${num}">${num}</a>
            </span>
            </c:forEach>
            <c:if test="${pageGroupEnd < lastPageNum}">
            <span class="next">
-               <a href="/Kmarket/admin/cs/notice/list.do?pg=${pageGroupEnd+1}">다음&nbsp;</a>
+               <a href="/Kmarket/admin/cs/qna/list.do?csType=${csType}&cate1=${cate1.cate1}&cate2=${cate2.cate2}&pg=${pageGroupEnd+1}">다음&nbsp;</a>
            </span>
            </c:if>
        </div>

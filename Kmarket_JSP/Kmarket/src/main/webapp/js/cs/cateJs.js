@@ -26,6 +26,7 @@ function cate1List(){
 	            tag += `<option value="${e.cate1}">${e.c1Name}</option>`;
 	        });
 	        cate1.append(tag);
+	        console.log(tag)
 	    }
 	});
 }
@@ -42,6 +43,7 @@ function cate2List(cate2Val){
 	        	tag += `<option value="${e.cate2}">${e.c2Name}</option>`;
 	    	});
 	    cate2.append(tag);
+	    console.log(tag)
 		}
 	});
 }

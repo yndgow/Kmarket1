@@ -46,8 +46,8 @@
            <tr>
                <td><input type="checkbox" name="faqCheck"></td>
                <td>${faq.faNo}</td>
-               <td>${faq.c1Name}</td>
-               <td>${faq.c2Name}</td>
+               <td class="c1NameTd">${faq.c1Name}</td>
+               <td class="c2NameTd">${faq.c2Name}</td>
                <td><a href="/Kmarket/admin/cs/view.do?no=${faq.faNo}&csType=${csType}&cate1=${faq.cate1}&cate2=${faq.cate2}">${faq.faTitle}</a></td>
                <td>${faq.hit}</td>
                <td>${faq.rdate}</td>

@@ -39,7 +39,7 @@ public class NoticeListController extends HttpServlet{
 		if(cate1 == null) {
 				total = service.selectCountTotal(); //전체 게시물 갯수
 		}else {
-				total = service.selectCountCateTotal(cate1); //*카테고리별* 전체 게시물 갯수
+				total = service.selectCountCateTotal(cate1); //카테고리별 게시물 갯수
 			}
 		
 		

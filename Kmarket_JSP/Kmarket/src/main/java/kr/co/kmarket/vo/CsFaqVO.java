@@ -18,18 +18,7 @@ public class CsFaqVO {
 	
 	
 
-	public String getC1Name() {
-		return c1Name;
-	}
-	public void setC1Name(String c1Name) {
-		this.c1Name = c1Name;
-	}
-	public String getC2Name() {
-		return c2Name;
-	}
-	public void setC2Name(String c2Name) {
-		this.c2Name = c2Name;
-	}
+	
 	public int getFaNo() {
 		return faNo;
 	}
@@ -91,7 +80,18 @@ public class CsFaqVO {
 		this.rdate = rdate;
 	}
 	
-	
+	public String getC1Name() {
+		return c1Name;
+	}
+	public void setC1Name(String c1Name) {
+		this.c1Name = c1Name;
+	}
+	public String getC2Name() {
+		return c2Name;
+	}
+	public void setC2Name(String c2Name) {
+		this.c2Name = c2Name;
+	}
 	
 	
 	

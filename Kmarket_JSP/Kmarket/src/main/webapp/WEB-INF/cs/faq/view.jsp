@@ -1,14 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>케이마켓 고객센터</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <style>
-       
-
-    </style>
+    <link rel="stylesheet" href="/Kmarket/css/cs/style.css">
 </head>
 <body>
     <div id="wrapper">
@@ -16,8 +14,8 @@
             <div class="top">
                 <div>
                     <p>
-                        <a href="#">로그인</a>
-                        <a href="#">회원가입</a>
+                       	<a href="/Kmarket/member/login.do">로그인</a>
+                        <a href="/Kmarket/member/register.do">회원가입</a>
                         <a href="#">마이페이지</a>
                         <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>장바구니</a>
                     </p>
@@ -25,8 +23,8 @@
             </div>
             <div class="logo">
                 <div>
-                    <a href="../index.html">
-                        <img src="../images/logo.png" alt="로고">
+                    <a href="/Kmarket/cs/index.do">
+                        <img src="/Kmarket/img/cs/logo.png" alt="로고">
                         고객센터
                     </a>
                 </div>
@@ -43,39 +41,28 @@
                     <aside>
                         <h2>자주묻는 질문</h2>
                         <ul>
-                            <li class="on"><a href="#">회원</a></li>
-                            <li><a href="#">쿠폰/이벤트</a></li>
-                            <li><a href="#">주문/결제</a></li>
-                            <li><a href="#">배송</a></li>
-                            <li><a href="#">취소/반품/교환</a></li>
-                            <li><a href="#">여행/숙박/항공</a></li>
-                            <li><a href="#">안전거래</a></li>
+                            <li class="${cate1 eq 1?'on':'off'}"><a href="/Kmarket/cs/faq/list.do?cate1=1">회원</a></li>
+                            <li class="${cate1 eq 2?'on':'off'}"><a href="/Kmarket/cs/faq/list.do?cate1=2">쿠폰/이벤트</a></li>
+                            <li class="${cate1 eq 3?'on':'off'}"><a href="/Kmarket/cs/faq/list.do?cate1=3">주문/결제</a></li>
+                            <li class="${cate1 eq 4?'on':'off'}"><a href="/Kmarket/cs/faq/list.do?cate1=4">배송</a></li>
+                            <li class="${cate1 eq 5?'on':'off'}"><a href="/Kmarket/cs/faq/list.do?cate1=5">취소/반품/교환</a></li>
+                            <li class="${cate1 eq 6?'on':'off'}"><a href="/Kmarket/cs/faq/list.do?cate1=6">여행/숙박/항공</a></li>
+                            <li class="${cate1 eq 7?'on':'off'}"><a href="/Kmarket/cs/faq/list.do?cate1=7">안전거래</a></li>
                         </ul>
                     </aside>
                     <article>
                         <nav>
                             <h2 class="title">
                                 <span>Q.</span>
-                                개인회원과 법인회원에 차이가 있나요?
+                                ${article.faTitle}
                             </h2>
                         </nav>
                         <div class="content">
                             <p>
-                                개인회원에서 법인회원(사업자 회원)으로 전환은 불가하므로 법인회원
-                                (사업자 회원) 전환은 신규 가입으로 진행을 해야 합니다.
-                            </p>
-                            <p>
-                                ※ 피싱 관련 피해신고
-                                <br>
-                                <br>
-                                ▶ 경찰청 사이버수사국 (국번없이)182 : https://cyberbureau.police.go.kr
-                                <br>
-                                ▶ KISA 인터넷침해대응센터 (국번없이)118 : http://www.krcert.or.kr
-                                <br>
-                                감사합니다.
+                                ${article.faContent }
                             </p>
                         </div>
-                        <a href="./list.html" class="btnList">목록보기</a>
+                        <a href="/Kmarket/cs/faq/list.do?cate1=${article.cate1}" class="btnList">목록보기</a>
                     </article>
                 </section>
             </div>
@@ -88,7 +75,7 @@
           <li><a href="#">전자금융거래약관</a></li>
         </ul>
         <div>
-          <p><img src="../images/footer_logo.png" alt="로고" /></p>
+          <p><img src="/Kmarket/img/cs/footer_logo.png" alt="로고" /></p>
           <p>
             <strong>(주)KMARKET</strong><br />
             부산시 강남구 테헤란로 152 (역삼동 강남파이낸스센터)<br />

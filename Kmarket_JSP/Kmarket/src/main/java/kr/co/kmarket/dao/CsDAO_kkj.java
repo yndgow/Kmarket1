@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import kr.co.kmarket.db.DBHelper;
 import kr.co.kmarket.db.Sql_kkj;
+import kr.co.kmarket.vo.CsCate2DTO;
 import kr.co.kmarket.vo.CsFaqVO;
 import kr.co.kmarket.vo.CsNoticeVO;
 
@@ -163,6 +164,30 @@ public class CsDAO_kkj extends DBHelper {
 		return articles;
 	}
 	
+	public List<CsCate2DTO> selectFaqCates(String cate1) {
+		logger.info("selectFaqCates start...");
+		List<CsCate2DTO> cates = new ArrayList<>();
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kkj.SELECT_FAQ_CATES);
+			psmt.setString(1, cate1);
+			
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				CsCate2DTO vo = new CsCate2DTO();
+				vo.setCate1(rs.getInt(1));
+				vo.setCate2(rs.getInt(2));
+				vo.setC2Name(rs.getString(3));
+				
+				cates.add(vo);
+			}
+			close();
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return cates;
+	}
 	
 	
 	
@@ -171,8 +196,38 @@ public class CsDAO_kkj extends DBHelper {
 	
 	
 	
-	
-	
+	public CsFaqVO selectFaqArticle(String faNo) {
+		logger.info("selectFaqArticle start...");
+		CsFaqVO vo = null;
+		
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kkj.SELECT_FAQ_ARTICLE);
+			psmt.setString(1, faNo);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				vo = new CsFaqVO();
+				vo.setFaNo(rs.getInt(1));
+				vo.setUid(rs.getString(2));
+				vo.setCate1(rs.getInt(3));
+				vo.setCate2(rs.getInt(4));
+				vo.setFaTitle(rs.getString(5));
+				vo.setFaContent(rs.getString(6));
+				vo.setHit(rs.getInt(7));
+				vo.setRegip(rs.getString(8));
+				vo.setRdate(rs.getString(9));
+				
+				
+				
+			}
+			close();
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("vo : "+vo);
+		return vo;
+	}
 	
 	
 	

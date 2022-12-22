@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import kr.co.kmarket.dao.CsDAO_kkj;
+import kr.co.kmarket.vo.CsCate2DTO;
 import kr.co.kmarket.vo.CsFaqVO;
 import kr.co.kmarket.vo.CsNoticeVO;
-import kr.co.kmarket.vo.CsQnaVO;
 
 public enum CsService_kkj {
 	INSTANCE;
@@ -44,6 +44,13 @@ public enum CsService_kkj {
 		return dao.selectFaqArticles(cate1);
 	}
 	
+	public List<CsCate2DTO> selectFaqCates(String cate1){
+		return dao.selectFaqCates(cate1);
+	}
+	
+	public CsFaqVO selectFaqArticle(String faNo) {
+		return dao.selectFaqArticle(faNo);
+	}
 	
 
 	//cs list 출력 홍민준

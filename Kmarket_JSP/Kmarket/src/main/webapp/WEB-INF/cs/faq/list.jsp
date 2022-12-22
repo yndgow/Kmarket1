@@ -7,9 +7,13 @@
     <meta charset="UTF-8">
     <title>케이마켓 고객센터</title>
     <link rel="stylesheet" href="/Kmarket/css/cs/style.css">
-    <style>
-      
-    </style>
+    <link rel="shortcut icon" type="image/x-icon" href="/Kmarket/img/member/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    
+    
+  
 </head>
 <body>
     <div id="wrapper">
@@ -91,25 +95,28 @@
 	                            </c:if>
 	                            
                        		</nav>
-                       		<c:forEach var="article" items="${articles}">
-                       		<c:if test="${cate1 eq article.cate1 }">
+                       		<c:forEach var="cate" items="${cates}">
                         <div>
-                            <h3>${article.c2Name }</h3>
+                            <h3>${cate.c2Name}</h3>
                             <ul>
+                            	<c:forEach var="article" items="${articles}">
+                            	<c:if test="${cate.c2Name eq article.c2Name }">
                                 <li>
-                                    <a href="/Kmarket/cs/faq/view.do">
-                                        <span>Q.</span>${article.faTitle} 
+                                    <a href="/Kmarket/cs/faq/view.do?faNo=${article.faNo }&cate1=${article.cate1}&cate2=${article.cate2}">
+                                        <span>Q.</span>${article.faTitle }
                                     </a>
                                 </li>
-                                
+                                </c:if>
+                            	</c:forEach>
                                 <li class="more">
                                     <a href="#">더보기</a>
                                 </li>
                             </ul>
+                            
                         </div>
-                        
-                        </c:if>
                         </c:forEach>
+                        
+                        
                     </article>
                 </section>
             </div>

@@ -33,13 +33,13 @@ public class ProductViewController extends HttpServlet{
 		req.setAttribute("cate1", cate1);
 		req.setAttribute("cate2", cate2);
 		
-		
-		
 		// 상품 출력
 		String prodNo = req.getParameter("prodNo");
 		ProductVO vo = service.selectProduct(prodNo);
 		req.setAttribute("product", vo);
 		
+		// 상품 조회수 업데이트
+		service.updateProductHit(prodNo);
 		
 		// 리뷰 페이징 
 		String pg = req.getParameter("pg");
@@ -57,8 +57,6 @@ public class ProductViewController extends HttpServlet{
 		req.setAttribute("pageGroupStart", result[0]);
 		req.setAttribute("pageGroupEnd", result[1]);
 		req.setAttribute("pageStartNum", pageStartNum+1);
-		
-		
 		
 		// 리뷰 출력
 		List<ProductReviewVO> reviews = service.selectReviews(prodNo, start);

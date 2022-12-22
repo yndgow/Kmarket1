@@ -23,7 +23,7 @@ public class AdminCsListController extends HttpServlet{
 		String cate2 = req.getParameter("cate2");
 		String csType = req.getParameter("csType");
 		
-		List<Object> csList = service.selectAdminCsFaqList(cate1, cate2, csType);
+		List<Object> csList = service.selectAdminCsFaqList(cate1, cate2, csType, 0);
 		
 		service.gsonTojson(csList, resp);
 	}

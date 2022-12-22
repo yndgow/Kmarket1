@@ -60,6 +60,11 @@ public enum ProductService {
 		return dao.selectProduct(prodNo);
 	}
 	
+	// 상품 한개 출력시 조회수 증가
+	public int updateProductHit(String prodNo) {
+		return dao.updateProductHit(prodNo);
+	}
+	
 	// 리뷰 출력
 	public List<ProductReviewVO> selectReviews(String prodNo, int start){
 		return dao.selectReviews(prodNo, start);
@@ -119,7 +124,6 @@ public enum ProductService {
 		return dao.insertProductOrderItem(vo);
 	}
 	
-	
 	// 주문 정보 업데이트
 	public int updateProductOrder(ProductOrderVO vo, String uid, String ordNo) {
 		// 무통장 입금인 경우만 입금대기
@@ -147,11 +151,15 @@ public enum ProductService {
 		return dao.deleteProductCartOrderd(sql);
 	}
 	
+	// 주문완료 페이지 출력
 	public List<ProductOrderVO> selectProductComplete(String ordNo){
 		return dao.selectProductComplete(ordNo);
 	}
 	
-	
+	// 주문완료시 상품 재고 감소
+	public int updateProductStock(List<ProductOrderVO> completes) {
+		return dao.updateProductStock(completes);
+	}
 	
 	
 	

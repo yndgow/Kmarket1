@@ -544,6 +544,23 @@ public class ProductDAO extends DBHelper {
 	
 	
 // UPDATE
+	// 상품 한개 출력 조회수 증가
+	public int updateProductHit(String prodNo) {
+		logger.info("updateProductHit");
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_kjh.UPDATE_PRODUCT_HIT);
+			psmt.setString(1, prodNo);
+			result = psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
+	
 	// 장바구니 이미 있으면 수량 증가 
 	public int updateProductCartCount(String uid, int prodNo) {
 		logger.info("updateProductCartCount");
@@ -591,7 +608,7 @@ public class ProductDAO extends DBHelper {
 
 	// member DB 포인트 업데이트 추후 멤버로 이동
 	public int updateMemberPoint(int point, String uid) {
-		logger.info("updateProductOrder");
+		logger.info("updateMemberPoint");
 		int result = 0;
 		try {
 			conn = getConnection();
@@ -607,7 +624,25 @@ public class ProductDAO extends DBHelper {
 		return result;
 	}
 
-	
+	// 주문 완료시 재고 감소
+	public int updateProductStock(List<ProductOrderVO> completes) {
+		int result = 0;
+		for(int i=0; i<completes.size(); i++) {
+			logger.info("updateProductStock "+i);
+			try {
+				conn = getConnection();
+				psmt = conn.prepareStatement(Sql_kjh.UPDATE_PRODUCT_STOCK);
+				psmt.setInt(1, completes.get(i).getCount());
+				psmt.setInt(2, completes.get(i).getProdNo());
+				result += psmt.executeUpdate();
+				close();
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+			}
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
 	
 // DELTE
 	// 장바구니 체크 삭제

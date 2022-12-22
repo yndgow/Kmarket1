@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -302,8 +304,104 @@ public enum AdminCsService {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// 김지홍 faq qna 작업
-	// 카테고리 1차유형
+	// category 1 cate1
 	public List<CsCate1DTO> selectAdminCsCate1(String csType){
 		String tableName = "";
 		if(csType.equals("faq")) {
@@ -316,7 +414,7 @@ public enum AdminCsService {
 		return dao.selectAdminCsCate1(tableName);
 	}
 	
-	// 카테고리 2차유형
+	// category 2 cate2
 	public List<CsCate2DTO> selectAdminCsCate2(String csType, String cate1) {
 		String tableName = "";
 		if(csType.equals("faq")) {
@@ -329,42 +427,48 @@ public enum AdminCsService {
 		return dao.selectAdminCsCate2(tableName, cate1);
 	}
 	
-	// faq 리스트 출력 cate1 1 cate1 1 기본값
-	public List<Object> selectAdminCsFaqList(String cate1, String cate2, String csType){
-		if(cate1 == null || cate1.equals("")) {
-			cate1 = "1";
-			cate2 = "1";
-		}
-		
+	// faq qna list cate1 1 cate1 1 default
+	public List<Object> selectAdminCsFaqList(String cate1, String cate2, String csType, int start){
+		boolean cateEmpty = StringUtils.isEmpty(cate1); 
 		if(csType.equals("faq")) {
+			if(cateEmpty) { //
+				cate1 = "1";
+				cate2 = "1";
+			}
 			return dao.selectAdminCsFaqList(cate1, cate2);
 			
 		}else if(csType.equals("qna")) {
-			return dao.selectAdminCsQnaList(cate1, cate2);
-		}else {
-			// notice?
-			return dao.selectAdminCsFaqList(cate1, cate2);
+			if(cateEmpty) {
+				return dao.selectAdminCsQnaListAll(start);
+			}
+			return dao.selectAdminCsQnaList(cate1, cate2, start);
 		}
+		
+		return null;
 	}	
-	
 	// insert faq
 	public int insertAdminCsFaq(CsFaqVO vo) {
 		return dao.insertAdminCsFaq(vo);
 	}
-	
 	// count faq cate2 max 10
 	public int selectCountFaqCate2(String cate1, String cate2){
 		return dao.selectCountFaqCate2(cate1, cate2);
 	}
-	
 	// qna view
 	public CsQnaVO selectAdminCsQnaView(String cate1, String cate2, String qnaNo){
 		return dao.selectAdminCsQnaView(cate1, cate2, qnaNo);
 	}
-	
 	// update qna answer
 	public int updateQnaAnswer(String answer, String qnaNo){
 		return dao.updateQnaAnswer(answer, qnaNo);
+	}
+	// qna count total all
+	public int selectCountTotalQna(){
+		return dao.selectCountTotalQna();
+	}
+	// qna count total cate
+	public int selectCountTotalQnaCate(String cate1, String cate2){
+		return dao.selectCountTotalQnaCate(cate1, cate2);
 	}
 	
 	

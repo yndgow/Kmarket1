@@ -123,3 +123,9 @@ select[name=cate2]{
     background-color: #fefefe;
     outline: none;
 }
+.c1NameTd{
+	width: 140px !important;
+}
+.c2NameTd{
+	width: 171px !important;
+}

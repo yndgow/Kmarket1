@@ -28,6 +28,9 @@ public class ProductCompleteController extends HttpServlet{
 		List<ProductOrderVO> completes = service.selectProductComplete(req.getParameter("ordNo"));
 		req.setAttribute("completes", completes);
 		
+		// 주문완료시 재고 감소
+		service.updateProductStock(completes);
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/product/complete.jsp");
 		dispatcher.forward(req, resp);
 	}

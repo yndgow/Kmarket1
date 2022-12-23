@@ -59,7 +59,7 @@
                     </ul>
                 </section>
                 <section class="faq">
-                    <h1>자주 묻는 질문<a href="./faq/list.do">전체보기</a></h1>
+                    <h1>자주 묻는 질문<a href="/Kmarket/cs/faq/list.do?cate1=1">전체보기</a></h1>
                     <ol>
                         <li>
                             <a href="#"><span>회원</span></a>

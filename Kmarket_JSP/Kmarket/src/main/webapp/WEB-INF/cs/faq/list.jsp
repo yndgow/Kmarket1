@@ -12,8 +12,21 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
     <script src="/Kmarket/js/cs/script.js"></script>
-    
-  
+    <script>
+      $(() => {
+    	  $('.more').click(function (e) {
+    	        e.preventDefault();
+    	        let status = $(this).prev().css('display') === 'none';
+    	      if (status) {
+    	        $(this).siblings('li:nth-child(n+4)').css('display','block');
+    	        $(this).children('a').text('간단히 보기');
+    	      } else{
+    	        $(this).siblings('li:nth-child(n+4)').css('display','none');
+    	        $(this).children('a').text('더 보기');
+    	      }
+    	    });
+      });
+    </script>
 </head>
 <body>
     <div id="wrapper">

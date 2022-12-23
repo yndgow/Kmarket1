@@ -30,7 +30,7 @@
                       <a href="/Kmarket/cs/qna/list.do?pg=${pageGroupEnd + 1}" class="next">다음</a>
                   	  </c:if>
                   </div>
-                  <a href="./write.do" class="btnWrite">문의하기</a>
+                  <a href="./write.do?cate1=${cate1}" class="btnWrite">문의하기</a>
               </article>
           </section>
       </div>

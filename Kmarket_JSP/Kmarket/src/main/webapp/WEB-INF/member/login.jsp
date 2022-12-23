@@ -6,6 +6,9 @@
 		if(success == 100){
 			alert('회원정보가 일치하지 않거나 가입하지 않은 회원입니다.');
 		}
+		if(success == 300){
+			alert('먼저 로그인을 하셔야 합니다.');
+		}
 </script>
 
         <main id="member">

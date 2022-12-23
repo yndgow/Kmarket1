@@ -53,7 +53,6 @@
             <a href="/Kmarket/">
               <img src="/Kmarket/img/header_logo.png" alt="헤더로고" />
             </a>
-            
           </div>
         </div>
         </header>

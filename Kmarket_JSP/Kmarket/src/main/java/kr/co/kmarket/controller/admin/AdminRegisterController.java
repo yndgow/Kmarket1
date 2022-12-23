@@ -2,7 +2,9 @@ package kr.co.kmarket.controller.admin;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -62,23 +64,59 @@ public class AdminRegisterController extends HttpServlet{
 		String bizType = mr.getParameter("bizType");
 		String origin = mr.getParameter("origin");
 		
+
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd"); // 날짜형식 
+		String now = sdf.format(new Date()); // 오늘 날짜 포맷 적용
+		String newPath = "/var/webapps/upload/"; // 외부폴더설정
+		File mdfile2 = new File(newPath+now);
+		if(!mdfile2.exists()) mdfile.mkdirs();
+		
+		String extension1 = thumb1.substring(thumb1.lastIndexOf("."), thumb1.length());
+		UUID th1 = UUID.randomUUID();
+		String newFileName1 = th1.toString() + extension1;
+		
+		String extension2 = thumb2.substring(thumb2.lastIndexOf("."), thumb2.length());
+		UUID th2 = UUID.randomUUID();
+		String newFileName2 = th2.toString() + extension2;
+		
+		String extension3 = thumb3.substring(thumb3.lastIndexOf("."), thumb3.length());
+		UUID th3 = UUID.randomUUID();
+		String newFileName3 = th3.toString() + extension3;
+		
+		String extension4 = detail.substring(detail.lastIndexOf("."), detail.length());
+		UUID th4 = UUID.randomUUID();
+		String newFileName4 = th4.toString() + extension4;
 		
 		
-		String newThumb1 = null;
-		String newThumb2 = null;
-		String newThumb3 = null;
-		String newDetail = null;
-		try {
-			newThumb1 = service.reNameFile(thumb1, "uid190", savePath);
-			TimeUnit.SECONDS.sleep(1);
-			newThumb2 = service.reNameFile(thumb2, "uid230", savePath);
-			TimeUnit.SECONDS.sleep(1);
-			newThumb3 = service.reNameFile(thumb3, "uid456", savePath);
-			TimeUnit.SECONDS.sleep(1);
-			newDetail = service.reNameFile(detail, "uid940", savePath);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		File test1 = new File(savePath +"/" + thumb1);
+		File nFile = new File(newPath + "/" + newFileName1);
+		test1.renameTo(nFile);
+		
+		File test2 = new File(savePath +"/" + thumb1);
+		File nFile1 = new File(newPath + "/" + newFileName2);
+		test2.renameTo(nFile1);
+		
+		File test3 = new File(savePath +"/" + thumb1);
+		File nFile2 = new File(newPath + "/" + newFileName3);
+		test3.renameTo(nFile2);
+		
+		File test4 = new File(savePath +"/" + thumb1);
+		File nFile3 = new File(newPath + "/" + newFileName4);
+		test4.renameTo(nFile3);
+		
+		
+//		try {
+//			newThumb1 = service.reNameFile(thumb1, "uid190", savePath);
+//			TimeUnit.SECONDS.sleep(1);
+//			newThumb2 = service.reNameFile(thumb2, "uid230", savePath);
+//			TimeUnit.SECONDS.sleep(1);
+//			newThumb3 = service.reNameFile(thumb3, "uid456", savePath);
+//			TimeUnit.SECONDS.sleep(1);
+//			newDetail = service.reNameFile(detail, "uid940", savePath);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
 		
 		ProductVO vo = new ProductVO();
 		vo.setProdCate1(prodCate1);
@@ -91,10 +129,10 @@ public class AdminRegisterController extends HttpServlet{
 		vo.setStock(stock);
 		vo.setDelivery(delivery);
 		vo.setDiscount(discount);
-		vo.setThumb1(newThumb1);
-		vo.setThumb2(newThumb2);
-		vo.setThumb3(newThumb3);
-		vo.setDetail(newDetail);
+		vo.setThumb1(newFileName1);
+		vo.setThumb2(newFileName2);
+		vo.setThumb3(newFileName3);
+		vo.setDetail(newFileName4);
 		vo.setIp(ip);
 		
 		// 상품정보 제공고시

@@ -67,8 +67,9 @@ public class Sql_kkj {
 													+ "JOIN `km_cs_faq_cate1` AS b ON a.cate1 = b.cate1 "
 													+ "JOIN `km_cs_faq_cate2` AS c ON a.cate2 = c.cate2 AND a.cate1 = c.cate1 "
 													+ "WHERE a.`cate1` =? "
-													+ "ORDER BY `faNo` DESC "
-													+ "LIMIT 10";
+													+ "ORDER BY `faNo` DESC";
+													
+													
 	
 	
 	public static final String SELECT_FAQ_CATES = "SELECT * FROM `km_cs_faq_cate2` WHERE `cate1`=?";

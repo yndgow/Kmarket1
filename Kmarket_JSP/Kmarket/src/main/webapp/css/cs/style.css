@@ -542,6 +542,11 @@ header > .logo a{
  #cs > .faq > .list > article > div > ul > li:nth-child(n+4){
      display: none;
  }
+ 
+  .test {
+        display: block !important;
+      }
+ 
  #cs > .faq > .list > article > div > ul a{
      display: block;
      width: 100%;

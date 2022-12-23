@@ -33,7 +33,7 @@ public class Sql_kjh {
 	public static final String SELECT_IMG_FILENAME = "SELECT `thumb1`, `thumb2`, `thumb3`, `detail` FROM `km_product` WHERE `prodNo` = ?";
 	
 	// prodct_list 
-	public static final String SELECT_PRODUCT_LIST = "SELECT *, CEIL(price*(100-discount)/100) AS discountPrice FROM `km_product` "
+	public static final String SELECT_PRODUCT_LIST = "SELECT *, CEIL(price*(100-discount)/100) AS discountprice FROM `km_product` "
 														+ "WHERE `prodCate1` = ? AND `prodCate2` = ? "
 														+ "ORDER BY ";
 	// 1차 카테고리 

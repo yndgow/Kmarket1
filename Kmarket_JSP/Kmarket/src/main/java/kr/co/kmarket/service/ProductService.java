@@ -9,6 +9,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -50,15 +52,15 @@ public enum ProductService {
 	public List<ProductVO> selectDisList(){
 		return dao.selectDisList();
 	}
-	
-	
-	
-	
-	
 
 	// product list 
 	public List<ProductVO> selectProductList(String cate1, String cate2, String listSort, int start){
-		if(listSort == null || listSort.equals("")) listSort = "soldDesc";
+		if(listSort.equals("priceDesc")) {
+			listSort = "discountpriceDesc";
+		}else if(listSort.equals("priceAsc")) {
+			listSort = "discountpriceAsc";
+		}
+		if(StringUtils.isEmpty(listSort)) listSort = "soldDesc";
 		
 		for(int i=0; i<listSort.length(); i++) {
 			if(listSort.charAt(i)<= 90) {
@@ -66,6 +68,7 @@ public enum ProductService {
 				break;
 			}
 		}
+		
 		
 		return dao.selectProductList(cate1, cate2, listSort, start);
 	}

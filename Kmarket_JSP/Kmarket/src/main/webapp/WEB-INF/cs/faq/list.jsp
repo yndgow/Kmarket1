@@ -11,7 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-    
+    <script src="/Kmarket/js/cs/script.js"></script>
     
   
 </head>
@@ -101,7 +101,7 @@
                             <ul>
                             	<c:forEach var="article" items="${articles}">
                             	<c:if test="${cate.c2Name eq article.c2Name }">
-                                <li>
+                                <li class="item">
                                     <a href="/Kmarket/cs/faq/view.do?faNo=${article.faNo }&cate1=${article.cate1}&cate2=${article.cate2}">
                                         <span>Q.</span>${article.faTitle }
                                     </a>

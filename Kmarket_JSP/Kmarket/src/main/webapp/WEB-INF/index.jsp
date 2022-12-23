@@ -14,31 +14,7 @@
     <!-- bxSlider css,js file -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"/>
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-    <!-- best 배너 js -->
-    <script>
-        $(document).ready(function(){
-          $(".slider > ul").bxSlider({
-            easing: "linear",
-          });
-        });
-        $(function(){
-            let best = $("aside > .best");
-            
-            $(window).scroll(function(){
-
-              let t = $(this).scrollTop();
-
-              if(t > 620){
-                best.css({
-                  position: "fixed",
-                  top: "0",
-                });
-              }else{
-                best.css({position: "static"});
-              }
-            });
-        });
-    </script>
+    <script src="/Kmarket/js/index/js.js"></script>
   </head>
   <body>
     <div class="wrapper">
@@ -90,11 +66,10 @@
         <div class="menu">
           <div>
             <ul>
-              <li><a href="">히트상품</a></li>
-              <li><a href="">추천상품</a></li>
-              <li><a href="">최신상품</a></li>
-              <li><a href="">인기상품</a></li>
-              <li><a href="">할인상품</a></li>
+              <li><a href="#" class="scrollBtnHit">히트상품</a></li>
+              <li><a href="#" class="scrollBtnScore">추천상품</a></li>
+              <li><a href="#" class="scrollBtnNew">최신상품</a></li>
+              <li><a href="#" class="scrollBtnDis">할인상품</a></li>
             </ul>
 		 	<ul>
 	          <li><a href="/Kmarket/cs/notice/list.do">공지사항</a></li>
@@ -213,7 +188,7 @@
           </section>
           <!-- 히트상품 영역 -->
           <section class="hit">
-            <h3><span>히트상품</span></h3>
+            <h3 id="hit"><span>히트상품</span></h3>
             <c:forEach var="hit" items="${hitProducts}">
             <article>
               <a href="/Kmarket/product/view.do?prodNo=${hit.prodNo}">
@@ -236,7 +211,7 @@
           </section>
           <!-- 추천상품 영역 -->
           <section class="recommend">
-            <h3><span>추천상품</span></h3>
+            <h3 id="score"><span>추천상품</span></h3>
             <c:forEach var="score" items="${scoreProducts}">
             <article>
               <a href="/Kmarket/product/view.do?prodNo=${score.prodNo}">
@@ -259,7 +234,7 @@
           </section>
           <!-- 최신상품 영역 -->
           <section class="new">
-            <h3><span>최신상품</span></h3>
+            <h3 id="new"><span>최신상품</span></h3>
             <c:forEach var="newProd" items="${newProducts}">
             <article>
               <a href="/Kmarket/product/view.do?prodNo=${newProd.prodNo}">
@@ -282,7 +257,7 @@
           </section>
           <!-- 할인상품 영역 -->
           <section class="discount">
-            <h3><span>할인상품</span></h3>
+            <h3 id="dis"><span>할인상품</span></h3>
             <c:forEach var="dis" items="${disProducts}">
             <article>
               <a href="/Kmarket/product/view.do?prodNo=${dis.prodNo}">

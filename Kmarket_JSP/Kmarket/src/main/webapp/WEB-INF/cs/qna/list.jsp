@@ -1,7 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="./_header.jsp"/>
-<jsp:include page="./cate/_cate${cate1}.jsp"/>
+<jsp:include page="../_header.jsp"/>
+<section id="cs">
+            <div class="qna">
+                <nav>
+                    <div>
+                        <p>홈<span>></span>문의하기</p>
+                    </div>
+                </nav>
+                <jsp:include page="./cate/_cate${cate1}.jsp"/>
 				 <table>
                   <c:forEach var="article" items="${articles}">
                       <tr>
@@ -28,4 +35,4 @@
           </section>
       </div>
 </section>
-<jsp:include page="./_footer.jsp"/>
+<jsp:include page="../_footer.jsp"/>

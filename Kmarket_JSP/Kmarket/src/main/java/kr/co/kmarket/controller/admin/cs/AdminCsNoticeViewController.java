@@ -9,29 +9,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
-
-import kr.co.kmarket.service.AdminCsService;
+import kr.co.kmarket.service.CsService_kkj;
 import kr.co.kmarket.vo.CsNoticeVO;
 
-@WebServlet("/admin/cs/notice/admincsnoticedelete.do")
-public class AdminCsNoticeDeleteController extends HttpServlet{
-
+@WebServlet("/admin/cs/notice/view.do")
+public class AdminCsNoticeViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	AdminCsService service = AdminCsService.INSTANCE;
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		req.setAttribute("csType", req.getParameter("csType"));
+		CsService_kkj service1 = CsService_kkj.INSTANCE;
 		
 		String notNo = req.getParameter("notNo");
-		int result = service.deleteAdminCsNotice(notNo);
+		String cate1 = req.getParameter("cate1");
 		
-		service.jsonObj("result", result, resp);
+		CsNoticeVO article = service1.selectNoticeArticle(notNo);
+		
+		req.setAttribute("article", article);
+		req.setAttribute("cate1", cate1);
 		
 		
-		
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/admin/cs/notice/view.jsp");
+		dispatcher.forward(req, resp);
 	}
-
 }

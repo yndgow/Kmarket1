@@ -82,7 +82,7 @@ public class CsDAO_kkj extends DBHelper {
 				vo.setHit(rs.getInt(6));
 				vo.setRegip(rs.getString(7));
 				vo.setRdate(rs.getString(8));
-				
+				vo.setC1Name(rs.getString(9));
 			}
 			close();
 			

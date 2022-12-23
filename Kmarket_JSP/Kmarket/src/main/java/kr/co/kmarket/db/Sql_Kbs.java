@@ -18,4 +18,12 @@ public class Sql_Kbs {
 	//public static final String SELECT_ADMIN_SEARCH_KEYWORDS = "SELECT * FROM `km_product` WHERE (`prodName` LIKE ? OR `prodNo` LIKE ? OR  `company` LIKE ? OR `seller` LIKE ?) ORDER BY `prodNo` DESC LIMIT 10";
 	
 	public static final String DELETE_ADMIN = "DELETE FROM `km_product` WHERE `prodNo`=?";
+	
+	//admin Cs notice
+	public static final String DELETE_ADMIN_CS_NOTICE ="DELETE FROM `km_cs_notice` WHERE `notNo`=?";
+	
+	public static final String INSERT_ADMIN_CS_NOT = "INSERT INTO `km_cs_notice` SET "
+			+ "`c1Name` = ?, "
+			+ "`notTitle`= ?, "
+			+ "`notContent`=? ";
 }

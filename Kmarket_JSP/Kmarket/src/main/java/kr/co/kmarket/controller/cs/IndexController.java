@@ -11,13 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.kmarket.service.CsService;
+import kr.co.kmarket.service.CsService_kkj;
+import kr.co.kmarket.vo.CsNoticeVO;
 import kr.co.kmarket.vo.CsQnaVO;
 
 @WebServlet("/cs/index.do")
 public class IndexController extends HttpServlet{
 	CsService service = CsService.INSTANCE;
 	private static final long serialVersionUID = 1L;
-	
+	CsService_kkj service2 = CsService_kkj.INSTANCE;
 	@Override
 	public void init() throws ServletException {
 	}
@@ -29,6 +31,12 @@ public class IndexController extends HttpServlet{
 		List<CsQnaVO> articles = service.selectIndexQnaArticles();
 		
 		req.setAttribute("articles", articles);
+		
+		// index notice list 최신글 5개 가져오기
+		List<CsNoticeVO> notArticles = service2.selectIndexNoticeArticles();
+		
+		req.setAttribute("notArticles", notArticles);
+		
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/cs/index.jsp");
 		dispatcher.forward(req, resp);

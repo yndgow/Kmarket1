@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>케이마켓 고객센터</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/Kmarket/img/member/favicon.ico" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script> 
@@ -52,12 +53,7 @@
             <a href="/Kmarket/">
               <img src="/Kmarket/img/header_logo.png" alt="헤더로고" />
             </a>
-            <form action="" class="search">
-              <input type="text" name="search" />
-              <button id="search">
-                <i class="fa-solid fa-magnifying-glass"></i>
-              </button>
-            </form>
+            
           </div>
         </div>
         </header>

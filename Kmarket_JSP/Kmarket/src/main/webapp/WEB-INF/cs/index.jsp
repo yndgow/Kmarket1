@@ -5,53 +5,39 @@
             <div class="main">
                 <h1 class="title"><strong>케이마켓</strong>이 도와드릴게요!</h1>
                 <section class="notice">
-                    <h1>공지사항<a href="./notice/list.do">전체보기</a></h1>
+                    <h1>공지사항<a href="/Kmarket/cs/notice/list.do">전체보기</a></h1>
                     <ul>
+                    	<c:forEach var="notArticle" items="${notArticles}">
                         <li>
-                            <a href="#" class="title">[안내] 해외결제 사칭 문자 주의</a>
-                            <span class="date">22.10.31</span>
+                            <a href="/Kmarket/cs/notice/view.do?notNo=${notArticle.notNo }&cate1=${notArticle.cate1}" class="title">${notArticle.notTitle }</a>
+                            <span class="date">${notArticle.rdate.substring(2, 10)}</span>
                         </li>
-                        <li>
-                            <a href="#" class="title">[안내] 해외결제 사칭 문자 주의</a>
-                            <span class="date">22.10.31</span>
-                        </li>
-                        <li>
-                            <a href="#" class="title">[안내] 해외결제 사칭 문자 주의</a>
-                            <span class="date">22.10.31</span>
-                        </li>
-                        <li>
-                            <a href="#" class="title">[안내] 해외결제 사칭 문자 주의</a>
-                            <span class="date">22.10.31</span>
-                        </li>
-                        <li>
-                            <a href="#" class="title">[안내] 해외결제 사칭 문자 주의</a>
-                            <span class="date">22.10.31</span>
-                        </li>
+                        </c:forEach>
                     </ul>
                 </section>
                 <section class="faq">
                     <h1>자주 묻는 질문<a href="/Kmarket/cs/faq/list.do?cate1=1">전체보기</a></h1>
                     <ol>
                         <li>
-                            <a href="#"><span>회원</span></a>
+                            <a href="/Kmarket/cs/faq/list.do?cate1=1"><span>회원</span></a>
                         </li>
                         <li>
-                            <a href="#"><span>쿠폰/이벤트</span></a>
+                            <a href="/Kmarket/cs/faq/list.do?cate1=2"><span>쿠폰/이벤트</span></a>
                         </li>
                         <li>
-                            <a href="#"><span>주문/결제</span></a>
+                            <a href="/Kmarket/cs/faq/list.do?cate1=3"><span>주문/결제</span></a>
                         </li>
                         <li>
-                            <a href="#"><span>배송</span></a>
+                            <a href="/Kmarket/cs/faq/list.do?cate1=4"><span>배송</span></a>
                         </li>
                         <li>
-                            <a href="#"><span>취소/반품/교환</span></a>
+                            <a href="/Kmarket/cs/faq/list.do?cate1=5"><span>취소/반품/교환</span></a>
                         </li>
                         <li>
-                            <a href="#"><span>여행/숙박/항공</span></a>
+                            <a href="/Kmarket/cs/faq/list.do?cate1=6"><span>여행/숙박/항공</span></a>
                         </li>
                         <li>
-                            <a href="#"><span>안전거래</span></a>
+                            <a href="/Kmarket/cs/faq/list.do?cate1=7"><span>안전거래</span></a>
                         </li>
                     </ol>
                 </section>

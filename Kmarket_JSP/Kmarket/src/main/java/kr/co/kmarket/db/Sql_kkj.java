@@ -76,4 +76,7 @@ public class Sql_kkj {
 
 
 	public static final String SELECT_FAQ_ARTICLE = "SELECT * FROM `km_cs_faq` where `faNo`=?";
+	
+	
+	public static final String SELECT_INDEX_NOTICES = "SELECT * FROM `km_cs_notice` ORDER BY `notNo` DESC LIMIT 5";
 }

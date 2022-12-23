@@ -18,56 +18,53 @@ public enum CsService_kkj {
 	CsDAO_kkj dao = CsDAO_kkj.getInstance();
 	
 
-	//cs 문의하기 등록 홍민준
-//	public int InsertArticleQnaOfCs(CsQnaVO vo){
-//		return dao.InserArticleQna(vo);
-//	}
-		
+	
+	// 공지사항 글 불러오기	
 	public List<CsNoticeVO> selectNoticeArticles(String cate1, int start){
 		return dao.selectNoticeArticles(cate1, start);
 	}
 	
+	// 공지사항 리스트 페이징작업
 	public int selectCountTotal() {
 		return dao.selectCountTotal();
 	}
 	
+	// 공지사항 리스트 카테고리별 페이징 작업
 	public int selectCountCateTotal(String cate1) {
 		return dao.selectCountCateTotal(cate1);
 	}
 	
+	// 공지사항 글보기
 	public CsNoticeVO selectNoticeArticle(String notNo) {
 		return dao.selectNoticeArticle(notNo);
 	}
 
-	
+	// 자주묻는질문 글 불러오기
 	public List<CsFaqVO> selectFaqArticles(String cate1){
 		return dao.selectFaqArticles(cate1);
 	}
 	
+	// 자주묻는질문 카테고리 불러오기
 	public List<CsCate2DTO> selectFaqCates(String cate1){
 		return dao.selectFaqCates(cate1);
 	}
 	
+	// 자주묻는질문 글보기
 	public CsFaqVO selectFaqArticle(String faNo) {
 		return dao.selectFaqArticle(faNo);
 	}
 	
+	// cs초기화면에 공지사항 최신글 5개 불러오기
+	public List<CsNoticeVO> selectIndexNoticeArticles(){
+		return dao.selectIndexNoticeArticles();
+	}
 
-	//cs list 출력 홍민준
-//	public List<CsQnaVO> selectQnaArticles(){
-//		return dao.selectQnaArticles(start);
-		
-//	}
-	//cs view 출력
-//	public CsQnaVO selectQnaArticle(String qnaNo) {
-
-	//	return dao.selectQnaArticle(qnaNo);
-//	}
+	
 	
 	
 
 
-	
+	// 페이징작업
 		public int getLastPageNum(int total) {
 			
 			int lastPageNum = 0;

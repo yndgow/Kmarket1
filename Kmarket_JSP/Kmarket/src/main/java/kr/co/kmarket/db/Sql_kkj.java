@@ -57,7 +57,7 @@ public class Sql_kkj {
 	
 	public static final String SELECT_NOTICE_ARTICLES_CATE1 = "SELECT * FROM `km_cs_notice` WHERE `cate1`=? ORDER BY `notNo` DESC LIMIT ?,10";
 	
-	public static final String SELECT_NOTICE_ARTICLE = "SELECT * FROM `km_cs_notice` where `notNo`=?";
+	public static final String SELECT_NOTICE_ARTICLE = "SELECT a.*, b.c1Name FROM `km_cs_notice` AS a JOIN `km_cs_notice_cate1` AS b ON a.cate1 = b.cate1 WHERE `notNo`=?";
 	
 	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(`notNo`) FROM `km_cs_notice`";
 	
@@ -76,4 +76,7 @@ public class Sql_kkj {
 
 
 	public static final String SELECT_FAQ_ARTICLE = "SELECT * FROM `km_cs_faq` where `faNo`=?";
+	
+	
+	public static final String SELECT_INDEX_NOTICES = "SELECT * FROM `km_cs_notice` ORDER BY `notNo` DESC LIMIT 5";
 }

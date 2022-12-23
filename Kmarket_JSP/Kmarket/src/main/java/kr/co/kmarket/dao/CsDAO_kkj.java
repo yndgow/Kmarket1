@@ -23,6 +23,8 @@ public class CsDAO_kkj extends DBHelper {
 	// 로거 생성
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
+	
+	// notice list
 	public List<CsNoticeVO> selectNoticeArticles(String cate1, int start) {
 		logger.info("selectNoticeArticles start...");
 		List<CsNoticeVO> articles = new ArrayList<>();
@@ -60,6 +62,7 @@ public class CsDAO_kkj extends DBHelper {
 	}
 	
 	
+	// notice view
 	public CsNoticeVO selectNoticeArticle(String notNo) {
 		logger.info("selectNoticeArticle start...");
 		CsNoticeVO vo = null;
@@ -79,7 +82,7 @@ public class CsDAO_kkj extends DBHelper {
 				vo.setHit(rs.getInt(6));
 				vo.setRegip(rs.getString(7));
 				vo.setRdate(rs.getString(8));
-				
+				vo.setC1Name(rs.getString(9));
 			}
 			close();
 			
@@ -90,6 +93,8 @@ public class CsDAO_kkj extends DBHelper {
 		return vo;
 	}
 	
+	
+	// notice list 전체 페이징작업
 	public int selectCountTotal() {
 		int total = 0;
 		try {
@@ -109,6 +114,7 @@ public class CsDAO_kkj extends DBHelper {
 	}
 	
 	
+	// notice list 카테고리별 페이징작업
 	public int selectCountCateTotal(String cate1) {
 		int total = 0;
 		try {
@@ -131,7 +137,7 @@ public class CsDAO_kkj extends DBHelper {
 	
 	
 	
-	
+	// faq list
 	public List<CsFaqVO> selectFaqArticles(String cate1) {
 		logger.info("selectFaqArticles start...");
 		List<CsFaqVO> articles = new ArrayList<>();
@@ -164,6 +170,7 @@ public class CsDAO_kkj extends DBHelper {
 		return articles;
 	}
 	
+	// faq list 카테고리 정보 불러오기
 	public List<CsCate2DTO> selectFaqCates(String cate1) {
 		logger.info("selectFaqCates start...");
 		List<CsCate2DTO> cates = new ArrayList<>();
@@ -195,7 +202,7 @@ public class CsDAO_kkj extends DBHelper {
 	
 	
 	
-	
+	// faq view
 	public CsFaqVO selectFaqArticle(String faNo) {
 		logger.info("selectFaqArticle start...");
 		CsFaqVO vo = null;
@@ -229,7 +236,38 @@ public class CsDAO_kkj extends DBHelper {
 		return vo;
 	}
 	
-	
+	// index화면에 notice 최신글 5개 불러오기
+	public List<CsNoticeVO> selectIndexNoticeArticles() {
+		logger.info("selectIndexNoticeArticles start...");
+		List<CsNoticeVO> articles = new ArrayList<>();
+		
+		try {
+			
+			conn = getConnection();
+			
+			psmt = conn.prepareStatement(Sql_kkj.SELECT_INDEX_NOTICES);
+			
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				CsNoticeVO vo = new CsNoticeVO();
+				vo.setNotNo(rs.getInt(1));
+				vo.setUid(rs.getString(2));
+				vo.setCate1(rs.getInt(3));
+				vo.setNotTitle(rs.getString(4));
+				vo.setNotContent(rs.getString(5));
+				vo.setHit(rs.getInt(6));
+				vo.setRegip(rs.getString(7));
+				vo.setRdate(rs.getString(8));
+				articles.add(vo);
+			}
+			close();
+			
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return articles;
+	}
 	
 	
 	

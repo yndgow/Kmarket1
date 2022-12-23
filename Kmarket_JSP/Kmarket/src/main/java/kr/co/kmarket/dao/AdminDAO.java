@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import kr.co.kmarket.db.DBHelper;
 import kr.co.kmarket.db.Sql;
 import kr.co.kmarket.db.Sql_Kbs;
+import kr.co.kmarket.db.Sql_kjh;
+import kr.co.kmarket.vo.CsNoticeVO;
 import kr.co.kmarket.vo.ProductCate1VO;
 
 import kr.co.kmarket.vo.ProductOrderVO;
@@ -428,8 +430,41 @@ public class AdminDAO extends DBHelper {
 		return result1;
 	}
 	
+	public int deleteAdminCsNotice(String notNo) {
+		logger.info("deleteAdminCsnotice...");
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_Kbs.DELETE_ADMIN_CS_NOTICE);
+			psmt.setString(1, notNo);
+			result = psmt.executeUpdate();
+			close();
+
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
 	
-	
+	public int insertAdminCsNot(CsNoticeVO vo) {
+		logger.info("insertAdminCsNot...");
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_Kbs.INSERT_ADMIN_CS_NOT);
+			psmt.setString(1, vo.getC1Name());
+			psmt.setString(2, vo.getNotTitle());
+			psmt.setString(3, vo.getNotContent());
+			result = psmt.executeUpdate();
+			
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
 	
 	
 	

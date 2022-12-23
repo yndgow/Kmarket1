@@ -771,6 +771,7 @@ header > .logo a{
     width: 100%;
     border-collapse: collapse;
     border-top: 2px solid #111;
+    position: relative;
 }
 #cs > .qna > .write > article table tr{
     width: 100%;
@@ -781,9 +782,15 @@ header > .logo a{
     border-bottom: 1px solid #ccc;
     font-size: 16px;
 }
+#cs > .qna > .write > article table td .cate{
+    width: 100px;
+   
+}
 
-#cs > .qna > .write > article table td:last-child{
-    width: 764px;
+
+
+#cs > .qna > .write > article table td:first-child{
+    width: 100px;
 }
 #cs > .qna > .write > article table input{
     width: 100%;

@@ -52,12 +52,6 @@
             <a href="/Kmarket/">
               <img src="/Kmarket/img/header_logo.png" alt="헤더로고" />
             </a>
-            <form action="" class="search">
-              <input type="text" name="search" />
-              <button id="search">
-                <i class="fa-solid fa-magnifying-glass"></i>
-              </button>
-            </form>
           </div>
         </div>
         </header>

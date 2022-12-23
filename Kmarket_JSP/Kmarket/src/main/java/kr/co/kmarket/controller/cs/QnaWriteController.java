@@ -23,7 +23,9 @@ public class QnaWriteController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		String cate1 = req.getParameter("cate1");
 		
+		req.setAttribute("cate1", cate1);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/cs/qna/write.jsp");
 		dispatcher.forward(req, resp);

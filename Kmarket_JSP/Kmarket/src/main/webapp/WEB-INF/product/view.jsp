@@ -24,7 +24,7 @@
           <!-- 개별 파트 시작 -->
           <article class="info">
             <div class="image">
-              <img src="http://13.125.215.198:8080/file/${product.thumb3}" alt="상품사진" />
+              <img src="http://13.125.215.198:8080/file/thumb/${product.etc3}/${product.thumb3}" alt="상품사진" />
             </div>
             <div class="summary">
               <div class="view_seller">
@@ -115,7 +115,7 @@
             <nav>
               <h1>상품정보</h1>
             </nav>
-            <img src="http://13.125.215.198:8080/file/${product.detail}" alt="상품사진1" />
+            <img src="http://13.125.215.198:8080/file/thumb/${product.etc3}/${product.detail}" alt="상품사진1" />
             
           </article>
           <article class="notice">

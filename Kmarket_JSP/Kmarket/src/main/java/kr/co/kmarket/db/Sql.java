@@ -24,6 +24,7 @@ public class Sql {
 			+ "`bizType` = ?, "
 			+ "`origin` = ?, "
 			+ "`ip` = ?, "
+			+ "`etc3` = ?, "
 			+ "`rdate`=NOW()";
 
 	// admin 상품출력 김지홍

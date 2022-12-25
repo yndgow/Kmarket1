@@ -43,7 +43,7 @@
 				   <td>
 				     <article>
 				       <a href="/Kmarket/product/view.do?prodNo=${cart.prodNo}">
-				         <img src="http://13.125.215.198:8080/file/${cart.thumb1}" alt="장바구니thumb1">
+				         <img src="http://13.125.215.198:8080/file/thumb/${cart.etc3}/${cart.thumb1}" alt="장바구니thumb1">
 				       </a>
 				       <div>
 				         <h2>

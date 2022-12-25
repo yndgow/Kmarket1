@@ -149,7 +149,7 @@
                 <a href="/Kmarket/product/view.do?prodNo=${prod.prodNo}">
                   <div class="thumb">
                     <i>${status.count}</i>
-                    <img src="http://13.125.215.198:8080/file/${prod.thumb1}" alt="item1">
+                    <img src="http://13.125.215.198:8080/file/thumb/${prod.etc3}/${prod.thumb1}" alt="item1">
                   </div>
                   <h2>${prod.prodName}</h2>
                   <div class="org_price">
@@ -193,7 +193,7 @@
             <article>
               <a href="/Kmarket/product/view.do?prodNo=${hit.prodNo}">
                 <div class="thumb">
-                  <img src="http://13.125.215.198:8080/file/${hit.thumb2}" alt="t1" />
+                  <img src="http://13.125.215.198:8080/file/thumb/${hit.etc3}/${hit.thumb2}" alt="t1" />
                 </div>
                 <h2>${hit.prodName}</h2>
                 <p>${hit.descript}</p>
@@ -216,7 +216,7 @@
             <article>
               <a href="/Kmarket/product/view.do?prodNo=${score.prodNo}">
                 <div class="thumb">
-                  <img src="http://13.125.215.198:8080/file/${score.thumb1}" alt="t1" />
+                  <img src="http://13.125.215.198:8080/file/thumb/${score.etc3}/${score.thumb1}" alt="t1" />
                 </div>
                 <h2>${score.prodName}</h2>
                 <p>${score.descript}</p>
@@ -239,7 +239,7 @@
             <article>
               <a href="/Kmarket/product/view.do?prodNo=${newProd.prodNo}">
                 <div class="thumb">
-                  <img src="http://13.125.215.198:8080/file/${newProd.thumb1}" alt="t1" />
+                  <img src="http://13.125.215.198:8080/file/thumb/${newProd.etc3}/${newProd.thumb1}" alt="t1" />
                 </div>
                 <h2>${newProd.prodName}</h2>
                 <p>${newProd.descript}</p>
@@ -262,7 +262,7 @@
             <article>
               <a href="/Kmarket/product/view.do?prodNo=${dis.prodNo}">
                 <div class="thumb">
-                  <img src="http://13.125.215.198:8080/file/${dis.thumb2}" alt="t1" />
+                  <img src="http://13.125.215.198:8080/file/thumb/${dis.etc3}/${dis.thumb2}" alt="t1" />
                 </div>
                 <h2>${dis.prodName}</h2>
                 <p>${dis.descript}</p>

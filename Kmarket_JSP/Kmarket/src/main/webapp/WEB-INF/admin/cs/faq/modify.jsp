@@ -13,13 +13,26 @@
     <form action="/Kmarket/admin/cs/faq/modify.do" id="faqForm" method="post">
     <input type="hidden" name="faNo" value="${faq.faNo}"/>
     <input type="hidden" name="csType" value="${csType}"/>
-    <input type="hidden" name="writeCate1" value="${cate1}"/>
-	<input type="hidden" name="writeCate2" value="${cate2}" />
+    <input type="hidden" name="writeCate1" value="${faq.cate1}"/>
+	<input type="hidden" name="writeCate2" value="${faq.cate2}" />
       <table class="update">
         <tr>
           <th>유형</th>
           <td>
-            ${faq.c1Name}&nbsp;${faq.c2Name}
+           <select name="cate1">
+              <option value="0">1차유형</option>
+				<c:forEach var="cate1" items="${cate1List}">
+					<option value="${cate1.cate1}" ${cate1.cate1 eq faq.cate1 ? 'selected="selected"' : ''}>${cate1.c1Name}</option>
+            	</c:forEach>
+            </select>
+            <select name="cate2" class="cate3">
+				<option value="0">2차유형</option>
+				<c:forEach var="cate2" items="${cateList}">
+					<c:if test="${cate2.cate2 eq faq.cate2}">
+               			<option value="${cate2.cate2}" ${cate2.cate2 eq faq.cate2 ? 'selected="selected"' : ''}>${cate2.c2Name}</option>
+               		</c:if>
+            	</c:forEach>
+           </select>
           </td>
         </tr>
         <tr>
@@ -34,7 +47,7 @@
       </form>
       <div class="btnGroup">
         <input type="button" class="btnAdminCsDel btnCancle" value="취소" />
-        <input type="button" class="btnAdminCsWri btnSubmit" value="등록하기" />
+        <input type="button" class="btnAdminCsWri btnSubmit" value="수정하기" />
       </div>
     </section>
   </section>

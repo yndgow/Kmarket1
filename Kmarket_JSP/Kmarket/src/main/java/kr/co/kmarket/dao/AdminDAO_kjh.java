@@ -44,6 +44,7 @@ public class AdminDAO_kjh extends DBHelper {
 				vo.setThumb2(rs.getString(2));
 				vo.setThumb3(rs.getString(3));
 				vo.setDetail(rs.getString(4));
+				vo.setEtc3(rs.getString(5));
 			}
 			close();
 		} catch (Exception e) {
@@ -158,249 +159,6 @@ public class AdminDAO_kjh extends DBHelper {
 		logger.debug("articles : "+articles);
 		return articles;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	// 여기부터 김지홍 작업부분
 	// cs category 1 list
@@ -858,7 +616,10 @@ public class AdminDAO_kjh extends DBHelper {
 			psmt.setString(1, vo.getFaTitle());
 			psmt.setString(2, vo.getFaContent());
 			psmt.setString(3, vo.getRegip());
-			psmt.setInt(4, vo.getFaNo());
+			psmt.setInt(4, vo.getCate1());
+			psmt.setInt(5, vo.getCate2());
+			psmt.setInt(6, vo.getFaNo());
+			
 			result = psmt.executeUpdate();
 			close();
 		} catch (Exception e) {
@@ -868,17 +629,29 @@ public class AdminDAO_kjh extends DBHelper {
 		return result;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public List<CsCate1DTO> selectFaqCateList(){
+		List<CsCate1DTO> cateList = new ArrayList<>();
+		
+		logger.info("selectFaqCateList");
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(Sql_kjh.SELECT_FAQ_CATE_LIST);
+			while(rs.next()) {
+				CsCate1DTO vo = new CsCate1DTO();
+				vo.setCate1(rs.getInt(1));
+				vo.setC1Name(rs.getString(2));
+				vo.setCate2(rs.getInt(3));
+				vo.setC2Name(rs.getString(4));
+				cateList.add(vo);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("cateList : " + cateList);
+		return cateList;
+	}
 	
 	
 	

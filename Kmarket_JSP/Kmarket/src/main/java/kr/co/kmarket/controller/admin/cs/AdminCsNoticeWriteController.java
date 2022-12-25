@@ -30,11 +30,13 @@ public class AdminCsNoticeWriteController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		CsNoticeVO vo = new CsNoticeVO();
-		vo.setC1Name(req.getParameter("c1Name"));
-		vo.setNotTitle(req.getParameter("notTitle"));
-		vo.setNotContent(req.getParameter("notContent"));
+		vo.setCate1(req.getParameter("cate1"));
+		vo.setNotTitle(req.getParameter("title"));
+		vo.setNotContent(req.getParameter("content"));
+		vo.setRegip(req.getRemoteAddr());
 		
-		service.insertAdminCsNot(vo);
+		int result = service.insertAdminCsNot(vo);
 		
+		resp.sendRedirect("/Kmarket/admin/cs/notice/view.do?notNo="+result);
 	}
 }

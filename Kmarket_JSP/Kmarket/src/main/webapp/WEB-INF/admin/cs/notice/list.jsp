@@ -1,7 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../_header.jsp"/>
-<<script>
+
+<script>
 	$(function(){
 		$('.btnWriteNotice').click(function(){
 			location.href = '/Kmarket/admin/cs/notice/write.do';
@@ -16,13 +17,42 @@
     </nav>
      <section>
        <div class="csSelectDiv">
-           <select name="cate1">
-               <option value="0">유형선택</option>
-               <option value="all">전체</option>
-	           <option value="service">고객서비스</option>
-	     	   <option value="deal">안전거래</option>
-	    	   <option value="danger">위해상품</option>
-	    	   <option value="lucky">이벤트당첨</option>
+       		
+           <select name="cate1" id="selNot">
+           		<option value="0">유형선택</option>
+           <c:choose>
+       			<c:when test="${cate1 eq 1}">
+	            	<option value="1" selected>고객서비스</option>
+	            	<option value="2">안전거래</option>
+	            	<option value="3">위해상품</option>
+	            	<option value="4">이벤트 당첨</option>
+            	</c:when>
+	            <c:when test="${cate1 eq 2}">
+	            	<option value="1">고객서비스</option>
+	            	<option value="2" selected>안전거래</option>
+	            	<option value="3">위해상품</option>
+	            	<option value="4">이벤트 당첨</option>
+            	</c:when>
+	            <c:when test="${cate1 eq 3}">
+	            	<option value="1">고객서비스</option>
+	            	<option value="2">안전거래</option>
+	            	<option value="3" selected>위해상품</option>
+	            	<option value="4">이벤트 당첨</option>
+            	</c:when>
+	            <c:when test="${cate1 eq 4}">
+	            	<option value="1">고객서비스</option>
+	            	<option value="2">안전거래</option>
+	            	<option value="3">위해상품</option>
+	            	<option value="4" selected>이벤트 당첨</option>
+            	</c:when>
+            	<c:otherwise>
+		           	<option value="1">고객서비스</option>
+		     	   	<option value="2">안전거래</option>
+		    	   	<option value="3">위해상품</option>
+		    	   	<option value="4">이벤트당첨</option>
+       			</c:otherwise>
+       		</c:choose>
+               
            </select>
        </div>
        <table class="cs">
@@ -35,23 +65,23 @@
                <th>날짜</th>
                <th>관리</th>
            </tr>
-           <c:forEach var="article" items="${allArticles}">
+           <c:forEach var="article" items="${articles}">
                 <tr>
-                	<td><input type="checkbox" name="noticeCheck"></td>
+                	<td><input type="checkbox" name="noticeCheck" value="${article.notNo}"></td>
                 	<td>${article.notNo}</td>
                 	<td>${article.c1Name}</td>
                     <td><a href="./view.do?notNo=${article.notNo}">${article.notTitle}</a></td>
                     <td>${article.hit}</td>
                     <td>${article.rdate.substring(2, 10)}</td>
                     <td>
-	                   <a href="#" class="btnDeleteNotice">[삭제]</a>
-	                   <a href="#" class="btnModifyNotice">[수정]</a>
+	                   <a href="#" id="${article.notNo}" class="btnDeleteNot">[삭제]</a>
+	                   <a href="#" id="${article.notNo}" class="btnModifyNot">[수정]</a>
 	               </td>
                 </tr>
             </c:forEach>
        </table>
 
-       <input type="button" class="btnAdminCsDel btnDeleteSelected" value="선택삭제">
+       <input type="button" class="btnAdminCsDel btnDeleteSelectedNot" value="선택삭제">
        <input type="button" class="btnAdminCsWri btnWriteNotice" value="작성하기">
        
         <div class="paging">

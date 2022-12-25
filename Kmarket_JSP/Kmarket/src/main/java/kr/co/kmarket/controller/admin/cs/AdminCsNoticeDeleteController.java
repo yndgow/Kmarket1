@@ -2,7 +2,6 @@ package kr.co.kmarket.controller.admin.cs;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 
 import kr.co.kmarket.service.AdminCsService;
-import kr.co.kmarket.vo.CsNoticeVO;
 
 @WebServlet("/admin/cs/notice/admincsnoticedelete.do")
 public class AdminCsNoticeDeleteController extends HttpServlet{
@@ -25,8 +23,17 @@ public class AdminCsNoticeDeleteController extends HttpServlet{
 		
 		req.setAttribute("csType", req.getParameter("csType"));
 		
+		String arr[] = req.getParameterValues("arrNo[]");
+		
 		String notNo = req.getParameter("notNo");
-		int result = service.deleteAdminCsNotice(notNo);
+		
+		String arrNo[] = new String[10];
+		if(StringUtils.isNotEmpty(notNo)) {
+			arrNo[0] = notNo;
+		}else {
+			arrNo = arr;
+		}
+		int result = service.deleteAdminCsNotice(arrNo);
 		
 		service.jsonObj("result", result, resp);
 		

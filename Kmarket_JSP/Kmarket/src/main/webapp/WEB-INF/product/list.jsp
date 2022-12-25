@@ -37,7 +37,7 @@
               <tr>
                 <td>
                   <a href="/Kmarket/product/view.do?prodNo=${vo.prodNo}">
-                    <img src="http://13.125.215.198:8080/file/${vo.thumb1}" alt="상품이미지" />
+                    <img src="http://13.125.215.198:8080/file/thumb/${vo.etc3}/${vo.thumb1}" alt="상품이미지" />
                   </a>
                 </td>
                 <td>

@@ -34,7 +34,7 @@ public class LoginCheckFilter implements Filter {
 		// 필터를 동작할 요청주소 리스트 구성
 		uriList = new ArrayList<>();
 		uriList.add("/Kmarket/product/cart.do");
-		uriList.add("/Kmarket/product/list.do");
+		//uriList.add("/Kmarket/product/list.do");
 		uriList.add("/Kmarket/cs/qna/write.do");
 		uriList.add("/Kmarket/admin/index.do");
 	}

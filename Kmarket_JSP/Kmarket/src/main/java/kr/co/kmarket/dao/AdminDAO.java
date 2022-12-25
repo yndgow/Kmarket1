@@ -58,7 +58,7 @@ public class AdminDAO extends DBHelper {
 			psmt.setString(19, vo.getBizType());
 			psmt.setString(20, vo.getOrigin());
 			psmt.setString(21, vo.getIp());
-			
+			psmt.setString(22, vo.getEtc3());
 			result = psmt.executeUpdate();
 			close();
 		} catch(Exception e) {
@@ -254,6 +254,7 @@ public class AdminDAO extends DBHelper {
 				vo.setOrigin(rs.getString(25));
 				vo.setIp(rs.getString(26));
 				vo.setRdate(rs.getString(27));
+				vo.setEtc3(rs.getString(30));
 				products.add(vo);
 			}
 			close();
@@ -302,6 +303,7 @@ public class AdminDAO extends DBHelper {
 				vo.setOrigin(rs.getString(25));
 				vo.setIp(rs.getString(26));
 				vo.setRdate(rs.getString(27));
+				vo.setEtc3(rs.getString(30));
 				products.add(vo);
 			}
 			close();
@@ -400,6 +402,7 @@ public class AdminDAO extends DBHelper {
 				vo.setOrigin(rs.getString(25));
 				vo.setIp(rs.getString(26));
 				vo.setRdate(rs.getString(27));
+				vo.setEtc3(rs.getString(30));
 				products.add(vo);
 			}
 			close();
@@ -430,18 +433,20 @@ public class AdminDAO extends DBHelper {
 		return result1;
 	}
 	
-	public int deleteAdminCsNotice(String notNo) {
+	public int deleteAdminCsNotice(String[] arrNo) {
 		logger.info("deleteAdminCsnotice...");
 		int result = 0;
-		try {
-			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_Kbs.DELETE_ADMIN_CS_NOTICE);
-			psmt.setString(1, notNo);
-			result = psmt.executeUpdate();
-			close();
-
-		} catch (Exception e) {
-			logger.error(e.getMessage());
+		for (String notNo : arrNo) {
+			try {
+				conn = getConnection();
+				psmt = conn.prepareStatement(Sql_Kbs.DELETE_ADMIN_CS_NOTICE);
+				psmt.setString(1, notNo);
+				result += psmt.executeUpdate();
+				close();
+	
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+			}
 		}
 		logger.debug("result : " + result);
 		return result;
@@ -452,12 +457,41 @@ public class AdminDAO extends DBHelper {
 		int result = 0;
 		try {
 			conn = getConnection();
+			conn.setAutoCommit(false);
+			
 			psmt = conn.prepareStatement(Sql_Kbs.INSERT_ADMIN_CS_NOT);
-			psmt.setString(1, vo.getC1Name());
+			psmt.setInt(1, vo.getCate1());
 			psmt.setString(2, vo.getNotTitle());
 			psmt.setString(3, vo.getNotContent());
-			result = psmt.executeUpdate();
+			psmt.setString(4, vo.getRegip());
+			psmt.executeUpdate();
 			
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(Sql_Kbs.SELECT_MAX_NOTNO);
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			conn.commit();
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug("result : " + result);
+		return result;
+	}
+	
+	// update notice
+	public int updateAdminCsNotice(CsNoticeVO vo) {
+		logger.info("updateAdminCsNotice...");
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql_Kbs.UPDATE_ADMIN_CS_NOTICE);
+			psmt.setInt(1, vo.getCate1());
+			psmt.setString(2, vo.getNotTitle());
+			psmt.setString(3, vo.getNotContent());
+			psmt.setInt(4, vo.getNotNo());
+			psmt.executeUpdate();
 			close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());

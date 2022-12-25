@@ -7,12 +7,12 @@
       <p>HOME > 고객센터 > <strong>공지사항</strong></p>
     </nav>
     <section>
-    <form action="/Kmarket/admin/cs/notice/write.do" method="post">
+    <form action="/Kmarket/admin/cs/notice/write.do" method="post" id="noticeWriteForm">
       <table class="update">
         <tr>
           <th>유형</th>
           <td>
-            <select name="sel1">
+            <select name="cate1">
               <option value="0">1차유형</option>
               <option value="1">고객서비스</option>
               <option value="2">안전거래</option>
@@ -33,7 +33,7 @@
     </form>
       <div class="btnGroup">
         <input type="button" class="btnAdminCsDel btnCancle" value="취소" />
-        <input type="button" class="btnAdminCsWri btnWrite" value="등록하기" />
+        <input type="button" class="btnAdminCsWri btnSubmitNotice" value="등록하기" />
       </div>
     </section>
   </section>

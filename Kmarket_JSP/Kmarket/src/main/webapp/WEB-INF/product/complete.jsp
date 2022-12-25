@@ -36,7 +36,7 @@
               <tr>
                 <td>
                    <article>
-                    <img src="http://13.125.215.198:8080/file/${vo.thumb1}" alt="thumb1">
+                    <img src="http://13.125.215.198:8080/file/thumb/${vo.etc3}/${vo.thumb1}" alt="thumb1">
                     <div>
                       <h2><a href="/Kmarket/product/view.do?prodNo=${vo.prodNo}">${vo.prodName}</a></h2>
                       <p>${vo.descript}</p>

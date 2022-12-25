@@ -24,7 +24,8 @@ $(document).ready(function(){
 	
 	$('.modifyProdBtn').on('click', function(e){
 		e.preventDefault();
-		window.open("http://13.125.215.198:8080/Kmarket/admin/product/edit.jsp", 'newWind', 'width=300, height=300, menubar=no, status=yes, toolbar=no');
+		//window.open("http://13.125.215.198:8080/Kmarket/admin/product/edit.jsp", 'newWind', 'width=300, height=300, menubar=no, status=yes, toolbar=no');
+		window.open("http://13.125.215.198:8080/Kmarket/edit.jsp", 'newWind', 'width=300, height=300, menubar=no, status=yes, toolbar=no');
 		let prodNo = $(this).attr('data-no');
 		$('#prodNo').val(prodNo);
 	});

@@ -95,7 +95,7 @@
                         <c:forEach items="${products}" var="vo">
                         <tr>
                             <td><input type="checkbox" name="checklist" value="${vo.prodNo}"></td>
-                            <td><img src="http://13.125.215.198:8080/file/${vo.thumb1}" class="thumb"></td>
+                            <td><img src="http://13.125.215.198:8080/file/thumb/${vo.etc3}/${vo.thumb1}" class="thumb"></td>
                             <td>${vo.prodNo}</td>
                             <td>${vo.prodName}</td>
                             <td>${vo.price}</td>

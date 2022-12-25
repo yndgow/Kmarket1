@@ -15,10 +15,10 @@ import kr.co.kmarket.vo.CsNoticeVO;
 @WebServlet("/admin/cs/notice/view.do")
 public class AdminCsNoticeViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	CsService_kkj service1 = CsService_kkj.INSTANCE;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		CsService_kkj service1 = CsService_kkj.INSTANCE;
 		
 		String notNo = req.getParameter("notNo");
 		String cate1 = req.getParameter("cate1");

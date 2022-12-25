@@ -11,7 +11,7 @@ cate1List();
 		
 		function Point(){
 			let price = $('input[name=price]').val();
-			let point = (price/100);
+			let point = Math.floor((Number(price)/100));
 			$('input[name=point]').val(point);
 		}
 	});

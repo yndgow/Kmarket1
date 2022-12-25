@@ -16,7 +16,14 @@ public class ProductCartVO {
 	private String thumb1;
 	private String descript;
 	private String prodName;
+	private String etc3;
 	
+	public String getEtc3() {
+		return etc3;
+	}
+	public void setEtc3(String etc3) {
+		this.etc3 = etc3;
+	}
 	public String getProdName() {
 		return prodName;
 	}

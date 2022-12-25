@@ -32,7 +32,14 @@ public class ProductOrderVO {
 	private String prodName;
 	private String descript;
 	private String thumb1;
+	private String etc3;
 	
+	public String getEtc3() {
+		return etc3;
+	}
+	public void setEtc3(String etc3) {
+		this.etc3 = etc3;
+	}
 	public int getStock() {
 		return stock;
 	}

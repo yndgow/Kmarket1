@@ -30,7 +30,7 @@ public class Sql_kjh {
 	public static final String SELECT_TERMS = "select * from `km_member_terms`";
 	
 	// 사진수정(임시) 김지홍
-	public static final String SELECT_IMG_FILENAME = "SELECT `thumb1`, `thumb2`, `thumb3`, `detail` FROM `km_product` WHERE `prodNo` = ?";
+	public static final String SELECT_IMG_FILENAME = "SELECT `thumb1`, `thumb2`, `thumb3`, `detail`, `etc3` FROM `km_product` WHERE `prodNo` = ?";
 	
 	// prodct_list 
 	public static final String SELECT_PRODUCT_LIST = "SELECT *, CEIL(price*(100-discount)/100) AS discountprice FROM `km_product` "
@@ -62,7 +62,7 @@ public class Sql_kjh {
 			+ "`total` = ((`price` * (100-`discount`)/100)  * `count`) + `delivery`, "
 			+ "`rdate` = NOW()";
 	// 장바구니 출력
-	public static final String SELECT_PRODUCTCARTS = "SELECT a.*, b.thumb1, b.descript, b.prodName "
+	public static final String SELECT_PRODUCTCARTS = "SELECT a.*, b.thumb1, b.descript, b.prodName, b.etc3 "
 													+ "FROM `km_product_cart` AS a "
 													+ "JOIN `km_product` AS b "
 													+ "USING (`prodNo`) "
@@ -96,7 +96,7 @@ public class Sql_kjh {
 													+ "`ordDate` = NOW()";
 	
 	// 주문 페이지 장바구니 부분 출력
-	public static final String SELECT_PRODUCTCART_FOR_ORDER = "SELECT a.*, b.thumb1, b.descript, b.prodName	"
+	public static final String SELECT_PRODUCTCART_FOR_ORDER = "SELECT a.*, b.thumb1, b.descript, b.prodName, b.etc3	"
 															+ "FROM `km_product_cart` AS a "
 															+ "JOIN `km_product` AS b "
 															+ "USING (`prodNo`) "
@@ -148,7 +148,7 @@ public class Sql_kjh {
 	public static final String DELETE_PRODUCTCART_ORDERED = "DELETE FROM `km_product_cart` WHERE `cartNo` IN (";
 	
 	// 주문완료 출력
-	public static final String SELECT_PRODUCT_COMPLETE = "SELECT a.*, b.*, c.prodName ,c.descript, c.thumb1 "
+	public static final String SELECT_PRODUCT_COMPLETE = "SELECT a.*, b.*, c.prodName ,c.descript, c.thumb1, c.etc3 "
 														+ "FROM `km_product_order` AS a "
 														+ "JOIN `km_product_order_item` AS b "
 														+ "USING (`ordNo`)"
@@ -253,8 +253,16 @@ public class Sql_kjh {
 												+ "`faTitle` = ?, "
 												+ "`faContent` = ?, "
 												+ "`regip` = ?, "
+												+ "`cate1` = ?, "
+												+ "`cate2`= ?, "
 												+ "`rdate` = NOW() "
 												+ "WHERE `faNo` = ?";
+	
+	// faq cate list
+	public static final String SELECT_FAQ_CATE_LIST = "SELECT a.*, b.cate2, b.c2Name "
+													+ "FROM km_cs_faq_cate1 AS a "
+													+ "JOIN km_cs_faq_cate2 AS b "
+													+ "ON a.cate1 = b.cate1";
 }
 
 

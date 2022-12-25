@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
+
 import kr.co.kmarket.service.AdminCsService;
 import kr.co.kmarket.vo.CsNoticeVO;
 
@@ -44,15 +46,19 @@ public class AdminCsNoticeListController extends HttpServlet{
 		
 		System.out.println("start : "+start);
 		 
-		// notice 전체 글 가져오기
-		List<CsNoticeVO> allArticles = service.selectAllNoticeArticles(start);
-		
-		// view 유형별 글 가져오기
-		List<CsNoticeVO> articles = service.selectNoticeArticles(cate1, start);
+		List<CsNoticeVO> articles = null;
+		if(StringUtils.isEmpty(cate1)) cate1 = "0";
+		if(cate1.equals("0")) {
+			// notice 전체 글 가져오기
+			articles = service.selectAllNoticeArticles(start);
+		}else {
+			// view 유형별 글 가져오기
+			articles = service.selectNoticeArticles(cate1, start);
+		}
 		
 		// View에서 데이터 출력을 위한 request Scope 데이터 설정
 		req.setAttribute("pg", pg);
-		req.setAttribute("allArticles", allArticles);
+		req.setAttribute("cate1", cate1);
 		req.setAttribute("articles", articles);
 		req.setAttribute("lastPageNum", lastPageNum);		
 		req.setAttribute("currentPage", currentPage);		

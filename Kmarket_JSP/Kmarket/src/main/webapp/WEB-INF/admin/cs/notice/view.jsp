@@ -1,35 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../_header.jsp"/>
-<script>
-	$(function(){
-		$('.btnDeleteNot').click(function(){
-			let notNo = $('input[name=notNo]').val();
-			
-			$.ajax({
-				url:'/Kmarket/admin/cs/notice/admincsnoticedelete.do',
-				type: 'get',
-				data: {notNo: notNo},
-				dataType: 'json',
-				success:function(data){
-					if(data.result > 0){
-						location.href = '/Kmarket/admin/cs/notice/list.do';
-					}
-				}
-				
-			})
-		});
-		
-		
-		
-		
-		$('.btnList').click(function(){
-			location.href = '/Kmarket/admin/cs/notice/list.do';	
-		});
-		
-	});
-</script>
-
   <section id="admin-notice-list">
     <nav>
       <h3>공지사항 보기</h3>
@@ -57,7 +28,7 @@
       
       
       <input type="button" class="btnAdminCsDel btnDeleteNot" value="삭제" />
-      <input type="button" class="btnAdminCsDel btnModifyNot" value="수정" />
+      <input type="button" id="${article.notNo}" class="btnAdminCsDel btnModifyNot" value="수정" />
 	  <input type="button" class="btnAdminCsWri btnList" value="목록" />
       </div>
     </section>

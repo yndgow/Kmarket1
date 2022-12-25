@@ -25,7 +25,7 @@
           	<c:when test="${empty carts}">
        		<tr>
               <td>
-                <img src="http://13.125.215.198:8080/file/${cart.thumb1}" alt="상품이미지20_20" />
+                <img src="http://13.125.215.198:8080/file/thumb/${cart.etc3}/${cart.thumb1}" alt="상품이미지20_20" />
                 <div id="orderDescrpit">
                   <p>${cart.prodName}</p>
                   <br />
@@ -48,7 +48,7 @@
 	       		<c:forEach var="cart" items="${carts}">
 	            <tr>
 	              <td>
-	                <img src="http://13.125.215.198:8080/file/${cart.thumb1}" alt="상품이미지20_20" />
+	                <img src="http://13.125.215.198:8080/file/thumb/${cart.etc3}/${cart.thumb1}" alt="상품이미지20_20" />
 	                <div id="orderDescrpit">
 	                  <p>${cart.prodName}</p>
 	                  <br />

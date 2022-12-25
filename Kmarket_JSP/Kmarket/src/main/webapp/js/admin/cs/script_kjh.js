@@ -89,7 +89,7 @@ $(() => {
     let qnaNo = $('input[name=qnaNo]').val();
     let cate1 = $('input[name=wriCate1]').val();
     let cate2 = $('input[name=wriCate2]').val();
-    
+
     let jsonData = { answer: answer, qnaNo: qnaNo };
     $.ajax({
       type: 'post',
@@ -128,10 +128,9 @@ $(() => {
     let cate1 = $('input[name=wriCate1]').val();
     let cate2 = $('input[name=wriCate2]').val();
     let csType = $('input[name=csType]').val();
-	location.href = '/Kmarket/admin/cs/'+csType+'/list.do?csType='+csType+'&cate1='+cate1+'&cate2='+cate2;
+    location.href = '/Kmarket/admin/cs/' + csType + '/list.do?csType=' + csType + '&cate1=' + cate1 + '&cate2=' + cate2;
   });
- 
-	
+
   // cate 1 cate 2 set
   setCategoryValue();
 
@@ -188,24 +187,24 @@ $(() => {
     });
   });
   // move faq modify
-  $('.btnModifyFaq').click(function(e){
-	e.preventDefault();
-	let faNo = $('input[name=faNo]').val();
-	let cate1 = $('input[name=wriCate1]').val();
+  $('.btnModifyFaq').click(function (e) {
+    e.preventDefault();
+    let faNo = $('input[name=faNo]').val();
+    let cate1 = $('input[name=wriCate1]').val();
     let cate2 = $('input[name=wriCate2]').val();
-	location.href = '/Kmarket/admin/cs/faq/modify.do?csType=faq&cate1='+cate1+'&cate2='+cate2+'&faNo='+faNo;
+    location.href = '/Kmarket/admin/cs/faq/modify.do?csType=faq&cate1=' + cate1 + '&cate2=' + cate2 + '&faNo=' + faNo;
   });
-  // update faq submit 
-  $('.btnSubmit').click(function(e){
-	e.preventDefault();
-	let title = $('input[name=title]').val();
-	let content = $('textarea[name=content]').val(); 
-	if(!title.trim() || !content.trim()){
-		alert('제목과 내용을 확인하세요.');
-		return false;
-	}else{
-		$('#faqForm').submit();	
-	}
+  // update faq submit
+  $('.btnSubmit').click(function (e) {
+    e.preventDefault();
+    let title = $('input[name=title]').val();
+    let content = $('textarea[name=content]').val();
+    if (!title.trim() || !content.trim()) {
+      alert('제목과 내용을 확인하세요.');
+      return false;
+    } else {
+      $('#faqForm').submit();
+    }
   });
 });
 
@@ -335,25 +334,4 @@ function setCategoryValue() {
   $('select[name=cate2]').append(content);
 
   $('select[name=cate2]').val(cate2).prop('selected', true);
-}
-
-function getLastPageNum(total) {
-  let lastPageNum = 0;
-  if (total % 10 == 0) {
-    lastPageNum = total / 10;
-  } else {
-    lastPageNum = total / 10 + 1;
-  }
-  return lastPageNum;
-}
-
-function getPageGroupNum(currentPage, lastPageNum) {
-  let currentPageGroup = Number(Math.ceil(currentPage / 10.0));
-  let pageGroupStart = (currentPageGroup - 1) * 10 + 1;
-  let pageGroupEnd = currentPageGroup * 10;
-  if (pageGroupEnd > lastPageNum) {
-    pageGroupEnd = lastPageNum;
-  }
-
-  return [pageGroupStart, pageGroupEnd];
 }

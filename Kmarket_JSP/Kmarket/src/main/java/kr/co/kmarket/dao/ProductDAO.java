@@ -68,6 +68,7 @@ public class ProductDAO extends DBHelper {
 				vo.setOrigin(rs.getString(25));
 				vo.setIp(rs.getString(26));
 				vo.setRdate(rs.getString(27));
+				vo.setEtc3(rs.getString(30));
 				vo.setDiscountPrice(rs.getInt(33));
 				products.add(vo);
 			}
@@ -117,6 +118,7 @@ public class ProductDAO extends DBHelper {
 				vo.setOrigin(rs.getString(25));
 				vo.setIp(rs.getString(26));
 				vo.setRdate(rs.getString(27));
+				vo.setEtc3(rs.getString(30));
 				vo.setDiscountPrice(rs.getInt(33));
 				products.add(vo);
 			}
@@ -167,6 +169,7 @@ public class ProductDAO extends DBHelper {
 				vo.setOrigin(rs.getString(25));
 				vo.setIp(rs.getString(26));
 				vo.setRdate(rs.getString(27));
+				vo.setEtc3(rs.getString(30));
 				vo.setDiscountPrice(rs.getInt(33));
 				products.add(vo);
 			}
@@ -217,6 +220,7 @@ public class ProductDAO extends DBHelper {
 				vo.setOrigin(rs.getString(25));
 				vo.setIp(rs.getString(26));
 				vo.setRdate(rs.getString(27));
+				vo.setEtc3(rs.getString(30));
 				vo.setDiscountPrice(rs.getInt(33));
 				products.add(vo);
 			}
@@ -268,6 +272,7 @@ public class ProductDAO extends DBHelper {
 				vo.setOrigin(rs.getString(25));
 				vo.setIp(rs.getString(26));
 				vo.setRdate(rs.getString(27));
+				vo.setEtc3(rs.getString(30));
 				vo.setDiscountPrice(rs.getInt(33));
 				products.add(vo);
 			}
@@ -328,6 +333,7 @@ public class ProductDAO extends DBHelper {
 				vo.setOrigin(rs.getString(25));
 				vo.setIp(rs.getString(26));
 				vo.setRdate(rs.getString(27));
+				vo.setEtc3(rs.getString(30));
 				vo.setDiscountPrice(rs.getInt(33));
 				products.add(vo);
 			}
@@ -443,6 +449,7 @@ public class ProductDAO extends DBHelper {
 				vo.setOrigin(rs.getString(25));
 				vo.setIp(rs.getString(26));
 				vo.setRdate(rs.getString(27));
+				vo.setEtc3(rs.getString(30));
 			}
 			close();
 		} catch (Exception e) {
@@ -524,6 +531,7 @@ public class ProductDAO extends DBHelper {
 				vo.setThumb1(rs.getString(11));
 				vo.setDescript(rs.getString(12));
 				vo.setProdName(rs.getString(13));
+				vo.setEtc3(rs.getString(14));
 				carts.add(vo);
 			}
 			close();
@@ -578,6 +586,7 @@ public class ProductDAO extends DBHelper {
 				vo.setThumb1(rs.getString(11));
 				vo.setDescript(rs.getString(12));
 				vo.setProdName(rs.getString(13));
+				vo.setEtc3(rs.getString(14));
 				carts.add(vo);
 			}
 			close();
@@ -660,6 +669,7 @@ public class ProductDAO extends DBHelper {
 				vo.setProdName(rs.getString(26));
 				vo.setDescript(rs.getString(27));
 				vo.setThumb1(rs.getString(28));
+				vo.setEtc3(rs.getString(29));
 				completes.add(vo);
 			}
 			close();

@@ -98,51 +98,17 @@ public enum AdminCsService {
 	}
 	
 	// admin cs notice
-	public int deleteAdminCsNotice(String notNo) {
-		return dao2.deleteAdminCsNotice(notNo);
+	public int deleteAdminCsNotice(String[] arrNo) {
+		return dao2.deleteAdminCsNotice(arrNo);
 	}
 	
 	public int insertAdminCsNot(CsNoticeVO vo) {
 		return dao2.insertAdminCsNot(vo);
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public int updateAdminCsNotice(CsNoticeVO vo) {
+		return dao2.updateAdminCsNotice(vo);
+	}
 	
 	
 	
@@ -245,6 +211,9 @@ public enum AdminCsService {
 		return dao.updateAdminFaq(vo);
 	}
 	
+	public List<CsCate1DTO> selectFaqCateList(){
+		return dao.selectFaqCateList();
+	}
 	
 	
 	

@@ -23,7 +23,16 @@ public class Sql_Kbs {
 	public static final String DELETE_ADMIN_CS_NOTICE ="DELETE FROM `km_cs_notice` WHERE `notNo`=?";
 	
 	public static final String INSERT_ADMIN_CS_NOT = "INSERT INTO `km_cs_notice` SET "
-			+ "`c1Name` = ?, "
-			+ "`notTitle`= ?, "
-			+ "`notContent`=? ";
+													+ "`cate1` = ?, "
+													+ "`notTitle`= ?, "
+													+ "`notContent`= ?,"
+													+ "`regip` = ?,"
+													+ "`rdate` = NOW() ";
+	public static final String SELECT_MAX_NOTNO = "SELECT MAX(`notNo`) FROM `km_cs_notice`";
+	public static final String UPDATE_ADMIN_CS_NOTICE = "UPDATE `km_cs_notice` SET "
+														+ "`cate1` = ?, "
+														+ "`notTitle`= ?, "
+														+ "`notContent` = ? "
+														+ "WHERE `notNo` = ?";
+	
 }

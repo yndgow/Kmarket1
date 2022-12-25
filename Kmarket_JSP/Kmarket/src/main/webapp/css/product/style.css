@@ -1294,3 +1294,6 @@ div.topBtn {
   bottom: 5px;
   right: 300px;
 }
+button:hover {
+	cursor: pointer;
+}

@@ -21,6 +21,9 @@ public class CsNoticeVO {
 	public void setNotNo(int notNo) {
 		this.notNo = notNo;
 	}
+	public void setNotNo(String notNo) {
+		this.notNo = Integer.parseInt(notNo);
+	}
 	public String getUid() {
 		return uid;
 	}
@@ -32,6 +35,9 @@ public class CsNoticeVO {
 	}
 	public void setCate1(int cate1) {
 		this.cate1 = cate1;
+	}
+	public void setCate1(String cate1) {
+		this.cate1 = Integer.parseInt(cate1);
 	}
 	public String getNotTitle() {
 		return notTitle;

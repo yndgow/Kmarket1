@@ -33,7 +33,8 @@ public class AdminRegisterController extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String savePath = req.getServletContext().getRealPath("/file");
+//		String savePath = req.getServletContext().getRealPath("/file");
+		String savePath = "/var/webapps/upload/thumb";
 		File mdfile = new File(savePath);
 		if(!mdfile.exists()) mdfile.mkdirs();
 				int maxSize = 1024 * 1024 * 5;
@@ -66,11 +67,18 @@ public class AdminRegisterController extends HttpServlet{
 		
 
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd"); // 날짜형식 
-		String now = sdf.format(new Date()); // 오늘 날짜 포맷 적용
-		String newPath = "/var/webapps/upload/"; // 외부폴더설정
-		File mdfile2 = new File(newPath+now);
-		if(!mdfile2.exists()) mdfile.mkdirs();
+		SimpleDateFormat sdf = new SimpleDateFormat("MM"); // 날짜형식 달 
+		String monthFolder = sdf.format(new Date()); // 오늘 날짜 포맷 적용
+		String monthPath = savePath + "/" + monthFolder;
+		File mdfile1 = new File(monthPath);
+		if(!mdfile1.exists()) mdfile1.mkdirs();
+		
+		SimpleDateFormat sdf2 = new SimpleDateFormat("dd"); // 날짜형식 월
+		String dayFolder = sdf2.format(new Date());
+		String dayPath = monthPath + "/" + dayFolder;
+		File mdfile2 = new File(dayPath);
+		if(!mdfile2.exists()) mdfile2.mkdirs();
+		
 		
 		String extension1 = thumb1.substring(thumb1.lastIndexOf("."), thumb1.length());
 		UUID th1 = UUID.randomUUID();
@@ -90,19 +98,19 @@ public class AdminRegisterController extends HttpServlet{
 		
 		
 		File test1 = new File(savePath +"/" + thumb1);
-		File nFile = new File(newPath + "/" + newFileName1);
+		File nFile = new File(dayPath + "/" + newFileName1);
 		test1.renameTo(nFile);
 		
-		File test2 = new File(savePath +"/" + thumb1);
-		File nFile1 = new File(newPath + "/" + newFileName2);
+		File test2 = new File(savePath +"/" + thumb2);
+		File nFile1 = new File(dayPath + "/" + newFileName2);
 		test2.renameTo(nFile1);
 		
-		File test3 = new File(savePath +"/" + thumb1);
-		File nFile2 = new File(newPath + "/" + newFileName3);
+		File test3 = new File(savePath +"/" + thumb3);
+		File nFile2 = new File(dayPath + "/" + newFileName3);
 		test3.renameTo(nFile2);
 		
-		File test4 = new File(savePath +"/" + thumb1);
-		File nFile3 = new File(newPath + "/" + newFileName4);
+		File test4 = new File(savePath +"/" + detail);
+		File nFile3 = new File(dayPath + "/" + newFileName4);
 		test4.renameTo(nFile3);
 		
 		
@@ -142,6 +150,9 @@ public class AdminRegisterController extends HttpServlet{
 		vo.setReceipt(receipt);
 		vo.setBizType(bizType);
 		vo.setOrigin(origin);
+		
+		// 이미지 파일 주소 날짜 정보 추가
+		vo.setEtc3(monthFolder + "/" + dayFolder);
 		
 		int result = service.insertProductByAdmin(vo);
 		

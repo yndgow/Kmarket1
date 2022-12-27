@@ -54,7 +54,7 @@
                         </li>
                         </c:forEach>
                     </ul>
-                    <a href="./qna/write.do" class="ask">문의글 작성 ></a>
+                    <a href="./qna/write.do?cate1=1" class="ask">문의글 작성 ></a>
                 </section>
                 <section class="tel">
                     <h1>1:1 상담이 필요하신가요?</h1>

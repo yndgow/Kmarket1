@@ -27,6 +27,7 @@ public class Sql_kkj {
 			+ "`addr1`=?, "
 			+ "`addr2`=?, "
 			+ "`regip`=?, "
+			+ "`level`=1, "
 			+ "`rdate`=NOW()";
 	
 	// member 판매자회원가입
@@ -44,6 +45,7 @@ public class Sql_kkj {
 			+ "`addr2`=?, "
 			+ "`regip`=?, "
 			+ "`type`=2, "
+			+ "`level`=5, "
 			+ "`rdate`=NOW()"; 
 	
 	// 아이디 중복체크

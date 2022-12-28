@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import kr.co.kmarket.db.DBHelper;
-import kr.co.kmarket.db.Sql;
 import kr.co.kmarket.db.Sql_hong;
 import kr.co.kmarket.vo.CsCate1DTO;
 import kr.co.kmarket.vo.CsCate2DTO;

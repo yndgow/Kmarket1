@@ -15,7 +15,6 @@ import kr.co.kmarket.dao.AdminDAO;
 import kr.co.kmarket.dao.AdminDAO_kjh;
 import kr.co.kmarket.vo.ProductCate1VO;
 
-import kr.co.kmarket.vo.ProductOrderVO;
 import kr.co.kmarket.vo.ProductCate2VO;
 
 import kr.co.kmarket.vo.ProductVO;

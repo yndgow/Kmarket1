@@ -9,11 +9,9 @@ import org.slf4j.LoggerFactory;
 import kr.co.kmarket.db.DBHelper;
 import kr.co.kmarket.db.Sql;
 import kr.co.kmarket.db.Sql_Kbs;
-import kr.co.kmarket.db.Sql_kjh;
 import kr.co.kmarket.vo.CsNoticeVO;
 import kr.co.kmarket.vo.ProductCate1VO;
 
-import kr.co.kmarket.vo.ProductOrderVO;
 import kr.co.kmarket.vo.ProductCate2VO;
 
 import kr.co.kmarket.vo.ProductVO;

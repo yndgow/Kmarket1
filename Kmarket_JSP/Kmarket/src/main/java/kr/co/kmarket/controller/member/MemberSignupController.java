@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.kmarket.dao.MemberDAO;
 import kr.co.kmarket.service.MemberService;
 import kr.co.kmarket.vo.MemberTermsVO;
 

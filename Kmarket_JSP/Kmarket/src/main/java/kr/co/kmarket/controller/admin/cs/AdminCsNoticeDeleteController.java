@@ -12,7 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import kr.co.kmarket.service.AdminCsService;
 
-@WebServlet("/admin/cs/notice/admincsnoticedelete.do")
+@WebServlet("/admin/cs/notice/delete.do")
 public class AdminCsNoticeDeleteController extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;

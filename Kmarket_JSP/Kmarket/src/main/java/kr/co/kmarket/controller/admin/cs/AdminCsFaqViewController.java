@@ -1,4 +1,4 @@
-package kr.co.kmarket.controller.admin.cs.faqna;
+package kr.co.kmarket.controller.admin.cs;
 
 import java.io.IOException;
 
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.kmarket.service.AdminCsService;
 
-@WebServlet("/admin/cs/qna/view.do")
-public class AdminCsQnaViewController extends HttpServlet{
+@WebServlet("/admin/cs/faq/view.do")
+public class AdminCsFaqViewController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	AdminCsService service = AdminCsService.INSTANCE;
 	
@@ -28,15 +28,17 @@ public class AdminCsQnaViewController extends HttpServlet{
 		
 		String no = req.getParameter("no");		
 		
-		req.setAttribute("qna", service.selectAdminCsQnaView(cate1, cate2, no)); 
+		req.setAttribute("faq", service.selectAdminCsFaqView(cate1, cate2, no)); 
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/admin/cs/qna/view.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/admin/cs/faq/view.jsp");
 		dispatcher.forward(req, resp);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		// faq 삭제
+		String arrNo[] = req.getParameterValues("arrNo[]");
+		int result = service.deleteAdminCsCheckFaq(arrNo);
+		service.jsonObj("result", result, resp);
 	}
 }

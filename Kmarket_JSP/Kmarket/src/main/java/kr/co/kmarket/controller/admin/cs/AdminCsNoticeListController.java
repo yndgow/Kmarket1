@@ -30,7 +30,7 @@ public class AdminCsNoticeListController extends HttpServlet{
 		int currentPage = service.getCurrentPage(pg);
 		
 		// 전체 게시물 갯수 
-		int total = service.selectCountTotal();
+		int total = service.selectCountTotalNotice();
 		
 		// 마지막 페이지 번호
 		int lastPageNum = service.getLastPageNum(total);

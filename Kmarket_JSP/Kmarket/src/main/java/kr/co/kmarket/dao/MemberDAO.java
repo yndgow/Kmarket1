@@ -3,7 +3,7 @@ package kr.co.kmarket.dao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import kr.co.kmarket.db.Sql_kkj;
+import kr.co.kmarket.db.Sql;
 import kr.co.kmarket.db.DBHelper;
 import kr.co.kmarket.vo.MemberTermsVO;
 import kr.co.kmarket.vo.MemberVO;
@@ -28,7 +28,7 @@ public class MemberDAO extends DBHelper {
 				
 				conn = getConnection();
 				stmt = conn.createStatement();
-				rs = stmt.executeQuery(Sql_kkj.SELECT_TERMS);
+				rs = stmt.executeQuery(Sql.SELECT_TERMS);
 				
 				if(rs.next()) {
 					vo = new MemberTermsVO();
@@ -58,7 +58,7 @@ public class MemberDAO extends DBHelper {
 			logger.info("selectUser...");
 			
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kkj.SELECT_MEMBER);
+			psmt = conn.prepareStatement(Sql.SELECT_MEMBER);
 			psmt.setString(1, uid);
 			psmt.setString(2, pass);
 			rs = psmt.executeQuery();
@@ -109,7 +109,7 @@ public class MemberDAO extends DBHelper {
 		try {
 			logger.info("updateUserForSession...");
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kkj.UPDATE_USER_FOR_SESSION);
+			psmt = conn.prepareStatement(Sql.UPDATE_USER_FOR_SESSION);
 			psmt.setString(1, sessId);
 			psmt.setString(2, uid);
 			psmt.executeUpdate();
@@ -123,7 +123,7 @@ public class MemberDAO extends DBHelper {
 		try {
 			logger.info("updateUserForSessionOut...");
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kkj.UPDATE_USER_FOR_SESSION_OUT);
+			psmt = conn.prepareStatement(Sql.UPDATE_USER_FOR_SESSION_OUT);
 			psmt.setString(1, uid);
 			psmt.executeUpdate();
 			close();
@@ -140,7 +140,7 @@ public class MemberDAO extends DBHelper {
 			logger.info("selectCheckUid");
 			
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kkj.SELECT_COUNT_UID);
+			psmt = conn.prepareStatement(Sql.SELECT_COUNT_UID);
 			psmt.setString(1, uid);
 			rs = psmt.executeQuery();
 			
@@ -163,7 +163,7 @@ public class MemberDAO extends DBHelper {
 			logger.info("insertUser...");
 			
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kkj.INSERT_MEMBER);
+			psmt = conn.prepareStatement(Sql.INSERT_MEMBER);
 			psmt.setString(1, vo.getUid());
 			psmt.setString(2, vo.getPass());
 			psmt.setString(3, vo.getName());
@@ -188,7 +188,7 @@ public class MemberDAO extends DBHelper {
 			logger.info("insertSeller...");
 			
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kkj.INSERT_SELLER);
+			psmt = conn.prepareStatement(Sql.INSERT_SELLER);
 			psmt.setString(1, vo.getUid());
 			psmt.setString(2, vo.getPass());
 			psmt.setString(3, vo.getCompany());

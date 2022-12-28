@@ -31,7 +31,7 @@ public class QnaListController extends HttpServlet{
 		int currentPage = service.getCurrentPage(pg);
 		
 		// 전체 게시물 갯수 
-		int total = service.selectCountTotal(cate1);
+		int total = service.selectCountTotalQnaCate1(cate1);
 		
 		// 마지막 페이지 번호
 		int lastPageNum = service.getLastPageNum(total);

@@ -1,4 +1,4 @@
-package kr.co.kmarket.controller.admin.cs.faqna;
+package kr.co.kmarket.controller.admin.cs;
 
 import java.io.IOException;
 import java.util.List;

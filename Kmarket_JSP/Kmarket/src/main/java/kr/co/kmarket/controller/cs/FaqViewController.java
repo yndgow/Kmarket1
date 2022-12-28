@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.kmarket.service.CsService_kkj;
+import kr.co.kmarket.service.CsService;
 import kr.co.kmarket.vo.CsFaqVO;
 
 @WebServlet("/cs/faq/view.do")
 public class FaqViewController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-	CsService_kkj service = CsService_kkj.INSTANCE;
+	CsService service = CsService.INSTANCE;
 	
 	@Override
 	public void init() throws ServletException {

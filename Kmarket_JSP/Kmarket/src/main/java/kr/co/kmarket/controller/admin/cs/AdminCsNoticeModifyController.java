@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.kmarket.service.AdminCsService;
-import kr.co.kmarket.service.CsService_kkj;
+import kr.co.kmarket.service.CsService;
 import kr.co.kmarket.vo.CsNoticeVO;
 
 @WebServlet("/admin/cs/notice/modify.do")
 public class AdminCsNoticeModifyController extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
-	CsService_kkj service = CsService_kkj.INSTANCE;
+	CsService service = CsService.INSTANCE;
 	AdminCsService service1 = AdminCsService.INSTANCE;
 	
 	@Override

@@ -39,10 +39,10 @@ public class AdminListController extends HttpServlet{
 			if(seller.equals("admin")) {
 				total = service.selectCountTotalAdmin();
 			}else {
-				total = service.selectCountTotal(seller);
+				total = service.selectCountTotalProdSeller(seller);
 			}
 		}else {
-			total = service.selectCountTotal(searchContent, searchCate);
+			total = service.selectCountTotalKeywordSearchCate(searchContent, searchCate);
 		}
 		
 		int lastPageNum = service.getLastPageNum(total);// 마지막 페이지 번호

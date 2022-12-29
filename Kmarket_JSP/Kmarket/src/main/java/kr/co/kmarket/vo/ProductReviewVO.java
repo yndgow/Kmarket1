@@ -9,6 +9,15 @@ public class ProductReviewVO {
 	private String regip;
 	private String rdate;
 	
+	// 추가필드
+	private String prodName;
+	
+	public String getProdName() {
+		return prodName;
+	}
+	public void setProdName(String prodName) {
+		this.prodName = prodName;
+	}
 	public int getRevNo() {
 		return revNo;
 	}

@@ -105,7 +105,7 @@ $(() => {
                 <p class="ordUid">${element.uid}<span class="ordDate">${element.rdate}</span></p>
               </div>
             </li>
-            <li><h3>상품명1/BLUE/L</h3></li>
+            <li><h3>${element.prodName}</h3></li>
             <li>${element.content}</li>
           </ul>`;
         });

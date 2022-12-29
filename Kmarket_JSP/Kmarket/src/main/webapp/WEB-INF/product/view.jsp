@@ -215,7 +215,7 @@
                 </div>
               </li>
               <!-- ORDER -->
-              <li><h3>상품명1/BLUE/L</h3></li>
+              <li><h3>${review.prodName}</h3></li>
               <li>
               ${review.content}
               </li>
@@ -243,23 +243,6 @@
             </c:if>
           </div>
 
-         <!--  <div class="paging">
-            <span class="prev">
-              <a href="#"><i class="fa-light fa-less-than"></i>이전</a>
-            </span>
-            <span class="num">
-              <a href="#" class="on">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <a href="#">4</a>
-              <a href="#">5</a>
-              <a href="#">6</a>
-              <a href="#">7</a>
-            </span>
-            <span class="next">
-              <a href="#">다음<i class="fa-light fa-greater-than"></i></a>
-            </span>
-          </div> -->
         </section>
         <!-- section list 끝 -->
       </main>

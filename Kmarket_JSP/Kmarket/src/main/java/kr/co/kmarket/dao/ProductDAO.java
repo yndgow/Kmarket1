@@ -477,6 +477,7 @@ public class ProductDAO extends DBHelper {
 				vo.setRating(rs.getInt(5));
 				vo.setRegip(rs.getString(6));
 				vo.setRdate(rs.getString(7).substring(0,10));
+				vo.setProdName(rs.getString(8));
 				reviews.add(vo);
 			}
 			close();

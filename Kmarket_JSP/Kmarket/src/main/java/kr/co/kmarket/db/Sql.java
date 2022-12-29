@@ -254,7 +254,13 @@ public class Sql {
 	// 상품 한개 출력시 조회수 업데이트
 	public static final String UPDATE_PRODUCT_HIT = "UPDATE `km_product` SET `hit` = `hit` + 1 WHERE `prodNo` = ?";
 	// 리뷰 출력
-	public static final String SELECT_REVIEWS = "SELECT * FROM `km_product_review` WHERE `prodNo` = ? ORDER BY `rdate` DESC LIMIT ?, 5;";
+	public static final String SELECT_REVIEWS = "SELECT a.*, b.prodName "
+												+ "FROM `km_product_review` AS a "
+												+ "JOIN `km_product` AS b "
+												+ "USING(`prodNo`) "
+												+ "WHERE `prodNo` = ? "
+												+ "ORDER BY b.`rdate` DESC "
+												+ "LIMIT ?, 5;";
 	// 리뷰 전체갯수 출력
 	public static final String SELECT_REVIEW_COUNT_PRODNO ="SELECT COUNT(`revNo`) FROM `km_product_review` WHERE `prodNo` = ?";
 	// 장바구니 입력

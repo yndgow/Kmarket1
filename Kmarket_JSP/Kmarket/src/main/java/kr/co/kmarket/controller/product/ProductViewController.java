@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
+
 import kr.co.kmarket.service.ProductService;
 import kr.co.kmarket.vo.ProductCartVO;
 import kr.co.kmarket.vo.ProductReviewVO;
@@ -26,17 +28,23 @@ public class ProductViewController extends HttpServlet{
 		req.setAttribute("categories1", service.selectCategory1());
 		req.setAttribute("categories2", service.selectCategory2());
 		
-		String cate1 =req.getParameter("cate1");
+		String cate1 = req.getParameter("cate1");
 		String cate2 = req.getParameter("cate2");
-		
-		// nav 카테고리 
-		req.setAttribute("cate1", cate1);
-		req.setAttribute("cate2", cate2);
 		
 		// 상품 출력
 		String prodNo = req.getParameter("prodNo");
 		ProductVO vo = service.selectProduct(prodNo);
 		req.setAttribute("product", vo);
+		
+		// 메인페이지 에서 바로 접근시
+		if(StringUtils.isEmpty(cate1) || StringUtils.isEmpty(cate2)) {
+			cate1 = String.valueOf(vo.getProdCate1());
+			cate2 = String.valueOf(vo.getProdCate2());
+		}
+		
+		// nav 카테고리 
+		req.setAttribute("cate1", cate1);
+		req.setAttribute("cate2", cate2);
 		
 		// 상품 조회수 업데이트
 		service.updateProductHit(prodNo);

@@ -25,12 +25,18 @@ public class AdminCsNoticeListController extends HttpServlet{
 		
 		String pg = req.getParameter("pg");
 		String cate1 = req.getParameter("cate1");
+		if(StringUtils.isEmpty(cate1)) cate1 = "0";
 		
 		//현재 페이지 번호
 		int currentPage = service.getCurrentPage(pg);
 		
 		// 전체 게시물 갯수 
-		int total = service.selectCountTotalNotice();
+		int total = 0;
+		if(cate1.equals("0")) {
+			total = service.selectCountTotalNotice();
+		}else {
+			total = service.selectCountTotalNoticeCate1(cate1);
+		}
 		
 		// 마지막 페이지 번호
 		int lastPageNum = service.getLastPageNum(total);
@@ -47,7 +53,7 @@ public class AdminCsNoticeListController extends HttpServlet{
 		System.out.println("start : "+start);
 		 
 		List<CsNoticeVO> articles = null;
-		if(StringUtils.isEmpty(cate1)) cate1 = "0";
+		
 		if(cate1.equals("0")) {
 			// notice 전체 글 가져오기
 			articles = service.selectAllNoticeArticles(start);

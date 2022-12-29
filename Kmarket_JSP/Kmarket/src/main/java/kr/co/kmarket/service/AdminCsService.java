@@ -47,6 +47,10 @@ public enum AdminCsService {
 		return dao.selectCountTotalNotice();
 	}
 	
+	public int selectCountTotalNoticeCate1(String cate1) {
+		return dao.selectCountTotalNoticeCate1(cate1);
+	}
+	
 	public int getLastPageNum(int total) {
 		int lastPageNum = 0 ;
 		if(total % 10 == 0) {

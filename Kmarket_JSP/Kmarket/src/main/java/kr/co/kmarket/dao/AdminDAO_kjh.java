@@ -77,7 +77,7 @@ public class AdminDAO_kjh extends DBHelper {
 	}
 		
 	
-	// 전체 게시물 카운트
+	// 전체 게시물 카운트 notice count all
 	public int selectCountTotalNotice() {
 		int total = 0;
 		try {
@@ -96,6 +96,28 @@ public class AdminDAO_kjh extends DBHelper {
 		logger.debug("total : "+total);
 		return total;
 	}
+	
+	// notice count cate1
+	public int selectCountTotalNoticeCate1(String cate1) {
+		logger.info("selectCountTotalNoticeCate1");
+		int total = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_COUNT_TOTAL_NOTICE_CATE1);
+			psmt.setString(1, cate1);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+			close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		logger.debug("total : " + total);
+		return total;
+	}	
+	
 	
 	// cs notice 전체 list 출력
 	public List<CsNoticeVO> selectAllNoticeArticles(int start){

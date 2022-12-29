@@ -103,7 +103,7 @@ public class Sql {
 	public static final String SELECT_COUNT_TOTAL_NOTICE = "SELECT COUNT(`notNo`) FROM `km_cs_notice`";
 	
 	// 공지사항 카테고리별 페이징 
-	public static final String SELECT_COUNT_CATE_TOTAL = "SELECT COUNT(`notNo`) FROM `km_cs_notice` where `cate1`=?";
+	public static final String SELECT_COUNT_TOTAL_NOTICE_CATE1 = "SELECT COUNT(`notNo`) FROM `km_cs_notice` where `cate1`=?";
 	
 	// 자주묻는질문 list
 	public static final String SELECT_FAQ_ARTICLES = "SELECT a.*, b.c1Name, c.c2Name FROM `km_cs_faq` AS a "

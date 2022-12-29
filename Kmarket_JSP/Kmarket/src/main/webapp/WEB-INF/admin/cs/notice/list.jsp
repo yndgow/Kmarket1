@@ -1,15 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../_header.jsp"/>
-
-<script>
-	$(function(){
-		$('.btnWriteNotice').click(function(){
-			location.href = '/Kmarket/admin/cs/notice/write.do';
-		});
-	});
-</script>
-
 <section id="admin-notice-list">
     <nav>
       <h3>공지사항 목록</h3>
@@ -70,7 +61,7 @@
                 	<td><input type="checkbox" name="noticeCheck" value="${article.notNo}"></td>
                 	<td>${article.notNo}</td>
                 	<td>${article.c1Name}</td>
-                    <td><a href="./view.do?notNo=${article.notNo}">${article.notTitle}</a></td>
+                    <td><a href="./view.do?cate1=${cate1}&notNo=${article.notNo}">${article.notTitle}</a></td>
                     <td>${article.hit}</td>
                     <td>${article.rdate.substring(2, 10)}</td>
                     <td>
@@ -92,7 +83,7 @@
            </c:if>
            <c:forEach var="num" begin="${pageGroupStart}" end="${pageGroupEnd}">
            <span class="num ${num == currentPage ? 'current' : 'off'}">
-               <a href="/Kmarket/admin/cs/notice/list.do?pg=${num}">${num}</a>
+               <a href="/Kmarket/admin/cs/notice/list.do?cate1=${cate1}&pg=${num}">${num}</a>
            </span>
            </c:forEach>
            <c:if test="${pageGroupEnd < lastPageNum}">

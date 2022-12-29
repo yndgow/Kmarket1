@@ -42,7 +42,6 @@ public class NoticeListController extends HttpServlet{
 				total = service.selectCountCateTotal(cate1); //카테고리별 게시물 갯수
 			}
 		
-		
 		int lastPageNum = service.getLastPageNum(total);// 마지막 페이지 번호
 		int[] result = service.getPageGroupNum(currentPage, lastPageNum); // 페이지 그룹번호
 		int pageStartNum = service.getPageStartNum(total, currentPage); // 페이지 시작번호
@@ -51,19 +50,12 @@ public class NoticeListController extends HttpServlet{
 		// 글 가져오기
 		List<CsNoticeVO> articles = service.selectNoticeArticles(cate1, start); 
 		
-		
-		
 		req.setAttribute("articles", articles);
 		req.setAttribute("lastPageNum", lastPageNum);		
 		req.setAttribute("currentPage", currentPage);		
 		req.setAttribute("pageGroupStart", result[0]);
 		req.setAttribute("pageGroupEnd", result[1]);
 		req.setAttribute("pageStartNum", pageStartNum+1);
-		 
-		
-		
-		
-		
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/cs/notice/list.jsp");
 		dispatcher.forward(req, resp);

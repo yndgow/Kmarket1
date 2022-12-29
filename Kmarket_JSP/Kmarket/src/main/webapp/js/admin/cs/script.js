@@ -56,6 +56,11 @@ $(() => {
   $('.btnList').click(function () {
     location.href = '/Kmarket/admin/cs/notice/list.do';
   });
+  //
+  $('.btnWriteNotice').click(function(){
+	location.href = '/Kmarket/admin/cs/notice/write.do';
+  });
+  
 
   // btnModifyNot
   $('.btnModifyNot').click(function (e) {

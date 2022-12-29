@@ -804,10 +804,15 @@ input, textarea{
     text-indent: 10px;
 }
 #cs table.asktest select{
-    width: 100px;
     height: 40px;
     font-size: 16px;
     box-sizing: border-box;
+}
+#cs table.asktest select:first-child{
+	width: 149px;
+}
+#cs table.asktest select:last-child{
+	width: 160px;
 }
 #cs table.asktest select *{
     font-size: inherit;

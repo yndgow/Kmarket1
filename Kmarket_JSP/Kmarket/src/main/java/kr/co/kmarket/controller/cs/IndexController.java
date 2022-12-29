@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.kmarket.service.CsService;
-import kr.co.kmarket.service.CsService_kkj;
 import kr.co.kmarket.vo.CsNoticeVO;
 import kr.co.kmarket.vo.CsQnaVO;
 
@@ -19,7 +18,7 @@ import kr.co.kmarket.vo.CsQnaVO;
 public class IndexController extends HttpServlet{
 	CsService service = CsService.INSTANCE;
 	private static final long serialVersionUID = 1L;
-	CsService_kkj service2 = CsService_kkj.INSTANCE;
+	CsService service2 = CsService.INSTANCE;
 	@Override
 	public void init() throws ServletException {
 	}

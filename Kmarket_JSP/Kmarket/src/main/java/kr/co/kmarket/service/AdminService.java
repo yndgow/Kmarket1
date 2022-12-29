@@ -15,7 +15,6 @@ import kr.co.kmarket.dao.AdminDAO;
 import kr.co.kmarket.dao.AdminDAO_kjh;
 import kr.co.kmarket.vo.ProductCate1VO;
 
-import kr.co.kmarket.vo.ProductOrderVO;
 import kr.co.kmarket.vo.ProductCate2VO;
 
 import kr.co.kmarket.vo.ProductVO;
@@ -54,16 +53,16 @@ public enum AdminService {
 		return dao.selectProducts(seller, start);
 	}
 	
-	public int selectCountTotal(String seller) {
-		return dao.selectCountTotal(seller);
+	public int selectCountTotalProdSeller(String seller) {
+		return dao.selectCountTotalProdSeller(seller);
 	}
 	
 	public int selectCountTotalAdmin() {
 		return dao.selectCountTotalAdmin();
 	}
 	
-	public int selectCountTotal(String keyword, String searchCate) {
-		return dao.selectCountTotal(keyword, searchCate);
+	public int selectCountTotalKeywordSearchCate(String keyword, String searchCate) {
+		return dao.selectCountTotalKeywordSearchCate(keyword, searchCate);
 	}
 	
 	public List<ProductVO> selectProductsAdmin(int start) {

@@ -84,8 +84,8 @@ public enum ProductService {
 	}
 	
 	// 전체 게시물 갯수 where cate1, cate2
-	public int selectCountTotal(String cate1, String cate2) {
-		return dao.selectCountTotal(cate1, cate2);
+	public int selectCountTotalProdCate1Cate2(String cate1, String cate2) {
+		return dao.selectCountTotalProdCate1Cate2(cate1, cate2);
 	}
 
 	// 상품 한개 출력

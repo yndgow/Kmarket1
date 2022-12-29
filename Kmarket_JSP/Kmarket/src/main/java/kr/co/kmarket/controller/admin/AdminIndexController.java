@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.kmarket.service.AdminService;
-import kr.co.kmarket.vo.ProductOrderVO;
 
 @WebServlet("/admin/index.do")
 public class AdminIndexController extends HttpServlet {

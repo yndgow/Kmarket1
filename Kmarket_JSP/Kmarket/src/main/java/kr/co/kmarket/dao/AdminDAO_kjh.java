@@ -10,8 +10,7 @@ import org.slf4j.LoggerFactory;
 
 
 import kr.co.kmarket.db.DBHelper;
-import kr.co.kmarket.db.Sql_hong;
-import kr.co.kmarket.db.Sql_kjh;
+import kr.co.kmarket.db.Sql;
 import kr.co.kmarket.vo.AdminCsNoticeCate1VO;
 import kr.co.kmarket.vo.CsCate1DTO;
 import kr.co.kmarket.vo.CsCate2DTO;
@@ -35,7 +34,7 @@ public class AdminDAO_kjh extends DBHelper {
 		ProductVO vo = null;
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.SELECT_IMG_FILENAME);
+			psmt = conn.prepareStatement(Sql.SELECT_IMG_FILENAME);
 			psmt.setString(1, prodNo);
 			rs = psmt.executeQuery();
 			if(rs.next()) {
@@ -62,7 +61,7 @@ public class AdminDAO_kjh extends DBHelper {
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery(Sql_hong.SELECT_CATEGORY1_BY_CS_ADMIN_NOTICE);
+			rs = stmt.executeQuery(Sql.SELECT_CATEGORY1_BY_CS_ADMIN_NOTICE);
 			while(rs.next()){
 				AdminCsNoticeCate1VO vo = new AdminCsNoticeCate1VO();
 				vo.setCate1(rs.getInt(1));
@@ -79,13 +78,13 @@ public class AdminDAO_kjh extends DBHelper {
 		
 	
 	// 전체 게시물 카운트
-	public int selectCountTotal() {
+	public int selectCountTotalNotice() {
 		int total = 0;
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
 			
-			rs = stmt.executeQuery(Sql_hong.SELECT_COUNT_TOTAL_NOTICE);
+			rs = stmt.executeQuery(Sql.SELECT_COUNT_TOTAL_NOTICE);
 			
 			if(rs.next()) {
 				total = rs.getInt(1);
@@ -104,7 +103,7 @@ public class AdminDAO_kjh extends DBHelper {
 		List<CsNoticeVO> allArticles = new ArrayList<>();
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_hong.SELECT_ADMIN_ALL_NOTICE_ARTICLES);
+			psmt = conn.prepareStatement(Sql.SELECT_ADMIN_ALL_NOTICE_ARTICLES);
 			psmt.setInt(1, start);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
@@ -135,7 +134,7 @@ public class AdminDAO_kjh extends DBHelper {
 		List<CsNoticeVO> articles = new ArrayList<>();
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_hong.SELECT_ADMIN_NOTICE_ARTICLES);
+			psmt = conn.prepareStatement(Sql.SELECT_ADMIN_NOTICE_ARTICLES);
 			psmt.setString(1, cate1);
 			psmt.setInt(2, start);
 			rs = psmt.executeQuery();
@@ -218,7 +217,7 @@ public class AdminDAO_kjh extends DBHelper {
 
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.SELECT_ADMIN_CS_FAQ_LIST_CATE);
+			psmt = conn.prepareStatement(Sql.SELECT_ADMIN_CS_FAQ_LIST_CATE);
 			psmt.setString(1, cate1);
 			psmt.setString(2, cate2);
 			rs = psmt.executeQuery();
@@ -253,7 +252,7 @@ public class AdminDAO_kjh extends DBHelper {
 
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.SELECT_ADMIN_CS_QNA_LIST_CATE);
+			psmt = conn.prepareStatement(Sql.SELECT_ADMIN_CS_QNA_LIST_CATE);
 			psmt.setString(1, cate1);
 			psmt.setString(2, cate2);
 			psmt.setInt(3, start);
@@ -289,7 +288,7 @@ public class AdminDAO_kjh extends DBHelper {
 
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.SELECT_ADMIN_CS_QNA_LIST_ALL);
+			psmt = conn.prepareStatement(Sql.SELECT_ADMIN_CS_QNA_LIST_ALL);
 			psmt.setInt(1, start);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
@@ -323,7 +322,7 @@ public class AdminDAO_kjh extends DBHelper {
 		int result = 0;
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.INSERT_ADMIN_CS_FAQ);
+			psmt = conn.prepareStatement(Sql.INSERT_ADMIN_CS_FAQ);
 			psmt.setInt(1, vo.getCate1());
 			psmt.setInt(2, vo.getCate2());
 			psmt.setString(3, vo.getFaTitle());
@@ -345,7 +344,7 @@ public class AdminDAO_kjh extends DBHelper {
 		int result = 0;
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.SELECT_COUNT_FAQ_CATE2);
+			psmt = conn.prepareStatement(Sql.SELECT_COUNT_FAQ_CATE2);
 			psmt.setString(1, cate1);
 			psmt.setString(2, cate2);
 			rs = psmt.executeQuery();
@@ -368,7 +367,7 @@ public class AdminDAO_kjh extends DBHelper {
 
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.SELECT_ADMIN_CS_QNA_VIEW);
+			psmt = conn.prepareStatement(Sql.SELECT_ADMIN_CS_QNA_VIEW);
 			psmt.setString(1, cate1);
 			psmt.setString(2, cate2);
 			psmt.setString(3, qnaNo);
@@ -404,7 +403,7 @@ public class AdminDAO_kjh extends DBHelper {
 		int result = 0;
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.UPDATE_QNA_ANSWER);
+			psmt = conn.prepareStatement(Sql.UPDATE_QNA_ANSWER);
 			psmt.setString(1, answer);
 			psmt.setString(2, qnaNo);
 			result = psmt.executeUpdate();
@@ -426,7 +425,7 @@ public class AdminDAO_kjh extends DBHelper {
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery(Sql_kjh.SELECT_COUNT_TOTAL_QNA);
+			rs = stmt.executeQuery(Sql.SELECT_COUNT_TOTAL_QNA);
 			if(rs.next()) {
 				result = rs.getInt(1);
 			}
@@ -446,7 +445,7 @@ public class AdminDAO_kjh extends DBHelper {
 
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.SELECT_COUNT_TOTAL_QNA_CATE);
+			psmt = conn.prepareStatement(Sql.SELECT_COUNT_TOTAL_QNA_CATE);
 			psmt.setString(1, cate1);
 			psmt.setString(2, cate2);
 			rs = psmt.executeQuery();
@@ -467,7 +466,7 @@ public class AdminDAO_kjh extends DBHelper {
 		int result = 0;
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.DELETE_QNA);
+			psmt = conn.prepareStatement(Sql.DELETE_QNA);
 			psmt.setString(1, qnaNo);
 			result = psmt.executeUpdate();
 			close();
@@ -486,7 +485,7 @@ public class AdminDAO_kjh extends DBHelper {
 		for(int i=0; i<arrNo.length; i++) {
 			try {
 				conn = getConnection();
-				psmt = conn.prepareStatement(Sql_kjh.DELETE_QNA);
+				psmt = conn.prepareStatement(Sql.DELETE_QNA);
 				psmt.setString(1, arrNo[i]);
 				result += psmt.executeUpdate();
 				close();
@@ -507,7 +506,7 @@ public class AdminDAO_kjh extends DBHelper {
 
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.SELECT_ADMIN_CS_FAQ_VIEW);
+			psmt = conn.prepareStatement(Sql.SELECT_ADMIN_CS_FAQ_VIEW);
 			psmt.setString(1, cate1);
 			psmt.setString(2, cate2);
 			psmt.setString(3, faNo);
@@ -543,7 +542,7 @@ public class AdminDAO_kjh extends DBHelper {
 		for(int i=0; i<arrNo.length; i++) {
 			try {
 				conn = getConnection();
-				psmt = conn.prepareStatement(Sql_kjh.DELETE_FAQ);
+				psmt = conn.prepareStatement(Sql.DELETE_FAQ);
 				psmt.setString(1, arrNo[i]);
 				result += psmt.executeUpdate();
 				close();
@@ -561,7 +560,7 @@ public class AdminDAO_kjh extends DBHelper {
 		int result = 0;
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.DELETE_FAQ);
+			psmt = conn.prepareStatement(Sql.DELETE_FAQ);
 			psmt.setString(1, arrNo);
 			result += psmt.executeUpdate();
 			close();
@@ -579,7 +578,7 @@ public class AdminDAO_kjh extends DBHelper {
 
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.SELECT_FAQ_VIEW_FANO);
+			psmt = conn.prepareStatement(Sql.SELECT_FAQ_VIEW_FANO);
 			psmt.setString(1, faNo);
 			
 			rs = psmt.executeQuery();
@@ -612,7 +611,7 @@ public class AdminDAO_kjh extends DBHelper {
 		int result = 0;
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.UPDATE_ADMIN_FAQ);
+			psmt = conn.prepareStatement(Sql.UPDATE_ADMIN_FAQ);
 			psmt.setString(1, vo.getFaTitle());
 			psmt.setString(2, vo.getFaContent());
 			psmt.setString(3, vo.getRegip());
@@ -636,7 +635,7 @@ public class AdminDAO_kjh extends DBHelper {
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery(Sql_kjh.SELECT_FAQ_CATE_LIST);
+			rs = stmt.executeQuery(Sql.SELECT_FAQ_CATE_LIST);
 			while(rs.next()) {
 				CsCate1DTO vo = new CsCate1DTO();
 				vo.setCate1(rs.getInt(1));

@@ -43,8 +43,8 @@ public enum AdminCsService {
 	
 	
 	// list pg 처리
-	public int selectCountTotal() {
-		return dao.selectCountTotal();
+	public int selectCountTotalNotice() {
+		return dao.selectCountTotalNotice();
 	}
 	
 	public int getLastPageNum(int total) {

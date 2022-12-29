@@ -40,7 +40,7 @@ $(() => {
       }
 
       $.ajax({
-        url: '/Kmarket/admin/cs/notice/admincsnoticedelete.do',
+        url: '/Kmarket/admin/cs/notice/delete.do',
         type: 'get',
         data: { notNo: notNo },
         dataType: 'json',
@@ -112,7 +112,7 @@ $(() => {
       if (chkArr[i].checked == true) arrNo.push(chkArr[i].value);
     }
     if (confirm('선택된 글을 삭제하시겠습니까?')) {
-      $.getJSON('/Kmarket/admin/cs/notice/admincsnoticedelete.do', { arrNo: arrNo }, function (data) {
+      $.getJSON('/Kmarket/admin/cs/notice/delete.do', { arrNo: arrNo }, function (data) {
         if (data.result > 0) {
           $('input[name=noticeCheck]:checked').parents('tr').remove();
         }

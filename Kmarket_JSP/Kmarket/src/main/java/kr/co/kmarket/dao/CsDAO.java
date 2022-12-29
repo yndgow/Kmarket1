@@ -324,7 +324,7 @@ public class CsDAO extends DBHelper {
 		int total = 0;
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql.SELECT_COUNT_CATE_TOTAL);
+			psmt = conn.prepareStatement(Sql.SELECT_COUNT_TOTAL_NOTICE_CATE1);
 			psmt.setString(1, cate1);
 			
 			rs = psmt.executeQuery();

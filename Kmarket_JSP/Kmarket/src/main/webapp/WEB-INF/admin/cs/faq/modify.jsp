@@ -47,7 +47,7 @@
       </form>
       <div class="btnGroup">
         <input type="button" class="btnAdminCsDel btnCancle" value="취소" />
-        <input type="button" class="btnAdminCsWri btnSubmit" value="수정하기" />
+        <input type="button" class="btnAdminCsWri btnSubmitNotice" value="수정하기" />
       </div>
     </section>
   </section>

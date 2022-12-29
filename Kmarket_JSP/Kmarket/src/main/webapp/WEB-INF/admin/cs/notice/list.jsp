@@ -10,7 +10,7 @@
        <div class="csSelectDiv">
        		
            <select name="cate1" id="selNot">
-           		<option value="0">유형선택</option>
+           		<option value="0">1차유형</option>
            <c:choose>
        			<c:when test="${cate1 eq 1}">
 	            	<option value="1" selected>고객서비스</option>

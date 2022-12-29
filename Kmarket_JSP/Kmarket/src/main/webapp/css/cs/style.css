@@ -820,7 +820,15 @@ input, textarea{
     padding: 10px;
     box-sizing: border-box;
 }
-
+#cs table.asktest select:first-child{
+	width: 149px;
+}
+#cs table.asktest select:last-child{
+	width: 200px;
+}
+.btnGroupQna{
+	text-align: center;
+}
  /* footer */
  footer {
     width: 100%;

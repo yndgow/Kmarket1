@@ -20,8 +20,8 @@ public class AdminCsNoticeWriteController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		
 		req.setAttribute("csType", req.getParameter("csType"));
+		req.setAttribute("cate1", req.getParameter("cate1")); 
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/admin/cs/notice/write.jsp");
 		dispatcher.forward(req, resp);

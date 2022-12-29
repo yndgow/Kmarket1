@@ -360,8 +360,10 @@ button[type=submit] {
 }
 
 /* admin-product-list */
-#admin-product-list {}
-#admin-product-list > section > div {margin-bottom: 10px;}
+#admin-product-list > section > div {
+	margin-bottom: 10px;
+	
+}
 #admin-product-list > section > table {
     border-top: 2px solid rgb(135, 152, 163);
 }

@@ -14,10 +14,39 @@
           <td>
             <select name="cate1">
               <option value="0">1차유형</option>
-              <option value="1">고객서비스</option>
-              <option value="2">안전거래</option>
-              <option value="3">위해상품</option>
-              <option value="4">이벤트 당첨</option>
+               <c:choose>
+       			<c:when test="${cate1 eq 1}">
+	            	<option value="1" selected>고객서비스</option>
+	            	<option value="2">안전거래</option>
+	            	<option value="3">위해상품</option>
+	            	<option value="4">이벤트 당첨</option>
+            	</c:when>
+	            <c:when test="${cate1 eq 2}">
+	            	<option value="1">고객서비스</option>
+	            	<option value="2" selected>안전거래</option>
+	            	<option value="3">위해상품</option>
+	            	<option value="4">이벤트 당첨</option>
+            	</c:when>
+	            <c:when test="${cate1 eq 3}">
+	            	<option value="1">고객서비스</option>
+	            	<option value="2">안전거래</option>
+	            	<option value="3" selected>위해상품</option>
+	            	<option value="4">이벤트 당첨</option>
+            	</c:when>
+	            <c:when test="${cate1 eq 4}">
+	            	<option value="1">고객서비스</option>
+	            	<option value="2">안전거래</option>
+	            	<option value="3">위해상품</option>
+	            	<option value="4" selected>이벤트 당첨</option>
+            	</c:when>
+            	<c:otherwise>
+		           	<option value="1">고객서비스</option>
+		     	   	<option value="2">안전거래</option>
+		    	   	<option value="3">위해상품</option>
+		    	   	<option value="4">이벤트당첨</option>
+       			</c:otherwise>
+       		</c:choose>
+             
             </select>
           </td>
         </tr>

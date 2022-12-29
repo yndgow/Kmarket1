@@ -37,7 +37,7 @@
                                 </td>
                             </tr>
                         </table>
-                        <div>
+                        <div class="btnGroupQna">
                             <a href="./list.do?cate1=1" class="btnList">취소하기</a>
                             <input type="submit" class="btnSubmit" value="등록하기">
                         </div>

@@ -5,20 +5,9 @@
 <input type="hidden" name="writeCate1" value="${cate1}" />
 <input type="hidden" name="writeCate2" value="${cate2}" />
   <section id="admin-product-list">
-	<c:choose>
-		<c:when test="${csType eq 'faq'}">
-			<c:set var="csTxt" value="자주묻는질문"/>
-		</c:when>
-		<c:when test="${csType eq 'qna'}">
-			<c:set var="csTxt" value="문의하기"/>
-		</c:when>
-		<c:when test="${csType eq 'notice'}">
-			<c:set var="csTxt" value="공지사항"/>
-		</c:when>
-	</c:choose>
     <nav>
       <h3>${csTxt} 작성</h3>
-      <p>HOME > 고객센터 > <strong>${csTxt}</strong></p>
+      <p>HOME > 고객센터 > <strong>공지사항</strong></p>
     </nav>
     <section>
     

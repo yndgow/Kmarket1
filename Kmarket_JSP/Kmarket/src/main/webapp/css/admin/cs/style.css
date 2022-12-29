@@ -82,9 +82,11 @@
 .btnGroup {
   width: 210px;
   margin: 0 auto;
+  text-align: right;
 }
 .btnGroup > input[type='button'] {
   float: none !important;
+  height: 35px;
 }
 input[type='button']:hover {
   cursor: pointer;

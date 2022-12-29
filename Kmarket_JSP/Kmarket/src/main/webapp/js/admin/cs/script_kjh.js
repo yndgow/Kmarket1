@@ -195,7 +195,7 @@ $(() => {
     location.href = '/Kmarket/admin/cs/faq/modify.do?csType=faq&cate1=' + cate1 + '&cate2=' + cate2 + '&faNo=' + faNo;
   });
   // update faq submit
-  $('.btnSubmit').click(function (e) {
+  $('.btnSubmitNotice').click(function (e) {
     e.preventDefault();
     let title = $('input[name=title]').val();
     let content = $('textarea[name=content]').val();

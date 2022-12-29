@@ -1,6 +1,7 @@
 package kr.co.kmarket.controller.admin;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -51,7 +52,7 @@ public class AdminListController extends HttpServlet{
 		int start = service.getStartNum(currentPage);// 시작 인덱스
 	
 		
-		List<ProductVO> products = null;
+		List<ProductVO> products = new ArrayList<>();
 		if(StringUtils.isEmpty(searchContent)) {
 			if(seller.equals("admin")) {
 				products = service.selectProductsAdmin(start);
@@ -62,13 +63,14 @@ public class AdminListController extends HttpServlet{
 			products = service.selectproductByKeyword(searchContent, start, searchCate);
 		}
 		
-		req.setAttribute("products", products);
 		req.setAttribute("lastPageNum", lastPageNum);		
 		req.setAttribute("currentPage", currentPage);		
 		req.setAttribute("pageGroupStart", result[0]);
 		req.setAttribute("pageGroupEnd", result[1]);
 		req.setAttribute("pageStartNum", pageStartNum+1);
-		req.setAttribute("search", searchContent);
+		req.setAttribute("searchContent", searchContent);
+		req.setAttribute("searchCate", searchCate);
+		req.setAttribute("products", products);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/admin/product/list.jsp");
 		dispatcher.forward(req, resp);

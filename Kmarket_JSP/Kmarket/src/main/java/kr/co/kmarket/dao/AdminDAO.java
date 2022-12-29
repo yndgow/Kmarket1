@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 
 import kr.co.kmarket.db.DBHelper;
 import kr.co.kmarket.db.Sql;
-import kr.co.kmarket.db.Sql_Kbs;
 import kr.co.kmarket.vo.CsNoticeVO;
 import kr.co.kmarket.vo.ProductCate1VO;
 
@@ -173,7 +172,7 @@ public class AdminDAO extends DBHelper {
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery(Sql_Kbs.SELECT_PRODUCTS_ADMIN);
+			rs = stmt.executeQuery(Sql.SELECT_PRODUCTS_ADMIN);
 			while(rs.next()) {
 				ProductVO vo = new ProductVO();
 				vo.setProdNo(rs.getInt(1));
@@ -219,7 +218,7 @@ public class AdminDAO extends DBHelper {
 		
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_Kbs.SELECT_PRODUCTS);
+			psmt = conn.prepareStatement(Sql.SELECT_PRODUCTS);
 			psmt.setString(1, seller);
 			psmt.setInt(2, start);
 			rs = psmt.executeQuery();
@@ -269,7 +268,7 @@ public class AdminDAO extends DBHelper {
 		
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_Kbs.SELECT_PRODUCTS_ADMIN);
+			psmt = conn.prepareStatement(Sql.SELECT_PRODUCTS_ADMIN);
 			psmt.setInt(1, start);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
@@ -312,12 +311,12 @@ public class AdminDAO extends DBHelper {
 		return products;
 	}
 	
-	public int selectCountTotal(String seller) {
+	public int selectCountTotalProdSeller(String seller) {
 		int result = 0;
 		try {
-			logger.info("selectCountTotal...");
+			logger.info("selectCountTotalProdSeller...");
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_Kbs.SELECT_COUNT_TOTAL);
+			psmt = conn.prepareStatement(Sql.SELECT_COUNT_TOTAL_ADMIN_ALL);
 			psmt.setString(1, seller);
 			rs = psmt.executeQuery();
 			if(rs.next()) result = rs.getInt(1);
@@ -335,7 +334,7 @@ public class AdminDAO extends DBHelper {
 			logger.info("selectCountTotalAdmin...");
 			conn = getConnection();
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery(Sql_Kbs.SELECT_COUNT_TOTAL_ADMIN);
+			rs = stmt.executeQuery(Sql.SELECT_COUNT_TOTAL_ADMIN);
 			if(rs.next()) result = rs.getInt(1);
 			close();
 		} catch (Exception e) {
@@ -345,12 +344,12 @@ public class AdminDAO extends DBHelper {
 		return result;
 	}
 	
-	public int selectCountTotal(String keyword, String searchCate) {
+	public int selectCountTotalKeywordSearchCate(String keyword, String searchCate) {
 		int result = 0;
 		try {
-			logger.info("selectCountTotalkeyword...");
+			logger.info("selectCountTotalKeywordSearchCate...");
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_Kbs.SELECT_COUNT_TOTAL_FOR_SEARCH +searchCate +" LIKE ?" + "LIMIT 0, 10");
+			psmt = conn.prepareStatement(Sql.SELECT_COUNT_TOTAL_FOR_SEARCH +searchCate +" LIKE ?" + "LIMIT 0, 10");
 			psmt.setString(1, "%" + keyword + "%");
 			rs = psmt.executeQuery();
 			if(rs.next()) result = rs.getInt(1);
@@ -419,7 +418,7 @@ public class AdminDAO extends DBHelper {
 			logger.info("deleteAdmin...");
 			conn = getConnection();
 			
-			psmt = conn.prepareStatement(Sql_Kbs.DELETE_ADMIN);
+			psmt = conn.prepareStatement(Sql.DELETE_ADMIN);
 			psmt.setString(1, prodNo);
 			result1 = psmt.executeUpdate();
 			
@@ -437,7 +436,7 @@ public class AdminDAO extends DBHelper {
 		for (String notNo : arrNo) {
 			try {
 				conn = getConnection();
-				psmt = conn.prepareStatement(Sql_Kbs.DELETE_ADMIN_CS_NOTICE);
+				psmt = conn.prepareStatement(Sql.DELETE_ADMIN_CS_NOTICE);
 				psmt.setString(1, notNo);
 				result += psmt.executeUpdate();
 				close();
@@ -457,7 +456,7 @@ public class AdminDAO extends DBHelper {
 			conn = getConnection();
 			conn.setAutoCommit(false);
 			
-			psmt = conn.prepareStatement(Sql_Kbs.INSERT_ADMIN_CS_NOT);
+			psmt = conn.prepareStatement(Sql.INSERT_ADMIN_CS_NOT);
 			psmt.setInt(1, vo.getCate1());
 			psmt.setString(2, vo.getNotTitle());
 			psmt.setString(3, vo.getNotContent());
@@ -465,7 +464,7 @@ public class AdminDAO extends DBHelper {
 			psmt.executeUpdate();
 			
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery(Sql_Kbs.SELECT_MAX_NOTNO);
+			rs = stmt.executeQuery(Sql.SELECT_MAX_NOTNO);
 			if(rs.next()) {
 				result = rs.getInt(1);
 			}
@@ -484,7 +483,7 @@ public class AdminDAO extends DBHelper {
 		int result = 0;
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_Kbs.UPDATE_ADMIN_CS_NOTICE);
+			psmt = conn.prepareStatement(Sql.UPDATE_ADMIN_CS_NOTICE);
 			psmt.setInt(1, vo.getCate1());
 			psmt.setString(2, vo.getNotTitle());
 			psmt.setString(3, vo.getNotContent());

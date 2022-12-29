@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.kmarket.service.CsService_kkj;
+import kr.co.kmarket.service.CsService;
 import kr.co.kmarket.vo.CsNoticeVO;
 
 @WebServlet("/cs/notice/list.do")
@@ -18,7 +18,7 @@ public class NoticeListController extends HttpServlet{
 	
 	
 	private static final long serialVersionUID = 1L;
-	CsService_kkj service = CsService_kkj.INSTANCE;
+	CsService service = CsService.INSTANCE;
 	
 	
 	@Override
@@ -37,7 +37,7 @@ public class NoticeListController extends HttpServlet{
 		int total = 0;
 		
 		if(cate1 == null) {
-				total = service.selectCountTotal(); //전체 게시물 갯수
+				total = service.selectCountTotalNotice(); //전체 게시물 갯수
 		}else {
 				total = service.selectCountCateTotal(cate1); //카테고리별 게시물 갯수
 			}

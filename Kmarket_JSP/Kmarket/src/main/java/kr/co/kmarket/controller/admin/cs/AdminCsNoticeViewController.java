@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.kmarket.service.CsService_kkj;
+import kr.co.kmarket.service.CsService;
 import kr.co.kmarket.vo.CsNoticeVO;
 
 @WebServlet("/admin/cs/notice/view.do")
 public class AdminCsNoticeViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	CsService_kkj service1 = CsService_kkj.INSTANCE;
+	CsService service1 = CsService.INSTANCE;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -42,7 +42,7 @@ public class ProductListController extends HttpServlet{
 		int currentPage = service.getCurrentPage(pg);// 현재 페이지 번호
 		int total = 0; // 전체 게시물 갯수
 		if(StringUtils.isEmpty(search)){
-			total = service.selectCountTotal(cate1, cate2);
+			total = service.selectCountTotalProdCate1Cate2(cate1, cate2);
 		}else {
 			//total = service.selectCountTotal(cate1, cate2, search);
 		}

@@ -7,8 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import kr.co.kmarket.db.DBHelper;
-import kr.co.kmarket.db.Sql_hong;
-import kr.co.kmarket.db.Sql_kjh;
+import kr.co.kmarket.db.Sql;
 import kr.co.kmarket.vo.ProductCartVO;
 import kr.co.kmarket.vo.ProductCate1VO;
 import kr.co.kmarket.vo.ProductCate2VO;
@@ -38,7 +37,7 @@ public class ProductDAO extends DBHelper {
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery(Sql_hong.SELECT_MAIN_BEST_ARTICLES);
+			rs = stmt.executeQuery(Sql.SELECT_MAIN_BEST_ARTICLES);
 			while(rs.next()) {
 				ProductVO vo = new ProductVO();
 				vo.setProdNo(rs.getInt(1));
@@ -88,7 +87,7 @@ public class ProductDAO extends DBHelper {
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery(Sql_hong.SELECT_MAIN_HIT_ARTICLES);
+			rs = stmt.executeQuery(Sql.SELECT_MAIN_HIT_ARTICLES);
 			while(rs.next()) {
 				ProductVO vo = new ProductVO();
 				vo.setProdNo(rs.getInt(1));
@@ -139,7 +138,7 @@ public class ProductDAO extends DBHelper {
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery(Sql_hong.SELECT_MAIN_SCORE_ARTICLES);
+			rs = stmt.executeQuery(Sql.SELECT_MAIN_SCORE_ARTICLES);
 			while(rs.next()) {
 				ProductVO vo = new ProductVO();
 				vo.setProdNo(rs.getInt(1));
@@ -190,7 +189,7 @@ public class ProductDAO extends DBHelper {
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery(Sql_hong.SELECT_MAIN_NEW_ARTICLES);
+			rs = stmt.executeQuery(Sql.SELECT_MAIN_NEW_ARTICLES);
 			while(rs.next()) {
 				ProductVO vo = new ProductVO();
 				vo.setProdNo(rs.getInt(1));
@@ -242,7 +241,7 @@ public class ProductDAO extends DBHelper {
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery(Sql_hong.SELECT_MAIN_DIS_ARTICLES);
+			rs = stmt.executeQuery(Sql.SELECT_MAIN_DIS_ARTICLES);
 			while(rs.next()) {
 				ProductVO vo = new ProductVO();
 				vo.setProdNo(rs.getInt(1));
@@ -299,8 +298,8 @@ public class ProductDAO extends DBHelper {
 		
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.SELECT_PRODUCT_LIST+ listSort + sql_limit);
-			logger.info(Sql_kjh.SELECT_PRODUCT_LIST);
+			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST+ listSort + sql_limit);
+			logger.info(Sql.SELECT_PRODUCT_LIST);
 			psmt.setString(1, cate1);
 			psmt.setString(2, cate2);
 			rs = psmt.executeQuery();
@@ -353,7 +352,7 @@ public class ProductDAO extends DBHelper {
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery(Sql_kjh.SELECT_CATEGORY_1);
+			rs = stmt.executeQuery(Sql.SELECT_CATEGORY_1);
 			while(rs.next()) {
 				ProductCate1VO vo = new ProductCate1VO();
 				vo.setCate1(rs.getInt(1));
@@ -375,7 +374,7 @@ public class ProductDAO extends DBHelper {
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery(Sql_kjh.SELECT_CATEGORY_2);
+			rs = stmt.executeQuery(Sql.SELECT_CATEGORY_2);
 			while(rs.next()) {
 				ProductCate2VO vo = new ProductCate2VO();
 				vo.setCate1(rs.getInt(1));
@@ -392,12 +391,12 @@ public class ProductDAO extends DBHelper {
 	}
 	
 	// 상품 최대갯수 출력 
-	public int selectCountTotal(String cate1, String cate2) {
-		logger.info("selectCountTotal");
+	public int selectCountTotalProdCate1Cate2(String cate1, String cate2) {
+		logger.info("selectCountTotalProdCate1Cate2");
 		int result = 0;
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.SELECT_PRODUCT_COUNT_PRODNO);
+			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_COUNT_PRODNO);
 			psmt.setString(1, cate1);
 			psmt.setString(2, cate2);
 			rs = psmt.executeQuery();
@@ -417,7 +416,7 @@ public class ProductDAO extends DBHelper {
 		ProductVO vo = null;
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.SELECT_PRODUCT);
+			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT);
 			psmt.setString(1, prodNo);
 			rs = psmt.executeQuery();
 			if(rs.next()) {
@@ -465,7 +464,7 @@ public class ProductDAO extends DBHelper {
 		List<ProductReviewVO> reviews = new ArrayList<>();
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.SELECT_REVIEWS);
+			psmt = conn.prepareStatement(Sql.SELECT_REVIEWS);
 			psmt.setString(1, prodNo);
 			psmt.setInt(2, start);
 			rs = psmt.executeQuery();
@@ -494,7 +493,7 @@ public class ProductDAO extends DBHelper {
 		int result = 0;
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.SELECT_REVIEW_COUNT_PRODNO);
+			psmt = conn.prepareStatement(Sql.SELECT_REVIEW_COUNT_PRODNO);
 			psmt.setString(1, prodNo);
 			rs = psmt.executeQuery();
 			
@@ -513,7 +512,7 @@ public class ProductDAO extends DBHelper {
 		List<ProductCartVO> carts = new ArrayList<>();
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.SELECT_PRODUCTCARTS);
+			psmt = conn.prepareStatement(Sql.SELECT_PRODUCTCARTS);
 			psmt.setString(1, uid);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
@@ -548,7 +547,7 @@ public class ProductDAO extends DBHelper {
 		int result = 0;
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.SELECT_PRODUCTCART);
+			psmt = conn.prepareStatement(Sql.SELECT_PRODUCTCART);
 			psmt.setString(1, uid);
 			psmt.setInt(2, prodNo);
 			rs = psmt.executeQuery();
@@ -567,7 +566,7 @@ public class ProductDAO extends DBHelper {
 		List<ProductCartVO> carts = new ArrayList<>();
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.SELECT_PRODUCTCART_FOR_ORDER + sql);
+			psmt = conn.prepareStatement(Sql.SELECT_PRODUCTCART_FOR_ORDER + sql);
 			psmt.setString(1, uid);
 			rs = psmt.executeQuery();
 			
@@ -603,7 +602,7 @@ public class ProductDAO extends DBHelper {
 		ProductOrderVO vo = null;
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.SELECT_ORDER);
+			psmt = conn.prepareStatement(Sql.SELECT_ORDER);
 			psmt.setString(1, uid);
 			rs = psmt.executeQuery();
 			if(rs.next()) {
@@ -637,7 +636,7 @@ public class ProductDAO extends DBHelper {
 		List<ProductOrderVO> completes = new ArrayList<>();
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.SELECT_PRODUCT_COMPLETE);
+			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_COMPLETE);
 			psmt.setString(1, ordNo);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
@@ -689,7 +688,7 @@ public class ProductDAO extends DBHelper {
 		int result = 0;
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.INSERT_PRODUCTCART);
+			psmt = conn.prepareStatement(Sql.INSERT_PRODUCTCART);
 			psmt.setString(1, vo.getUid());
 			psmt.setInt(2, vo.getProdNo());
 			psmt.setInt(3, vo.getCount());
@@ -711,7 +710,7 @@ public class ProductDAO extends DBHelper {
 		int result = 0;
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.INSERT_PRODUCTORDER);
+			psmt = conn.prepareStatement(Sql.INSERT_PRODUCTORDER);
 			psmt.setString(1, vo.getOrdUid());
 			psmt.setInt(2, vo.getOrdCount());
 			psmt.setInt(3, vo.getOrdPrice());
@@ -741,7 +740,7 @@ public class ProductDAO extends DBHelper {
 			logger.info("insertProductOrderItem LIST"+i);
 			try {
 				conn = getConnection();
-				psmt = conn.prepareStatement(Sql_kjh.INSERT_PRODUCTORDERITEM);
+				psmt = conn.prepareStatement(Sql.INSERT_PRODUCTORDERITEM);
 				psmt.setString(1, ordNo);
 				psmt.setInt(2, cartList.get(i).getProdNo());
 				psmt.setInt(3, cartList.get(i).getCount());
@@ -768,7 +767,7 @@ public class ProductDAO extends DBHelper {
 			logger.info("insertProductOrderItem VO");
 			try {
 				conn = getConnection();
-				psmt = conn.prepareStatement(Sql_kjh.INSERT_PRODUCTORDERITEM);
+				psmt = conn.prepareStatement(Sql.INSERT_PRODUCTORDERITEM);
 				psmt.setInt(1, vo.getOrdNo());
 				psmt.setInt(2, vo.getProdNo());
 				psmt.setInt(3, vo.getCount());
@@ -794,7 +793,7 @@ public class ProductDAO extends DBHelper {
 		logger.info("insertPoint");
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.INSERT_POINT);
+			psmt = conn.prepareStatement(Sql.INSERT_POINT);
 			psmt.setString(1, uid);
 			psmt.setString(2, ordNo);
 			psmt.setInt(3, point);
@@ -816,7 +815,7 @@ public class ProductDAO extends DBHelper {
 		int result = 0;
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.UPDATE_PRODUCT_HIT);
+			psmt = conn.prepareStatement(Sql.UPDATE_PRODUCT_HIT);
 			psmt.setString(1, prodNo);
 			result = psmt.executeUpdate();
 			close();
@@ -833,7 +832,7 @@ public class ProductDAO extends DBHelper {
 		int result = 0;
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.UPDATE_PRODUCTCART_COUNT);
+			psmt = conn.prepareStatement(Sql.UPDATE_PRODUCTCART_COUNT);
 			psmt.setString(1, uid);
 			psmt.setInt(2, prodNo);
 			result = psmt.executeUpdate();
@@ -851,7 +850,7 @@ public class ProductDAO extends DBHelper {
 		int result = 0;
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.UPDATE_PRODUCTORDER);
+			psmt = conn.prepareStatement(Sql.UPDATE_PRODUCTORDER);
 			psmt.setInt(1, vo.getUsedPoint());
 			psmt.setInt(2, vo.getOrdTotPrice());
 			psmt.setString(3, vo.getRecipName());
@@ -878,7 +877,7 @@ public class ProductDAO extends DBHelper {
 		int result = 0;
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.UPDATE_MEMBER_POINT);
+			psmt = conn.prepareStatement(Sql.UPDATE_MEMBER_POINT);
 			psmt.setInt(1, point);
 			psmt.setString(2, uid);
 			result = psmt.executeUpdate();
@@ -897,7 +896,7 @@ public class ProductDAO extends DBHelper {
 			logger.info("updateProductStock "+i);
 			try {
 				conn = getConnection();
-				psmt = conn.prepareStatement(Sql_kjh.UPDATE_PRODUCT_STOCK);
+				psmt = conn.prepareStatement(Sql.UPDATE_PRODUCT_STOCK);
 				psmt.setInt(1, completes.get(i).getCount());
 				psmt.setInt(2, completes.get(i).getProdNo());
 				result += psmt.executeUpdate();
@@ -917,7 +916,7 @@ public class ProductDAO extends DBHelper {
 		logger.info("deleteProductCart");
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.DELETE_PRODUCTCART + sql);
+			psmt = conn.prepareStatement(Sql.DELETE_PRODUCTCART + sql);
 			
 			result = psmt.executeUpdate();
 			close();
@@ -934,7 +933,7 @@ public class ProductDAO extends DBHelper {
 		logger.info("deleteProductCartOrderd");
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql_kjh.DELETE_PRODUCTCART_ORDERED + sql);
+			psmt = conn.prepareStatement(Sql.DELETE_PRODUCTCART_ORDERED + sql);
 			result = psmt.executeUpdate();
 			close();
 		} catch (Exception e) {

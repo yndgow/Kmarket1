@@ -66,7 +66,7 @@
                 </nav>
 
                 <section>
-                	<form action="/Kmarket/admin/product/list.do">
+                	<form action="/Kmarket/admin/product/list.do" method="get">
 	                    <div>
 	                        <select name="search">
 	                            <option value="prodName">상품명</option>
@@ -118,17 +118,17 @@
                      <div class="paging">
                      	<c:if test="${pageGroupStart > 1}">
                         <span class="prev">
-                            <a href="/Kmarket/admin/product/list.do?pg=${pageGroupStart-1}">&nbsp;이전</a>
+                            <a href="/Kmarket/admin/product/list.do?pg=${pageGroupStart-1}&search=${searchCate}&searchContent=${searchContent}">&nbsp;이전</a>
                         </span>
                         </c:if>
                         <c:forEach var="num" begin="${pageGroupStart}" end="${pageGroupEnd}">
                         <span class="num ${num == currentPage ? 'current' : 'off'}">
-                            <a href="/Kmarket/admin/product/list.do?pg=${num}">${num}</a>
+                            <a href="/Kmarket/admin/product/list.do?pg=${num}&search=${searchCate}&searchContent=${searchContent}">${num}</a>
                         </span>
                         </c:forEach>
                         <c:if test="${pageGroupEnd < lastPageNum}">
                         <span class="next">
-                            <a href="/Kmarket/admin/product/list.do?pg=${pageGroupEnd+1}">다음&nbsp;</a>
+                            <a href="/Kmarket/admin/product/list.do?pg=${pageGroupEnd+1}&search=${searchCate}&searchContent=${searchContent}">다음&nbsp;</a>
                         </span>
                         </c:if>
                     </div>

@@ -131,7 +131,7 @@ public class CsDAO extends DBHelper {
 					vo.setC2Name(rs.getString(11));
 					articles.add(vo);
 				}
-				
+				close();
 			} catch (Exception e) {
 				logger.error(e.getMessage());
 			}
@@ -165,6 +165,7 @@ public class CsDAO extends DBHelper {
 				vo.setC2Name(rs.getString(11));
 				articles.add(vo);
 			}
+			close();
 			
 		} catch (Exception e) {
 			logger.error(e.getMessage());

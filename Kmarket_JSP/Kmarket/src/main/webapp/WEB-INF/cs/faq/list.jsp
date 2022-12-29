@@ -13,7 +13,7 @@
     	        $(this).children('a').text('간단히 보기');
     	      } else{
     	        $(this).siblings('li:nth-child(n+4)').css('display','none');
-    	        $(this).children('a').text('더 보기');
+    	        $(this).children('a').text('더보기');
     	      }
     	    });
       });

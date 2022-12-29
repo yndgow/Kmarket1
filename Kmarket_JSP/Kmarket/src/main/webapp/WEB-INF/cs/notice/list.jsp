@@ -62,10 +62,10 @@
 				            <c:forEach var="num" begin="${pageGroupStart}" end="${pageGroupEnd}">
 				            <c:choose>
 				            <c:when test="${cate1 eq null }">
-				            <a href="/Kmarket/cs/notice/list.do?pg=${num}" class="num ${num == currentPage ? 'current':'off'}">${num}</a>
+				            <a href="/Kmarket/cs/notice/list.do?pg=${num}" class="num ${num == currentPage ? 'on':'off'}">${num}</a>
 				             </c:when>
 				             <c:otherwise>
-				             <a href="/Kmarket/cs/notice/list.do?pg=${num}&cate1=${cate1}" class="num ${num == currentPage ? 'current':'off'}">${num}</a>
+				             <a href="/Kmarket/cs/notice/list.do?pg=${num}&cate1=${cate1}" class="num ${num == currentPage ? 'on':'off'}">${num}</a>
 				             </c:otherwise>
 				             </c:choose>
 				            </c:forEach>

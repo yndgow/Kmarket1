@@ -63,10 +63,10 @@
                                         <input type="text" name="zip" id="zip" placeholder="우편번호 입력 클릭" onclick="postcode()" readonly>
                                     </div>    
                                     <div>
-                                        <input type="text" name="addr1" id="addr1" placeholder="주소를 검색하세요." readonly>
+                                        <input type="text" name="addr1" id="addr1" placeholder="주소를 검색하세요." readonly size="50">
                                     </div>
                                     <div>    
-                                        <input type="text" name="addr2" id="addr2"placeholder="상세주소를 입력하세요.">
+                                        <input type="text" name="addr2" id="addr2"placeholder="상세주소를 입력하세요." size="50">
                                     </div>
                                 </td>
                             </tr>

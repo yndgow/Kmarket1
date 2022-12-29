@@ -54,24 +54,18 @@
 			                            </tr>
                         	</c:forEach>
                         </table>
-<<<<<<< HEAD
-                        
-                        <c:if test="${cate1 eq null }">
-                         <div class="page">
-=======
                       
                           <div class="page">
->>>>>>> 1bf8c9ceaae1e5b520c4e51ee3b09a8fe1ff7b52
 				        	<c:if test="${pageGroupStart > 1}">
 				            <a href="/Kmarket/cs/notice/list.do?pg=${pageGroupStart - 1}" class="prev">이전</a>
 				            </c:if>
 				            <c:forEach var="num" begin="${pageGroupStart}" end="${pageGroupEnd}">
 				            <c:choose>
 				            <c:when test="${cate1 eq null }">
-				            <a href="/Kmarket/cs/notice/list.do?pg=${num}" class="num ${num == currentPage ? 'current':'off'}">${num}</a>
+				            <a href="/Kmarket/cs/notice/list.do?pg=${num}" class="num ${num == currentPage ? 'on':'off'}">${num}</a>
 				             </c:when>
 				             <c:otherwise>
-				             <a href="/Kmarket/cs/notice/list.do?pg=${num}&cate1=${cate1}" class="num ${num == currentPage ? 'current':'off'}">${num}</a>
+				             <a href="/Kmarket/cs/notice/list.do?pg=${num}&cate1=${cate1}" class="num ${num == currentPage ? 'on':'off'}">${num}</a>
 				             </c:otherwise>
 				             </c:choose>
 				            </c:forEach>
@@ -79,21 +73,6 @@
 				            <a href="/Kmarket/cs/notice/list.do?pg=${pageGroupEnd + 1}" class="next">다음</a>
 				            </c:if>
 				        </div>
-				        </c:if>
-                      
-                      	<c:if test="${cate1 ne null }">
-                         <div class="page">
-				        	<c:if test="${pageGroupStart > 1}">
-				            <a href="/Kmarket/cs/notice/list.do?pg=${pageGroupStart - 1}" class="prev">이전</a>
-				            </c:if>
-				            <c:forEach var="num" begin="${pageGroupStart}" end="${pageGroupEnd}">
-				            <a href="/Kmarket/cs/notice/list.do?pg=${num}&cate1=${cate1}" class="num ${num == currentPage ? 'current':'off'}">${num}</a>
-				            </c:forEach>
-				            <c:if test="${pageGroupEnd < lastPageNum}">
-				            <a href="/Kmarket/cs/notice/list.do?pg=${pageGroupEnd + 1}" class="next">다음</a>
-				            </c:if>
-				        </div>
-				        </c:if>
                     </article>
                 </section>
             </div>

@@ -12,6 +12,7 @@
 			<section class="write">
                 <article>
                     <form action="/Kmarket/cs/qna/write.do" method="post">
+                    	<input type="hidden" name="uid" value="${uid}"/>
                         <table class="asktest">
                             <tr>
                                 <td>문의유형</td>

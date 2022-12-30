@@ -8,9 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.co.kmarket.service.CsService;
 import kr.co.kmarket.vo.CsQnaVO;
+import kr.co.kmarket.vo.MemberVO;
 
 @WebServlet("/cs/qna/write.do")
 public class QnaWriteController extends HttpServlet{
@@ -34,8 +36,9 @@ public class QnaWriteController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-		String uid = "test";
-//		String uid = req.getParameter("uid");
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("sessUser");
+		
 		String cate1 = req.getParameter("c1Name");
 		String cate2 = req.getParameter("c2Name");
 		String qnaTitle = req.getParameter("title");
@@ -44,7 +47,7 @@ public class QnaWriteController extends HttpServlet{
 		
 		
 		CsQnaVO vo = new CsQnaVO();
-		vo.setUid(uid);
+		vo.setUid(member.getUid());
 		vo.setCate1(cate1);
 		vo.setCate2(cate2);
 		vo.setQnaTitle(qnaTitle);
@@ -54,7 +57,7 @@ public class QnaWriteController extends HttpServlet{
 		
 		service.InsertArticleQnaOfCs(vo);
 		
-		resp.sendRedirect("/Kmarket/WEB-INF/cs/qna/list.jsp");
+		resp.sendRedirect("/Kmarket/cs/qna/list.do?cate1="+cate1);
 			
 			
 		
